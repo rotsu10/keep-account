@@ -1,0 +1,32 @@
+# 忽略 IDEA 配置文件
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# 忽略 Maven/Gradle 构建产物
+target/
+build/
+*.jar
+*.war
+*.ear
+mvnw
+mvnw.cmd
+.mvn/
+.gradle/
+
+# 忽略日志文件
+logs/
+*.log
+
+# 忽略 Windows 系统文件
+Thumbs.db
+Desktop.ini
+
+# 忽略前端依赖和构建产物
+demo_front/node_modules/
+demo_front/dist/
+demo_front/.env
+demo_front/.env.local
+demo_front/.env.development.local
+demo_front/.env.production.local

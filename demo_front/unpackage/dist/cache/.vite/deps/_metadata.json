@@ -1,0 +1,15 @@
+{
+  "hash": "a48c7c5d",
+  "configHash": "0b16a37c",
+  "lockfileHash": "3c00e5c1",
+  "browserHash": "4743d15e",
+  "optimized": {
+    "vant": {
+      "src": "../../../../../node_modules/vant/es/index.mjs",
+      "file": "vant.js",
+      "fileHash": "5785b06a",
+      "needsInterop": false
+    }
+  },
+  "chunks": {}
+}
