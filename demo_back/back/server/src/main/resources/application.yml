@@ -1,6 +1,7 @@
 server:
   port: 8080
 
+
 spring:
   profiles:
     active: dev
@@ -11,3 +12,10 @@ mybatis:
   type-aliases-package: com.example.entity
   configuration:
     map-underscore-to-camel-case: true
+
+example:
+  jwt:
+    #用户端jwt
+    user-secret-key: 1234567890abcdef1234567890abcdef
+    user-ttl: 7200000
+    user-token-name: authentication

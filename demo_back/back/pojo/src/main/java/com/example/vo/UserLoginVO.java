@@ -15,7 +15,7 @@ public class UserLoginVO implements Serializable {
 
     private Long id; //主键值
 
-    private String userName; //用户名
+    private String username; //用户名
 
     private String token; //jwt令牌
 }

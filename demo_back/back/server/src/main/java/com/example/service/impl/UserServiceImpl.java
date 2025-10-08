@@ -4,6 +4,7 @@ import com.example.constant.MessageConstant;
 import com.example.dto.UserLoginDTO;
 import com.example.mapper.UserMapper;
 import com.example.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.entity.User;
@@ -11,6 +12,7 @@ import com.example.exception.AccountNotFoundException;
 import com.example.exception.PasswordErrorException;
 import org.springframework.util.DigestUtils;
 
+@Slf4j
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -19,6 +21,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User login(UserLoginDTO userLoginDTO) {
+        log.info("用户登录：{}", userLoginDTO);
         String username = userLoginDTO.getUsername();
         String password = userLoginDTO.getPassword();
 

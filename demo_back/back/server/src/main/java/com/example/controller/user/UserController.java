@@ -2,6 +2,7 @@ package com.example.controller.user;
 
 import com.example.constant.JwtClaimsConstant;
 import com.example.entity.User;
+import com.example.properties.JwtProperties;
 import com.example.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private JwtProperties jwtProperties;
     //用户登录
     @PostMapping("/login")
     public Result<UserLoginVO> login(@RequestBody UserLoginDTO userLoginDTO) {
@@ -32,17 +35,19 @@ public class UserController {
 
         //TODO：Jwt令牌
         //登录成功后。生成jwt令牌
-//        Map<String, Object> claims = new HashMap<>();
-//        claims.put(JwtClaimsConstant.ID,user.getId());
-//        String token = JwtUtil.createJWT(
-//                jwtProperties.getAdminSecretKey(),
-//                jwtProperties.getAdminTtl(),
-//                claims);
+        Map<String, Object> clams = new HashMap<>();
+        clams.put(JwtClaimsConstant.ID, user.getId());
+        String token = JwtUtil.createJWT(
+                jwtProperties.getUserSecretKey(),
+                jwtProperties.getUserTtl(),
+                clams);
+
+        log.info("token:{}", token);
 
         UserLoginVO userLoginVO = UserLoginVO.builder()
                 .id(user.getId())
-                .userName(user.getUserName())
-                .token("xxx-token-xxx")
+                .username(user.getUsername())
+                .token(token)
                 .build();
 
         return Result.success(userLoginVO);
