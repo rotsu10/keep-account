@@ -1,6 +1,7 @@
 package com.example.controller.user;
 
 import com.example.constant.JwtClaimsConstant;
+import com.example.dto.UserRegisterDTO;
 import com.example.entity.User;
 import com.example.properties.JwtProperties;
 import com.example.service.UserService;
@@ -51,5 +52,11 @@ public class UserController {
                 .build();
 
         return Result.success(userLoginVO);
+    }
+
+    @PostMapping("/register")
+    public Result register(@RequestBody UserRegisterDTO userRegisterDTO) {
+        userService.register(userRegisterDTO);
+        return Result.success();
     }
 }

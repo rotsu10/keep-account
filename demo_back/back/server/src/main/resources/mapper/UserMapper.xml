@@ -7,4 +7,24 @@
     <select id="getByUsername" resultType="com.example.entity.User">
         select * from user where username = #{username}
     </select>
+    <select id="queryByUsername" resultType="com.example.entity.User">
+        select
+            user.username,
+            user.phone
+        from user
+        where username = #{username}
+    </select>
+
+
+    <insert id="insert">
+        insert into user (username,phone,password) values (#{username},#{phone},#{password})
+    </insert>
+
+    <select id="queryByPhone" resultType="com.example.entity.User">
+        select
+            user.username,
+            user.phone
+        from user
+        where phone = #{phone}
+    </select>
 </mapper>
