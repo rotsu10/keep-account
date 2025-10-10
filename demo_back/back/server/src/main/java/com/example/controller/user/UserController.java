@@ -1,10 +1,15 @@
 package com.example.controller.user;
 
 import com.example.constant.JwtClaimsConstant;
+import com.example.constant.MessageConstant;
+import com.example.dto.UserRegisterDTO;
 import com.example.entity.User;
+import com.example.exception.AccountNotFoundException;
 import com.example.properties.JwtProperties;
 import com.example.service.UserService;
+import com.example.vo.UserRegisterVO;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,10 +32,11 @@ public class UserController {
 
     @Autowired
     private JwtProperties jwtProperties;
+
     //用户登录
     @PostMapping("/login")
     public Result<UserLoginVO> login(@RequestBody UserLoginDTO userLoginDTO) {
-        log.info("员工登录：{}", userLoginDTO);
+        log.info("用户登录：{}", userLoginDTO);
         User user = userService.login(userLoginDTO);
 
         //TODO：Jwt令牌

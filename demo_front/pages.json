@@ -17,24 +17,32 @@
 // }
 {
 	"pages": [
-		{
-			"path": "pages/common/login",
-			"style": {
-				"navigationStyle": "custom"
+			{
+				"path": "pages/common/login",
+				"style": {
+					"navigationBarTitleText": "登录",
+					"navigationStyle": "custom"
+				}
+			},
+			{
+				"path": "pages/common/register",
+				"style": {
+					"navigationBarTitleText": "注册",
+					"navigationStyle": "custom"
+				}
+			},
+			{
+				"path": "pages/home/home",
+				"style": {
+					"navigationBarTitleText": "首页",
+					"navigationStyle": "custom"
+				}
 			}
-		},
-		{
-			"path": "pages/common/register",
-			"style": {
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path":"pages/home/home",
-			"style": {
-				"navigationStyle": "custom"
-			}
+		],
+	"uniIdRouter": {},
+	"easycom": {
+		"autoscan": false,
+		"custom": {
 		}
-	],
-	"uniIdRouter": {}
+	}
 }
