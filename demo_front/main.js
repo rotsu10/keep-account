@@ -15,7 +15,7 @@ app.$mount()
 import { createSSRApp } from 'vue'
 
 //引入vant组件
-import { Field, CellGroup,Button } from 'vant';
+import { Field, CellGroup,Button ,Col, Row ,NumberKeyboard  } from 'vant';
 import 'vant/lib/index.css';
 
 export function createApp() {
@@ -23,6 +23,9 @@ export function createApp() {
   app.use(Field);
   app.use(CellGroup);
   app.use(Button);
+  app.use(Col);
+  app.use(Row);
+  app.use(NumberKeyboard);
   return {
     app
   }
