@@ -15,17 +15,19 @@ app.$mount()
 import { createSSRApp } from 'vue'
 
 //引入vant组件
-import { Field, CellGroup,Button ,Col, Row ,NumberKeyboard  } from 'vant';
+// import { Field, CellGroup,Button ,Col, Row ,NumberKeyboard  } from 'vant';
+import Vant from 'vant'
 import 'vant/lib/index.css';
 
 export function createApp() {
   const app = createSSRApp(App)
-  app.use(Field);
-  app.use(CellGroup);
-  app.use(Button);
-  app.use(Col);
-  app.use(Row);
-  app.use(NumberKeyboard);
+  // app.use(Field);
+  // app.use(CellGroup);
+  // app.use(Button);
+  // app.use(Col);
+  // app.use(Row);
+  // app.use(NumberKeyboard);
+  app.use(Vant)
   return {
     app
   }

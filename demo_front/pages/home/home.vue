@@ -18,6 +18,20 @@
 </template>
 
 <script setup>
+	const plusAccount = ()=>{
+		uni.navigateTo({
+			url:'/pages/record/record',
+			success: () => {
+				uni.showToast({
+					title:'请填写相关信息',
+					icon:'none'
+				})
+			},
+			fail:(err)=>{
+				console.log("跳转失败:",err)
+			}
+		})
+	}
 </script>
 
 <style>

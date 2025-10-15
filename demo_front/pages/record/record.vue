@@ -1,0 +1,103 @@
+<template>
+		<van-cell-group inset>
+			  <van-field
+			    v-model="productPrice"
+			    type="number"
+			    number="9.2"
+			    label="商品价格"
+			    placeholder="限制9位整数2位小数"
+			  />
+			  <van-field
+				v-model="message"
+				rows="1"
+				autosize
+				label="备注"
+				type="textarea"
+				placeholder="请输入备注"
+			  />
+			</van-cell-group>
+			
+			<van-divider
+			  :style="{ color: '#1989fa', borderColor: '#1989fa', padding: '16px 16px' }"
+			>
+			</van-divider>
+			
+		<van-radio-group v-model="checked" class="radio-group">
+		  <van-radio name="1">单选框 1</van-radio>
+		  <van-radio name="2">单选框 2</van-radio>
+		  <van-radio name="3">单选框 3</van-radio>
+		  <van-radio name="4">单选框 4</van-radio>
+		  <van-radio name="5">单选框 5</van-radio>
+		  <van-radio name="6">单选框 6</van-radio>
+		  <van-radio name="7">单选框 7</van-radio>
+		  <van-radio name="8">单选框 8</van-radio>
+		  <van-radio name="9"></van-radio>
+		</van-radio-group>
+		<!-- <van-button type="primary" round size = 'large' @click = addCount>添加</van-button> -->
+		<van-button type="primary" round size="large" @click = 'addCount'>添加</van-button>
+</template>
+
+
+<script setup>
+import { ref } from 'vue';
+import { http } from '@/utils/request.js'; // 导入请求工具
+
+// 定义页面数据
+const productPrice = ref(''); // 商品价格
+const message = ref('');     // 备注
+const checked = ref('');    // 选中的单选框值
+
+// 添加按钮点击事件
+const addCount = async () => {
+  if (!productPrice.value) {
+    uni.showToast({ title: '请输入商品价格', icon: 'none' });
+    return;
+  }
+
+ if (!message.value) {
+    uni.showToast({ title: '请选择分类', icon: 'none' });
+    return;
+  }
+  
+  try {
+    const sendData = {
+      price: productPrice.value, // 商品价格
+      remark: message.value,     // 备注
+      radioValue: checked.value  // 选中的单选框值
+    };
+
+    // 3. 调用封装的 http.post 发送请求（示例：假设后端接口为 /api/add）
+    const result = await http.post('/api/add', sendData, {
+      loadingText: '正在提交...'
+    });
+
+    // 4. 请求成功后的处理
+    uni.showToast({ title: '添加成功', icon: 'success' });
+    console.log('后端返回数据：', result);
+
+    productPrice.value = '';
+    message.value = '';
+    checked.value = '';
+
+  } catch (error) {
+    console.error('添加失败：', error);
+  }
+};
+</script>
+
+<style>
+.radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15rpx;
+  padding: 0 16rpx;
+}
+.van-radio {
+  flex: 0 0 calc(33.333% - 10rpx);
+  margin: 0;
+  box-sizing: border-box;
+}
+.van-button {
+  margin: 30rpx 16rpx;
+}
+</style>
