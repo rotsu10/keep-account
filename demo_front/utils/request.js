@@ -1,6 +1,7 @@
 // utils/request.js
 
-const BASE_URL = 'https://api.example.com'
+// const BASE_URL = '/api'
+const BASE_URL = "http://localhost:8080";
 
 /**
  * 请求拦截器
@@ -85,7 +86,12 @@ const errorHandler = (error, config) => {
  */
 const request = (config) => {
   const mergedConfig = {
-    url: config.url.startsWith('http') ? config.url : `${BASE_URL}${config.url}`,
+    // url: config.url.startsWith('http') ? config.url : `${BASE_URL}${config.url}`,
+	  url: (() => {
+	    const finalUrl = config.url.startsWith('http') ? config.url : `${BASE_URL}${config.url}`;
+	    console.log("最终请求 url：", finalUrl); // 目标结果：http://localhost:8080/user/addCount
+	    return finalUrl;
+	  })(),
     method: config.method || 'GET',
     data: config.data || {},
     header: {

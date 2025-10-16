@@ -1,9 +1,13 @@
 package com.example.service.impl;
 
 import com.example.constant.MessageConstant;
+import com.example.context.BaseContext;
+import com.example.dto.UserBillDTO;
 import com.example.dto.UserLoginDTO;
 import com.example.dto.UserRegisterDTO;
+import com.example.entity.UserBill;
 import com.example.exception.AccountFoundException;
+import com.example.mapper.UserBillMapper;
 import com.example.mapper.UserMapper;
 import com.example.service.UserService;
 import com.example.vo.UserLoginVO;
@@ -18,6 +22,7 @@ import com.example.exception.PasswordErrorException;
 import org.springframework.util.DigestUtils;
 
 import javax.security.auth.login.AccountException;
+import java.time.LocalDateTime;
 
 @Slf4j
 @Service
@@ -25,6 +30,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private UserBillMapper userBillMapper;
 
     @Override
     public User login(UserLoginDTO userLoginDTO) {
@@ -71,6 +79,16 @@ public class UserServiceImpl implements UserService {
         if (rows > 0) {
             log.info("用户注册成功: {}", userRegisterDTO.getUsername());
         }
+    }
+
+    @Override
+    public void addCount(UserBillDTO userBillDTO) {
+        UserBill userBill = new UserBill();
+        BeanUtils.copyProperties(userBillDTO, userBill);
+        userBill.setCreateTime(LocalDateTime.now());
+        userBill.setUserId(BaseContext.getCurrentId());
+        log.info("当前用户id: {}", userBill.getUserId());
+        userBillMapper.insertBill(userBill);
     }
 }
 

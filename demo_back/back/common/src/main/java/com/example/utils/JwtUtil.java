@@ -26,8 +26,8 @@ public class JwtUtil {
     public static String createJWT(String secretKey, long ttlMillis, Map<String, Object> claims) {
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
 
-        long expMillis = System.currentTimeMillis() + ttlMillis;
-        Date exp = new Date(expMillis);
+        long expMillis = System.currentTimeMillis() + ttlMillis; // 毫秒级：当前时间 + 有效期（毫秒）
+        Date exp = new Date(expMillis); // 传入毫秒级时间戳，生成正确的过期时间
 
         // 生成秘钥对象
         SecretKey key = Keys.hmacShaKeyFor(secretKey.getBytes(StandardCharsets.UTF_8));

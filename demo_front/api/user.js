@@ -1,9 +1,9 @@
 import {http} from '../utils/request.js'
 
 export const userApi = {
-login: (data) => {
-    return http.post('/auth/login', data, {
-      loadingText: '登录中...'
-    })
-  }
+	addCount:(data)=>{
+		return http.post('/api/user/add', data, {
+		loadingText: '添加中...'
+		})
+	}
 }

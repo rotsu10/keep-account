@@ -41,7 +41,6 @@
 <script setup>
 import { ref } from 'vue';
 import { http } from '@/utils/request.js'; // 导入请求工具
-
 // 定义页面数据
 const productPrice = ref(''); // 商品价格
 const message = ref('');     // 备注
@@ -66,8 +65,7 @@ const addCount = async () => {
       radioValue: checked.value  // 选中的单选框值
     };
 
-    // 3. 调用封装的 http.post 发送请求（示例：假设后端接口为 /api/add）
-    const result = await http.post('/api/add', sendData, {
+    const result = await http.post('/user/addCount', sendData, {
       loadingText: '正在提交...'
     });
 

@@ -1,6 +1,7 @@
 package com.example.controller.user;
 
 import com.example.constant.JwtClaimsConstant;
+import com.example.dto.UserBillDTO;
 import com.example.dto.UserRegisterDTO;
 import com.example.entity.User;
 import com.example.properties.JwtProperties;
@@ -57,6 +58,14 @@ public class UserController {
     @PostMapping("/register")
     public Result register(@RequestBody UserRegisterDTO userRegisterDTO) {
         userService.register(userRegisterDTO);
+        return Result.success();
+    }
+
+
+    @PostMapping("/addCount")
+    public Result addCount(@RequestBody UserBillDTO userBillDTO){
+        log.info("添加账单：{}", userBillDTO);
+        userService.addCount(userBillDTO);
         return Result.success();
     }
 }
