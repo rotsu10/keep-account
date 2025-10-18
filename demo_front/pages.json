@@ -46,7 +46,8 @@
 			"path" : "pages/record/category",
 			"style" : 
 			{
-				"navigationBarTitleText" : "custom"
+				"navigationStyle": "custom",
+				"navigationBarTitleText" : ""
 			}
 		}
 	],

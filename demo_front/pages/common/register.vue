@@ -84,7 +84,7 @@
 	}
 </script>
 
-<style>
+<style scoped>
 	.register_button{
 		display: flex;
 		justify-content: center; 

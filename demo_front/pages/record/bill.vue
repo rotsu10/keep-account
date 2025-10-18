@@ -100,7 +100,7 @@ const addBill = async () => {
 };
 </script>
 
-<style>
+<style scoped>
 .radio-group {
   display: flex;
   flex-wrap: wrap;

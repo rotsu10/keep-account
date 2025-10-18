@@ -85,15 +85,13 @@ uni.request({
 	}
 </script>
 
-<style>
+<style scoped>
 	.content {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
 	}
-
-
 
 	.text-area {
 		display: flex;

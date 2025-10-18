@@ -1,8 +1,10 @@
 package com.example.controller.user;
 
 import com.example.constant.JwtClaimsConstant;
+import com.example.dto.CategoryDTO;
 import com.example.dto.UserBillDTO;
 import com.example.dto.UserRegisterDTO;
+import com.example.entity.Category;
 import com.example.entity.User;
 import com.example.properties.JwtProperties;
 import com.example.service.UserService;
@@ -67,4 +69,18 @@ public class UserController {
         return Result.success();
     }
 
+    @PostMapping("/addCategory")
+    public Result addCategory(@RequestBody CategoryDTO categoryDTO){
+        log.info("添加分类：{}", categoryDTO);
+        userService.addCategory(categoryDTO);
+        return Result.success();
+    }
+
+
+    @GetMapping("/queryCategory")
+    public Result<List<Category>> queryCategory(Integer type){
+        log.info("查询分类：{}", type);
+        List<Category> categoryList = userService.queryCategory(type);
+        return Result.success(categoryList);
+    }
 }

@@ -13,7 +13,6 @@
 			  <van-col span="6">我的</van-col>
 			</van-row>
 		</view>
-
 	</view>
 </template>
 
@@ -48,7 +47,7 @@
 	}
 </script>
 
-<style>
+<style scoped>
 .fixed-bottom {
 	position: fixed;
 	bottom: 0;

@@ -3,9 +3,11 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mapper.UserCategoryMapper">
-
-
-    <select id="queryCategoryType" resultType="java.lang.Integer">
-        select id,user_id,name from category where category.user_id = #{userId} and id = #{categoryId}
+    <select id="queryCategoryType" resultType="com.example.entity.Category">
+        select id, user_id, name, type from category where type = #{type}
     </select>
+
+    <insert id="insertCategory">
+        insert into category ( user_id, name, type, create_time ) VALUES (#{userId}, #{name}, #{type},#{createTime})
+    </insert>
 </mapper>

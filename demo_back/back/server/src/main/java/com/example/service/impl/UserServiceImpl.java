@@ -2,9 +2,11 @@ package com.example.service.impl;
 
 import com.example.constant.MessageConstant;
 import com.example.context.BaseContext;
+import com.example.dto.CategoryDTO;
 import com.example.dto.UserBillDTO;
 import com.example.dto.UserLoginDTO;
 import com.example.dto.UserRegisterDTO;
+import com.example.entity.Category;
 import com.example.entity.UserBill;
 import com.example.exception.AccountFoundException;
 import com.example.mapper.UserBillMapper;
@@ -24,6 +26,7 @@ import org.springframework.util.DigestUtils;
 
 import javax.security.auth.login.AccountException;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -97,6 +100,20 @@ public class UserServiceImpl implements UserService {
                 userBill.getCategoryId());
         log.info("当前用户id: {}", userBill.getUserId());
         userBillMapper.insertBill(userBill);
+    }
+
+    @Override
+    public List<Category> queryCategory(Integer type) {
+        return userCategoryMapper.queryCategoryType(type);
+    }
+
+    @Override
+    public void addCategory(CategoryDTO categoryDTO) {
+        Category category = new Category();
+        BeanUtils.copyProperties(categoryDTO, category);
+        category.setUserId(BaseContext.getCurrentId());
+        category.setCreateTime(LocalDateTime.now());
+        userCategoryMapper.insertCategory(category);
     }
 }
 
