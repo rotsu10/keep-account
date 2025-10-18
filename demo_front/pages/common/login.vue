@@ -44,6 +44,7 @@ uni.request({
   },
   success: (res) => {
     const { statusCode, data: result } = res;
+	  console.log("接口完整返回：", result); 
     
     if (statusCode !== 200) {
       uni.showToast({ title: `请求失败, ${statusCode}`, icon: 'none' });
@@ -58,6 +59,7 @@ uni.request({
     if (result.code === 1) {
         uni.showToast({ title: "登录成功" });
         uni.setStorageSync('token', result.data.token); 
+		console.log("token是：", result.data.token);
         uni.redirectTo({ url: '/pages/home/home' });
       } else {
         uni.showToast({ title: result.message, icon: 'none' });

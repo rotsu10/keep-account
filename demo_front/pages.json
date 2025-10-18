@@ -36,7 +36,14 @@
 			}
 		},
 		{
-			"path" : "pages/record/record",
+			"path" : "pages/record/bill",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
+			}
+		},
+		{
+			"path" : "pages/record/category",
 			"style" : 
 			{
 				"navigationBarTitleText" : ""

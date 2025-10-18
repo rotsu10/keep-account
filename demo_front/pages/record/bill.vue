@@ -19,10 +19,10 @@
 			
 			<van-divider
 			  :style="{ color: '#1989fa', borderColor: '#1989fa', padding: '16px 16px' }"
-			>
+			>分类
 			</van-divider>
 			
-		<van-radio-group v-model="checked" class="radio-group">
+		<van-radio-group v-model="categoryId" class="radio-group">
 		  <van-radio name="1">单选框 1</van-radio>
 		  <van-radio name="2">单选框 2</van-radio>
 		  <van-radio name="3">单选框 3</van-radio>
@@ -33,8 +33,18 @@
 		  <van-radio name="8">单选框 8</van-radio>
 		  <van-radio name="9"></van-radio>
 		</van-radio-group>
+		
+		<van-divider
+		  :style="{ color: '#1989fa', borderColor: '#1989fa', padding: '16px 16px' }"
+		>支付类型
+		</van-divider>
+		
+		<van-radio-group v-model="payType" class="radio-group">
+		  <van-radio name="1">收入</van-radio>
+		  <van-radio name="2">支出</van-radio>
+		</van-radio-group>
 		<!-- <van-button type="primary" round size = 'large' @click = addCount>添加</van-button> -->
-		<van-button type="primary" round size="large" @click = 'addCount'>添加</van-button>
+		<van-button type="primary" round size="large" @click = 'addBill'>添加</van-button>
 </template>
 
 
@@ -44,28 +54,35 @@ import { http } from '@/utils/request.js'; // 导入请求工具
 // 定义页面数据
 const productPrice = ref(''); // 商品价格
 const message = ref('');     // 备注
-const checked = ref('');    // 选中的单选框值
+const categoryId = ref('');    // 选中的单选框值
+const payType = ref('2');    // 支付类型 1.收入  2.支出 默认支出
 
 // 添加按钮点击事件
-const addCount = async () => {
+const addBill = async () => {
   if (!productPrice.value) {
     uni.showToast({ title: '请输入商品价格', icon: 'none' });
     return;
   }
 
- if (!message.value) {
+ if (!categoryId.value) {
     uni.showToast({ title: '请选择分类', icon: 'none' });
     return;
   }
   
+  if (!payType.value) {
+     uni.showToast({ title: '请选择类型', icon: 'none' });
+     return;
+   }
+   
   try {
     const sendData = {
-      price: productPrice.value, // 商品价格
+      amount: productPrice.value, // 商品价格
       remark: message.value,     // 备注
-      radioValue: checked.value  // 选中的单选框值
+      categoryId: categoryId.value,  // 选中的单选框值
+      type: payType.value  // 选中的单选框值
     };
 
-    const result = await http.post('/user/addCount', sendData, {
+    const result = await http.post('/user/addBill', sendData, {
       loadingText: '正在提交...'
     });
 
@@ -75,8 +92,8 @@ const addCount = async () => {
 
     productPrice.value = '';
     message.value = '';
-    checked.value = '';
-
+    categoryId.value = '';
+	payType.value = '2';
   } catch (error) {
     console.error('添加失败：', error);
   }

@@ -2,14 +2,14 @@
 	<view>
 		<!-- 页面内容 -->
 		<view class="content">
-			<van-button icon="plus" type="primary" round class="plus" @click="plusAccount"/>
+			<van-button icon="plus" type="primary" round class="plus" @click="plusAccountPage"/>
 		</view>
 		
 		<!-- 固定在底部的布局 -->
 		<view class="fixed-bottom">
 			<van-row justify="center" class="buttom_law">
 			  <van-col span="6">首页</van-col>
-			  <van-col span="6">分类</van-col>
+			  <van-col span="6" @click="categoryPage">分类</van-col>
 			  <van-col span="6">我的</van-col>
 			</van-row>
 		</view>
@@ -18,9 +18,9 @@
 </template>
 
 <script setup>
-	const plusAccount = ()=>{
+	const plusAccountPage = ()=>{
 		uni.navigateTo({
-			url:'/pages/record/record',
+			url:'/pages/record/bill',
 			success: () => {
 				uni.showToast({
 					title:'请填写相关信息',
@@ -29,6 +29,20 @@
 			},
 			fail:(err)=>{
 				console.log("跳转失败:",err)
+			}
+		})
+	}
+	const categoryPage = ()=>{
+		uni.navigateTo({
+			url:'/pages/record/category',
+			success:()=>{
+				console.log("跳转页面成功")
+			},
+			fail:(err)=>{
+				uni.showToast({
+					title: '跳转页面失败，请重试',
+					icon:'none'
+				});
 			}
 		})
 	}

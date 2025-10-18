@@ -62,10 +62,10 @@ public class UserController {
     }
 
 
-    @PostMapping("/addCount")
-    public Result addCount(@RequestBody UserBillDTO userBillDTO){
+    @PostMapping("/addBill")
+    public Result addBill(@RequestBody UserBillDTO userBillDTO){
         log.info("添加账单：{}", userBillDTO);
-        userService.addCount(userBillDTO);
+        userService.addBill(userBillDTO);
         return Result.success();
     }
 }

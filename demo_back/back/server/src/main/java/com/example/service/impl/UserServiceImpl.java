@@ -8,6 +8,7 @@ import com.example.dto.UserRegisterDTO;
 import com.example.entity.UserBill;
 import com.example.exception.AccountFoundException;
 import com.example.mapper.UserBillMapper;
+import com.example.mapper.UserCategoryMapper;
 import com.example.mapper.UserMapper;
 import com.example.service.UserService;
 import com.example.vo.UserLoginVO;
@@ -33,6 +34,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserBillMapper userBillMapper;
+
+    @Autowired
+    private UserCategoryMapper userCategoryMapper;
 
     @Override
     public User login(UserLoginDTO userLoginDTO) {
@@ -82,11 +86,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addCount(UserBillDTO userBillDTO) {
+    public void addBill(UserBillDTO userBillDTO) {
         UserBill userBill = new UserBill();
         BeanUtils.copyProperties(userBillDTO, userBill);
+
         userBill.setCreateTime(LocalDateTime.now());
         userBill.setUserId(BaseContext.getCurrentId());
+        log.info("查询type的条件：userId={}, categoryId={}",
+                userBill.getUserId(),  // 应该是10（从BaseContext获取的）
+                userBill.getCategoryId());
         log.info("当前用户id: {}", userBill.getUserId());
         userBillMapper.insertBill(userBill);
     }

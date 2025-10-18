@@ -16,5 +16,5 @@ public interface UserService {
     void register(UserRegisterDTO userRegisterDTO);
 
     //添加账单
-    void addCount(UserBillDTO userBillDTO);
+    void addBill(UserBillDTO userBillDTO);
 }
