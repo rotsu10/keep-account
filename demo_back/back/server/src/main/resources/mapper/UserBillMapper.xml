@@ -5,6 +5,6 @@
 <mapper namespace="com.example.mapper.UserBillMapper">
 
     <insert id="insertBill">
-        insert into user_bill ( user_id, category_id, amount, type, create_time, remark) values (#{userId}, #{categoryId}, #{amount}, #{type}, #{createTime}, #{remark})
+        insert into user_bill (user_id, category_id, amount, type, create_time, remark) values (#{userId}, #{categoryId}, #{amount}, #{type}, #{createTime}, #{remark})
     </insert>
 </mapper>
