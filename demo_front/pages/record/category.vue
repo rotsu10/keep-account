@@ -6,7 +6,7 @@
 			<van-nav-bar title="分类" left-text="返回" left-arrow @click-left="onClickLeft">
 				<template #right>
 					<van-icon name="search" size="18"/>
-					<van-icon name="plus" size="18" @click="addCategory" />
+					<van-icon name="plus" size="18" @click="showAddDialog" />
 				</template>
 			</van-nav-bar>
 		</view>
@@ -25,20 +25,23 @@
 		</view>
 		
 		<!-- 弹出层 -->
-		<van-dialog v-model:show="show" title="分类信息" show-cancel-button>
-			<van-field v-model="value" label="" placeholder="请输入分类名"/>
+		<van-dialog v-model:show="show" title="分类信息" show-cancel-button="取消" show-confirm-button="确定" @confirm = 'addCategory'>
+			<van-field v-model="CategoryName" label="" placeholder="请输入分类名"/>
 			<van-radio-group v-model="checked" direction="horizontal">
 			  <van-radio name="1">收入</van-radio>
 			  <van-radio name="2">支出</van-radio>
 			  <van-radio name="3">转账</van-radio>
 			</van-radio-group>
 		</van-dialog>
+		
+		
 	</view>
 
 </template>
 
 <script setup>
 	import {ref} from 'vue';
+import { http } from '../../utils/request';
 
 	const onClickLeft = () => history.back(); //返回
 
@@ -47,7 +50,8 @@
 	const finished = ref(false); //加载
 
 	const show = ref(false) //弹出层
-	const checked = ref('1');//type
+	const checked = ref('1');//分类类型
+	const CategoryName = ref(''); //分类名
 
 	const onLoad = () => {
 		setTimeout(() => {
@@ -61,9 +65,48 @@
 		}, 1000);
 	}
 
-	const addCategory = () => {
-		show.value = true;
+	const showAddDialog = () => {
+		show.value = true; // 显示弹窗
+		checked.value = '1';
+		CategoryName.value = '';
+	};
+	
+
+	const addCategory = async() => {
+		//非空校验
+		if(!checked.value.trim()){
+			uni.showToast({
+				title:'请输入分类类型',
+				icon:'none'
+			})
+			return;
+		}
+		
+		if(!CategoryName.value){
+			uni.showToast({
+				title:'请输入分类名',
+				icon:'none'
+			})
+			return;
+		}
+		
 		console.log('弹窗应显示，当前show值：', show.value);
+		try{
+			const sendData = {
+				name : CategoryName.value, //分类名
+				type : checked.value	//分类类型
+			};
+			
+			const result  = await http.post('/user/addCategory',sendData,{
+				loadingText:'正在提交中'
+			});
+			
+			uni.showToast({title:'提交成功',icon:'success'});
+			console.log('提交分类：',result);
+			show.value = false;
+		}catch(err){
+			console.log('提交失败',err);
+		}		
 	}
 </script>
 
