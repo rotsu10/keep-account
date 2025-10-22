@@ -7,6 +7,7 @@ import com.example.dto.UserLoginDTO;
 import com.example.dto.UserRegisterDTO;
 import com.example.entity.Category;
 import com.example.entity.User;
+import com.example.vo.CategoryVO;
 import com.example.vo.UserLoginVO;
 
 import java.util.List;
@@ -23,8 +24,11 @@ public interface UserService {
     void addBill(UserBillDTO userBillDTO);
 
     //根据类型查询分类
-    List<Category> queryCategory(Integer type);
+    List<Category> queryTypeCategory(Integer type);
 
     //添加分类
     void addCategory(CategoryDTO categoryDTO);
+
+    //根据分类名和类型查询分类
+    Category queryCategory(CategoryDTO categoryDTO);
 }

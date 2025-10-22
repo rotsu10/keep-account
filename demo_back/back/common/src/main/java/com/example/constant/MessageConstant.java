@@ -26,4 +26,5 @@ public class MessageConstant {
     public static final String ALREADY_EXISTS = "已存在";
     public static final String ACCOUNT_FOUND = "用户名已使用";
     public static final String PHONE_EXISTS ="手机号已使用" ;
+    public static final String CATEGORY_EXISTS = "分类已存在";
 }

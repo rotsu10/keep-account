@@ -1,4 +1,5 @@
 package com.example.mapper;
+import com.example.dto.CategoryDTO;
 import com.example.entity.Category;
 import com.example.entity.UserBill;
 import org.apache.ibatis.annotations.Mapper;
@@ -13,4 +14,7 @@ public interface UserCategoryMapper {
 
     //新增分类
     void insertCategory(Category category);
+
+    //根据分类类型和分类名查询分类
+    Category queryCategory(CategoryDTO categoryDTO);
 }

@@ -8,7 +8,9 @@ import com.example.entity.Category;
 import com.example.entity.User;
 import com.example.properties.JwtProperties;
 import com.example.service.UserService;
+import com.example.vo.CategoryVO;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.example.vo.UserLoginVO;
@@ -76,11 +78,20 @@ public class UserController {
         return Result.success();
     }
 
-
     @GetMapping("/queryCategory")
-    public Result<List<Category>> queryCategory(Integer type){
-        log.info("查询分类：{}", type);
-        List<Category> categoryList = userService.queryCategory(type);
+    public Result<CategoryVO> queryCategory(@RequestBody CategoryDTO categoryDTO){
+        log.info("//根据分类名和类型查询分类{}", categoryDTO);
+        Category category = userService.queryCategory(categoryDTO);
+        CategoryVO categoryVO = new CategoryVO();
+        BeanUtils.copyProperties(category,categoryVO);
+        return Result.success(categoryVO);
+    }
+
+
+    @GetMapping("/queryTypeCategory")
+    public Result<List<Category>> queryTypeCategory(Integer type){
+        log.info("根据类型查询分类：{}", type);
+        List<Category> categoryList = userService.queryTypeCategory(type);
         return Result.success(categoryList);
     }
 }

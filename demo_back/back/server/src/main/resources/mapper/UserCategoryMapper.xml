@@ -10,4 +10,9 @@
     <insert id="insertCategory">
         insert into category ( user_id, name, type, create_time ) VALUES (#{userId}, #{name}, #{type},#{createTime})
     </insert>
+
+    <select id="queryCategory" resultType="com.example.entity.Category">
+        select id, user_id, name, type, create_time from category where user_id = #{userId} and name = #{name} and type = #{type}
+    </select>
+
 </mapper>

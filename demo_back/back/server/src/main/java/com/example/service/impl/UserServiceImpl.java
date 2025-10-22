@@ -9,10 +9,12 @@ import com.example.dto.UserRegisterDTO;
 import com.example.entity.Category;
 import com.example.entity.UserBill;
 import com.example.exception.AccountFoundException;
+import com.example.exception.CategoryException;
 import com.example.mapper.UserBillMapper;
 import com.example.mapper.UserCategoryMapper;
 import com.example.mapper.UserMapper;
 import com.example.service.UserService;
+import com.example.vo.CategoryVO;
 import com.example.vo.UserLoginVO;
 import com.example.vo.UserRegisterVO;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +27,7 @@ import com.example.exception.PasswordErrorException;
 import org.springframework.util.DigestUtils;
 
 import javax.security.auth.login.AccountException;
+import javax.smartcardio.CardException;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -103,17 +106,29 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<Category> queryCategory(Integer type) {
+    public List<Category> queryTypeCategory(Integer type) {
         return userCategoryMapper.queryCategoryType(type);
     }
 
     @Override
     public void addCategory(CategoryDTO categoryDTO) {
+        //添加分类前，需检查该类型是否有该分类
+        Category queryCategory = userCategoryMapper.queryCategory(categoryDTO);
+        if(queryCategory != null){
+            throw new CategoryException(MessageConstant.CATEGORY_EXISTS);
+
+        }
+
         Category category = new Category();
         BeanUtils.copyProperties(categoryDTO, category);
         category.setUserId(BaseContext.getCurrentId());
         category.setCreateTime(LocalDateTime.now());
         userCategoryMapper.insertCategory(category);
+    }
+
+    @Override
+    public Category queryCategory(CategoryDTO categoryDTO) {
+        return userCategoryMapper.queryCategory(categoryDTO);
     }
 }
 

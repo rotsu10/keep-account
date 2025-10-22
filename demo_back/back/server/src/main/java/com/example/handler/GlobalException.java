@@ -3,12 +3,15 @@ package com.example.handler;
 
 import com.example.exception.AccountFoundException;
 import com.example.exception.AccountNotFoundException;
+import com.example.exception.CategoryException;
 import com.example.exception.PasswordErrorException;
 import com.example.result.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import javax.smartcardio.CardException;
 
 //全局异常处理器
 @RestControllerAdvice
@@ -33,6 +36,12 @@ public class GlobalException {
     public Result<String> handlePasswordErrorException(PasswordErrorException ex) {
         log.error("密码错误异常：{}", ex.getMessage()); // 可选：打印日志
         return Result.error(ex.getMessage());
+    }
+
+    @ExceptionHandler(CategoryException.class)
+    public Result<String> handleCategoryErrorException(CategoryException e){
+        log.info("分类错误{}", e.getMessage());
+        return Result.error(e.getMessage());
     }
 
     // 处理所有其他未捕获的异常

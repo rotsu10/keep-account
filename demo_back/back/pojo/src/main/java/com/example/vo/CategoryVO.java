@@ -13,7 +13,6 @@ public class CategoryVO {
 
     private Long id;
 
-
     private Long userId;
 
     private String name;

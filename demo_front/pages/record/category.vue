@@ -25,7 +25,7 @@
 		</view>
 		
 		<!-- 弹出层 -->
-		<van-dialog v-model:show="show" title="分类信息" show-cancel-button="取消" show-confirm-button="确定" @confirm = 'addCategory'>
+		<van-dialog v-model:show="show" title="分类信息" show-cancel-button show-confirm-button @confirm = 'addCategory'>
 			<van-field v-model="CategoryName" label="" placeholder="请输入分类名"/>
 			<van-radio-group v-model="checked" direction="horizontal">
 			  <van-radio name="1">收入</van-radio>
@@ -75,10 +75,7 @@ import { http } from '../../utils/request';
 	const addCategory = async() => {
 		//非空校验
 		if(!checked.value.trim()){
-			uni.showToast({
-				title:'请输入分类类型',
-				icon:'none'
-			})
+			uni.showToast({title:'请输入分类类型',icon:'none'})
 			return;
 		}
 		
@@ -105,6 +102,10 @@ import { http } from '../../utils/request';
 			console.log('提交分类：',result);
 			show.value = false;
 		}catch(err){
+			uni.showToast({
+				title:err.message,
+				icon:'error'
+			})
 			console.log('提交失败',err);
 		}		
 	}
