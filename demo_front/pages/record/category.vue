@@ -12,14 +12,14 @@
 		</view>
 
 		<view class="button">
-			<van-button type="default" round size="normal">支出</van-button>
-			<van-button type="default" round size="normal">收入</van-button>
-			<van-button type="default" round size="normal" disabled>禁用</van-button>
+			<van-button type="default" round size="normal" @click="handleTypeClick(1)">支出</van-button>
+			<van-button type="default" round size="normal" @click="handleTypeClick(2)">收入</van-button>
+			<van-button type="default" round size="normal" @click="handleTypeClick(3)">转账</van-button>
 		</view>
 
 		<view>
-			<van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
-				<van-cell v-for="item in list" :key="item" :title="item" />
+			<van-list v-model:loading="loading" :finished="true" finished-text="没有更多了">
+				<van-cell v-for="item in list" :key="item.id" :title="item.name" />
 				<van-back-top />
 			</van-list>
 		</view>
@@ -41,29 +41,17 @@
 
 <script setup>
 	import {ref} from 'vue';
-import { http } from '../../utils/request';
+	import { http } from '../../utils/request';
 
 	const onClickLeft = () => history.back(); //返回
 
+	const currentType = ref(0); // 当前选中的类型（1-支出，2-收入，3-转账）
 	const list = ref([]);
 	const loading = ref(false);
-	const finished = ref(false); //加载
 
 	const show = ref(false) //弹出层
 	const checked = ref('1');//分类类型
 	const CategoryName = ref(''); //分类名
-
-	const onLoad = () => {
-		setTimeout(() => {
-			for (let i = 0; i < 10; i++) {
-				list.value.push(list.value.length + 1);
-			}
-			loading.value = false;
-			if (list.value.length >= 40) {
-				finished.value = true;
-			}
-		}, 1000);
-	}
 
 	const showAddDialog = () => {
 		show.value = true; // 显示弹窗
@@ -71,7 +59,7 @@ import { http } from '../../utils/request';
 		CategoryName.value = '';
 	};
 	
-
+	//添加分类
 	const addCategory = async() => {
 		//非空校验
 		if(!checked.value.trim()){
@@ -108,6 +96,48 @@ import { http } from '../../utils/request';
 			})
 			console.log('提交失败',err);
 		}		
+	}
+	
+	//切换分类类型
+	const handleTypeClick = (type)=>{
+		console.log("type:",type);
+		if(currentType.value === type) return;
+		currentType.value = type;
+		queryCategoryType(type); 
+	}
+	
+	//根据类型查询分类
+	const queryCategoryType = async(type)=>{
+		console.log("传入type",type);
+		currentType.value = type; // 记录当前选中类型
+		loading.value = true; // 开始加载
+		
+		try{
+			const url = `/user/queryTypeCategory?type=${type}`;
+			const result = await http.get(url,
+			{loading:'加载中'},
+			);
+			
+			if(result.code === 1){
+				console.log('后端返回的data：', result.data); // 检查数据是否存在
+				list.value = result.data || [];
+				console.log('前端list的值：', list.value); 
+			}else{
+				list.value = [];
+				uni.showToast({
+					title:"查询分类失败",
+					icon:'error'
+				})
+			}
+		}catch(err){
+			console.error('请求失败err：',err);
+			uni.showToast({
+				title:"加载失败",
+				icon:'error'
+			})
+		}finally{
+			loading.value = false;
+		}
 	}
 </script>
 
