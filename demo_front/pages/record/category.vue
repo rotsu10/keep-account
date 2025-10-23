@@ -12,9 +12,9 @@
 		</view>
 
 		<view class="button">
-			<van-button type="default" round size="normal" @click="handleTypeClick(1)">支出</van-button>
-			<van-button type="default" round size="normal" @click="handleTypeClick(2)">收入</van-button>
-			<van-button type="default" round size="normal" @click="handleTypeClick(3)">转账</van-button>
+			<van-button type="default" round size="normal" @click="handleTypeClick(1)" :class="{ 'button-active': activeType === 1 }">支出</van-button>
+			<van-button type="default" round size="normal" @click="handleTypeClick(2)" :class="{ 'button-active': activeType === 2 }">收入</van-button>
+			<van-button type="default" round size="normal" @click="handleTypeClick(3)" :class="{ 'button-active': activeType === 3 }">转账</van-button>
 		</view>
 
 		<view>
@@ -53,6 +53,7 @@
 	const checked = ref('1');//分类类型
 	const CategoryName = ref(''); //分类名
 
+	const activeType = ref(0);  //按钮样式
 	const showAddDialog = () => {
 		show.value = true; // 显示弹窗
 		checked.value = '1';
@@ -108,6 +109,7 @@
 	
 	//根据类型查询分类
 	const queryCategoryType = async(type)=>{
+		activeType.value = type;
 		console.log("传入type",type);
 		currentType.value = type; // 记录当前选中类型
 		loading.value = true; // 开始加载
@@ -117,18 +119,9 @@
 			const result = await http.get(url,
 			{loading:'加载中'},
 			);
-			
-			if(result.code === 1){
-				console.log('后端返回的data：', result.data); // 检查数据是否存在
-				list.value = result.data || [];
-				console.log('前端list的值：', list.value); 
-			}else{
-				list.value = [];
-				uni.showToast({
-					title:"查询分类失败",
-					icon:'error'
-				})
-			}
+			console.log("后端返回数据result:",result);
+			list.value = result || [];
+			console.log("list",list.value);
 		}catch(err){
 			console.error('请求失败err：',err);
 			uni.showToast({
@@ -172,5 +165,11 @@
 		display: flex; /* 使内部元素对齐 */
 		align-items: center;
 		justify-content: center; 
+	}
+	
+	.button-active {
+	  background-color: #1989fa !important; /* 激活态背景色（匹配vant主题色） */
+	  color: #ffffff !important; /* 激活态文字色（白色更醒目） */
+	  border-color: #1989fa !important; /* 激活态边框色（与背景色一致） */
 	}
 </style>

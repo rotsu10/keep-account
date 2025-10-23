@@ -124,6 +124,7 @@ const request = (config) => {
 			success: (response) => {
 				try {
 					const result = responseInterceptor(response, finalConfig)
+					console.log("拦截器返回数据：",result);
 					resolve(result)
 				} catch (error) {
 					reject(error)
