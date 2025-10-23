@@ -14,6 +14,6 @@
     </select>
 
     <select id="queryCategoryType" resultType="com.example.entity.Category">
-        select id, user_id, name, type from category where type = #{type}
+        select id, user_id, name, type from category  where type = #{type} order by name
     </select>
 </mapper>

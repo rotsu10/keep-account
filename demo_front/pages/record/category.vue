@@ -176,9 +176,10 @@
 		}catch(err){
 			console.error('搜索失败:', err);
 			uni.showToast({
-			    title: '搜索失败',
+			    title: err.message,
 			    icon: 'error'
 			});
+			seachCategoryName.value = ''; // 清空搜索框
 		}
 	}
 </script>
