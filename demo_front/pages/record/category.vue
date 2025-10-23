@@ -40,7 +40,7 @@
 </template>
 
 <script setup>
-	import {ref} from 'vue';
+	import {ref ,onMounted} from 'vue';
 	import { http } from '../../utils/request';
 
 	const onClickLeft = () => history.back(); //返回
@@ -53,7 +53,7 @@
 	const checked = ref('1');//分类类型
 	const CategoryName = ref(''); //分类名
 
-	const activeType = ref(0);  //按钮样式
+	const activeType = ref(1);  //按钮样式
 	const showAddDialog = () => {
 		show.value = true; // 显示弹窗
 		checked.value = '1';
@@ -132,6 +132,11 @@
 			loading.value = false;
 		}
 	}
+	
+	// 页面加载完成后，自动查询支出分类（type=1）
+	onMounted(() => {
+	  queryCategoryType(1); 
+	});
 </script>
 
 <style scoped>
