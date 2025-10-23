@@ -128,7 +128,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Category queryCategory(CategoryDTO categoryDTO) {
-        return userCategoryMapper.queryCategory(categoryDTO);
+        categoryDTO.setUserId(BaseContext.getCurrentId());
+        Category category = userCategoryMapper.queryCategory(categoryDTO);
+        if(category == null){
+            throw new CategoryException(MessageConstant.CATEGORY_NOT_EXISTS);
+        }else{
+            return category;
+        }
     }
 }
 

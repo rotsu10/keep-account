@@ -5,7 +5,7 @@
 
 			<van-nav-bar title="分类" left-text="返回" left-arrow @click-left="onClickLeft">
 				<template #right>
-					<van-icon name="search" size="18"/>
+					<van-icon name="search" size="18"  @click="showSearchDialog"/>
 					<van-icon name="plus" size="18" @click="showAddDialog" />
 				</template>
 			</van-nav-bar>
@@ -24,7 +24,7 @@
 			</van-list>
 		</view>
 		
-		<!-- 弹出层 -->
+		<!-- plus弹出层 -->
 		<van-dialog v-model:show="show" title="分类信息" show-cancel-button show-confirm-button @confirm = 'addCategory'>
 			<van-field v-model="CategoryName" label="" placeholder="请输入分类名"/>
 			<van-radio-group v-model="checked" direction="horizontal">
@@ -32,6 +32,11 @@
 			  <van-radio name="2">支出</van-radio>
 			  <van-radio name="3">转账</van-radio>
 			</van-radio-group>
+		</van-dialog>
+		
+		<!-- search弹出层 -->
+		<van-dialog v-model:show="CategoryShow" title="分类信息" show-cancel-button show-confirm-button @confirm = 'seachCategory'>
+			<van-field v-model="seachCategoryName" label="" placeholder="请输入分类名"/>
 		</van-dialog>
 		
 		
@@ -49,15 +54,21 @@
 	const list = ref([]);
 	const loading = ref(false);
 
-	const show = ref(false) //弹出层
+	const show = ref(false) //plus弹出层
+	const CategoryShow = ref(false) //search弹出层
+	const seachCategoryName = ref('') //搜索分类名称
 	const checked = ref('1');//分类类型
 	const CategoryName = ref(''); //分类名
 
 	const activeType = ref(1);  //按钮样式
 	const showAddDialog = () => {
-		show.value = true; // 显示弹窗
+		show.value = true; // 显示plus弹窗
 		checked.value = '1';
 		CategoryName.value = '';
+	};
+	
+	const showSearchDialog = () => {
+		CategoryShow.value = true; // 显示search弹窗
 	};
 	
 	//添加分类
@@ -137,6 +148,39 @@
 	onMounted(() => {
 	  queryCategoryType(1); 
 	});
+	
+	//搜索分类
+	const seachCategory = async()=>{
+		console.log("searchCategory中searchCategoryName",seachCategoryName);
+		console.log("searchCategory中currentType",currentType);
+		
+		if(!seachCategoryName.value.trim()){
+			uni.showToast({
+				title:'请输入分类名',
+				icon:'error'
+			})
+			return ;
+		}
+		try{
+			const sendData = {
+				name : seachCategoryName.value,
+				type : currentType.value
+			}
+			console.log("queryCategory的sendData:",sendData);
+			const result = await http.post('/user/queryCategory',sendData,{loadingText:'加载中'});
+			console.log("queryCategory的result:",result);
+			list.value = [result] || [];
+			CategoryShow.value = false; // 关闭弹窗
+			seachCategoryName.value = ''; // 清空搜索框
+			
+		}catch(err){
+			console.error('搜索失败:', err);
+			uni.showToast({
+			    title: '搜索失败',
+			    icon: 'error'
+			});
+		}
+	}
 </script>
 
 <style scoped>

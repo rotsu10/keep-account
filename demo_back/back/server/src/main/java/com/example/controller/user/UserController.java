@@ -78,9 +78,9 @@ public class UserController {
         return Result.success();
     }
 
-    @GetMapping("/queryCategory")
+    @PostMapping("/queryCategory")
     public Result<CategoryVO> queryCategory(@RequestBody CategoryDTO categoryDTO){
-        log.info("//根据分类名和类型查询分类{}", categoryDTO);
+        log.info("根据分类名和类型查询分类{}", categoryDTO);
         Category category = userService.queryCategory(categoryDTO);
         CategoryVO categoryVO = new CategoryVO();
         BeanUtils.copyProperties(category,categoryVO);
