@@ -2,7 +2,6 @@
 	<view>
 		<view class="clascustom-nav">
 			<!-- 导航栏 -->
-
 			<van-nav-bar title="分类" left-text="返回" left-arrow @click-left="onClickLeft">
 				<template #right>
 					<van-icon name="search" size="18"  @click="showSearchDialog"/>
@@ -39,7 +38,9 @@
 			<van-field v-model="seachCategoryName" label="" placeholder="请输入分类名"/>
 		</van-dialog>
 		
-		
+		<view>
+			<ButtomBar></ButtomBar>
+		</view>
 	</view>
 
 </template>
@@ -47,7 +48,8 @@
 <script setup>
 	import {ref ,onMounted} from 'vue';
 	import { http } from '../../utils/request';
-
+	import ButtomBar from '../../components/ButtomBar.vue';
+	
 	const onClickLeft = () => history.back(); //返回
 
 	const currentType = ref(0); // 当前选中的类型（1-支出，2-收入，3-转账）

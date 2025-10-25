@@ -1,36 +1,34 @@
 <template>
-	<view>
-		<!-- 页面内容 -->
-		<view class="content">
-			<van-button icon="plus" type="primary" round class="plus" @click="plusAccountPage"/>
-		</view>
-		
+	<view>		
 		<!-- 固定在底部的布局 -->
 		<view class="fixed-bottom">
 			<van-row justify="center" class="buttom_law">
-			  <van-col span="6">首页</van-col>
+			  <van-col span="6" @click="goHome">首页</van-col>
 			  <van-col span="6" @click="categoryPage">分类</van-col>
 			  <van-col span="6" @click="goMine">我的</van-col>
 			</van-row>
 		</view>
 	</view>
+	
+	
 </template>
 
 <script setup>
-	const plusAccountPage = ()=>{
+	const goHome = ()=>{
 		uni.navigateTo({
-			url:'/pages/record/bill',
-			success: () => {
-				uni.showToast({
-					title:'请填写相关信息',
-					icon:'none'
-				})
+			url:'/pages/home/home',
+			success:()=>{
+				console.log("跳转页面成功")
 			},
 			fail:(err)=>{
-				console.log("跳转失败:",err)
+				uni.showToast({
+					title: '跳转页面失败，请重试',
+					icon:'none'
+				});
 			}
 		})
 	}
+	
 	const categoryPage = ()=>{
 		uni.navigateTo({
 			url:'/pages/record/category',
@@ -82,11 +80,5 @@
 /* 确保页面内容不被底部栏遮挡 */
 .content {
 	padding-bottom: 60px; /* 根据底部栏高度调整 */
-}
-
-.plus{
-	position: fixed;
-	bottom: 20%;
-	right: 0;
 }
 </style>

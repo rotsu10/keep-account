@@ -49,6 +49,14 @@
 				"navigationStyle": "custom",
 				"navigationBarTitleText" : ""
 			}
+		},
+		{
+			"path" : "pages/home/mine",
+			"style" : 
+			{
+				"navigationStyle": "custom",
+				"navigationBarTitleText" : ""
+			}
 		}
 	],
 	"uniIdRouter": {}
