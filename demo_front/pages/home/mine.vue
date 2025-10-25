@@ -33,7 +33,7 @@
 		</view>
 		
 		<view>
-			<ButtomBar></ButtomBar>
+			<ButtomBarVue></ButtomBarVue>
 		</view>
 	</view>
 	
@@ -41,7 +41,7 @@
 
 <script setup>
 	import { ref } from 'vue';
-	import ButtomBar from '../../components/ButtomBar.vue';
+	import ButtomBarVue from '../../components/ButtomBar.vue';
 	const onClickLeft = ()=>{history.back()}
 </script>
 

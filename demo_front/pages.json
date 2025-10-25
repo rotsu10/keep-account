@@ -16,48 +16,61 @@
 // 	"uniIdRouter": {}
 // }
 {
-	"pages": [
-		{
-			"path": "pages/common/login",
-			"style": {
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/common/register",
-			"style": {
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path":"pages/home/home",
-			"style": {
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path" : "pages/record/bill",
-			"style" : 
-			{
-				"navigationBarTitleText" : ""
-			}
-		},
-		{
-			"path" : "pages/record/category",
-			"style" : 
-			{
-				"navigationStyle": "custom",
-				"navigationBarTitleText" : ""
-			}
-		},
-		{
-			"path" : "pages/home/mine",
-			"style" : 
-			{
-				"navigationStyle": "custom",
-				"navigationBarTitleText" : ""
-			}
-		}
-	],
-	"uniIdRouter": {}
+  "pages": [
+    {
+      "path": "pages/common/login",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/common/register",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/home/home",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/record/bill",
+      "style": {
+        "navigationBarTitleText": ""
+      }
+    },
+    {
+      "path": "pages/home/category",
+      "style": {
+        "navigationStyle": "custom",
+        "navigationBarTitleText": ""
+      }
+    },
+    {
+      "path": "pages/home/mine",
+      "style": {
+        "navigationStyle": "custom",
+        "navigationBarTitleText": ""
+      }
+    }
+  ],
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/home/category", 
+        "text": "分类"
+      },
+      {
+        "pagePath": "pages/home/mine",
+        "text": "我的"
+      }
+    ]
+  },
+  "uniIdRouter": {}
 }
