@@ -1,5 +1,6 @@
 <template>
 	<view>
+	
 		<!-- 页面内容 -->
 		<view class="content">
 			<van-button icon="plus" type="primary" round class="plus" @click="plusAccountPage"/>
@@ -10,6 +11,9 @@
 
 <script setup>
 	import ButtomBarVue from '../../components/ButtomBar.vue'
+	
+
+	
 	const plusAccountPage = ()=>{
 		uni.navigateTo({
 			url:'/pages/record/bill',

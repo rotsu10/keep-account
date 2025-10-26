@@ -60,7 +60,7 @@ uni.request({
         uni.showToast({ title: "登录成功" });
         uni.setStorageSync('token', result.data.token); 
 		console.log("token是：", result.data.token);
-        uni.redirectTo({ url: '/pages/home/home' });
+        uni.switchTab({ url: '/pages/home/home' });
       } else {
         uni.showToast({ title: result.message, icon: 'none' });
       }
