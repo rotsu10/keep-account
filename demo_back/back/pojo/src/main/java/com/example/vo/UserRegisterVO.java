@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,4 +17,5 @@ public class UserRegisterVO implements Serializable {
     private String username;
     private String phone;
     private String token;
+    private LocalDateTime createdTime;
 }

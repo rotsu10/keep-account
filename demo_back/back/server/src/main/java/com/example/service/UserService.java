@@ -10,6 +10,7 @@ import com.example.entity.User;
 import com.example.vo.CategoryVO;
 import com.example.vo.UserLoginVO;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface UserService {
@@ -31,4 +32,7 @@ public interface UserService {
 
     //根据分类名和类型查询分类
     Category queryCategory(CategoryDTO categoryDTO);
+
+    //查询用户创建时间
+    LocalDateTime queryCreateTime(Long id);
 }

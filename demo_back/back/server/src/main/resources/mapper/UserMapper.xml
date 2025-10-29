@@ -17,7 +17,7 @@
 
 
     <insert id="insert">
-        insert into user (username,phone,password) values (#{username},#{phone},#{password})
+        insert into user (username,phone,password,created_time) values (#{username},#{phone},#{password},#{createdTime})
     </insert>
 
     <select id="queryByPhone" resultType="com.example.entity.User">
@@ -26,5 +26,8 @@
             user.phone
         from user
         where phone = #{phone}
+    </select>
+    <select id="queryCreateTime" resultType="java.time.LocalDateTime">
+        select user.created_time from user where id = #{id};
     </select>
 </mapper>

@@ -1,6 +1,7 @@
 package com.example.controller.user;
 
 import com.example.constant.JwtClaimsConstant;
+import com.example.context.BaseContext;
 import com.example.dto.CategoryDTO;
 import com.example.dto.UserBillDTO;
 import com.example.dto.UserRegisterDTO;
@@ -17,6 +18,8 @@ import com.example.vo.UserLoginVO;
 import com.example.dto.UserLoginDTO;
 import com.example.result.Result;
 import com.example.utils.JwtUtil;
+
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,7 +37,7 @@ public class UserController {
     //用户登录
     @PostMapping("/login")
     public Result<UserLoginVO> login(@RequestBody UserLoginDTO userLoginDTO) {
-        log.info("员工登录：{}", userLoginDTO);
+        log.info("用户登录：{}", userLoginDTO);
         User user = userService.login(userLoginDTO);
 
         //TODO：Jwt令牌
@@ -94,4 +97,13 @@ public class UserController {
         List<Category> categoryList = userService.queryTypeCategory(type);
         return Result.success(categoryList);
     }
+
+    @GetMapping("/queryCreateTime")
+    public Result<LocalDateTime> queryCreateTime(){
+        Long id = BaseContext.getCurrentId();
+        log.info("查询用户创建时间:{}",id);
+        LocalDateTime createTime = userService.queryCreateTime(id);
+        return Result.success(createTime);
+    }
+
 }

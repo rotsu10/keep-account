@@ -84,6 +84,7 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         BeanUtils.copyProperties(userRegisterDTO, user);
         user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
+        user.setCreatedTime(LocalDateTime.now());
         int rows = userMapper.insert(user);
 
         if (rows > 0) {
@@ -135,6 +136,11 @@ public class UserServiceImpl implements UserService {
         }else{
             return category;
         }
+    }
+
+    @Override
+    public LocalDateTime queryCreateTime(Long id) {
+        return userMapper.queryCreateTime(id);
     }
 }
 
