@@ -26,9 +26,9 @@
 		<!-- plus弹出层 -->
 		<van-dialog v-model:show="show" title="分类信息" show-cancel-button show-confirm-button @confirm = 'addCategory'>
 			<van-field v-model="CategoryName" label="" placeholder="请输入分类名"/>
-			<van-radio-group v-model="checked" direction="horizontal">
-			  <van-radio name="1">收入</van-radio>
-			  <van-radio name="2">支出</van-radio>
+			<van-radioadio name="1">收入</van-radio>
+			  <van-radio name="2">支出</van-radio>-group v-model="checked" direction="horizontal">
+			  <van-r
 			  <van-radio name="3">转账</van-radio>
 			</van-radio-group>
 		</van-dialog>
