@@ -12,8 +12,6 @@
 <script setup>
 	import ButtomBarVue from '../../components/ButtomBar.vue'
 	
-
-	
 	const plusAccountPage = ()=>{
 		uni.navigateTo({
 			url:'/pages/record/bill',

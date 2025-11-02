@@ -1,12 +1,14 @@
 <template>
   <view>
 	<SelectTimeVue></SelectTimeVue>
+	<financeVue></financeVue>
   </view>
 </template>
 
 <script setup>
 // 导入组件（Vue3 中无需注册，导入即可使用）
 import SelectTimeVue from '../../components/SelectTime.vue'
+import financeVue from '../../components/finance.vue'
 
 // 定义 props 数据（使用 ref 或 reactive 管理响应式）
 import { ref } from 'vue'

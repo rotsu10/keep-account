@@ -13,21 +13,15 @@ app.$mount()
 
 // #ifdef VUE3
 import { createSSRApp } from 'vue'
-
-//引入vant组件
-// import { Field, CellGroup,Button ,Col, Row ,NumberKeyboard  } from 'vant';
-import Vant from 'vant'
+import Vant from 'vant';
 import 'vant/lib/index.css';
+import { createPinia } from 'pinia';
 
 export function createApp() {
-  const app = createSSRApp(App)
-  // app.use(Field);
-  // app.use(CellGroup);
-  // app.use(Button);
-  // app.use(Col);
-  // app.use(Row);
-  // app.use(NumberKeyboard);
-  app.use(Vant)
+  const app = createSSRApp(App);
+  const pinia = createPinia();
+  app.use(Vant);
+  app.use(pinia);
   return {
     app
   }

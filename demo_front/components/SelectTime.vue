@@ -31,8 +31,8 @@
 	const showPicker = ref(false);
 	//格式后显示日期
 	const fieldValue = ref('');
-	//备份，存储上一次确认的curDateArr值
 	
+	const emit = defineEmits(['select-date']);
 
 	//获取当前日期，数组
 	const getCurDateArr = ()=>{
@@ -52,6 +52,12 @@
 	    showPicker.value = false;
 		confirmedDateArr.value = [...curDateArr.value]; //备份最新的确认的值
 	    fieldValue.value = formatDateText(curDateArr.value);
+		//触发emit，传递时间数据
+		emit('select-date',{
+				year:  parseInt(curDateArr.value[0]),
+				month: parseInt(curDateArr.value[1])
+			}
+		)
 	};
 	
 	const onCancel = () => {
