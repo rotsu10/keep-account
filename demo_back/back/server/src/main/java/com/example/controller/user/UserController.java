@@ -2,9 +2,7 @@ package com.example.controller.user;
 
 import com.example.constant.JwtClaimsConstant;
 import com.example.context.BaseContext;
-import com.example.dto.CategoryDTO;
-import com.example.dto.UserBillDTO;
-import com.example.dto.UserRegisterDTO;
+import com.example.dto.*;
 import com.example.entity.Category;
 import com.example.entity.User;
 import com.example.entity.UserBill;
@@ -16,7 +14,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.example.vo.UserLoginVO;
-import com.example.dto.UserLoginDTO;
 import com.example.result.Result;
 import com.example.utils.JwtUtil;
 
@@ -106,6 +103,11 @@ public class UserController {
         LocalDateTime createTime = userService.queryCreateTime(id);
         return Result.success(createTime);
     }
-    
 
+    //TODO根据前端传来的时间，查询账单
+    @PostMapping("/queryByDate")
+    public Result<List<UserBill>> queryByDate(@RequestBody DateDTO dateDTO){
+        log.info("查询{}账单", dateDTO);
+
+    }
 }
