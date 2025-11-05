@@ -1,11 +1,10 @@
 package com.example.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.example.constant.MessageConstant;
 import com.example.context.BaseContext;
-import com.example.dto.CategoryDTO;
-import com.example.dto.UserBillDTO;
-import com.example.dto.UserLoginDTO;
-import com.example.dto.UserRegisterDTO;
+import com.example.dto.*;
 import com.example.entity.Category;
 import com.example.entity.UserBill;
 import com.example.exception.AccountFoundException;
@@ -13,8 +12,10 @@ import com.example.exception.CategoryException;
 import com.example.mapper.UserBillMapper;
 import com.example.mapper.UserCategoryMapper;
 import com.example.mapper.UserMapper;
+import com.example.result.PageResult;
 import com.example.service.UserService;
 import com.example.vo.CategoryVO;
+import com.example.vo.UserBillVO;
 import com.example.vo.UserLoginVO;
 import com.example.vo.UserRegisterVO;
 import lombok.extern.slf4j.Slf4j;
@@ -141,6 +142,23 @@ public class UserServiceImpl implements UserService {
     @Override
     public LocalDateTime queryCreateTime(Long id) {
         return userMapper.queryCreateTime(id);
+    }
+
+    @Override
+    public PageResult<UserBill> queryPageDate(RecordQueryDTO recordQueryDTO) {
+        //设置分页参数
+        PageHelper.startPage(recordQueryDTO.getPage(),recordQueryDTO.getPageSize());
+        //查询数据
+        Page<UserBill> page = userBillMapper.queryPageDate(recordQueryDTO);
+        long total = page.getTotal();
+        List<UserBill> records = page.getResult();
+        return new PageResult<>(total,records);
+    }
+
+    @Override
+    public List<CategoryVO> queryCategoryByType(Long id ,Integer type) {
+        List<CategoryVO> list = userCategoryMapper.queryCategoryByType(id,type);
+        return list;
     }
 }
 

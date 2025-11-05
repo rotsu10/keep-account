@@ -10,7 +10,7 @@
 	const queryByDate = async(selectDate)=>{
 		try{
 			const result = await http.post(
-				{"/user/queryByDate"},
+				"/user/queryByDate",
 				{selectDate},
 				{loadingText:'加载中'}
 			)

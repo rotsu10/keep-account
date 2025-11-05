@@ -20,6 +20,7 @@
     </modules>
 
     <properties>
+        <pagehelper>1.3.0</pagehelper>
         <maven.compiler.source>23</maven.compiler.source>
         <maven.compiler.target>23</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -32,6 +33,11 @@
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>${pagehelper}</version>
+        </dependency>
     </dependencies>
 
 </project>

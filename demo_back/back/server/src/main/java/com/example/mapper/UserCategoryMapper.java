@@ -2,6 +2,7 @@ package com.example.mapper;
 import com.example.dto.CategoryDTO;
 import com.example.entity.Category;
 import com.example.entity.UserBill;
+import com.example.vo.CategoryVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -17,4 +18,7 @@ public interface UserCategoryMapper {
 
     //根据分类类型和分类名查询分类
     Category queryCategory(CategoryDTO categoryDTO);
+
+    //根据分类类型和id查询所有分类
+    List<CategoryVO> queryCategoryByType(Long id, Integer type);
 }

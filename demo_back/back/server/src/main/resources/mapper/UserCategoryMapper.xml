@@ -16,4 +16,7 @@
     <select id="queryCategoryType" resultType="com.example.entity.Category">
         select id, user_id, name, type from category  where type = #{type} order by name
     </select>
+    <select id="queryCategoryByType" resultType="com.example.vo.CategoryVO">
+        select id, user_id, name, type from category  where type = #{type} and id = #{id} order by create_time desc
+    </select>
 </mapper>

@@ -10,8 +10,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class DateDTO {
+public class RecordQueryDTO {
     public Integer year;
     public Integer month;
     public Integer day = 1 ; //默认值为每月1号
+
+    //页码
+    private int page;
+    //每页显示记录数
+    private int pageSize;
 }

@@ -7,8 +7,10 @@ import com.example.entity.Category;
 import com.example.entity.User;
 import com.example.entity.UserBill;
 import com.example.properties.JwtProperties;
+import com.example.result.PageResult;
 import com.example.service.UserService;
 import com.example.vo.CategoryVO;
+import com.example.vo.UserBillVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -106,8 +108,18 @@ public class UserController {
 
     //TODO根据前端传来的时间，查询账单
     @PostMapping("/queryByDate")
-    public Result<List<UserBill>> queryByDate(@RequestBody DateDTO dateDTO){
-        log.info("查询{}账单", dateDTO);
+    public Result<PageResult<UserBill>> queryPageDate(@RequestBody RecordQueryDTO recordQueryDTO){
+        log.info("查询{}账单", recordQueryDTO);
+        PageResult<UserBill> pageResult = userService.queryPageDate(recordQueryDTO);
+        return Result.success(pageResult);
+    }
 
+    //根据id和分类类型查询所有分类名
+    @GetMapping("/queryCategoryByType")
+    public Result<List<CategoryVO>> queryCategoryByType(@RequestParam("type") Integer type){
+        Long id = BaseContext.getCurrentId();
+        log.info("id:{},type:{}",id,type);
+        List<CategoryVO> list= userService.queryCategoryByType(id,type);
+        return Result.success(list);
     }
 }

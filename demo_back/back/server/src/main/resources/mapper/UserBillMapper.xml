@@ -7,4 +7,15 @@
     <insert id="insertBill">
         insert into user_bill (user_id, category_id, amount, type, create_time, remark) values (#{userId}, #{categoryId}, #{amount}, #{type}, #{createTime}, #{remark})
     </insert>
+    <select id="queryPageDate" resultType="com.example.entity.UserBill">
+        select * from user_bill
+        where user_id = #{userId}
+        <if test="year != null">
+            and year(create_time) = #{year}
+        </if>
+        <if test="month != null">
+            and month(create_time) = #{month}
+        </if>
+        order by create_time desc
+    </select>
 </mapper>
