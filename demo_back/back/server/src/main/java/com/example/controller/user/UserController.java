@@ -117,9 +117,10 @@ public class UserController {
     //根据id和分类类型查询所有分类名
     @GetMapping("/queryCategoryByType")
     public Result<List<CategoryVO>> queryCategoryByType(@RequestParam("type") Integer type){
-        Long id = BaseContext.getCurrentId();
-        log.info("id:{},type:{}",id,type);
-        List<CategoryVO> list= userService.queryCategoryByType(id,type);
+        Long userId = BaseContext.getCurrentId();
+        log.info("id:{},type:{}",userId,type);
+        List<CategoryVO> list= userService.queryCategoryByType(userId,type);
+        log.info("查询所有的分类：{}",list);
         return Result.success(list);
     }
 }

@@ -40,5 +40,5 @@ public interface UserService {
     PageResult<UserBill> queryPageDate(RecordQueryDTO recordQueryDTO);
 
     //根据id和分类类型查询所有分类名
-    List<CategoryVO> queryCategoryByType(Long id ,Integer type);
+    List<CategoryVO> queryCategoryByType(Long userId ,Integer type);
 }

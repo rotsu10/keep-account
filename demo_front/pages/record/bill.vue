@@ -23,15 +23,9 @@
 			</van-divider>
 			
 		<van-radio-group v-model="categoryId" class="radio-group">
-		  <van-radio name="1">单选框 1</van-radio>
-		  <van-radio name="2">单选框 2</van-radio>
-		  <van-radio name="3">单选框 3</van-radio>
-		  <van-radio name="4">单选框 4</van-radio>
-		  <van-radio name="5">单选框 5</van-radio>
-		  <van-radio name="6">单选框 6</van-radio>
-		  <van-radio name="7">单选框 7</van-radio>
-		  <van-radio name="8">单选框 8</van-radio>
-		  <van-radio name="9"></van-radio>
+		  <van-radio v-for="category in categoryList" :key = "category.id" :name = "category.id">
+			  {{category.name}}
+		  </van-radio>
 		</van-radio-group>
 		
 		<van-divider
@@ -51,11 +45,15 @@
 <script setup>
 import { ref } from 'vue';
 import { http } from '@/utils/request.js'; // 导入请求工具
+import { onMounted,watch } from 'vue';
 // 定义页面数据
 const productPrice = ref(''); // 商品价格
 const message = ref('');     // 备注
-const categoryId = ref('');    // 选中的单选框值
 const payType = ref('2');    // 支付类型 1.收入  2.支出 默认支出
+//查询所有分类
+const categoryId = ref('');    // 选中的单选框值
+const categoryList = ref([]);
+
 
 // 添加按钮点击事件
 const addBill = async () => {
@@ -98,6 +96,28 @@ const addBill = async () => {
     console.error('添加失败：', error);
   }
 };
+
+//根据类型获取所有分类数据
+const getCategoryList = async() =>{
+	try{
+		const res = await http.get(`/user/queryCategoryByType?type=${payType.value}`);
+		console.log("根据类型获取所有分类数据res:",res);
+		categoryList.value = res;
+	}catch(err){
+		console.log("根据类型获取所有分类数据err",err)
+	}
+}
+
+watch(payType, (newVal) => {
+  // 当 payType 从 1 变为 2 或反之，重新请求数据
+  getCategoryList();
+  // 可选：重置选中的分类（避免切换类型后选中的分类ID在新列表中不存在）
+  categoryId.value = '';
+});
+
+onMounted(() => {
+  getCategoryList();
+});
 </script>
 
 <style scoped>

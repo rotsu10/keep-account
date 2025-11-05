@@ -20,5 +20,5 @@ public interface UserCategoryMapper {
     Category queryCategory(CategoryDTO categoryDTO);
 
     //根据分类类型和id查询所有分类
-    List<CategoryVO> queryCategoryByType(Long id, Integer type);
+    List<CategoryVO> queryCategoryByType(Long userId, Integer type);
 }

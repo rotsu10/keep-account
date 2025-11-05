@@ -156,8 +156,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<CategoryVO> queryCategoryByType(Long id ,Integer type) {
-        List<CategoryVO> list = userCategoryMapper.queryCategoryByType(id,type);
+    public List<CategoryVO> queryCategoryByType(Long userId ,Integer type) {
+        List<CategoryVO> list = userCategoryMapper.queryCategoryByType(userId,type);
         return list;
     }
 }
