@@ -108,11 +108,10 @@ const getCategoryList = async() =>{
 	}
 }
 
+//监测payType
 watch(payType, (newVal) => {
-  // 当 payType 从 1 变为 2 或反之，重新请求数据
-  getCategoryList();
-  // 可选：重置选中的分类（避免切换类型后选中的分类ID在新列表中不存在）
-  categoryId.value = '';
+	getCategoryList();
+	categoryId.value = '';
 });
 
 onMounted(() => {
