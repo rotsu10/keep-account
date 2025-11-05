@@ -106,10 +106,11 @@ public class UserController {
         return Result.success(createTime);
     }
 
-    //TODO根据前端传来的时间，查询账单
-    @PostMapping("/queryByDate")
+    //根据时间查询账单
+    @PostMapping("/queryRecordByDate")
     public Result<PageResult<UserBill>> queryPageDate(@RequestBody RecordQueryDTO recordQueryDTO){
         log.info("查询{}账单", recordQueryDTO);
+        recordQueryDTO.userId = BaseContext.getCurrentId();
         PageResult<UserBill> pageResult = userService.queryPageDate(recordQueryDTO);
         return Result.success(pageResult);
     }

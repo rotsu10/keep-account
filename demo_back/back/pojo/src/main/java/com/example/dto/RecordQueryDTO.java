@@ -15,6 +15,7 @@ public class RecordQueryDTO {
     public Integer month;
     public Integer day = 1 ; //默认值为每月1号
 
+    public Long userId;
     //页码
     private int page;
     //每页显示记录数
