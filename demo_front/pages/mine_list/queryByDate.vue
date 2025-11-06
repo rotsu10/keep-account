@@ -13,6 +13,7 @@
 				:key="item.id"
 				:label="`${item.categoryName}`"
 				:title="`${item.type === 1 ? '-' : '+'}${item.amount}`"
+				@click="goToBillDetail(item.id)"
 			/>
 		</van-list>
 	</view>
@@ -102,4 +103,12 @@
 		// 初始化加载数据
 		loadData();
 	});
+	
+	
+	const goToBillDetail =(billId)=>{
+		console.log("账单id:",billId);
+		uni.navigateTo({
+		    url: `/pages/record/billDetail?id=${billId}`
+		})
+	}
 </script>

@@ -118,7 +118,6 @@ public class UserServiceImpl implements UserService {
         Category queryCategory = userCategoryMapper.queryCategory(categoryDTO);
         if(queryCategory != null){
             throw new CategoryException(MessageConstant.CATEGORY_EXISTS);
-
         }
 
         Category category = new Category();
@@ -159,6 +158,17 @@ public class UserServiceImpl implements UserService {
     public List<CategoryVO> queryCategoryByType(Long userId ,Integer type) {
         List<CategoryVO> list = userCategoryMapper.queryCategoryByType(userId,type);
         return list;
+    }
+
+    @Override
+    public UserBillVO queryBillDetail(Long billId) {
+        Long id = BaseContext.getCurrentId();
+        UserBill userBill = userBillMapper.selectBillDetail(id,billId);
+        log.info("UserBill:{}",userBill);
+        UserBillVO userBillVO = new UserBillVO();
+        BeanUtils.copyProperties(userBill,userBillVO);
+        log.info("UserBillVO:{}",userBillVO);
+        return userBillVO;
     }
 }
 

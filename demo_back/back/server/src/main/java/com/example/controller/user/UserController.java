@@ -125,4 +125,13 @@ public class UserController {
         log.info("查询所有的分类：{}",list);
         return Result.success(list);
     }
+
+    //根据账单id查询账单详情
+    @GetMapping("/queryBillDetail")
+    public Result<UserBillVO> queryBillDetail(@RequestParam("billId") Long billId){
+        log.info("账单为id:{}",billId);
+        UserBillVO userBillVO = userService.queryBillDetail(billId);
+        log.info("账单:{}",userBillVO);
+        return Result.success(userBillVO);
+    }
 }

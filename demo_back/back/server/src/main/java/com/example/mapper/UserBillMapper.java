@@ -12,4 +12,7 @@ public interface UserBillMapper {
 
     //根据时间分页查询数据
     Page<UserBill> queryPageDate(RecordQueryDTO recordQueryDTO);
+
+    //根据账单id查询账单详情
+    UserBill selectBillDetail(Long userId, Long billId);
 }

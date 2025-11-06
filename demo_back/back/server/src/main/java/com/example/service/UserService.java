@@ -41,4 +41,7 @@ public interface UserService {
 
     //根据id和分类类型查询所有分类名
     List<CategoryVO> queryCategoryByType(Long userId ,Integer type);
+
+    //根据账单id查询账单详情
+    UserBillVO queryBillDetail(Long billId);
 }

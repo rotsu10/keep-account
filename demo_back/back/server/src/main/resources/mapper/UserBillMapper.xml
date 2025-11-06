@@ -22,4 +22,8 @@
         </if>
         order by ub.create_time desc
     </select>
+    <select id="selectBillDetail" resultType="com.example.entity.UserBill">
+        select user_bill.*,category.name as categoryName from user_bill  left join category on user_bill.category_id = category.id
+        where user_bill.user_id = #{userId} and user_bill.id = #{billId}
+    </select>
 </mapper>
