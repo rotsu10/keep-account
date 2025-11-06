@@ -112,6 +112,7 @@ public class UserController {
         log.info("查询{}账单", recordQueryDTO);
         recordQueryDTO.userId = BaseContext.getCurrentId();
         PageResult<UserBill> pageResult = userService.queryPageDate(recordQueryDTO);
+        log.info("pageResult:{}", pageResult);
         return Result.success(pageResult);
     }
 

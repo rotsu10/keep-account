@@ -17,13 +17,13 @@
 // }
 {
   "pages": [
-	{
-		"path" : "pages/debug/index",
-		"style" : 
-		{
-			"navigationBarTitleText" : "组件调试"
-		}
-	},
+	// {
+	// 	"path" : "pages/debug/index",
+	// 	"style" : 
+	// 	{
+	// 		"navigationBarTitleText" : "组件调试"
+	// 	}
+	// },
     {
       "path": "pages/common/login",
       "style": {
@@ -64,6 +64,13 @@
     },
     {
     	"path" : "pages/mine_list/queryByDate",
+    	"style" : 
+    	{
+    		"navigationBarTitleText" : ""
+    	}
+    },
+    {
+    	"path" : "pages/record/billDetail",
     	"style" : 
     	{
     		"navigationBarTitleText" : ""

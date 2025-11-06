@@ -1,74 +1,105 @@
 <template>
 	<view>
 		<SelectTimeVue @select-date="handleDateChange"></SelectTimeVue>
-		<van-page-list :get-list="getList" ref="pageListRef">
-		  <template #item="{ item }">
-		    <van-cell :title="`分类：${item.categoryName}`"/>
-		  </template>
-		</van-page-list>
-
+		<van-list
+			v-model:loading="loading"
+			:finished="finished"
+			finished-text="没有更多了"
+			@load="onLoad"
+			:immediate-check="false"
+		>
+			<van-cell 
+				v-for="item in list" 
+				:key="item.id"
+				:label="`${item.categoryName}`"
+				:title="`${item.type === 1 ? '-' : '+'}${item.amount}`"
+			/>
+		</van-list>
 	</view>
-	
 </template>
 
 <script setup>
 	import SelectTimeVue from '../../components/SelectTime.vue';
-	import { http } from '../../utils/request';
-	import { ref,onMounted,nextTick } from 'vue';
+	import {http} from '../../utils/request';
+	import {ref,onMounted} from 'vue';
+
 	const selectedDate = ref();
-	const pageListRef = ref();
-	
+	const loading = ref(false);
+	const finished = ref(false);
+	const list = ref([]);
+	const pageParams = ref({
+		page: 1,
+		pageSize: 10,
+		total: 0
+	});
+
 	// 设置默认日期为当前年月
 	const getDefaultDate = () => {
-	  const now = new Date();
-	  return {
-	    year: now.getFullYear(),
-	    month: now.getMonth() + 1
-	  };
+		const now = new Date();
+		return {
+			year: now.getFullYear(),
+			month: now.getMonth() + 1
+		};
 	};
 
-	
 	// 日期变化处理
 	const handleDateChange = async (selectDate) => {
 		console.log('SelectDate传递时间为：', selectDate);
 		selectedDate.value = selectDate;
-		if (pageListRef.value && pageListRef.value.refresh) {
-			pageListRef.value.refresh(); // 重置到第一页，并触发getList
+		// 重置分页参数
+		pageParams.value.page = 1;
+		list.value = [];
+		finished.value = false;
+		// 重新加载
+		onLoad();
+	}
+
+	// 加载数据
+	const loadData = async () => {
+		if (finished.value) return;
+
+		loading.value = true;
+		try {
+			const dateParams = selectedDate.value || getDefaultDate();
+			const sendDate = {
+				year: dateParams.year,
+				month: dateParams.month,
+				page: pageParams.value.page,
+				pageSize: pageParams.value.pageSize
+			}
+			const res = await http.post("/user/queryRecordByDate", sendDate);
+
+			const data = res || {};
+			const records = data.records || [];
+			if (pageParams.value.page === 1) {
+				list.value = records;
+			} else {
+				list.value = [...list.value, ...records];
+			}
+
+			pageParams.value.total = data.total || 0;
+
+			// 判断是否加载完成
+			if (records.length < pageParams.value.pageSize) {
+				finished.value = true;
+			} else {
+				pageParams.value.page++;
+			}
+		} catch (err) {
+			console.log("根据日期查询err：", err);
+		} finally {
+			loading.value = false;
 		}
 	}
 
-	const getList = async(page)=>{
-		// 如果没有选择日期，使用默认日期
-		const dateParams = selectedDate.value || getDefaultDate();
-		try{
-			const sendDate = {
-				year: dateParams.year, // 传递年份
-				month: dateParams.month, // 传递月份
-				page:page.page,
-				pageSize:page.pageSize
-			}
-			console.log("根据日期查询账单sendDate:",sendDate);
-			const res = await http.post("/user/queryRecordByDate",sendDate);
-			console.log("根据日期查询账单res:",res);
-			return {
-				list: res.data.records || [],
-				total: res.data.total || 0
-			}
-		}catch(err){
-			console.log("根据日期查询err：",err);
-			return {list:[],total:0};
-		}
+	// 列表加载更多
+	const onLoad = () => {
+		loadData();
 	}
-	
-	onMounted(async () => {
-	  selectedDate.value = getDefaultDate();
-	  await nextTick();
-	  if (pageListRef.value && pageListRef.value.refresh) {
-	    pageListRef.value.refresh(); // 触发列表刷新
-	  }
+
+	onMounted(() => {
+		selectedDate.value = getDefaultDate();
+		// 初始化加载数据
+		loadData();
 	});
 </script>
-
-<style>
-	       
-</style>
