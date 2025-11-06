@@ -14,6 +14,7 @@ public class UserBill {
     private Long id;
     private Long userId; //关联用户
     private Long categoryId; //关联分类
+    private String categoryName;
     private Long amount; //金额
     private int type; //类型 1.收入 2.支出
     private LocalDateTime createTime; //记账时间
