@@ -1,12 +1,11 @@
 <template>
 	<view>
 		<SelectTimeVue @select-date="handleDateChange"></SelectTimeVue>
-		<financeVue></financeVue>
+		<financeVue  :income="totalIncome" :expense="totalExpense" :transfer="totalTransfer"></financeVue>
 		<van-list
 			v-model:loading="loading"
 			:finished="finished"
 			finished-text="没有更多了"
-			@load="onLoad"
 			:immediate-check="false"
 		>
 			<van-cell 
@@ -35,6 +34,11 @@
 		pageSize: 10,
 		total: 0
 	});
+	
+	//统计每月账单
+	const totalIncome = ref(0);
+	const totalExpense = ref(0);
+	const totalTransfer = ref(0);
 
 	// 设置默认日期为当前年月
 	const getDefaultDate = () => {
@@ -53,13 +57,12 @@
 		pageParams.value.page = 1;
 		list.value = [];
 		finished.value = false;
-		// 重新加载
-		onLoad();
+		await loadData();
 	}
 
 	// 加载数据
 	const loadData = async () => {
-		if (finished.value) return;
+		if (loading.value || finished.value) return;
 
 		loading.value = true;
 		try {
@@ -70,8 +73,14 @@
 				page: pageParams.value.page,
 				pageSize: pageParams.value.pageSize
 			}
+			//查询每月账单
 			const res = await http.post("/user/queryRecordByDate", sendDate);
-
+			//统计每月账单
+			const statistics = await http.post("/user/statisticsQuery", {year: dateParams.year,month: dateParams.month,});
+			totalIncome.value = statistics.income;
+			totalExpense.value = statistics.expense;
+			totalTransfer.value = statistics.transfer;
+			
 			const data = res || {};
 			const records = data.records || [];
 			if (pageParams.value.page === 1) {
@@ -90,20 +99,16 @@
 			}
 		} catch (err) {
 			console.log("根据日期查询err：", err);
+			finished.value = true; 
 		} finally {
 			loading.value = false;
 		}
 	}
-
-	// 列表加载更多
-	const onLoad = () => {
-		loadData();
-	}
-
+	
 	onMounted(() => {
 		selectedDate.value = getDefaultDate();
 		// 初始化加载数据
-		loadData();
+		 loadData(); 
 	});
 	
 	
