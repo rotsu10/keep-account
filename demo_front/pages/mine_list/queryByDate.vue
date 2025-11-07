@@ -1,6 +1,7 @@
 <template>
 	<view>
 		<SelectTimeVue @select-date="handleDateChange"></SelectTimeVue>
+		<financeVue></financeVue>
 		<van-list
 			v-model:loading="loading"
 			:finished="finished"
@@ -21,6 +22,7 @@
 
 <script setup>
 	import SelectTimeVue from '../../components/SelectTime.vue';
+	import financeVue from '../../components/finance.vue';
 	import {http} from '../../utils/request';
 	import {ref,onMounted} from 'vue';
 

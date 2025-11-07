@@ -6,7 +6,7 @@
 		</van-cell-group>
 		<van-cell-group>
 		  <!-- 分类：绑定 categoryName 字段（来自关联的category表） -->
-		  <van-cell title="分类" :value="typeMap[billDetail?.type]" label="消费分类" />
+		  <van-cell title="分类" :value="billDetail?.categoryName" label="消费分类" />
 		</van-cell-group>
 		<van-cell-group>
 		  <!-- 日期：绑定 billDate 字段 -->
@@ -18,7 +18,7 @@
 		<van-cell-group>
 		  <van-cell 
 		    title="类型" 
-		    :value="billDetail?.type ? (billDetail.type === 1 ? '收入' : '支出') : '未知类型'" 
+		    :value="typeMap[billDetail?.type] || '未知类型'" 
 		    label="收支类型" 
 		  />
 		</van-cell-group>

@@ -1,5 +1,7 @@
 package com.example.service.impl;
 
+import com.example.entity.SumStatistics;
+import com.example.vo.*;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.example.constant.MessageConstant;
@@ -14,10 +16,6 @@ import com.example.mapper.UserCategoryMapper;
 import com.example.mapper.UserMapper;
 import com.example.result.PageResult;
 import com.example.service.UserService;
-import com.example.vo.CategoryVO;
-import com.example.vo.UserBillVO;
-import com.example.vo.UserLoginVO;
-import com.example.vo.UserRegisterVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -169,6 +167,21 @@ public class UserServiceImpl implements UserService {
         BeanUtils.copyProperties(userBill,userBillVO);
         log.info("UserBillVO:{}",userBillVO);
         return userBillVO;
+    }
+
+    @Override
+    public StatisticsQueryVO statisticsQuery(StatisticsQueryDTO statisticsQueryDTO) {
+        Integer year = statisticsQueryDTO.getYear();
+        Integer month = statisticsQueryDTO.getMonth();
+        Long userId = BaseContext.getCurrentId();
+        log.info("year:{}  month:{}  userId:{}",year,month,userId);
+        SumStatistics sum = userBillMapper.getSumAll(year, month, userId);
+        log.info("userBill:{}",sum);
+        return new StatisticsQueryVO(
+                sum != null ? sum.getIncome() : 0L,
+                sum != null ? sum.getExpense() : 0L,
+                sum != null ? sum.getTransfer() : 0L
+        );
     }
 }
 

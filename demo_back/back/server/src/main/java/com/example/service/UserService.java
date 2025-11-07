@@ -3,10 +3,12 @@ package com.example.service;
 
 import com.example.dto.*;
 import com.example.entity.Category;
+import com.example.entity.SumStatistics;
 import com.example.entity.User;
 import com.example.entity.UserBill;
 import com.example.result.PageResult;
 import com.example.vo.CategoryVO;
+import com.example.vo.StatisticsQueryVO;
 import com.example.vo.UserBillVO;
 import com.example.vo.UserLoginVO;
 
@@ -44,4 +46,7 @@ public interface UserService {
 
     //根据账单id查询账单详情
     UserBillVO queryBillDetail(Long billId);
+
+    //根据年月查询账单统计收入和支出
+    StatisticsQueryVO statisticsQuery(StatisticsQueryDTO statisticsQueryDTO);
 }

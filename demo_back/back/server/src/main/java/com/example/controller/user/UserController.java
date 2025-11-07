@@ -4,12 +4,14 @@ import com.example.constant.JwtClaimsConstant;
 import com.example.context.BaseContext;
 import com.example.dto.*;
 import com.example.entity.Category;
+import com.example.entity.SumStatistics;
 import com.example.entity.User;
 import com.example.entity.UserBill;
 import com.example.properties.JwtProperties;
 import com.example.result.PageResult;
 import com.example.service.UserService;
 import com.example.vo.CategoryVO;
+import com.example.vo.StatisticsQueryVO;
 import com.example.vo.UserBillVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -133,5 +135,14 @@ public class UserController {
         UserBillVO userBillVO = userService.queryBillDetail(billId);
         log.info("账单:{}",userBillVO);
         return Result.success(userBillVO);
+    }
+
+    //根据传递的月份统计收入和支出
+    @PostMapping("/statisticsQuery")
+    public Result<StatisticsQueryVO> statisticsQuery(@RequestBody StatisticsQueryDTO statisticsQueryDTO){
+        log.info("根据传递的月份和年份查询收入和支出：{}",statisticsQueryDTO);
+        StatisticsQueryVO statisticsQueryVO  = userService.statisticsQuery(statisticsQueryDTO);
+        log.info("查询收入和支出：{}",statisticsQueryVO);
+        return Result.success(statisticsQueryVO);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.mapper;
 import com.example.dto.RecordQueryDTO;
+import com.example.entity.SumStatistics;
 import com.example.entity.UserBill;
 import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Mapper;
@@ -15,4 +16,7 @@ public interface UserBillMapper {
 
     //根据账单id查询账单详情
     UserBill selectBillDetail(Long userId, Long billId);
+
+    //根据年月查询账单统计
+    SumStatistics getSumAll(Integer year, Integer month, Long userId);
 }

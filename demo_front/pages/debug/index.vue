@@ -1,7 +1,6 @@
 <template>
   <view>
 	<SelectTimeVue></SelectTimeVue>
-	<financeVue></financeVue>
   </view>
 </template>
 
