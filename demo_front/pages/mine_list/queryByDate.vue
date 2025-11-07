@@ -13,6 +13,7 @@
 				:key="item.id"
 				:label="`${item.categoryName}`"
 				:title="`${item.type === 1 ? '-' : '+'}${item.amount}`"
+				:value="`${item.createTime[1]}-${item.createTime[2]}`"
 				@click="goToBillDetail(item.id)"
 			/>
 		</van-list>
