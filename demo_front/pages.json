@@ -17,13 +17,13 @@
 // }
 {
   "pages": [
-	{
-		"path" : "pages/debug/index",
-		"style" : 
-		{
-			"navigationBarTitleText" : "组件调试"
-		}
-	},
+	// {
+	// 	"path" : "pages/debug/index",
+	// 	"style" : 
+	// 	{
+	// 		"navigationBarTitleText" : "组件调试"
+	// 	}
+	// },
     {
       "path": "pages/common/login",
       "style": {
@@ -39,7 +39,8 @@
     {
       "path": "pages/home/home",
       "style": {
-        "navigationStyle": "custom"
+        "navigationStyle": "custom",
+		"navigationBarTitleText":''
       }
     },
     {

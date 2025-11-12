@@ -3,10 +3,7 @@ package com.example.controller.user;
 import com.example.constant.JwtClaimsConstant;
 import com.example.context.BaseContext;
 import com.example.dto.*;
-import com.example.entity.Category;
-import com.example.entity.SumStatistics;
-import com.example.entity.User;
-import com.example.entity.UserBill;
+import com.example.entity.*;
 import com.example.properties.JwtProperties;
 import com.example.result.PageResult;
 import com.example.service.UserService;
@@ -144,5 +141,13 @@ public class UserController {
         StatisticsQueryVO statisticsQueryVO  = userService.statisticsQuery(statisticsQueryDTO);
         log.info("查询收入和支出：{}",statisticsQueryVO);
         return Result.success(statisticsQueryVO);
+    }
+
+    //查询每天花费
+    @GetMapping("/queryDailyCosts")
+    public Result<List<DailyCost>> queryDailyCosts(){
+        Long id = BaseContext.getCurrentId();
+        List<DailyCost> dailyCostsList = userService.queryDailyCosts(id);
+        return Result.success(dailyCostsList);
     }
 }

@@ -2,10 +2,7 @@ package com.example.service;
 
 
 import com.example.dto.*;
-import com.example.entity.Category;
-import com.example.entity.SumStatistics;
-import com.example.entity.User;
-import com.example.entity.UserBill;
+import com.example.entity.*;
 import com.example.result.PageResult;
 import com.example.vo.CategoryVO;
 import com.example.vo.StatisticsQueryVO;
@@ -49,4 +46,7 @@ public interface UserService {
 
     //根据年月查询账单统计收入和支出
     StatisticsQueryVO statisticsQuery(StatisticsQueryDTO statisticsQueryDTO);
+
+    //查询每日花费
+    List<DailyCost> queryDailyCosts(Long id);
 }

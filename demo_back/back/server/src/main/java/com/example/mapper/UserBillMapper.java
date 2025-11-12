@@ -1,9 +1,12 @@
 package com.example.mapper;
 import com.example.dto.RecordQueryDTO;
+import com.example.entity.DailyCost;
 import com.example.entity.SumStatistics;
 import com.example.entity.UserBill;
 import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 @Mapper
 public interface UserBillMapper {
@@ -19,4 +22,6 @@ public interface UserBillMapper {
 
     //根据年月查询账单统计
     SumStatistics getSumAll(Integer year, Integer month, Long userId);
+
+    List<DailyCost> queryDailyCosts(Long id);
 }

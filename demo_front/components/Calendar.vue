@@ -17,7 +17,7 @@
 	const date = ref('');
 	const show = ref(false);
 	const currentDate = ref(new Date());
-	const defaultDate = currentDate.value;
+	const defaultDate = ref(currentDate.value);
 	const minDate = ref(new Date());
 	const maxDate = ref(new Date());
 
@@ -32,14 +32,23 @@
 
 	const formatCalendarDay = (day) => {
 		const dateKey = formatDateKey(day.date);
-		const cost = dailyCosts.value[dateKey];
-		return {
-			...day, // 保留原有属性（日期、是否选中、是否禁用等）
-			bottomInfo: cost !== undefined ? `¥${cost.toFixed(2)}` : '¥0.00', // 下方显示的花费（无数据时显示0）
-			bottomInfoStyle: {
-				fontSize: '12px',
-				color: '#999'
-			}
+		const dayData = dailyCosts.value[dateKey];
+		
+		let bottomInfo = '';
+		let topInfo = '';
+		let text = '';
+	
+		if(dayData){
+			 bottomInfo = `+${dayData.income.toFixed(2)}`;
+			 topInfo = `-${dayData.cost.toFixed(2)}`;
+		}else{
+			bottomInfo = '';
+			topInfo = '';
+		}
+		return{
+			...day,
+			bottomInfo:bottomInfo,
+			topInfo:topInfo,
 		};
 	};
 
@@ -70,7 +79,7 @@
 			});
 			const costMap = {};
 			result.forEach(item => {
-				costMap[item.date] = item.cost;
+				costMap[item.date] = item;
 			});
 			dailyCosts.value = costMap;
 		} catch (err) {

@@ -1,14 +1,12 @@
 package com.example.service.impl;
 
-import com.example.entity.SumStatistics;
+import com.example.entity.*;
 import com.example.vo.*;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.example.constant.MessageConstant;
 import com.example.context.BaseContext;
 import com.example.dto.*;
-import com.example.entity.Category;
-import com.example.entity.UserBill;
 import com.example.exception.AccountFoundException;
 import com.example.exception.CategoryException;
 import com.example.mapper.UserBillMapper;
@@ -20,7 +18,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.example.entity.User;
 import com.example.exception.AccountNotFoundException;
 import com.example.exception.PasswordErrorException;
 import org.springframework.util.DigestUtils;
@@ -182,6 +179,12 @@ public class UserServiceImpl implements UserService {
                 sum != null ? sum.getExpense() : 0L,
                 sum != null ? sum.getTransfer() : 0L
         );
+    }
+
+    @Override
+    public List<DailyCost> queryDailyCosts(Long id) {
+        List<DailyCost> DailyCost= userBillMapper.queryDailyCosts(id);
+        return DailyCost;
     }
 }
 

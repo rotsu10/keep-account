@@ -1,17 +1,19 @@
 <template>
 	<view>
-	
 		<!-- 页面内容 -->
 		<view class="content">
 			<van-button icon="plus" type="primary" round class="plus" @click="plusAccountPage"/>
 		</view>
-		<ButtomBarVue></ButtomBarVue>
+		<!-- <ButtomBarVue></ButtomBarVue> -->
+		<view class="calendar">
+			<CalendarVue></CalendarVue>
+		</view>
 	</view>
 </template>
 
 <script setup>
-	import ButtomBarVue from '../../components/ButtomBar.vue'
-	
+	// import ButtomBarVue from '../../components/ButtomBar.vue'
+	import CalendarVue from '../../components/Calendar.vue'
 	const plusAccountPage = ()=>{
 		uni.navigateTo({
 			url:'/pages/record/bill',
@@ -45,14 +47,16 @@
 	justify-content: center;
 	align-items: center;
 }
-/* 确保页面内容不被底部栏遮挡 */
-.content {
-	padding-bottom: 60px; /* 根据底部栏高度调整 */
-}
 
 .plus{
 	position: fixed;
 	bottom: 20%;
 	right: 0;
+}
+
+.calendar{
+	height: 500rpx;
+	margin: 20rpx;
+	background-color: aqua;
 }
 </style>
