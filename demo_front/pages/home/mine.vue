@@ -9,10 +9,10 @@
 			<van-image class="photo" round src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg" alt="" />
 			<view class="user_info">
 				<view class="name">
-					132123132
+					 {{ userName }}
 				</view>
 				<view class="ID">
-					ID:132132132
+					 ID:{{ id }}
 				</view>
 			</view>
 		</view>
@@ -40,18 +40,36 @@
 
 <script setup>
 	import {
-		ref
+		ref ,onMounted
 	} from 'vue';
 	import ButtomBarVue from '../../components/ButtomBar.vue';
-	const onClickLeft = () => {
-		history.back()
-	}
-
+	import { http } from '../../utils/request';
+	const userName = ref('');
+	const id = ref('');
 	const link = () => {
 		uni.navigateTo({
 			url: '/pages/mine_list/queryByDate'
 		});
 	}
+	
+	const getUserInfo =async() =>{
+		try{
+			const res = await http.get("/user/getUserInfo",{},{});
+			console.log("用户详细信息res:",res);
+			userName.value = res.username;
+			id.value = res.id;
+		}catch(err){
+			console.log("获取用户信息失败");
+			showToast({
+			      message: '网络异常，请稍后重试',
+			      type: 'error'
+			});
+		}
+	}
+	
+	onMounted(() => {
+	  getUserInfo();
+	});
 </script>
 
 <style scoped>
@@ -60,7 +78,7 @@
 		height: 200rpx;
 		margin: 20rpx 60rpx;
 		border-radius: 8rpx;
-		background-color: aquamarine;
+		background-color: #e0e2d9;
 	}
 
 	.photo {

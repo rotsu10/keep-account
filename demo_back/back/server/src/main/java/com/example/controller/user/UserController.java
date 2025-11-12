@@ -150,4 +150,12 @@ public class UserController {
         List<DailyCost> dailyCostsList = userService.queryDailyCosts(id);
         return Result.success(dailyCostsList);
     }
+
+    //获取用户信息
+    @GetMapping("/getUserInfo")
+    public Result<UserLoginVO> getUserInfo(){
+        Long userId = BaseContext.getCurrentId();
+        UserLoginVO userLoginVO = userService.getUserInfo(userId);
+        return Result.success(userLoginVO);
+    }
 }

@@ -54,9 +54,4 @@
 	right: 0;
 }
 
-.calendar{
-	height: 500rpx;
-	margin: 20rpx;
-	background-color: aqua;
-}
 </style>

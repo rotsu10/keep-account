@@ -186,5 +186,10 @@ public class UserServiceImpl implements UserService {
         List<DailyCost> DailyCost= userBillMapper.queryDailyCosts(id);
         return DailyCost;
     }
+
+    @Override
+    public UserLoginVO getUserInfo(Long userId) {
+        return userMapper.getUserInfo(userId);
+    }
 }
 

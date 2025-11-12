@@ -1,6 +1,7 @@
 package com.example.mapper;
 
 import com.example.entity.User;
+import com.example.vo.UserLoginVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.time.LocalDateTime;
@@ -22,4 +23,7 @@ public interface UserMapper {
 
     //查询用户创建时间
     LocalDateTime queryCreateTime(Long id);
+
+    //获取用户详细信息
+    UserLoginVO getUserInfo(Long userId);
 }

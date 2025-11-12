@@ -49,4 +49,7 @@ public interface UserService {
 
     //查询每日花费
     List<DailyCost> queryDailyCosts(Long id);
+
+    //获取用户详细信息
+    UserLoginVO getUserInfo(Long userId);
 }
