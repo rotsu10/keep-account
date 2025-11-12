@@ -27,7 +27,7 @@
 	
 	const minDate = ref(new Date());
 	const maxDate = ref(new Date());
-	 const columnsType = ['year', 'month'];
+	const columnsType = ['year', 'month'];
 	// 控制弹出层显示状态
 	const showPicker = ref(false);
 	//格式后显示日期
@@ -41,7 +41,6 @@
 		return [
 				now.getFullYear().toString(),
 				(now.getMonth() + 1).toString().padStart(2, '0'),
-				now.getDate().toString().padStart(2, '0')
 		];
 	};
 	

@@ -6,13 +6,8 @@
 </template>
 
 <script setup>
-	import {
-		ref,
-		onMounted
-	} from 'vue';
-	import {
-		http
-	} from '../utils/request';
+	import {ref,onMounted} from 'vue';
+	import {http} from '../utils/request';
 
 	const date = ref('');
 	const show = ref(false);
@@ -36,7 +31,6 @@
 		
 		let bottomInfo = '';
 		let topInfo = '';
-		let text = '';
 	
 		if(dayData){
 			 bottomInfo = `+${dayData.income.toFixed(2)}`;
@@ -66,12 +60,6 @@
 		}
 	};
 
-	//获取当日花费
-	// [
-	//   { "date": "2024-05-20", "cost": 128.5 },
-	//   { "date": "2024-05-21", "cost": 88.0 },
-	//   ...
-	// ]
 	const getDailyCosts = async () => {
 		try {
 			const result = await http.get("/user/queryDailyCosts", {}, {

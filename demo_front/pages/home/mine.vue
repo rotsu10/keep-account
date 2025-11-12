@@ -9,10 +9,10 @@
 			<van-image class="photo" round src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg" alt="" />
 			<view class="user_info">
 				<view class="name">
-					 {{ userName }}
+					{{ userName }}
 				</view>
 				<view class="ID">
-					 ID:{{ id }}
+					ID:{{ id }}
 				</view>
 			</view>
 		</view>
@@ -39,11 +39,9 @@
 </template>
 
 <script setup>
-	import {
-		ref ,onMounted
-	} from 'vue';
+	import {onMounted,ref} from 'vue';
 	import ButtomBarVue from '../../components/ButtomBar.vue';
-	import { http } from '../../utils/request';
+	import {http} from '../../utils/request';
 	const userName = ref('');
 	const id = ref('');
 	const link = () => {
@@ -51,24 +49,24 @@
 			url: '/pages/mine_list/queryByDate'
 		});
 	}
-	
-	const getUserInfo =async() =>{
-		try{
-			const res = await http.get("/user/getUserInfo",{},{});
-			console.log("用户详细信息res:",res);
+
+	const getUserInfo = async () => {
+		try {
+			const res = await http.get("/user/getUserInfo", {}, {});
+			console.log("用户详细信息res:", res);
 			userName.value = res.username;
 			id.value = res.id;
-		}catch(err){
+		} catch (err) {
 			console.log("获取用户信息失败");
 			showToast({
-			      message: '网络异常，请稍后重试',
-			      type: 'error'
+				message: '网络异常，请稍后重试',
+				type: 'error'
 			});
 		}
 	}
-	
+
 	onMounted(() => {
-	  getUserInfo();
+		getUserInfo();
 	});
 </script>
 
