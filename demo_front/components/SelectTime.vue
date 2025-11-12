@@ -12,6 +12,7 @@
 	    title="选择日期" 
 	    :min-date="minDate" 
 	    :max-date="maxDate"
+		:columns-type="columnsType"
 		@cancel = "onCancel"
 		@confirm = "onConfirm"
 	  />
@@ -26,7 +27,7 @@
 	
 	const minDate = ref(new Date());
 	const maxDate = ref(new Date());
-
+	 const columnsType = ['year', 'month'];
 	// 控制弹出层显示状态
 	const showPicker = ref(false);
 	//格式后显示日期
@@ -83,7 +84,7 @@
 	
 	//格式化日期
 	const formatDateText = (dateArr) =>{
-		return `${dateArr[0]}-${dateArr[1]}-${dateArr[2]}`;
+		return `${dateArr[0]}-${dateArr[1]}`;
 	}
 	
 	onMounted(async ()=>{

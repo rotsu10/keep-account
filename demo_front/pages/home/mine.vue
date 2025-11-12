@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view>
-			<van-nav-bar title="我的" left-text="返回" left-arrow @click-left="onClickLeft">
+			<van-nav-bar title="我的">
 			</van-nav-bar>
 		</view>
 

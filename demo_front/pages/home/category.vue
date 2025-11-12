@@ -2,7 +2,7 @@
 	<view>
 		<view class="clascustom-nav">
 			<!-- 导航栏 -->
-			<van-nav-bar title="分类" left-text="返回" left-arrow @click-left="onClickLeft">
+			<van-nav-bar title="分类">
 				<template #right>
 					<van-icon name="search" size="18"  @click="showSearchDialog"/>
 					<van-icon name="plus" size="18" @click="showAddDialog" />
