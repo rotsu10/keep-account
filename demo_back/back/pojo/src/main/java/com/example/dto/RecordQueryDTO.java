@@ -13,8 +13,7 @@ import lombok.NoArgsConstructor;
 public class RecordQueryDTO {
     public Integer year;
     public Integer month;
-    public Integer day = 1 ; //默认值为每月1号
-
+    public Integer day;
     public Long userId;
     //页码
     private int page;

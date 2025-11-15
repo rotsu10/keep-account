@@ -1,3 +1,5 @@
+import "./chunk-CSAU5B4Q.js";
+
 // ../../../../../../project/记账/demo_front/node_modules/vant/es/utils/basic.mjs
 function noop() {
 }

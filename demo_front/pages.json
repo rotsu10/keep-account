@@ -70,8 +70,29 @@
     		"navigationBarTitleText" : ""
     	}
     },
+	{
+		"path" : "pages/mine_list/categoryStatistics",
+		"style" : 
+		{
+			"navigationBarTitleText" : ""
+		}
+	},
     {
     	"path" : "pages/record/billDetail",
+    	"style" : 
+    	{
+    		"navigationBarTitleText" : ""
+    	}
+    },
+    {
+    	"path" : "pages/record/daiyBillList",
+    	"style" : 
+    	{
+    		"navigationBarTitleText" : ""
+    	}
+    },
+    {
+    	"path" : "components/categoryChart",
     	"style" : 
     	{
     		"navigationBarTitleText" : ""

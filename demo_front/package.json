@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "default-passive-events": "^4.0.0",
+    "echarts": "^6.0.0",
     "pinia": "^3.0.3",
     "vant": "^4.9.21"
   }

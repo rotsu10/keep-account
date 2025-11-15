@@ -21,7 +21,7 @@ public interface UserBillMapper {
     UserBill selectBillDetail(Long userId, Long billId);
 
     //根据年月查询账单统计
-    SumStatistics getSumAll(Integer year, Integer month, Long userId);
+    SumStatistics getSumAll(Integer year, Integer month,Integer day, Long userId);
 
     List<DailyCost> queryDailyCosts(Long id);
 }

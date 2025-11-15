@@ -12,4 +12,5 @@ import lombok.NoArgsConstructor;
 public class StatisticsQueryDTO {
     private Integer year;
     private Integer month;
+    private Integer day;
 }

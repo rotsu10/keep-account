@@ -22,9 +22,9 @@
 				<van-cell title="分类" is-link size="large" />
 				<van-cell title="导入" is-link size="large" />
 				<van-cell title="导出" is-link size="large" />
-				<van-cell title="分类统计" is-link size="large" />
+				<van-cell title="分类统计" is-link @click="navigateTo('/pages/mine_list/categoryStatistics')" size="large" />
 				<van-cell title="日趋" is-link size="large" />
-				<van-cell title="月度收支" is-link @click="link" size="large" />
+				<van-cell title="月度收支" is-link @click="navigateTo('/pages/mine_list/queryByDate')" size="large" />
 			</van-cell-group>
 			<van-cell-group inset>
 				<van-cell title="设置" is-link size="large" />
@@ -44,12 +44,15 @@
 	import {http} from '../../utils/request';
 	const userName = ref('');
 	const id = ref('');
-	const link = () => {
-		uni.navigateTo({
-			url: '/pages/mine_list/queryByDate'
-		});
-	}
-
+	
+	const navigateTo = (url) => {
+	        if (url) {
+	            uni.navigateTo({
+	                url: url
+	            });
+	        }
+	    }
+	
 	const getUserInfo = async () => {
 		try {
 			const res = await http.get("/user/getUserInfo", {}, {});

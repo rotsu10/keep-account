@@ -134,7 +134,7 @@ public class UserController {
         return Result.success(userBillVO);
     }
 
-    //根据传递的月份统计收入和支出
+    //根据传递的月份日统计收入和支出
     @PostMapping("/statisticsQuery")
     public Result<StatisticsQueryVO> statisticsQuery(@RequestBody StatisticsQueryDTO statisticsQueryDTO){
         log.info("根据传递的月份和年份查询收入和支出：{}",statisticsQueryDTO);

@@ -20,6 +20,9 @@
         <if test="month != null">
             and month(ub.create_time) = #{month}
         </if>
+        <if test="day != null">
+            and day(ub.create_time) = #{day}
+        </if>
         order by ub.create_time desc
     </select>
     <select id="selectBillDetail" resultType="com.example.entity.UserBill">
@@ -34,6 +37,7 @@
         from user_bill
         where year(create_time) = #{year}
             and month(create_time) = #{month}
+            and day(create_time) = #{day}
             and user_id = #{userId}
     </select>
     <select id="queryDailyCosts" resultType="com.example.entity.DailyCost">

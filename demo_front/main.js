@@ -1,5 +1,5 @@
 import App from './App'
-
+import 'default-passive-events'
 // #ifndef VUE3
 import Vue from 'vue'
 import './uni.promisify.adaptor'

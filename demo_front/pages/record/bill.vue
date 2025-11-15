@@ -128,7 +128,7 @@ onMounted(() => {
 }
 .van-radio {
   flex: 0 0 calc(33.333% - 10rpx);
-  margin: 0;
+  margin: 0;d
   box-sizing: border-box;
 }
 .van-button {

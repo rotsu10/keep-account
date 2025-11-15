@@ -170,9 +170,10 @@ public class UserServiceImpl implements UserService {
     public StatisticsQueryVO statisticsQuery(StatisticsQueryDTO statisticsQueryDTO) {
         Integer year = statisticsQueryDTO.getYear();
         Integer month = statisticsQueryDTO.getMonth();
+        Integer day = statisticsQueryDTO.getDay();
         Long userId = BaseContext.getCurrentId();
-        log.info("year:{}  month:{}  userId:{}",year,month,userId);
-        SumStatistics sum = userBillMapper.getSumAll(year, month, userId);
+        log.info("year:{}  month:{} day:{} userId:{}",year,month,day,userId);
+        SumStatistics sum = userBillMapper.getSumAll(year, month, day,userId);
         log.info("userBill:{}",sum);
         return new StatisticsQueryVO(
                 sum != null ? sum.getIncome() : 0L,

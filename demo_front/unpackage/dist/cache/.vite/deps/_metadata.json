@@ -1,15 +1,31 @@
 {
-  "hash": "b23161df",
+  "hash": "27347d97",
   "configHash": "0b16a37c",
-  "lockfileHash": "1aa6a264",
-  "browserHash": "40a02f84",
+  "lockfileHash": "7838a1aa",
+  "browserHash": "8f612f7c",
   "optimized": {
     "vant": {
       "src": "../../../../../node_modules/vant/es/index.mjs",
       "file": "vant.js",
-      "fileHash": "7db8d53d",
+      "fileHash": "729d3016",
       "needsInterop": false
+    },
+    "echarts": {
+      "src": "../../../../../node_modules/echarts/index.js",
+      "file": "echarts.js",
+      "fileHash": "f6af21e8",
+      "needsInterop": false
+    },
+    "default-passive-events": {
+      "src": "../../../../../node_modules/default-passive-events/dist/index.module.js",
+      "file": "default-passive-events.js",
+      "fileHash": "b1a2016e",
+      "needsInterop": true
     }
   },
-  "chunks": {}
+  "chunks": {
+    "chunk-CSAU5B4Q": {
+      "file": "chunk-CSAU5B4Q.js"
+    }
+  }
 }
