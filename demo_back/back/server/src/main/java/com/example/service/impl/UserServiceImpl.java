@@ -24,6 +24,7 @@ import org.springframework.util.DigestUtils;
 
 import javax.security.auth.login.AccountException;
 import javax.smartcardio.CardException;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -175,11 +176,20 @@ public class UserServiceImpl implements UserService {
         log.info("year:{}  month:{} day:{} userId:{}",year,month,day,userId);
         SumStatistics sum = userBillMapper.getSumAll(year, month, day,userId);
         log.info("userBill:{}",sum);
-        return new StatisticsQueryVO(
-                sum != null ? sum.getIncome() : 0L,
-                sum != null ? sum.getExpense() : 0L,
-                sum != null ? sum.getTransfer() : 0L
-        );
+        // 1. 初始化默认值
+        BigDecimal income = BigDecimal.ZERO;
+        BigDecimal expense = BigDecimal.ZERO;
+        BigDecimal transfer = BigDecimal.ZERO;
+
+        // 2. 如果 sum 不为 null，再从 sum 中获取值
+        if (sum != null) {
+            income = sum.getIncome();
+            expense = sum.getExpense();
+            transfer = sum.getTransfer();
+        }
+
+        // 3. 返回结果
+        return new StatisticsQueryVO(income, expense, transfer);
     }
 
     @Override

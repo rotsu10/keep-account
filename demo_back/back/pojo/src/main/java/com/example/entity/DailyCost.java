@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,7 +15,7 @@ public class DailyCost {
     //日期
     private String date;
     //每日花费
-    private Double cost;
+    private BigDecimal cost;
     //每日收入
-    private Double income;
+    private BigDecimal income;
 }

@@ -5,12 +5,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 public class StatisticsQueryVO {
-    private Long income; //收入
-    private Long expense; //支出
-    private Long transfer; //转账
+    private BigDecimal income; //收入
+    private BigDecimal expense; //支出
+    private BigDecimal transfer; //转账
 }
