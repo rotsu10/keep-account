@@ -91,13 +91,6 @@
     		"navigationBarTitleText" : ""
     	}
     },
-    {
-    	"path" : "components/categoryChart",
-    	"style" : 
-    	{
-    		"navigationBarTitleText" : ""
-    	}
-    }
   ],
   "tabBar": {
     "list": [
