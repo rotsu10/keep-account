@@ -4,10 +4,8 @@ package com.example.service;
 import com.example.dto.*;
 import com.example.entity.*;
 import com.example.result.PageResult;
-import com.example.vo.CategoryVO;
-import com.example.vo.StatisticsQueryVO;
-import com.example.vo.UserBillVO;
-import com.example.vo.UserLoginVO;
+import com.example.result.Result;
+import com.example.vo.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -52,4 +50,7 @@ public interface UserService {
 
     //获取用户详细信息
     UserLoginVO getUserInfo(Long userId);
+
+    //根据时间范围和类型查询分类名和统计账单
+    List<CategoryStatisticsVO> categoryStatistics(Long type, String timeValue,String timeType);
 }

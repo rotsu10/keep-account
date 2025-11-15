@@ -1,6 +1,7 @@
 package com.example.service.impl;
 
 import com.example.entity.*;
+import com.example.result.Result;
 import com.example.vo.*;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -201,6 +202,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserLoginVO getUserInfo(Long userId) {
         return userMapper.getUserInfo(userId);
+    }
+
+    @Override
+    public List<CategoryStatisticsVO> categoryStatistics(Long type, String timeValue,String timeType) {
+        Long id = BaseContext.getCurrentId();
+        List<CategoryStatisticsVO> list = userBillMapper.categoryStatistics( id ,type,timeValue,timeType);
+        return list;
     }
 }
 

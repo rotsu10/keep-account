@@ -11,11 +11,12 @@ import * as echarts from 'echarts';
 import TimeRangeVue from '../../components/TimeRange.vue';
 const selectedTime = ref('');
 const selectedType = ref('');
-
+const timeType = ref('');
 const handleTimeRangeSelect = (data) => {
   console.log("父组件收到数据:", data);
   selectedTime.value = data.time.text;
   selectedType.value = data.type.text;
+  timeType.value = data.time.timeType;
 };
 
 const chartRef = ref(null);

@@ -28,20 +28,22 @@
 			(now.getDate().toString().padStart(2, '0'))
 		];
 	};
-
 	const getCurDateArr = ref(getCurDate());
 	const columns = [
 		[{
 				text: '本年',
-				value: getCurDateArr.value[0]
+				value: getCurDateArr.value[0],
+				timeType: 'year'
 			},
 			{
 				text: '本月',
-				value: getCurDateArr.value[1]
+				value: getCurDateArr.value[0]+getCurDateArr.value[1],
+				timeType: 'month'
 			},
 			{
 				text: '本日',
-				value: getCurDateArr.value[2]
+				value: getCurDateArr.value[0]+getCurDateArr.value[1]+getCurDateArr.value[2],
+				timeType: 'day'
 			}
 		],
 		[{
@@ -73,7 +75,7 @@
 	const sendToParent = (selectedOptions) => {
 	  emit('time-range', {
 		  time: selectedOptions[0],
-		  type: selectedOptions[1]
+		  type: selectedOptions[1],
 	  }); 
 	};
 </script>

@@ -54,4 +54,35 @@
         ORDER BY
             DATE(create_time) ASC;
     </select>
+    <select id="categoryStatistics" resultType="com.example.vo.CategoryStatisticsVO">
+        SELECT
+        c.name AS category_name,
+        SUM(b.amount) AS total_amount,
+        COUNT(*) AS bill_count
+        FROM
+        user_bill b
+        LEFT JOIN
+        category c ON b.category_id = c.id
+        WHERE
+        b.user_id = #{id}
+        AND b.type = #{type}
+        <!-- 动态时间条件 -->
+        <if test="timeType != null and timeValue != null">
+            <choose>
+                <when test="timeType == 'year'">
+                    AND DATE_FORMAT(b.create_time, '%Y') = #{timeValue}
+                </when>
+                <when test="timeType == 'month'">
+                    AND DATE_FORMAT(b.create_time, '%Y-%m') = #{timeValue}
+                </when>
+                <when test="timeType == 'day'">
+                    AND DATE_FORMAT(b.create_time, '%Y-%m-%d') = #{timeValue}
+                </when>
+            </choose>
+        </if>
+        GROUP BY
+        c.id, c.name
+        ORDER BY
+        total_amount DESC
+    </select>
 </mapper>

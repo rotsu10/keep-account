@@ -3,6 +3,7 @@ import com.example.dto.RecordQueryDTO;
 import com.example.entity.DailyCost;
 import com.example.entity.SumStatistics;
 import com.example.entity.UserBill;
+import com.example.vo.CategoryStatisticsVO;
 import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -23,5 +24,9 @@ public interface UserBillMapper {
     //根据年月查询账单统计
     SumStatistics getSumAll(Integer year, Integer month,Integer day, Long userId);
 
+    //查询每日花费
     List<DailyCost> queryDailyCosts(Long id);
+
+    //根据时间范围和类型查询分类名和统计账单
+    List<CategoryStatisticsVO> categoryStatistics(Long id, Long type, String timeValue,String timeType);
 }

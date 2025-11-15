@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @Builder
 public class CategoryStatisticsVO {
-    private Long categoryId;
     private String categoryName;
     private BigDecimal totalAmount;
+    private Long countNumber;
 }

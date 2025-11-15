@@ -7,14 +7,11 @@ import com.example.entity.*;
 import com.example.properties.JwtProperties;
 import com.example.result.PageResult;
 import com.example.service.UserService;
-import com.example.vo.CategoryVO;
-import com.example.vo.StatisticsQueryVO;
-import com.example.vo.UserBillVO;
+import com.example.vo.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import com.example.vo.UserLoginVO;
 import com.example.result.Result;
 import com.example.utils.JwtUtil;
 
@@ -157,5 +154,12 @@ public class UserController {
         Long userId = BaseContext.getCurrentId();
         UserLoginVO userLoginVO = userService.getUserInfo(userId);
         return Result.success(userLoginVO);
+    }
+
+    //根据日期和类型统计账单
+    @PostMapping("/categoryStatistics")
+    public Result<List<CategoryStatisticsVO>> categoryStatistics(@RequestBody CategoryStatisticsDTO categoryStatisticsDTO){
+        List<CategoryStatisticsVO> list = userService.categoryStatistics(categoryStatisticsDTO.getType(),categoryStatisticsDTO.getTimeValue(),categoryStatisticsDTO.getTimeType());
+        return Result.success(list);
     }
 }
