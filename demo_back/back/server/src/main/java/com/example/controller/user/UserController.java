@@ -159,6 +159,7 @@ public class UserController {
     //根据日期和类型统计账单
     @PostMapping("/categoryStatistics")
     public Result<List<CategoryStatisticsVO>> categoryStatistics(@RequestBody CategoryStatisticsDTO categoryStatisticsDTO){
+        log.info("根据日期和类型统计账单：{}", categoryStatisticsDTO);
         List<CategoryStatisticsVO> list = userService.categoryStatistics(categoryStatisticsDTO.getType(),categoryStatisticsDTO.getTimeValue(),categoryStatisticsDTO.getTimeType());
         return Result.success(list);
     }

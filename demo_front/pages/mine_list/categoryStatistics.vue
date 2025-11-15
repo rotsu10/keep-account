@@ -9,33 +9,73 @@
 import { ref, onMounted } from 'vue';
 import * as echarts from 'echarts';
 import TimeRangeVue from '../../components/TimeRange.vue';
-const selectedTime = ref('');
-const selectedType = ref('');
+import { http } from '../../utils/request';
+
+const timeValue = ref('');
 const timeType = ref('');
-const handleTimeRangeSelect = (data) => {
-  console.log("父组件收到数据:", data);
-  selectedTime.value = data.time.text;
-  selectedType.value = data.type.text;
-  timeType.value = data.time.timeType;
-};
+const TypeText = ref('');
+const TypeValue = ref('');
 
 const chartRef = ref(null);
+let myChart = ref(null); 
+
+const handleTimeRangeSelect = (data) => {
+	console.log("父组件收到数据:", data);
+	timeValue.value = data.time.value;  //2025
+	timeType.value = data.time.timeType; //year
+  
+	TypeText.value = data.type.text; //收入
+    TypeValue.value = data.type.value; //1
+	categoryStatistics();
+};
+
+const categoryStatistics = async()=>{
+	try{
+		const sendData = {
+			timeValue :timeValue.value,
+			timeType :timeType.value,
+			type:TypeValue.value,
+		}
+		console.log("sendData:", sendData);
+		const res =await http.post("/user/categoryStatistics",sendData,{});
+		console.log("统计结果",res);
+		if(res && res.length > 0){
+			const newOption = {
+				title:{
+					text:`${timeValue.value}${TypeText.value}`,
+					left:'center',
+					top:'center'
+				},
+				series:[
+					{
+						type: 'pie',
+						data: res, 
+						radius: ['40%', '70%']
+					}
+				]
+			}
+			myChart.value.setOption(newOption);
+		}
+	}catch(err){
+		console.log("失败",err);
+	}
+}
+
 onMounted(() => {
-  const myChart = echarts.init(chartRef.value);
-  let option = {
-    title: { text: '圆环图的例子', left: 'center', top: 'center' },
+  myChart.value = echarts.init(chartRef.value);
+  const initialOption = {
+    title: { text: '请选择时间和类型', left: 'center', top: 'center' },
+    tooltip: { trigger: 'item' },
+    legend: { orient: 'vertical', left: 'left' },
     series: [
       {
+        name: '金额',
         type: 'pie',
-        data: [
-          { value: 335, name: 'A' },
-          { value: 234, name: 'B' },
-          { value: 1548, name: 'C' }
-        ],
-        radius: ['40%', '70%'] // 圆环图：内半径40%，外半径70%
+        radius: ['40%', '70%'],
+        data: [] // 初始为空
       }
     ]
   };
-  myChart.setOption(option);
+  myChart.value.setOption(initialOption);
 });
 </script>
