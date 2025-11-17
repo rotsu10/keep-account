@@ -1,12 +1,14 @@
 <template>
-	<view class="selected">
-		<TimeRangeVue @time-range="handleTimeRangeSelect"></TimeRangeVue>
+	<view class="container">
+		<view class="selected">
+				<TimeRangeVue @time-range="handleTimeRangeSelect"></TimeRangeVue>
+			</view>
+		<div ref="chartRef" style="width: 100%; height: 400px;"></div>
 	</view>
-  <div ref="chartRef" style="width: 100%; height: 400px;"></div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted ,onUnmounted} from 'vue';
 import * as echarts from 'echarts';
 import TimeRangeVue from '../../components/TimeRange.vue';
 import { http } from '../../utils/request';
@@ -39,10 +41,10 @@ const categoryStatistics = async()=>{
 		console.log("sendData:", sendData);
 		const res =await http.post("/user/categoryStatistics",sendData,{});
 		console.log("统计结果",res);
-		if(res && res.length > 0){
+		if(res){
 			const newOption = {
 				title:{
-					text:`${timeValue.value}${TypeText.value}`,
+					text:`${timeValue.value}/${TypeText.value}`,
 					left:'center',
 					top:'center'
 				},
@@ -50,7 +52,12 @@ const categoryStatistics = async()=>{
 					{
 						type: 'pie',
 						data: res, 
-						radius: ['40%', '70%']
+						radius: ['20%', '40%'],
+						legendHoverLink: true,
+						label:{
+							show:true,
+							formatter: '{b}: {d}%' 
+						}
 					}
 				]
 			}
@@ -72,10 +79,17 @@ onMounted(() => {
         name: '金额',
         type: 'pie',
         radius: ['40%', '70%'],
-        data: [] // 初始为空
+        data: []
       }
     ]
   };
   myChart.value.setOption(initialOption);
+});
+
+onUnmounted(() => {
+  if (myChart.value) {
+    myChart.value.dispose();
+    myChart.value = null;
+  }
 });
 </script>

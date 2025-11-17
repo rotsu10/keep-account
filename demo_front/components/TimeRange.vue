@@ -32,17 +32,17 @@
 	const columns = [
 		[{
 				text: '本年',
-				value: getCurDateArr.value[0],
+				value: getCurDateArr.value[0].toString(),
 				timeType: 'year'
 			},
 			{
 				text: '本月',
-				value: getCurDateArr.value[0]+getCurDateArr.value[1],
+				value: `${getCurDateArr.value[0]}-${String(getCurDateArr.value[1]).padStart(2, '0')}`,
 				timeType: 'month'
 			},
 			{
 				text: '本日',
-				value: getCurDateArr.value[0]+getCurDateArr.value[1]+getCurDateArr.value[2],
+				value:`${getCurDateArr.value[0]}-${String(getCurDateArr.value[1]).padStart(2, '0')}-${String(getCurDateArr.value[2]).padStart(2, '0')}`,
 				timeType: 'day'
 			}
 		],

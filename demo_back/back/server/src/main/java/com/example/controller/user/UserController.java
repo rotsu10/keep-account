@@ -161,6 +161,7 @@ public class UserController {
     public Result<List<CategoryStatisticsVO>> categoryStatistics(@RequestBody CategoryStatisticsDTO categoryStatisticsDTO){
         log.info("根据日期和类型统计账单：{}", categoryStatisticsDTO);
         List<CategoryStatisticsVO> list = userService.categoryStatistics(categoryStatisticsDTO.getType(),categoryStatisticsDTO.getTimeValue(),categoryStatisticsDTO.getTimeType());
+        log.info("list:{}", list);
         return Result.success(list);
     }
 }
