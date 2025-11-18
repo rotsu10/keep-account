@@ -210,5 +210,12 @@ public class UserServiceImpl implements UserService {
         List<CategoryStatisticsVO> list = userBillMapper.categoryStatistics( id ,type,timeValue,timeType);
         return list;
     }
+
+    @Override
+    public void deleteCategory(CategoryIdsDTO categoryIdsDTO) {
+        List<Long> ids = categoryIdsDTO.getCategoryIds();
+        Long userId = BaseContext.getCurrentId();
+        userCategoryMapper.deleteCategoriesBatch(ids,userId);
+    }
 }
 

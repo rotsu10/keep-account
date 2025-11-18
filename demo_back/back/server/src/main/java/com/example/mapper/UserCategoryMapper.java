@@ -21,4 +21,7 @@ public interface UserCategoryMapper {
 
     //根据分类类型和id查询所有分类
     List<CategoryVO> queryCategoryByType(Long userId, Integer type);
+
+    //删除分类
+    void deleteCategoriesBatch(List<Long> ids, Long userId);
 }

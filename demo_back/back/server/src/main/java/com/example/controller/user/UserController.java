@@ -164,4 +164,17 @@ public class UserController {
         log.info("list:{}", list);
         return Result.success(list);
     }
+
+
+    //列表，首页日历根据日期查询账单
+
+    //列表，我的分类统计根据日期和类型查询账单
+
+    //删除分类
+    @DeleteMapping("/deleteCategory")
+    public Result deleteCategory(@RequestBody CategoryIdsDTO categoryIdsDTO){
+        log.info("删除分类：{}", categoryIdsDTO);
+        userService.deleteCategory(categoryIdsDTO);
+        return Result.success();
+    }
 }
