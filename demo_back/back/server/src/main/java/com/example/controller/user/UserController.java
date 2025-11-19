@@ -172,9 +172,17 @@ public class UserController {
 
     //删除分类
     @DeleteMapping("/deleteCategory")
-    public Result deleteCategory(@RequestBody CategoryIdsDTO categoryIdsDTO){
-        log.info("删除分类：{}", categoryIdsDTO);
-        userService.deleteCategory(categoryIdsDTO);
+    public Result deleteCategory(@RequestBody CategoryDeleteDTO categoryDeleteDTO){
+        log.info("删除分类：{}", categoryDeleteDTO);
+        userService.deleteCategory(categoryDeleteDTO);
+        return Result.success();
+    }
+
+    //删除账单
+    @DeleteMapping("/deleteBill")
+    public Result deleteBill(@RequestBody BillDeleteDTO billDeleteDTO){
+        log.info("删除账单{}", billDeleteDTO);
+        userService.deleteBill(billDeleteDTO);
         return Result.success();
     }
 }

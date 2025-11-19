@@ -212,10 +212,28 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteCategory(CategoryIdsDTO categoryIdsDTO) {
-        List<Long> ids = categoryIdsDTO.getCategoryIds();
+    public void deleteCategory(CategoryDeleteDTO categoryDeleteDTO) {
+        List<Long> categoryIds = categoryDeleteDTO.getCategoryIds();
+        String strategy = categoryDeleteDTO.getStrategy();
         Long userId = BaseContext.getCurrentId();
-        userCategoryMapper.deleteCategoriesBatch(ids,userId);
+
+        //根据策略处理账单
+        if ("move".equals(strategy)) {
+            // 迁移账单到默认分类
+        } else if ("delete".equals(strategy)) {
+            // 删除分类下的所有账单
+
+        }
+        //删除分类
+        userCategoryMapper.deleteCategoriesBatch(categoryIds,userId);
     }
+
+    @Override
+    public void deleteBill(BillDeleteDTO billDeleteDTO) {
+        Long userId = BaseContext.getCurrentId();
+        List<Long> billIds = billDeleteDTO.getBillIds();
+        userBillMapper.deleteBill(billIds,userId);
+    }
+
 }
 

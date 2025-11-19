@@ -1,4 +1,5 @@
 package com.example.mapper;
+import com.example.dto.BillDeleteDTO;
 import com.example.dto.RecordQueryDTO;
 import com.example.entity.DailyCost;
 import com.example.entity.SumStatistics;
@@ -29,4 +30,7 @@ public interface UserBillMapper {
 
     //根据时间范围和类型查询分类名和统计账单
     List<CategoryStatisticsVO> categoryStatistics(Long id, Long type, String timeValue,String timeType);
+
+    //删除账单
+    void deleteBill( List<Long> billIds,Long userId);
 }

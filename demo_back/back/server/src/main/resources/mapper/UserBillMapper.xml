@@ -85,4 +85,11 @@
         ORDER BY
         value DESC
     </select>
+
+    <delete id="deleteBill">
+        delete from user_bill where id in <foreach collection="billIds" item="id" open="(" separator="," close=")">
+        #{id}
+    </foreach> and user_id = #{userId}
+    </delete>
+
 </mapper>

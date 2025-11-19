@@ -55,5 +55,8 @@ public interface UserService {
     List<CategoryStatisticsVO> categoryStatistics(Long type, String timeValue,String timeType);
 
     //删除分类
-    void deleteCategory(CategoryIdsDTO categoryIdsDTO);
+    void deleteCategory(CategoryDeleteDTO categoryDeleteDTO);
+
+    //删除账单
+    void deleteBill(BillDeleteDTO billDeleteDTO);
 }

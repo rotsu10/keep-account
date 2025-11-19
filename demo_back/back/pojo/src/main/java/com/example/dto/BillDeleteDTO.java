@@ -8,9 +8,10 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class CategoryIdsDTO {
-    private List<Long> categoryIds;
+public class BillDeleteDTO {
+    //删除账单的id
+    private List<Long> billIds;
 }
