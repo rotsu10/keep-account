@@ -28,4 +28,6 @@ public class MessageConstant {
     public static final String PHONE_EXISTS ="手机号已使用" ;
     public static final String CATEGORY_EXISTS = "分类已存在";
     public static final String CATEGORY_NOT_EXISTS = "分类不存在";
+    public static final String STRATEGY_ERROR = "删除策略异常";
+
 }

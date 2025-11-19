@@ -16,4 +16,6 @@ public class CategoryDeleteDTO {
     private List<Long> categoryIds;
     //删除策略 move delete
     private String strategy;
+    //转移账单的分类
+    private Long targetCategoryId;
 }

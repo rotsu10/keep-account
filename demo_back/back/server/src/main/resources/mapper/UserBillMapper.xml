@@ -106,4 +106,10 @@
     </foreach>
     </update>
 
+    <select id="getBillIdsByCategoryIds" resultType="java.lang.Long">
+        select id from user_bill where category_id in <foreach collection="categoryIds" item="category" open="(" separator="," close=")">
+        #{category}
+    </foreach>
+    </select>
+
 </mapper>

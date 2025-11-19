@@ -219,11 +219,15 @@ public class UserServiceImpl implements UserService {
 
         //根据策略处理账单
         if ("move".equals(strategy)) {
-            //转移该分类下其它
-
+            //转移该分类下账单
+            Long targetCategoryId = categoryDeleteDTO.getTargetCategoryId();
+            List<Long> billIdsToMove = userBillMapper.getBillIdsByCategoryIds(categoryIds, userId);
+            updateBill(targetCategoryId,billIdsToMove);
         } else if ("delete".equals(strategy)) {
             // 删除分类下的所有账单
             userBillMapper.deleteBillByCategoryIds(categoryIds);
+        }else{
+            throw new CategoryException(MessageConstant.STRATEGY_ERROR);
         }
         //删除分类
         userCategoryMapper.deleteCategoriesBatch(categoryIds,userId);
@@ -239,6 +243,5 @@ public class UserServiceImpl implements UserService {
     public void updateBill(Long categoryId, List<Long> billIds) {
         userBillMapper.updateBill(categoryId,billIds);
     }
-
 }
 
