@@ -219,20 +219,25 @@ public class UserServiceImpl implements UserService {
 
         //根据策略处理账单
         if ("move".equals(strategy)) {
-            // 迁移账单到默认分类
+            //转移该分类下其它
+
         } else if ("delete".equals(strategy)) {
             // 删除分类下的所有账单
-
+            userBillMapper.deleteBillByCategoryIds(categoryIds);
         }
         //删除分类
         userCategoryMapper.deleteCategoriesBatch(categoryIds,userId);
     }
 
     @Override
-    public void deleteBill(BillDeleteDTO billDeleteDTO) {
+    public void deleteBill(List<Long> billIds) {
         Long userId = BaseContext.getCurrentId();
-        List<Long> billIds = billDeleteDTO.getBillIds();
         userBillMapper.deleteBill(billIds,userId);
+    }
+
+    @Override
+    public void updateBill(Long categoryId, List<Long> billIds) {
+        userBillMapper.updateBill(categoryId,billIds);
     }
 
 }

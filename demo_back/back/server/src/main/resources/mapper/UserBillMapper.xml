@@ -92,4 +92,18 @@
     </foreach> and user_id = #{userId}
     </delete>
 
+    <delete id="deleteBillByCategoryIds">
+        delete from user_bill
+               where category_id in
+                     <foreach collection="categoryIds" open="(" separator="," close=")" item="categoryId">
+                     #{categoryId}
+                    </foreach>
+    </delete>
+
+    <update id="updateBill">
+        update user_bill set category_id = #{categoryId} where id in <foreach collection="billIds" item="billId" open="(" separator="," close=")">
+        #{billId}
+    </foreach>
+    </update>
+
 </mapper>

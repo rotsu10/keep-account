@@ -58,5 +58,8 @@ public interface UserService {
     void deleteCategory(CategoryDeleteDTO categoryDeleteDTO);
 
     //删除账单
-    void deleteBill(BillDeleteDTO billDeleteDTO);
+    void deleteBill(List<Long> billIds);
+
+    //修改账单分类
+    void updateBill(Long categoryId, List<Long> billIds);
 }

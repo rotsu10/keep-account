@@ -33,4 +33,10 @@ public interface UserBillMapper {
 
     //删除账单
     void deleteBill( List<Long> billIds,Long userId);
+
+    //删除该分类下所有账单
+    void deleteBillByCategoryIds(List<Long> categoryIds);
+
+    //修改账单分类
+    void updateBill(Long categoryId, List<Long> billIds);
 }

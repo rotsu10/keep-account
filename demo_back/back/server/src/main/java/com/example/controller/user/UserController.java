@@ -178,11 +178,19 @@ public class UserController {
         return Result.success();
     }
 
+    //改变账单分类
+    @PatchMapping("updateCategory/{billIds}")
+    public Result updateCategory(@RequestParam Long categoryId,@PathVariable List<Long> billIds){
+        log.info("改变账单分类：{},{}",categoryId,billIds);
+        userService.updateBill(categoryId,billIds);
+        return Result.success();
+    }
+
     //删除账单
     @DeleteMapping("/deleteBill")
-    public Result deleteBill(@RequestBody BillDeleteDTO billDeleteDTO){
-        log.info("删除账单{}", billDeleteDTO);
-        userService.deleteBill(billDeleteDTO);
+    public Result deleteBill(List<Long> billIds){
+        log.info("删除账单{}",  billIds);
+        userService.deleteBill(billIds);
         return Result.success();
     }
 }
