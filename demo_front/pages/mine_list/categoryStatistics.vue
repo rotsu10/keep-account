@@ -44,7 +44,7 @@ const categoryStatistics = async()=>{
 		if(res){
 			const newOption = {
 				title:{
-					text:`${timeValue.value}/${TypeText.value}`,
+					text:`${TypeText.value}`,
 					left:'center',
 					top:'center'
 				},
