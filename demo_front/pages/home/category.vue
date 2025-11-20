@@ -18,7 +18,7 @@
 
 		<view>
 			<van-list v-model:loading="loading" :finished="true" finished-text="没有更多了">
-				<van-cell v-for="item in list" :key="item.id" :title="item.name" />
+				<van-cell v-for="(item,index) in list" :key="item.id" :title="item.name"  @longpress="handleLongPress(item)"/>
 				<van-back-top />
 			</van-list>
 		</view>
@@ -36,18 +36,20 @@
 		    label="" 
 		    placeholder="请输入分类名"
 		  />
-		  <!-- 正确嵌套radio-group和radio -->
-		  <van-radio-group v-model="checked" direction="horizontal">
-		    <van-radio name="1">收入</van-radio>
-		    <van-radio name="2">支出</van-radio>
-		    <van-radio name="3">转账</van-radio>
-		  </van-radio-group>
 		</van-dialog>
 
 		
 		<!-- search弹出层 -->
-		<van-dialog v-model:show="CategoryShow" title="分类信息" show-cancel-button show-confirm-button @confirm = 'seachCategory'>
+		<van-dialog v-model:show="CategoryShow" title="分类信息" show-cancel-button show-confirm-button @confirm ='seachCategory'>
 			<van-field v-model="seachCategoryName" label="" placeholder="请输入分类名"/>
+		</van-dialog>
+		
+		<!-- 删除分类弹出层 -->
+		<van-dialog v-model:show="DialogShow" title="删除分类"  show-cancel-button
+		confirm-button-text="确认删除" cancel-button-text="转移数据" @confirm="deleteCategory('delete')" @cancel="">
+			<van-row  justify="center">
+				<view class="delete">删除分类会同时删除该分类下的所有账单</view>
+			</van-row>
 		</van-dialog>
 		
 		<view>
@@ -61,6 +63,7 @@
 	import {ref ,onMounted} from 'vue';
 	import { http } from '../../utils/request';
 	import ButtomBar from '../../components/ButtomBar.vue';
+	import { showConfirmDialog } from 'vant';
 	
 	const onClickLeft = () => history.back(); //返回
 
@@ -68,16 +71,16 @@
 	const list = ref([]);
 	const loading = ref(false);
 
+	const DialogShow = ref(false) //删除分类弹出层
 	const show = ref(false) //plus弹出层
 	const CategoryShow = ref(false) //search弹出层
 	const seachCategoryName = ref('') //搜索分类名称
-	const checked = ref('1');//分类类型
 	const CategoryName = ref(''); //分类名
-
+	const currentCategory = ref('') 
+	
 	const activeType = ref(1);  //按钮样式
 	const showAddDialog = () => {
 		show.value = true; // 显示plus弹窗
-		checked.value = '1';
 		CategoryName.value = '';
 	};
 	
@@ -87,11 +90,6 @@
 	
 	//添加分类
 	const addCategory = async() => {
-		//非空校验
-		if(!checked.value.trim()){
-			uni.showToast({title:'请输入分类类型',icon:'none'})
-			return;
-		}
 		
 		if(!CategoryName.value){
 			uni.showToast({
@@ -105,7 +103,7 @@
 		try{
 			const sendData = {
 				name : CategoryName.value, //分类名
-				type : checked.value	//分类类型
+				type : currentType.value	//分类类型
 			};
 			
 			const result  = await http.post('/user/addCategory',sendData,{
@@ -114,6 +112,7 @@
 			
 			uni.showToast({title:'提交成功',icon:'success'});
 			console.log('提交分类：',result);
+			queryCategoryType(currentType.value);
 			show.value = false;
 		}catch(err){
 			uni.showToast({
@@ -158,7 +157,6 @@
 		}
 	}
 	
-	// 页面加载完成后，自动查询支出分类（type=1）
 	onMounted(() => {
 	  queryCategoryType(1); 
 	});
@@ -195,6 +193,28 @@
 			});
 			seachCategoryName.value = ''; // 清空搜索框
 		}
+	}
+	
+	//删除分类
+	const handleLongPress = (item)=>{
+		console.log("handleLongPress参数",item);
+		currentCategory.value = item;
+		console.log("currentCategory参数",currentCategory.value.id);
+		DialogShow.value = true;
+	}
+	const deleteCategory = async(strategy) =>{
+		try{
+			const sendData = {
+				categoryIds:[currentCategory.value.id],
+				strategy:strategy,
+			}
+			console.log("sendData:",sendData)
+			await http.delete("/user/deleteCategory",sendData);
+			queryCategoryType(currentType.value);
+		}catch(err){
+			console.log("删除分类失败err",err);
+		}
+		DialogShow.value = false;
 	}
 </script>
 
@@ -235,5 +255,11 @@
 	  background-color: #1989fa !important; /* 激活态背景色（匹配vant主题色） */
 	  color: #ffffff !important; /* 激活态文字色（白色更醒目） */
 	  border-color: #1989fa !important; /* 激活态边框色（与背景色一致） */
+	}
+	
+	.delete{
+		margin: 20rpx 0;
+		font-size: 25rpx;
+		color: gray;
 	}
 </style>
