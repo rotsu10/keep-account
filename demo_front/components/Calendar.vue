@@ -1,14 +1,31 @@
 <template>
 	<view>
-		<van-calendar title="日期" :poppable="false" :min-date="minDate" :max-date="maxDate" :default-date="defaultDate"
-			:show-title="false" :show-confirm="false" switch-mode="year-month" :formatter="formatCalendarDay" />
+		<van-calendar title="日期"
+		:key= "calendarKey"
+		:poppable="false" 
+		:min-date="minDate" 
+		:max-date="maxDate" 
+		:default-date="defaultDate"
+		:show-title="false" 
+		:show-confirm="false" 
+		switch-mode="year-month" 
+		:formatter="formatCalendarDay" />
 	</view>
 </template>
 
 <script setup>
-	import {ref,onMounted} from 'vue';
+	import {ref,onMounted, watch} from 'vue';
 	import {http} from '../utils/request';
-
+	import { storeToRefs } from 'pinia';
+	import { useBillStore } from '../stores/useBillStore';
+	
+	const billStore = useBillStore();
+	const { dailyCosts } = storeToRefs(billStore);
+	console.log("dailyCosts",dailyCosts.value);
+	
+	//用于强制刷新日历的 key
+	const calendarKey = ref(0);
+	
 	const date = ref('');
 	const show = ref(false);
 	const currentDate = ref(new Date());
@@ -16,7 +33,6 @@
 	const minDate = ref(new Date());
 	const maxDate = ref(new Date());
 
-	const dailyCosts = ref({});
 	//格式化日期 YYYY-MM-DD
 	const formatDateKey = (date) => {
 		const year = date.getFullYear();
@@ -60,27 +76,22 @@
 		}
 	};
 
-	const getDailyCosts = async () => {
-		try {
-			const result = await http.get("/user/queryDailyCosts", {}, {
-				loadingText: '加载花费数据...'
-			});
-			const costMap = {};
-			result.forEach(item => {
-				costMap[item.date] = item;
-			});
-			dailyCosts.value = costMap;
-		} catch (err) {
-			console.log("获取当日花费失败：", err);
-			dailyCosts.value = {};
-		}
-	}
-
+	
+	
 	onMounted(async () => {
 		const createDate = await getCreateTime();
 		minDate.value = createDate;
-		await getDailyCosts();
+		await billStore.fetchDailyCosts();
 	});
+	
+	watch(
+		()=>dailyCosts.value.cost,
+		()=>{
+			calendarKey.value++;
+		},
+		{deep:true}
+	)
+	console.log("dailyCosts.value,aaaaaaaaaaaaaaaaaa",dailyCosts.value)
 </script>
 
 <style>

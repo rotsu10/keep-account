@@ -55,6 +55,11 @@ const categoryId = ref('');    // 选中的单选框值
 const categoryList = ref([]);
 
 
+	import { storeToRefs } from 'pinia';
+	import { useBillStore } from '../../stores/useBillStore';
+	
+	const billStore = useBillStore();
+
 // 添加按钮点击事件
 const addBill = async () => {
   if (!productPrice.value) {
@@ -83,11 +88,13 @@ const addBill = async () => {
     const result = await http.post('/user/addBill', sendData, {
       loadingText: '正在提交...'
     });
-
+	
+	
     // 4. 请求成功后的处理
     uni.showToast({ title: '添加成功', icon: 'success' });
     console.log('后端返回数据：', result);
-
+	billStore.fetchDailyCosts();
+	
     productPrice.value = '';
     message.value = '';
     categoryId.value = '';

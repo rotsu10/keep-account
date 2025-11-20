@@ -4,15 +4,15 @@
 		<view class="content">
 			<van-button icon="plus" type="primary" round class="plus" @click="plusAccountPage"/>
 		</view>
-		<!-- <ButtomBarVue></ButtomBarVue> -->
 		<view class="calendar">
 			<CalendarVue></CalendarVue>
 		</view>
+		<ButtomBarVue></ButtomBarVue>
 	</view>
 </template>
 
 <script setup>
-	// import ButtomBarVue from '../../components/ButtomBar.vue'
+	import ButtomBarVue from '../../components/ButtomBar.vue'
 	import CalendarVue from '../../components/Calendar.vue'
 	const plusAccountPage = ()=>{
 		uni.navigateTo({
