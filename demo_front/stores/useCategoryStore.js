@@ -17,7 +17,6 @@ export const useCategoryStore = defineStore('category',{
 				);
 				console.log("后端返回数据result:",result);
 				this.categoryList = result;
-				console.log("store中categoryList",this.categoryList);
 				return true;
 			}catch(err){
 				console.error('请求失败err：',err);
@@ -26,8 +25,50 @@ export const useCategoryStore = defineStore('category',{
 					icon:'error'
 				})
 			}
-		}
+		},
 		
-
+		async addCategory(categoryData){
+			try{
+				const sendData = {
+					name : categoryData.name, //分类名
+					type : categoryData.type//分类类型
+				};
+				console.log("：store中addCategory：",sendData);
+				const result  = await http.post('/user/addCategory',sendData,{
+					loadingText:'正在提交中'
+				});
+				
+				uni.showToast({title:'提交成功',icon:'success'});
+				console.log('提交分类：',result);
+				this.queryCategoryType(categoryData.type);
+			}catch(err){
+				uni.showToast({
+					title:err.message,
+					icon:'error'
+				})
+				console.log('提交失败',err);
+			}
+		},
+		
+		// const handleLongPress = (item)=>{
+		// 	console.log("handleLongPress参数",item);
+		// 	currentCategory.value = item;
+		// 	console.log("currentCategory参数",currentCategory.value.id);
+		// 	DialogShow.value = true;
+		// }
+		// const deleteCategory = async(strategy) =>{
+		// 	try{
+		// 		const sendData = {
+		// 			categoryIds:[currentCategory.value.id],
+		// 			strategy:strategy,
+		// 		}
+		// 		console.log("sendData:",sendData)
+		// 		await http.delete("/user/deleteCategory",sendData);
+		// 		categoryStore.queryCategoryType(currentType.value);
+		// 	}catch(err){
+		// 		console.log("删除分类失败err",err);
+		// 	}
+		// 	DialogShow.value = false;
+		// }
 	}
 })

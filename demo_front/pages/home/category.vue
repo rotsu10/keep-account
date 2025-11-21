@@ -76,7 +76,7 @@ import { storeToRefs } from 'pinia';
 	console.log("list",list.value);
 	
 	const onClickLeft = () => history.back(); //返回
-	const currentType = ref(0); // 当前选中的类型（1-支出，2-收入，3-转账）
+	const currentType = ref(1); // 当前选中的类型（1-支出，2-收入，3-转账）
 	
 	const loading = ref(false);
 
@@ -101,38 +101,47 @@ import { storeToRefs } from 'pinia';
 	};
 	
 	//添加分类
-	const addCategory = async() => {
+	// const addCategory = async() => {
 		
-		if(!CategoryName.value){
-			uni.showToast({
-				title:'请输入分类名',
-				icon:'none'
-			})
-			return;
+	// 	if(!CategoryName.value){
+	// 		uni.showToast({
+	// 			title:'请输入分类名',
+	// 			icon:'none'
+	// 		})
+	// 		return;
+	// 	}
+		
+	// 	console.log('弹窗应显示，当前show值：', show.value);
+	// 	try{
+	// 		const sendData = {
+	// 			name : CategoryName.value, //分类名
+	// 			type : currentType.value	//分类类型
+	// 		};
+			
+	// 		const result  = await http.post('/user/addCategory',sendData,{
+	// 			loadingText:'正在提交中'
+	// 		});
+			
+	// 		uni.showToast({title:'提交成功',icon:'success'});
+	// 		console.log('提交分类：',result);
+	// 		queryCategoryType(currentType.value);
+	// 		show.value = false;
+	// 	}catch(err){
+	// 		uni.showToast({
+	// 			title:err.message,
+	// 			icon:'error'
+	// 		})
+	// 		console.log('提交失败',err);
+	// 	}		
+	// }
+	
+	const addCategory= ()=>{
+		const categoryData ={
+			name : CategoryName.value, 
+			type : currentType.value	
 		}
-		
-		console.log('弹窗应显示，当前show值：', show.value);
-		try{
-			const sendData = {
-				name : CategoryName.value, //分类名
-				type : currentType.value	//分类类型
-			};
-			
-			const result  = await http.post('/user/addCategory',sendData,{
-				loadingText:'正在提交中'
-			});
-			
-			uni.showToast({title:'提交成功',icon:'success'});
-			console.log('提交分类：',result);
-			queryCategoryType(currentType.value);
-			show.value = false;
-		}catch(err){
-			uni.showToast({
-				title:err.message,
-				icon:'error'
-			})
-			console.log('提交失败',err);
-		}		
+		console.log("categoryData",categoryData);
+		categoryStore.addCategory(categoryData);
 	}
 	
 	//切换分类类型
@@ -141,6 +150,8 @@ import { storeToRefs } from 'pinia';
 		if(currentType.value === type) return;
 		currentType.value = type;
 		categoryStore.queryCategoryType(type);
+		console.log("转换分类",currentType.value);
+		activeType.value = type;
 		//queryCategoryType(type); 
 	}
 	
