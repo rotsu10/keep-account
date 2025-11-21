@@ -192,4 +192,12 @@ public class UserController {
         userService.deleteBill(billIds);
         return Result.success();
     }
+
+    //根据分类id查询账单
+    @GetMapping("getBillByCategoryIds")
+    public Result<List<UserBillDTO>> getBillByCategoryIds(
+            @RequestParam List<Long> categoryIds){
+        List<UserBillDTO> list = userService.getBillByCategoryIds(categoryIds);
+        return Result.success(list);
+    }
 }

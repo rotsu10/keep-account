@@ -111,5 +111,16 @@
         #{category}
     </foreach>
     </select>
+    <select id="getBillByCategoryIds" resultType="com.example.dto.UserBillDTO">
+        select * from user_bill
+        where
+        user_id = #{userId}
+        <if test="categoryIds != null and categoryIds.size() > 0">
+            and category_id in
+            <foreach collection="categoryIds" item="category" open="(" separator="," close=")">
+                #{category}
+            </foreach>
+        </if>
+    </select>
 
 </mapper>

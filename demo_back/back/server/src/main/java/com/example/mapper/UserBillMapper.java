@@ -44,4 +44,6 @@ public interface UserBillMapper {
     //根据分类id查询账单id
     List<Long> getBillIdsByCategoryIds(List<Long> categoryIds, Long userId);
 
+    //根据分类id查询账单
+    List<UserBillDTO> getBillByCategoryIds(List<Long> categoryIds, Long userId);
 }

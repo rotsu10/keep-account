@@ -223,7 +223,7 @@ public class UserServiceImpl implements UserService {
             Long targetCategoryId = categoryDeleteDTO.getTargetCategoryId();
             log.info("转移该分类下账单:{}",targetCategoryId);
             List<Long> billIdsToMove = userBillMapper.getBillIdsByCategoryIds(categoryIds, userId);
-            if(billIdsToMove == null){
+            if(billIdsToMove == null || billIdsToMove.isEmpty()){
                 throw new CategoryException(MessageConstant.MOVE_BILL_NOTEXISTS);
             }
             log.info("转移账单列表:{}",billIdsToMove);
@@ -247,6 +247,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateBill(Long categoryId, List<Long> billIds) {
         userBillMapper.updateBill(categoryId,billIds);
+    }
+
+    @Override
+    public List<UserBillDTO> getBillByCategoryIds(List<Long> categoryIds) {
+        Long userId = BaseContext.getCurrentId();
+        List<UserBillDTO> list= userBillMapper.getBillByCategoryIds(categoryIds,userId);
+        return list;
     }
 }
 
