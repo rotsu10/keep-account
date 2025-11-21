@@ -90,7 +90,14 @@
     	{
     		"navigationBarTitleText" : ""
     	}
-    }
+    },
+	{
+		"path" : "pages/record/moveCategory",
+		"style" : 
+		{
+			"navigationBarTitleText" : ""
+		}
+	}
   ],
   "tabBar": {
     "list": [

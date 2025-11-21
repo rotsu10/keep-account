@@ -36,7 +36,6 @@
 		onMounted,
 		watch
 	} from 'vue';
-	import { showToast } from 'vant';
 	import {
 		storeToRefs
 	} from 'pinia';
@@ -57,21 +56,21 @@
 	// 添加按钮点击事件
 	const handleSubmit = async() => {
 		if (!productPrice.value) {
-			showToast({
+			uni.showToast({
 				title: '请输入商品价格',
 				icon: 'none'
 			});
 			return;
 		}
 		if (!categoryId.value) {
-			showToast({
+			uni.showToast({
 				title: '请选择分类',
 				icon: 'none'
 			});
 			return;
 		}
 		if (!payType.value) {
-			showToast({
+			uni.showToast({
 				title: '请选择类型',
 				icon: 'none'
 			});
@@ -85,7 +84,7 @@
 				categoryId: categoryId.value,
 				type: payType.value
 			})
-			showToast({
+			uni.showToast({
 				title: '添加成功',
 				icon: 'success'
 			});
@@ -95,7 +94,7 @@
 			payType.value = '2';
 		} catch (error) {
 			console.error('提交失败:', error);
-			showToast({
+			uni.showToast({
 				title: error.message || '添加账单失败，请稍后重试',
 				icon: 'none'
 			});

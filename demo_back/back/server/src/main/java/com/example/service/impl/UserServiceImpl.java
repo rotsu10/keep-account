@@ -221,7 +221,12 @@ public class UserServiceImpl implements UserService {
         if ("move".equals(strategy)) {
             //转移该分类下账单
             Long targetCategoryId = categoryDeleteDTO.getTargetCategoryId();
+            log.info("转移该分类下账单:{}",targetCategoryId);
             List<Long> billIdsToMove = userBillMapper.getBillIdsByCategoryIds(categoryIds, userId);
+            if(billIdsToMove == null){
+                throw new CategoryException(MessageConstant.MOVE_BILL_NOTEXISTS);
+            }
+            log.info("转移账单列表:{}",billIdsToMove);
             updateBill(targetCategoryId,billIdsToMove);
         } else if ("delete".equals(strategy)) {
             // 删除分类下的所有账单

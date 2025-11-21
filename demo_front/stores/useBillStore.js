@@ -13,6 +13,7 @@ export const useBillStore = defineStore('bill', {
 	}),
 
 	actions: {
+		//获取每日花费
 		async fetchDailyCosts() {
 			try {
 				const result = await http.get("/user/queryDailyCosts", {}, {
@@ -32,6 +33,7 @@ export const useBillStore = defineStore('bill', {
 			}
 		},
 		
+		//添加账单
 		async addBill(billData) {
 			if (!billData.amount || !billData.categoryId || !billData.type) {
 				throw new Error('请填写完整的账单信息');

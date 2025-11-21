@@ -17,10 +17,6 @@
 		</view>
 
 		<view>
-			<!-- <van-list v-model:loading="loading" :finished="true" finished-text="没有更多了">
-				<van-cell v-for="(item,index) in list" :key="item.id" :title="item.name"  @longpress="handleLongPress(item)"/>
-				<van-back-top />
-			</van-list> -->
 			<van-list :finished="true" finished-text="没有更多了">
 				<van-cell v-for="(item,index) in list" :key="item.id" :title="item.name"  @longpress="handleLongPress(item)"/>
 				<van-back-top />
@@ -28,9 +24,9 @@
 		</view>
 		
 		<!-- plus弹出层 -->
-		<van-dialog 
+		<van-dialog
 		  v-model:show="show" 
-		  title="分类信息" 
+		  title="添加分类" 
 		  show-cancel-button 
 		  show-confirm-button 
 		  @confirm="addCategory"
@@ -44,7 +40,7 @@
 
 		
 		<!-- search弹出层 -->
-		<van-dialog v-model:show="CategoryShow" title="分类信息" show-cancel-button show-confirm-button @confirm ='searchCategory'>
+		<van-dialog v-model:show="CategoryShow" title="搜索分类" show-cancel-button show-confirm-button @confirm ='searchCategory'>
 			<van-field v-model="searchCategoryName" label="" placeholder="请输入分类名"/>
 		</van-dialog>
 		
@@ -55,10 +51,11 @@
 				<view class="delete">删除分类会同时删除该分类下的所有账单</view>
 			</van-row>
 		</van-dialog>
-	
+		
 		<view>
 			<ButtomBar></ButtomBar>
 		</view>
+		
 	</view>
 
 </template>
@@ -70,23 +67,19 @@
 	import { showConfirmDialog } from 'vant';
 	import {useCategoryStore} from '../../stores/useCategoryStore';
 	import { storeToRefs } from 'pinia';
-	
 	const categoryStore = useCategoryStore();
 	const {categoryList:list} = storeToRefs(categoryStore);
 	console.log("list",list.value);
 	
 	const onClickLeft = () => history.back(); //返回
 	const currentType = ref(1); // 当前选中的类型（1-支出，2-收入，3-转账）
-	
-	const loading = ref(false);
 
 	const DialogShow = ref(false) //删除分类弹出层
 	const show = ref(false) //plus弹出层
 	const CategoryShow = ref(false) //search弹出层
-	const moveCategoryDialog = ref(false) //转移数据弹出层
 	const searchCategoryName = ref('') //搜索分类名称
 	const CategoryName = ref(''); //分类名
-	const currentCategory = ref('') 
+	const currentCategory = ref('') //所选分类
 	
 	const activeType = ref(1);  //按钮样式
 	const showAddDialog = () => {
@@ -107,9 +100,9 @@
 		}
 		try{
 			await categoryStore.addCategory(categoryData);
-			
+			categoryStore.queryCategoryType(currentType.value);
 		}catch(err){
-			console.log('添加失败：', err.message);
+			console.error('添加失败：', err.message);
 			uni.showToast({
 				title:err.message,
 				icon:'error'
@@ -117,28 +110,8 @@
 		}
 	}
 	
-	//切换分类类型
-	const handleTypeClick = (type)=>{
-		if(currentType.value === type) return;
-		currentType.value = type;
-		categoryStore.queryCategoryType(type);
-		activeType.value = type;
-		//queryCategoryType(type); 
-	}
-	
-	onMounted(() => {
-	  categoryStore.queryCategoryType(1); 
-	});
-	
 	//搜索分类
 	const searchCategory = async()=>{
-		if(!searchCategoryName.value.trim()){
-			uni.showToast({
-				title:'请输入分类名',
-				icon:'error'
-			})
-			return ;
-		}
 		const searchCategoryData = {
 			name : searchCategoryName.value,
 			type : currentType.value
@@ -148,11 +121,27 @@
 			uni.showToast({title:'提交成功',icon:'success'});
 			show.value = false;
 		}catch(err){
-			console.error('搜索失败:', err);
+			console.error('搜索失败:', err.message);
+			uni.showToast({
+				title:err.message,
+				icon:'error'
+			})
 		}finally{
 			searchCategoryName.value = '';
 		}
 	}
+	
+	//切换分类类型
+	const handleTypeClick = (type)=>{
+		if(currentType.value === type) return;
+		currentType.value = type;
+		categoryStore.queryCategoryType(type);
+		activeType.value = type;
+	}
+	
+	onMounted(() => {
+	  categoryStore.queryCategoryType(1); 
+	});
 	
 	//删除分类
 	const handleLongPress = (item)=>{
@@ -175,15 +164,17 @@
 		}catch(err){
 			console.log("删除分类失败err",err);
 		}finally {
-			DialogShow.value = false; // 无论成功失败，都关闭弹窗
-			currentCategory.value = null; // 清空存储的分类对象
+			DialogShow.value = false;
+			currentCategory.value = null; 
 		}
 	};
 	
 	//转移数据
 	const moveCategory = ()=>{
 		console.log("转移数据弹出层被调用");
-		moveCategoryDialog.value = true;
+		uni.navigateTo({
+		    url: `/pages/record/moveCategory?categoryId=${currentCategory.value.id}`
+		});
 	}
 </script>
 

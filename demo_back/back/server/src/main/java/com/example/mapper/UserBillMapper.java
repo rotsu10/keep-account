@@ -1,6 +1,7 @@
 package com.example.mapper;
 import com.example.dto.BillDeleteDTO;
 import com.example.dto.RecordQueryDTO;
+import com.example.dto.UserBillDTO;
 import com.example.entity.DailyCost;
 import com.example.entity.SumStatistics;
 import com.example.entity.UserBill;
@@ -40,6 +41,7 @@ public interface UserBillMapper {
     //修改账单分类
     void updateBill(Long categoryId, List<Long> billIds);
 
-    //根据分类id查询账单
+    //根据分类id查询账单id
     List<Long> getBillIdsByCategoryIds(List<Long> categoryIds, Long userId);
+
 }
