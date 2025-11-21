@@ -117,7 +117,7 @@ const request = (config) => {
 	}
 
 	const finalConfig = requestInterceptor(mergedConfig)
-
+	
 	return new Promise((resolve, reject) => {
 		uni.request({
 			...finalConfig,

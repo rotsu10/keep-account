@@ -1,11 +1,7 @@
 // stores/useBillStore.js
 
-import {
-	defineStore
-} from 'pinia';
-import {
-	http
-} from '../utils/request'; // 确保导入了你的 http 工具
+import {defineStore} from 'pinia';
+import {http} from '../utils/request'; // 确保导入了你的 http 工具
 
 export const useBillStore = defineStore('bill', {
 	state: () => ({
@@ -59,6 +55,25 @@ export const useBillStore = defineStore('bill', {
 				console.error('添加失败：', error);
 				throw error;
 			}
+		},
+		
+		//根据分类id查询账单
+		async queryBillByCategoryId(categoryId){
+			console.log("查询账单categoryId",categoryId);
+		    try{
+				const params = {
+				    categoryIds: [categoryId].join(',')
+				};
+		        const res = await http.get("/user/getBillByCategoryIds", params);
+				console.log("查询账单res",res);
+				if(res==null || res.length === 0){
+					throw new Error("该分类下没有账单");
+				}
+				return res;
+		    }catch(error){
+		        console.error('根据分类id查询账单err:', error);
+		        throw error;
+		    }
 		}
 	},
 });

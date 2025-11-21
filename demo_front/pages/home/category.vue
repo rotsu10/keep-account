@@ -66,8 +66,12 @@
 	import ButtomBar from '../../components/ButtomBar.vue';
 	import { showConfirmDialog } from 'vant';
 	import {useCategoryStore} from '../../stores/useCategoryStore';
+	import { useBillStore } from '../../stores/useBillStore';
 	import { storeToRefs } from 'pinia';
+	
 	const categoryStore = useCategoryStore();
+	const billStore = useBillStore();
+	
 	const {categoryList:list} = storeToRefs(categoryStore);
 	console.log("list",list.value);
 	
@@ -169,11 +173,21 @@
 	};
 	
 	//转移数据
-	const moveCategory = ()=>{
-		console.log("转移数据弹出层被调用");
-		uni.navigateTo({
-		    url: `/pages/record/moveCategory?categoryId=${currentCategory.value.id}`
-		});
+	const moveCategory = async ()=>{
+		try{
+			const res = await billStore.queryBillByCategoryId(currentCategory.value.id);
+			if(res){
+				uni.navigateTo({
+				    url: `/pages/record/moveCategory?categoryId=${currentCategory.value.id}`
+				});
+			}
+		}catch(error){
+			console.error("转移数据",error);
+			uni.showToast({
+				title:error.message,
+				icon:'error'
+			})
+		}
 	}
 </script>
 
