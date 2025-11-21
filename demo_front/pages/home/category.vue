@@ -44,8 +44,8 @@
 
 		
 		<!-- search弹出层 -->
-		<van-dialog v-model:show="CategoryShow" title="分类信息" show-cancel-button show-confirm-button @confirm ='seachCategory'>
-			<van-field v-model="seachCategoryName" label="" placeholder="请输入分类名"/>
+		<van-dialog v-model:show="CategoryShow" title="分类信息" show-cancel-button show-confirm-button @confirm ='searchCategory'>
+			<van-field v-model="searchCategoryName" label="" placeholder="请输入分类名"/>
 		</van-dialog>
 		
 		<!-- 删除分类弹出层 -->
@@ -84,7 +84,7 @@ import { storeToRefs } from 'pinia';
 	const show = ref(false) //plus弹出层
 	const CategoryShow = ref(false) //search弹出层
 	const moveCategoryDialog = ref(false) //转移数据弹出层
-	const seachCategoryName = ref('') //搜索分类名称
+	const searchCategoryName = ref('') //搜索分类名称
 	const CategoryName = ref(''); //分类名
 	const currentCategory = ref('') 
 	
@@ -135,6 +135,7 @@ import { storeToRefs } from 'pinia';
 	// 	}		
 	// }
 	
+	//添加分类
 	const addCategory= ()=>{
 		const categoryData ={
 			name : CategoryName.value, 
@@ -189,36 +190,61 @@ import { storeToRefs } from 'pinia';
 
 	
 	//搜索分类
-	const seachCategory = async()=>{
-		console.log("searchCategory中searchCategoryName",seachCategoryName);
-		console.log("searchCategory中currentType",currentType);
+	// const searchCategory = async()=>{
+	// 	console.log("searchCategory中searchCategoryName",searchCategoryName);
+	// 	console.log("searchCategory中currentType",currentType);
 		
-		if(!seachCategoryName.value.trim()){
+	// 	if(!searchCategoryName.value.trim()){
+	// 		uni.showToast({
+	// 			title:'请输入分类名',
+	// 			icon:'error'
+	// 		})
+	// 		return ;
+	// 	}
+	// 	try{
+	// 		const sendData = {
+	// 			name : searchCategoryName.value,
+	// 			type : currentType.value
+	// 		}
+	// 		console.log("queryCategory的sendData:",sendData);
+	// 		const result = await http.post('/user/queryCategory',sendData,{loadingText:'加载中'});
+	// 		console.log("queryCategory的result:",result);
+	// 		list.value = [result] || [];
+	// 		CategoryShow.value = false; // 关闭弹窗
+	// 		searchCategoryName.value = ''; // 清空搜索框
+			
+	// 	}catch(err){
+	// 		console.error('搜索失败:', err);
+	// 		uni.showToast({
+	// 		    title: err.message,
+	// 		    icon: 'error'
+	// 		});
+	// 		searchCategoryName.value = ''; // 清空搜索框
+	// 	}
+	// }
+	
+	//搜索分类
+	const searchCategory = async()=>{
+		console.log("searchCategoryName",searchCategoryName.value);
+		console.log("currentType",currentType.value);
+		
+		if(!searchCategoryName.value.trim()){
 			uni.showToast({
 				title:'请输入分类名',
 				icon:'error'
 			})
 			return ;
 		}
+		const searchCategoryData = {
+			name : searchCategoryName.value,
+			type : currentType.value
+		}
 		try{
-			const sendData = {
-				name : seachCategoryName.value,
-				type : currentType.value
-			}
-			console.log("queryCategory的sendData:",sendData);
-			const result = await http.post('/user/queryCategory',sendData,{loadingText:'加载中'});
-			console.log("queryCategory的result:",result);
-			list.value = [result] || [];
-			CategoryShow.value = false; // 关闭弹窗
-			seachCategoryName.value = ''; // 清空搜索框
-			
+			await categoryStore.searchCategory(searchCategoryData);
 		}catch(err){
 			console.error('搜索失败:', err);
-			uni.showToast({
-			    title: err.message,
-			    icon: 'error'
-			});
-			seachCategoryName.value = ''; // 清空搜索框
+		}finally{
+			searchCategoryName.value = '';
 		}
 	}
 	

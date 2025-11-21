@@ -41,6 +41,7 @@ export const useCategoryStore = defineStore('category',{
 				uni.showToast({title:'提交成功',icon:'success'});
 				console.log('提交分类：',result);
 				this.queryCategoryType(categoryData.type);
+				return true;
 			}catch(err){
 				uni.showToast({
 					title:err.message,
@@ -50,25 +51,26 @@ export const useCategoryStore = defineStore('category',{
 			}
 		},
 		
-		// const handleLongPress = (item)=>{
-		// 	console.log("handleLongPress参数",item);
-		// 	currentCategory.value = item;
-		// 	console.log("currentCategory参数",currentCategory.value.id);
-		// 	DialogShow.value = true;
-		// }
-		// const deleteCategory = async(strategy) =>{
-		// 	try{
-		// 		const sendData = {
-		// 			categoryIds:[currentCategory.value.id],
-		// 			strategy:strategy,
-		// 		}
-		// 		console.log("sendData:",sendData)
-		// 		await http.delete("/user/deleteCategory",sendData);
-		// 		categoryStore.queryCategoryType(currentType.value);
-		// 	}catch(err){
-		// 		console.log("删除分类失败err",err);
-		// 	}
-		// 	DialogShow.value = false;
-		// }
+		async searchCategory(searchCategoryData){
+			console.log("store中searchCategoryName",searchCategoryData.name);
+			console.log("store中currentType",searchCategoryData.type);
+			try{
+				const sendData = {
+					name : searchCategoryData.name,
+					type : searchCategoryData.type
+				}
+				console.log("queryCategory的sendData:",sendData);
+				const result = await http.post('/user/queryCategory',sendData,{loadingText:'加载中'});
+				this.categoryList = [result] || [];
+				console.log("this.categoryList:",this.categoryList);
+			}catch(err){
+				console.error('搜索失败:', err);
+				uni.showToast({
+				    title: err.message,
+				    icon: 'error'
+				});
+				seachCategoryName.value = ''; // 清空搜索框
+			}
+		}
 	}
 })
