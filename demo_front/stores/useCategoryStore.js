@@ -28,9 +28,12 @@ export const useCategoryStore = defineStore('category',{
 		},
 		
 		async addCategory(categoryData){
+			if(!categoryData.name?.trim()){
+				throw new Error("分类名不能为空");
+			}
 			try{
 				const sendData = {
-					name : categoryData.name, //分类名
+					name : categoryData.name.trim(), //分类名
 					type : categoryData.type//分类类型
 				};
 				console.log("：store中addCategory：",sendData);
@@ -38,7 +41,6 @@ export const useCategoryStore = defineStore('category',{
 					loadingText:'正在提交中'
 				});
 				
-				uni.showToast({title:'提交成功',icon:'success'});
 				console.log('提交分类：',result);
 				this.queryCategoryType(categoryData.type);
 				return true;
@@ -48,12 +50,11 @@ export const useCategoryStore = defineStore('category',{
 					icon:'error'
 				})
 				console.log('提交失败',err);
+				throw err;
 			}
 		},
 		
 		async searchCategory(searchCategoryData){
-			console.log("store中searchCategoryName",searchCategoryData.name);
-			console.log("store中currentType",searchCategoryData.type);
 			try{
 				const sendData = {
 					name : searchCategoryData.name,
@@ -70,6 +71,21 @@ export const useCategoryStore = defineStore('category',{
 				    icon: 'error'
 				});
 				seachCategoryName.value = ''; // 清空搜索框
+			}
+		},
+		
+		async deleteCategory(deleteCategoryData){
+			console.log("store中的deleteCategoryData:",deleteCategoryData)
+			try{
+				const sendData = {
+					categoryIds:[deleteCategoryData.id],
+					strategy:deleteCategoryData.strategy,
+				}
+				console.log("sendData:",sendData)
+				await http.delete("/user/deleteCategory",sendData);
+				categoryStore.queryCategoryType(deleteCategoryData.type);
+			}catch(err){
+				console.log("删除分类失败err",err);
 			}
 		}
 	}

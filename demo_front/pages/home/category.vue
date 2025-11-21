@@ -50,7 +50,7 @@
 		
 		<!-- 删除分类弹出层 -->
 		<van-dialog v-model:show="DialogShow" title="删除分类"  show-cancel-button
-		confirm-button-text="确认删除" cancel-button-text="转移数据" @confirm="deleteCategory('delete')" @cancel="moveCategory()">
+		confirm-button-text="确认删除" cancel-button-text="转移数据" @confirm="confirmDelete()" @cancel="moveCategory()">
 			<van-row  justify="center">
 				<view class="delete">删除分类会同时删除该分类下的所有账单</view>
 			</van-row>
@@ -69,7 +69,7 @@
 	import ButtomBar from '../../components/ButtomBar.vue';
 	import { showConfirmDialog } from 'vant';
 	import {useCategoryStore} from '../../stores/useCategoryStore';
-import { storeToRefs } from 'pinia';
+	import { storeToRefs } from 'pinia';
 	
 	const categoryStore = useCategoryStore();
 	const {categoryList:list} = storeToRefs(categoryStore);
@@ -88,8 +88,6 @@ import { storeToRefs } from 'pinia';
 	const CategoryName = ref(''); //分类名
 	const currentCategory = ref('') 
 	
-	
-	
 	const activeType = ref(1);  //按钮样式
 	const showAddDialog = () => {
 		show.value = true; // 显示plus弹窗
@@ -100,134 +98,40 @@ import { storeToRefs } from 'pinia';
 		CategoryShow.value = true; // 显示search弹窗
 	};
 	
-	//添加分类
-	// const addCategory = async() => {
-		
-	// 	if(!CategoryName.value){
-	// 		uni.showToast({
-	// 			title:'请输入分类名',
-	// 			icon:'none'
-	// 		})
-	// 		return;
-	// 	}
-		
-	// 	console.log('弹窗应显示，当前show值：', show.value);
-	// 	try{
-	// 		const sendData = {
-	// 			name : CategoryName.value, //分类名
-	// 			type : currentType.value	//分类类型
-	// 		};
-			
-	// 		const result  = await http.post('/user/addCategory',sendData,{
-	// 			loadingText:'正在提交中'
-	// 		});
-			
-	// 		uni.showToast({title:'提交成功',icon:'success'});
-	// 		console.log('提交分类：',result);
-	// 		queryCategoryType(currentType.value);
-	// 		show.value = false;
-	// 	}catch(err){
-	// 		uni.showToast({
-	// 			title:err.message,
-	// 			icon:'error'
-	// 		})
-	// 		console.log('提交失败',err);
-	// 	}		
-	// }
 	
 	//添加分类
-	const addCategory= ()=>{
+	const addCategory= async()=>{
 		const categoryData ={
 			name : CategoryName.value, 
 			type : currentType.value	
 		}
-		console.log("categoryData",categoryData);
-		categoryStore.addCategory(categoryData);
+		try{
+			await categoryStore.addCategory(categoryData);
+			
+		}catch(err){
+			console.log('添加失败：', err.message);
+			uni.showToast({
+				title:err.message,
+				icon:'error'
+			})
+		}
 	}
 	
 	//切换分类类型
 	const handleTypeClick = (type)=>{
-		console.log("type:",type);
 		if(currentType.value === type) return;
 		currentType.value = type;
 		categoryStore.queryCategoryType(type);
-		console.log("转换分类",currentType.value);
 		activeType.value = type;
 		//queryCategoryType(type); 
 	}
-	
-	//根据类型查询分类
-	// const queryCategoryType = async(type)=>{
-	// 	activeType.value = type;
-	// 	console.log("传入type",type);
-	// 	currentType.value = type; // 记录当前选中类型
-	// 	loading.value = true; // 开始加载
-		
-	// 	try{
-	// 		const url = `/user/queryTypeCategory?type=${type}`;
-	// 		const result = await http.get(url,
-	// 		{loading:'加载中'},
-	// 		);
-	// 		console.log("后端返回数据result:",result);
-	// 		list.value = result || [];
-	// 		console.log("list",list.value);
-	// 	}catch(err){
-	// 		console.error('请求失败err：',err);
-	// 		uni.showToast({
-	// 			title:"加载失败",
-	// 			icon:'error'
-	// 		})
-	// 	}finally{
-	// 		loading.value = false;
-	// 	}
-	// }
 	
 	onMounted(() => {
 	  categoryStore.queryCategoryType(1); 
 	});
 	
-	
-
-	
-	//搜索分类
-	// const searchCategory = async()=>{
-	// 	console.log("searchCategory中searchCategoryName",searchCategoryName);
-	// 	console.log("searchCategory中currentType",currentType);
-		
-	// 	if(!searchCategoryName.value.trim()){
-	// 		uni.showToast({
-	// 			title:'请输入分类名',
-	// 			icon:'error'
-	// 		})
-	// 		return ;
-	// 	}
-	// 	try{
-	// 		const sendData = {
-	// 			name : searchCategoryName.value,
-	// 			type : currentType.value
-	// 		}
-	// 		console.log("queryCategory的sendData:",sendData);
-	// 		const result = await http.post('/user/queryCategory',sendData,{loadingText:'加载中'});
-	// 		console.log("queryCategory的result:",result);
-	// 		list.value = [result] || [];
-	// 		CategoryShow.value = false; // 关闭弹窗
-	// 		searchCategoryName.value = ''; // 清空搜索框
-			
-	// 	}catch(err){
-	// 		console.error('搜索失败:', err);
-	// 		uni.showToast({
-	// 		    title: err.message,
-	// 		    icon: 'error'
-	// 		});
-	// 		searchCategoryName.value = ''; // 清空搜索框
-	// 	}
-	// }
-	
 	//搜索分类
 	const searchCategory = async()=>{
-		console.log("searchCategoryName",searchCategoryName.value);
-		console.log("currentType",currentType.value);
-		
 		if(!searchCategoryName.value.trim()){
 			uni.showToast({
 				title:'请输入分类名',
@@ -241,6 +145,8 @@ import { storeToRefs } from 'pinia';
 		}
 		try{
 			await categoryStore.searchCategory(searchCategoryData);
+			uni.showToast({title:'提交成功',icon:'success'});
+			show.value = false;
 		}catch(err){
 			console.error('搜索失败:', err);
 		}finally{
@@ -252,23 +158,27 @@ import { storeToRefs } from 'pinia';
 	const handleLongPress = (item)=>{
 		console.log("handleLongPress参数",item);
 		currentCategory.value = item;
-		console.log("currentCategory参数",currentCategory.value.id);
+		console.log("item参数",item);
 		DialogShow.value = true;
 	}
-	const deleteCategory = async(strategy) =>{
+	
+	const confirmDelete = async () => {
+		const deleteCategoryData = {
+			id: currentCategory.value.id, 
+			type: currentCategory.value.type, 
+			strategy: 'delete',
+		}
 		try{
-			const sendData = {
-				categoryIds:[currentCategory.value.id],
-				strategy:strategy,
-			}
-			console.log("sendData:",sendData)
-			await http.delete("/user/deleteCategory",sendData);
+			console.log("deleteCategoryData:",deleteCategoryData)
+			await categoryStore.deleteCategory(deleteCategoryData);
 			categoryStore.queryCategoryType(currentType.value);
 		}catch(err){
 			console.log("删除分类失败err",err);
+		}finally {
+			DialogShow.value = false; // 无论成功失败，都关闭弹窗
+			currentCategory.value = null; // 清空存储的分类对象
 		}
-		DialogShow.value = false;
-	}
+	};
 	
 	//转移数据
 	const moveCategory = ()=>{
