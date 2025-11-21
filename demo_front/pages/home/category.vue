@@ -17,7 +17,11 @@
 		</view>
 
 		<view>
-			<van-list v-model:loading="loading" :finished="true" finished-text="没有更多了">
+			<!-- <van-list v-model:loading="loading" :finished="true" finished-text="没有更多了">
+				<van-cell v-for="(item,index) in list" :key="item.id" :title="item.name"  @longpress="handleLongPress(item)"/>
+				<van-back-top />
+			</van-list> -->
+			<van-list :finished="true" finished-text="没有更多了">
 				<van-cell v-for="(item,index) in list" :key="item.id" :title="item.name"  @longpress="handleLongPress(item)"/>
 				<van-back-top />
 			</van-list>
@@ -46,12 +50,12 @@
 		
 		<!-- 删除分类弹出层 -->
 		<van-dialog v-model:show="DialogShow" title="删除分类"  show-cancel-button
-		confirm-button-text="确认删除" cancel-button-text="转移数据" @confirm="deleteCategory('delete')" @cancel="">
+		confirm-button-text="确认删除" cancel-button-text="转移数据" @confirm="deleteCategory('delete')" @cancel="moveCategory()">
 			<van-row  justify="center">
 				<view class="delete">删除分类会同时删除该分类下的所有账单</view>
 			</van-row>
 		</van-dialog>
-		
+	
 		<view>
 			<ButtomBar></ButtomBar>
 		</view>
@@ -64,19 +68,27 @@
 	import { http } from '../../utils/request';
 	import ButtomBar from '../../components/ButtomBar.vue';
 	import { showConfirmDialog } from 'vant';
+	import {useCategoryStore} from '../../stores/useCategoryStore';
+import { storeToRefs } from 'pinia';
+	
+	const categoryStore = useCategoryStore();
+	const {categoryList:list} = storeToRefs(categoryStore);
+	console.log("list",list.value);
 	
 	const onClickLeft = () => history.back(); //返回
-
 	const currentType = ref(0); // 当前选中的类型（1-支出，2-收入，3-转账）
-	const list = ref([]);
+	
 	const loading = ref(false);
 
 	const DialogShow = ref(false) //删除分类弹出层
 	const show = ref(false) //plus弹出层
 	const CategoryShow = ref(false) //search弹出层
+	const moveCategoryDialog = ref(false) //转移数据弹出层
 	const seachCategoryName = ref('') //搜索分类名称
 	const CategoryName = ref(''); //分类名
 	const currentCategory = ref('') 
+	
+	
 	
 	const activeType = ref(1);  //按钮样式
 	const showAddDialog = () => {
@@ -128,38 +140,42 @@
 		console.log("type:",type);
 		if(currentType.value === type) return;
 		currentType.value = type;
-		queryCategoryType(type); 
+		categoryStore.queryCategoryType(type);
+		//queryCategoryType(type); 
 	}
 	
 	//根据类型查询分类
-	const queryCategoryType = async(type)=>{
-		activeType.value = type;
-		console.log("传入type",type);
-		currentType.value = type; // 记录当前选中类型
-		loading.value = true; // 开始加载
+	// const queryCategoryType = async(type)=>{
+	// 	activeType.value = type;
+	// 	console.log("传入type",type);
+	// 	currentType.value = type; // 记录当前选中类型
+	// 	loading.value = true; // 开始加载
 		
-		try{
-			const url = `/user/queryTypeCategory?type=${type}`;
-			const result = await http.get(url,
-			{loading:'加载中'},
-			);
-			console.log("后端返回数据result:",result);
-			list.value = result || [];
-			console.log("list",list.value);
-		}catch(err){
-			console.error('请求失败err：',err);
-			uni.showToast({
-				title:"加载失败",
-				icon:'error'
-			})
-		}finally{
-			loading.value = false;
-		}
-	}
+	// 	try{
+	// 		const url = `/user/queryTypeCategory?type=${type}`;
+	// 		const result = await http.get(url,
+	// 		{loading:'加载中'},
+	// 		);
+	// 		console.log("后端返回数据result:",result);
+	// 		list.value = result || [];
+	// 		console.log("list",list.value);
+	// 	}catch(err){
+	// 		console.error('请求失败err：',err);
+	// 		uni.showToast({
+	// 			title:"加载失败",
+	// 			icon:'error'
+	// 		})
+	// 	}finally{
+	// 		loading.value = false;
+	// 	}
+	// }
 	
 	onMounted(() => {
-	  queryCategoryType(1); 
+	  categoryStore.queryCategoryType(1); 
 	});
+	
+	
+
 	
 	//搜索分类
 	const seachCategory = async()=>{
@@ -210,11 +226,17 @@
 			}
 			console.log("sendData:",sendData)
 			await http.delete("/user/deleteCategory",sendData);
-			queryCategoryType(currentType.value);
+			categoryStore.queryCategoryType(currentType.value);
 		}catch(err){
 			console.log("删除分类失败err",err);
 		}
 		DialogShow.value = false;
+	}
+	
+	//转移数据
+	const moveCategory = ()=>{
+		console.log("转移数据弹出层被调用");
+		moveCategoryDialog.value = true;
 	}
 </script>
 
