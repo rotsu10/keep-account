@@ -55,18 +55,18 @@
 		console.log('SelectDate传递时间为：', selectDate);
 		selectedDate.value = selectDate;
 		// 重置分页参数
-		currentPage.value = 1;
-		total.value = 0;
-		list.value = [];
-		finished.value = false;
-		await loadData();
-	}
+		resetPagination();
+		handleLoad();
+	};
 
+	const handleLoad = () => {
+		if (finished.value) return; 
+		loading.value = true; 
+		loadData(); 
+	};
+	
 	// 加载数据
 	const loadData = async () => {
-		if (loading.value || finished.value) return;
-
-		loading.value = true;
 		try {
 			const dateParams = selectedDate.value || getDefaultDate();
 			console.log("dateParams",dateParams);
@@ -77,31 +77,25 @@
 				pageSize: pageSize.value
 			}
 			//查询每月账单
-			const res = await http.post("/user/queryRecordByDate", sendDate);
-			const data = res || {};
-			const records = data.records || [];
-			total.value = data.total || 0;
+			const { records, total: totalCount } = await http.post("/user/queryRecordByDate", sendDate);
+			if(totalCount == 0) finished.value = true;
 			if (currentPage.value === 1) {
 				list.value = records;
 			} else {
 				list.value = list.value.concat(records);
 			}
+			total.value = totalCount;
+			currentPage.value++;
 			if(list.value.length >= total.value){
 				finished.value = true;
 			}
-			else {
-			    currentPage.value++;
-			}
-			
 			//统计每月账单
 			const statistics = await http.post("/user/statisticsQuery", {year: dateParams.year,month: dateParams.month,});
 			totalIncome.value = statistics.income;
 			totalExpense.value = statistics.expense;
 			totalTransfer.value = statistics.transfer;
-			
 		} catch (err) {
 			console.error("根据日期查询：", err.message);
-			finished.value = true; 
 		} finally {
 			loading.value = false;
 		}
@@ -119,5 +113,12 @@
 		uni.navigateTo({
 		    url: `/pages/record/billDetail?id=${billId}`
 		})
-	}
+	};
+	
+	const resetPagination = () => {
+		currentPage.value = 1;
+		total.value = 0;
+		list.value = [];
+		finished.value = false;
+	};
 </script>

@@ -54,7 +54,7 @@
 			const result = await http.post('/user/register',sendData);
 			console.log("注册成功result:",result);
 			uni.setStorageSync('token', result.token)
-			uni.redirectTo({ url: '/pages/common/login' });
+			uni.navigateTo({ url: '/pages/common/login' });
 		}catch(error){
 			console.error("注册失败，请重试:",error.message);
 			uni.showToast({
@@ -62,7 +62,6 @@
 				icon:'error'
 			})
 		}
-		
 	}
 </script>
 
