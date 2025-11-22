@@ -7,6 +7,7 @@
 			:finished="finished"
 			finished-text="没有更多了"
 			:immediate-check="false"
+			@load="loadData"
 		>
 			<van-cell 
 				v-for="item in list" 
@@ -84,19 +85,17 @@
 			
 			const data = res || {};
 			const records = data.records || [];
+			pageParams.value.total = data.total || 0;
 			if (pageParams.value.page === 1) {
 				list.value = records;
 			} else {
-				list.value = [...list.value, ...records];
+				list.value = list.value.concat(records);
 			}
-
-			pageParams.value.total = data.total || 0;
-
-			// 判断是否加载完成
-			if (records.length < pageParams.value.pageSize) {
+			if(list.value.length > total.value){
 				finished.value = true;
-			} else {
-				pageParams.value.page++;
+			}
+			else {
+			    pageParams.value.page++;
 			}
 		} catch (err) {
 			console.log("根据日期查询err：", err);

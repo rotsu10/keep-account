@@ -37,8 +37,10 @@
         from user_bill
         where year(create_time) = #{year}
             and month(create_time) = #{month}
-            and day(create_time) = #{day}
             and user_id = #{userId}
+            <if test="day != null">
+                and day(create_time) = #{day}
+            </if>
     </select>
     <select id="queryDailyCosts" resultType="com.example.entity.DailyCost">
         SELECT

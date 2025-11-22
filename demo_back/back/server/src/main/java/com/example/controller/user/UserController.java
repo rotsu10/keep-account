@@ -165,11 +165,6 @@ public class UserController {
         return Result.success(list);
     }
 
-    //列表，首页日历根据日期查询账单
-
-
-    //列表，我的分类统计根据日期和类型查询账单
-
     //删除分类
     @DeleteMapping("/deleteCategory")
     public Result deleteCategory(@RequestBody CategoryDeleteDTO categoryDeleteDTO){
@@ -201,4 +196,5 @@ public class UserController {
         List<UserBillDTO> list = userService.getBillByCategoryIds(categoryIds);
         return Result.success(list);
     }
+
 }
