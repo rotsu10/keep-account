@@ -1,6 +1,7 @@
 package com.example.service.impl;
 
 import com.example.entity.*;
+import com.example.exception.*;
 import com.example.result.Result;
 import com.example.vo.*;
 import com.github.pagehelper.Page;
@@ -8,8 +9,6 @@ import com.github.pagehelper.PageHelper;
 import com.example.constant.MessageConstant;
 import com.example.context.BaseContext;
 import com.example.dto.*;
-import com.example.exception.AccountFoundException;
-import com.example.exception.CategoryException;
 import com.example.mapper.UserBillMapper;
 import com.example.mapper.UserCategoryMapper;
 import com.example.mapper.UserMapper;
@@ -19,8 +18,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.example.exception.AccountNotFoundException;
-import com.example.exception.PasswordErrorException;
 import org.springframework.util.DigestUtils;
 
 import javax.security.auth.login.AccountException;
@@ -224,10 +221,10 @@ public class UserServiceImpl implements UserService {
             log.info("转移该分类下账单:{}",targetCategoryId);
             List<Long> billIdsToMove = userBillMapper.getBillIdsByCategoryIds(categoryIds, userId);
             if(billIdsToMove == null || billIdsToMove.isEmpty()){
-                throw new CategoryException(MessageConstant.MOVE_BILL_NOTEXISTS);
+                throw new CategoryException(MessageConstant.MOVE_BILL_NOT_EXISTS);
             }
             log.info("转移账单列表:{}",billIdsToMove);
-            updateBill(targetCategoryId,billIdsToMove);
+            updateCategory(targetCategoryId,billIdsToMove);
         } else if ("delete".equals(strategy)) {
             // 删除分类下的所有账单
             userBillMapper.deleteBillByCategoryIds(categoryIds);
@@ -245,8 +242,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateBill(Long categoryId, List<Long> billIds) {
-        userBillMapper.updateBill(categoryId,billIds);
+    public void updateCategory(Long categoryId, List<Long> billIds) {
+        userBillMapper.updateCategory(categoryId,billIds);
     }
 
     @Override
@@ -254,6 +251,24 @@ public class UserServiceImpl implements UserService {
         Long userId = BaseContext.getCurrentId();
         List<UserBillDTO> list= userBillMapper.getBillByCategoryIds(categoryIds,userId);
         return list;
+    }
+
+    @Override
+    public UserBillVO updateBill(UserBillDTO userBillDTO) {
+        UserBill userBill = new UserBill();
+        BeanUtils.copyProperties(userBillDTO,userBill);
+
+        Long userId = BaseContext.getCurrentId();
+        userBill.setUserId(userId);
+        int row = userBillMapper.updateBill(userBill);
+        if(row>0){
+            Long billId = userBill.getId();
+            UserBillVO userBillVO = new UserBillVO();
+            BeanUtils.copyProperties(userBillMapper.selectBillDetail(userId,billId),userBillVO);
+            return userBillVO;
+        }else {
+            throw new BillException(MessageConstant.BILL_NOT_EXISTS);
+        }
     }
 }
 

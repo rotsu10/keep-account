@@ -102,7 +102,7 @@
                     </foreach>
     </delete>
 
-    <update id="updateBill">
+    <update id="updateCategory">
         update user_bill set category_id = #{categoryId} where id in <foreach collection="billIds" item="billId" open="(" separator="," close=")">
         #{billId}
     </foreach>
@@ -124,5 +124,24 @@
             </foreach>
         </if>
     </select>
+
+    <update id="updateBill">
+        UPDATE user_bill
+        <set>
+            <if test="categoryId != null and categoryId != ''">
+                category_id = #{categoryId},
+            </if>
+            <if test="amount != null and amount != '' ">
+                amount = #{amount},
+            </if>
+            <if test="type != null and type != ''">
+                type = #{type},
+            </if>
+            <if test="remark != null and remark != ''">
+                remark = #{remark},
+            </if>
+        </set>
+        WHERE id = #{id} and user_id = #{userId}
+    </update>
 
 </mapper>

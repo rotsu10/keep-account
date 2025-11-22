@@ -177,7 +177,7 @@ public class UserController {
     @PatchMapping("updateCategory/{billIds}")
     public Result updateCategory(@RequestParam Long categoryId,@PathVariable List<Long> billIds){
         log.info("改变账单分类：{},{}",categoryId,billIds);
-        userService.updateBill(categoryId,billIds);
+        userService.updateCategory(categoryId,billIds);
         return Result.success();
     }
 
@@ -197,4 +197,11 @@ public class UserController {
         return Result.success(list);
     }
 
+    //更新修改账单
+    @PostMapping("/updateBill")
+    public Result<UserBillVO> updateBill(@RequestBody UserBillDTO userBillDTO){
+        log.info("更新修改账单:{}",userBillDTO);
+        UserBillVO vo = userService.updateBill(userBillDTO);
+        return Result.success(vo);
+    }
 }

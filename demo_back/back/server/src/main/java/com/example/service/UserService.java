@@ -61,8 +61,11 @@ public interface UserService {
     void deleteBill(List<Long> billIds);
 
     //修改账单分类
-    void updateBill(Long categoryId, List<Long> billIds);
+    void updateCategory(Long categoryId, List<Long> billIds);
 
     // //根据分类id查询账单
     List<UserBillDTO> getBillByCategoryIds(List<Long> categoryIds);
+
+    //更新修改账单信息
+    UserBillVO updateBill(UserBillDTO userBillDTO);
 }
