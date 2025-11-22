@@ -27,8 +27,8 @@
 	import {ref,onMounted} from 'vue';
 
 	const selectedDate = ref();
-	const loading = ref(false);
-	const finished = ref(false);
+	const loading = ref(false); //加载状态
+	const finished = ref(false); //是否加载完毕
 	const list = ref([]);
 	const pageParams = ref({
 		page: 1,

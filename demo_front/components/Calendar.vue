@@ -7,7 +7,8 @@
 		:max-date="maxDate" 
 		:default-date="defaultDate"
 		:show-title="false" 
-		:show-confirm="false" 
+		:show-confirm="false"
+		@select = "onDateSelect"
 		switch-mode="year-month" 
 		:formatter="formatCalendarDay" />
 	</view>
@@ -25,14 +26,10 @@
 	
 	//用于强制刷新日历的 key
 	const calendarKey = ref(0);
-	
-	const date = ref('');
-	const show = ref(false);
-	const currentDate = ref(new Date());
-	const defaultDate = ref(currentDate.value);
-	const minDate = ref(new Date());
-	const maxDate = ref(new Date());
 
+	const defaultDate = ref(new Date()); //默认日期
+	const minDate = ref(new Date()); //最小日期
+	const maxDate = ref(new Date()); //最大日期
 	//格式化日期 YYYY-MM-DD
 	const formatDateKey = (date) => {
 		const year = date.getFullYear();
@@ -84,14 +81,22 @@
 		await billStore.fetchDailyCosts();
 	});
 	
+	//传递选择的日期
+	const onDateSelect = (date) => {
+		const selectDay = formatDateKey(date);
+		console.log("selectDay",selectDay)
+	    uni.navigateTo({
+	    	url: `/pages/record/daiyBillList?date=${selectDay}`
+	    })
+	};
+	
 	watch(
-		()=>dailyCosts.value.cost,
+		dailyCosts,
 		()=>{
 			calendarKey.value++;
 		},
 		{deep:true}
 	)
-	console.log("dailyCosts.value,aaaaaaaaaaaaaaaaaa",dailyCosts.value)
 </script>
 
 <style>

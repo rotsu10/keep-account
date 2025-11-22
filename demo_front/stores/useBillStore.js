@@ -1,11 +1,13 @@
 // stores/useBillStore.js
 
 import {defineStore} from 'pinia';
-import {http} from '../utils/request'; // 确保导入了你的 http 工具
+import {http} from '../utils/request';
 
 export const useBillStore = defineStore('bill', {
 	state: () => ({
-		dailyCosts: {}, // 存储每日花费数据（全局共享）
+		dailyCosts: {}, // 存储每日花费
+		billList:[],
+		total:0
 	}),
 
 	actions: {
@@ -74,6 +76,33 @@ export const useBillStore = defineStore('bill', {
 		        console.error('根据分类id查询账单err:', error);
 		        throw error;
 		    }
+		},
+		
+		//根据日期查询账单
+		async queryBillList(selectedDate){
+			const dateParams = selectedDate;
+			console.log("param",dateParams);
+			const sendData = {
+				year:dateParams.year,
+				month:dateParams.month,
+				day:dateParams.day,
+				page:1,
+				pageSize:30
+			};
+			
+			try{
+				const res = await http.post("/user/queryRecordByDate",sendData);
+				const data = res || {};
+				const records = data.records || [];
+				const total = data.total || 0;
+				this.billList = data.records || [];
+				this.total = data.total || 0;
+				return { records, total };
+				console.log("查询账单this.billList",this.billList);
+				console.log("查询账单this.total",this.total);
+			}catch(error){
+				 console.error('根据日期查询账单err:', error);
+			}
 		}
 	},
 });

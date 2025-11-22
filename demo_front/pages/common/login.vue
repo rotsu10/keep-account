@@ -14,7 +14,6 @@
 			<van-button round type="default" size="normal" @click="register">注册</van-button>
 		</view>
 	</view>
-	
 </template>
 
 <script setup>
