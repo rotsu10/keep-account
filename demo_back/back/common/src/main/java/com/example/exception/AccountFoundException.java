@@ -1,9 +1,9 @@
 package com.example.exception;
 
 /**
- * 账号不存在异常
+ * 1.账号不存在异常
  */
-public class AccountFoundException extends BaseException {
+public class AccountFoundException extends RuntimeException {
 
     public AccountFoundException() {
     }

@@ -1,9 +1,9 @@
 package com.example.exception;
 
 /**
- * 密码错误异常
+ * 2.密码错误异常
  */
-public class PasswordErrorException extends BaseException {
+public class PasswordErrorException extends RuntimeException {
 
     public PasswordErrorException() {
     }

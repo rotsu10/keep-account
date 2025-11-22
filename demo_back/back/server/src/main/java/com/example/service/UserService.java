@@ -16,7 +16,7 @@ public interface UserService {
     User login(UserLoginDTO userLoginDTO);
 
     //用户注册
-    void register(UserRegisterDTO userRegisterDTO);
+    User register(UserRegisterDTO userRegisterDTO);
 
     //添加账单
     void addBill(UserBillDTO userBillDTO);

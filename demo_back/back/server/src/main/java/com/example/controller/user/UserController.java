@@ -57,9 +57,24 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public Result register(@RequestBody UserRegisterDTO userRegisterDTO) {
-        userService.register(userRegisterDTO);
-        return Result.success();
+    public Result<UserLoginVO> register(@RequestBody UserRegisterDTO userRegisterDTO) {
+        User user = userService.register(userRegisterDTO);
+        Map<String, Object> clams = new HashMap<>();
+        clams.put(JwtClaimsConstant.ID, user.getId());
+        String token = JwtUtil.createJWT(
+                jwtProperties.getUserSecretKey(),
+                jwtProperties.getUserTtl(),
+                clams);
+
+        log.info("token:{}", token);
+
+        UserLoginVO userLoginVO = UserLoginVO.builder()
+                .id(user.getId())
+                .username(user.getUsername())
+                .token(token)
+                .build();
+
+        return Result.success(userLoginVO);
     }
 
 

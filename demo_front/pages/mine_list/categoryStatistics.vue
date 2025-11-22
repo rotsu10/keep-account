@@ -52,12 +52,17 @@ const categoryStatistics = async()=>{
 					{
 						type: 'pie',
 						data: res, 
-						radius: ['20%', '40%'],
+						radius: ['30%', '55%'],
 						legendHoverLink: true,
 						label:{
-							show:true,
-							formatter: '{b}: {d}%' 
-						}
+							fontSize: 10,
+							formatter: '{b}: {d}%'
+						},
+						labelLine: {
+						    show: true,
+						    length: 10,
+						    length2: 20
+						},
 					}
 				]
 			}
@@ -73,7 +78,7 @@ onMounted(() => {
   const initialOption = {
     title: { text: '请选择时间和类型', left: 'center', top: 'center' },
     tooltip: { trigger: 'item' },
-    legend: { orient: 'vertical', left: 'left' },
+    legend: { show: false},
     series: [
       {
         name: '金额',

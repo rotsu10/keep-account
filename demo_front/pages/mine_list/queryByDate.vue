@@ -31,11 +31,10 @@
 	const loading = ref(false); //加载状态
 	const finished = ref(false); //是否加载完毕
 	const list = ref([]);
-	const pageParams = ref({
-		page: 1,
-		pageSize: 10,
-		total: 0
-	});
+	
+	const currentPage = ref(1); // 当前页码
+	const pageSize = ref(10); // 每页条数
+	const total = ref(0); // 总条数
 	
 	//统计每月账单
 	const totalIncome = ref(0);
@@ -56,7 +55,8 @@
 		console.log('SelectDate传递时间为：', selectDate);
 		selectedDate.value = selectDate;
 		// 重置分页参数
-		pageParams.value.page = 1;
+		currentPage.value = 1;
+		total.value = 0;
 		list.value = [];
 		finished.value = false;
 		await loadData();
@@ -69,36 +69,38 @@
 		loading.value = true;
 		try {
 			const dateParams = selectedDate.value || getDefaultDate();
+			console.log("dateParams",dateParams);
 			const sendDate = {
 				year: dateParams.year,
 				month: dateParams.month,
-				page: pageParams.value.page,
-				pageSize: pageParams.value.pageSize
+				page: currentPage.value,
+				pageSize: pageSize.value
 			}
 			//查询每月账单
 			const res = await http.post("/user/queryRecordByDate", sendDate);
+			const data = res || {};
+			const records = data.records || [];
+			total.value = data.total || 0;
+			if (currentPage.value === 1) {
+				list.value = records;
+			} else {
+				list.value = list.value.concat(records);
+			}
+			if(list.value.length >= total.value){
+				finished.value = true;
+			}
+			else {
+			    currentPage.value++;
+			}
+			
 			//统计每月账单
 			const statistics = await http.post("/user/statisticsQuery", {year: dateParams.year,month: dateParams.month,});
 			totalIncome.value = statistics.income;
 			totalExpense.value = statistics.expense;
 			totalTransfer.value = statistics.transfer;
 			
-			const data = res || {};
-			const records = data.records || [];
-			pageParams.value.total = data.total || 0;
-			if (pageParams.value.page === 1) {
-				list.value = records;
-			} else {
-				list.value = list.value.concat(records);
-			}
-			if(list.value.length > total.value){
-				finished.value = true;
-			}
-			else {
-			    pageParams.value.page++;
-			}
 		} catch (err) {
-			console.log("根据日期查询err：", err);
+			console.error("根据日期查询：", err.message);
 			finished.value = true; 
 		} finally {
 			loading.value = false;

@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void register(UserRegisterDTO userRegisterDTO) {
+    public User register(UserRegisterDTO userRegisterDTO) {
         log.info("用户注册{}", userRegisterDTO);
         // 1. 检查用户名是否存在
         User dbUserByUsername = userMapper.queryByUsername(userRegisterDTO.getUsername());
@@ -85,6 +85,7 @@ public class UserServiceImpl implements UserService {
         if (rows > 0) {
             log.info("用户注册成功: {}", userRegisterDTO.getUsername());
         }
+        return user;
     }
 
     @Override

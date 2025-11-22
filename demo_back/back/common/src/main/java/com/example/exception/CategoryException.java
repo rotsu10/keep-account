@@ -1,9 +1,9 @@
 package com.example.exception;
 
 /**
- * 分类异常
+ * 3.分类异常
  */
-public class CategoryException extends BaseException {
+public class CategoryException extends RuntimeException {
 
     public CategoryException() {
     }

@@ -31,10 +31,7 @@
       }
     },
     {
-      "path": "pages/common/register",
-      "style": {
-        "navigationStyle": "custom"
-      }
+      "path": "pages/common/register"
     },
     {
       "path": "pages/home/home",

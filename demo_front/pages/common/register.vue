@@ -29,10 +29,11 @@
 
 <script setup>
 	import {ref} from 'vue';
+	import { http } from '../../utils/request';
 	const username = ref('');
 	const phone = ref('');
 	const password = ref('');
-	const userRegister = ()=>{
+	const userRegister =async ()=>{
 		if(!username.value || !phone.value || !password.value ){
 			uni.showToast({
 				title:'请填写完整信息',
@@ -44,43 +45,24 @@
 		    uni.showToast({ title: '手机号格式不正确', icon: 'none' });
 		    return;
 		}
-		uni.request({
-			url:'http://localhost:8080/user/register',
-			method:'POST',
-			header: { 'Content-Type': 'application/json' },
-			data:{
+		try{
+			const sendData = {
 				username:username.value,
 				phone:phone.value,
 				password:password.value
-			},
-			success:(res)=>{
-				const {statusCode,data:result} = res;
-			
-			if (statusCode !== 200) {
-			  uni.showToast({ title: `请求失败, ${statusCode}`, icon: 'none' });
-			  return;
 			}
-			
-			if (!result) {
-			  uni.showToast({ title: "接口返回空数据", icon: "none" });
-			  return;
-			}
-			
-			if (result.code === 1) {
-			    uni.showToast({ title: "登录成功" });
-			    uni.setStorageSync('token', result.data.token); 
-			    uni.redirectTo({ url: '/pages/home/home' });
-			  } else {
-			    uni.showToast({ title: result.message, icon: 'none' });
-			  }
-			},
-			
-			fail: (error) => {
-			  console.error('请求失败:', error);
-			  uni.showToast({ title: '网络错误，请检查跨域和后端服务', icon: 'none' });
-			},
-			
-		})
+			const result = await http.post('/user/register',sendData);
+			console.log("注册成功result:",result);
+			uni.setStorageSync('token', result.token)
+			uni.redirectTo({ url: '/pages/common/login' });
+		}catch(error){
+			console.error("注册失败，请重试:",error.message);
+			uni.showToast({
+				title:error.message,
+				icon:'error'
+			})
+		}
+		
 	}
 </script>
 
