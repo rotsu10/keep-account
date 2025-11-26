@@ -114,7 +114,6 @@ public class UserServiceImpl implements UserService {
         if(queryCategory != null){
             throw new CategoryException(MessageConstant.CATEGORY_EXISTS);
         }
-
         Category category = new Category();
         BeanUtils.copyProperties(categoryDTO, category);
         category.setUserId(BaseContext.getCurrentId());

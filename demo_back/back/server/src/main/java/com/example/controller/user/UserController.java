@@ -114,6 +114,7 @@ public class UserController {
         Long id = BaseContext.getCurrentId();
         log.info("查询用户创建时间:{}",id);
         LocalDateTime createTime = userService.queryCreateTime(id);
+        log.info("createTime",createTime);
         return Result.success(createTime);
     }
 

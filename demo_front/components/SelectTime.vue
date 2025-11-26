@@ -10,7 +10,6 @@
 	  <van-date-picker
 	    v-model="curDateArr" 
 	    title="选择日期" 
-	    :min-date="minDate" 
 	    :max-date="maxDate"
 		:columns-type="columnsType"
 		@cancel = "onCancel"
@@ -25,7 +24,6 @@
 	import { http } from '../utils/request';
 	console.log("当前时间",new Date());
 	
-	const minDate = ref(new Date());
 	const maxDate = ref(new Date());
 	const columnsType = ['year', 'month'];
 	// 控制弹出层显示状态
@@ -36,15 +34,16 @@
 	const emit = defineEmits(['select-date']);
 
 	//获取当前日期，数组
-	const getCurDateArr = ()=>{
-		const now = new Date();
-		return [
-				now.getFullYear().toString(),
-				(now.getMonth() + 1).toString().padStart(2, '0'),
-		];
-	};
+	// const getCurDateArr = ()=>{
+	// 	const now = new Date();
+	// 	return [
+	// 			now.getFullYear().toString(),
+	// 			(now.getMonth() + 1).toString().padStart(2, '0'),
+	// 	];
+	// };
 	
-	const curDateArr = ref(getCurDateArr());
+	// const curDateArr = ref(getCurDateArr());
+	
 	const confirmedDateArr = ref([...curDateArr.value]);
 	
 	//确认
@@ -71,7 +70,7 @@
 	            const result = await http.get("/user/queryCreateTime",{},{loadingText:'加载中'});
 	            const [year, month, day, hour, minute, second] = result; 
 	            const date = new Date(year, month - 1, day, hour, minute, second);
-				console.log("date等于：",date);
+				console.log("date对象等于：",date);
 	            return date;
 	        }catch(err){
 	            console.error('获取时间失败', err);
@@ -88,9 +87,6 @@
 	
 	onMounted(async ()=>{
 	    const date = await getCurTime();
-	    if(date){
-	        minDate.value = date;
-	    }
 	//初始化字段显示
 	fieldValue.value = formatDateText(curDateArr.value);
 	confirmedDateArr.value = [...curDateArr.value];

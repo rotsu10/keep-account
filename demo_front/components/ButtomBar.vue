@@ -13,8 +13,6 @@
 			</van-tabbar-item>
 		</van-tabbar>
 	</view>
-	
-	
 </template>
 
 <script setup>

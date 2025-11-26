@@ -1,6 +1,6 @@
 import {
   __export
-} from "./chunk-CSAU5B4Q.js";
+} from "./chunk-P2LSHJDD.js";
 
 // ../../../../../../project/记账/demo_front/node_modules/tslib/tslib.es6.js
 var extendStatics = function(d, b) {

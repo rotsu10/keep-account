@@ -5,6 +5,7 @@ import {http} from '../utils/request'; // 确保导入了你的 http 工具
 export const useCategoryStore = defineStore('category',{
 	state:()=>({
 		categoryList:[],
+		currentType: null,
 	}),
 	
 	actions:{
@@ -17,6 +18,7 @@ export const useCategoryStore = defineStore('category',{
 				);
 				console.log("后端返回数据result:",result);
 				this.categoryList = result;
+				this.currentType = type;
 				return true;
 			}catch(err){
 				console.error('请求失败err：',err);
@@ -24,6 +26,7 @@ export const useCategoryStore = defineStore('category',{
 					title:"加载失败",
 					icon:'error'
 				})
+				throw err;
 			}
 		},
 		
@@ -41,9 +44,7 @@ export const useCategoryStore = defineStore('category',{
 				const result  = await http.post('/user/addCategory',sendData,{
 					loadingText:'正在提交中'
 				});
-				
 				console.log('提交分类：',result);
-
 				return true;
 			}catch(err){
 				console.log('提交失败',err);
@@ -51,6 +52,7 @@ export const useCategoryStore = defineStore('category',{
 			}
 		},
 		
+		//查找分类
 		async searchCategory(searchCategoryData){
 			if(!searchCategoryData.name?.trim()){
 				throw new Error("请输入分类名");
@@ -70,6 +72,7 @@ export const useCategoryStore = defineStore('category',{
 			}
 		},
 		
+		//删除分类
 		async deleteCategory(deleteCategoryData){
 			console.log("store中的deleteCategoryData:",deleteCategoryData)
 			try{
@@ -80,6 +83,11 @@ export const useCategoryStore = defineStore('category',{
 				}
 				console.log("sendData:",sendData)
 				await http.delete("/user/deleteCategory",sendData);
+				if (this.currentType) {
+				    await this.queryCategoryType(this.currentType);
+				} else {
+				    console.warn("删除后无法确定要重新加载的分类类型");
+				}
 			}catch(err){
 				console.log("删除分类失败err",err);
 			}

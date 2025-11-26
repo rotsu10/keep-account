@@ -65,6 +65,7 @@
 				loadingText: '加载中'
 			});
 			const [year, month, day, hour, minute, second] = result.data || result;
+			console.log(" result.data ", result )
 			const date = new Date(year, month - 1, day, hour, minute, second);
 			return date;
 		} catch (err) {

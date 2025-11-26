@@ -22,9 +22,7 @@ export const useBillStore = defineStore('bill', {
 				result.forEach(item => {
 					costMap[item.date] = item;
 				});
-
 				this.dailyCosts = costMap;
-
 			} catch (err) {
 				console.error("获取当日花费失败：", err);
 				this.dailyCosts = {};

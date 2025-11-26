@@ -11,7 +11,7 @@
 			v-for="item in list" 
 			:key="item.id"
 			:label="`${item.categoryName}`"
-			:title="`${item.type === 1 ? '-' : '+'}${item.amount}`"
+			:title="`${item.type === 1 ? '+' : '-'}${item.amount}`"
 			:value="`${item.createTime[1]}-${item.createTime[2]}`"
 			@click="goToBillDetail(item.id)"
 		/>
@@ -37,7 +37,6 @@
 			currentDate.value = options.date;
 			console.log("currentDate",currentDate.value);
 			resetPagination();
-			handleLoad();
 		}
 	})
 	
@@ -54,7 +53,9 @@
 			};
 			console.log("dateObject",dateObject);
 			const { records, total: totalCount } = await billStore.queryBillList(dateObject);
-			if(totalCount == 0) finished.value = true;;
+			console.log("records",records);
+			console.log("currentPage",currentPage);
+			if(totalCount == 0) finished.value = true;
 			if(currentPage.value === 1){
 				list.value = records;
 			}else{
@@ -62,7 +63,7 @@
 			}
 			total.value = totalCount;
 			currentPage.value++;
-			if(list.value.length > total.value){
+			if(list.value.length >= total.value){
 				finished.value = true;
 			}
 		}catch(error){
