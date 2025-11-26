@@ -6,7 +6,7 @@ import toObject from 'dayjs/plugin/toObject';
 dayjs.extend(toArray);
 dayjs.extend(toObject)
 //统一把参数转为 dayjs 实例（处理 ref、原生 Date、dayjs 实例）
-const getValidDayjs(date)=>{
+const getValidDayjs = (date)=>{
 	//解包ref
 	const rawDate = unref(date);
 	
