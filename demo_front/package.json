@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@varlet/ui": "^3.12.3",
     "dayjs": "^1.11.19",
     "default-passive-events": "^4.0.0",
     "echarts": "^6.0.0",
