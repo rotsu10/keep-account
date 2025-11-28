@@ -60,6 +60,13 @@
         "navigationBarTitleText": ""
       }
     },
+	{
+	  "path": "pages/home/stastics",
+	  "style": {
+	    "navigationStyle": "custom",
+	    "navigationBarTitleText": ""
+	  }
+	},
     {
     	"path" : "pages/mine_list/queryByDate",
     	"style" : 
@@ -94,6 +101,27 @@
 		{
 			"navigationBarTitleText" : ""
 		}
+	},
+	{
+		"path" : "components/graph/CategoryStatistics",
+		"style" : 
+		{
+			"navigationBarTitleText" : ""
+		}
+	},
+	{
+		"path" : "components/graph/DatTrend",
+		"style" : 
+		{
+			"navigationBarTitleText" : ""
+		}
+	},
+	{
+		"path" : "components/graph/MonthTrend",
+		"style" : 
+		{
+			"navigationBarTitleText" : ""
+		}
 	}
   ],
   "tabBar": {
@@ -106,6 +134,10 @@
         "pagePath": "pages/home/category", 
         "text": "分类"
       },
+	  {
+	    "pagePath": "pages/home/stastics",
+	    "text": "图表"
+	  },
       {
         "pagePath": "pages/home/mine",
         "text": "我的"

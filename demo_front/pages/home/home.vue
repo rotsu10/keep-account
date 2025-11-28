@@ -7,7 +7,6 @@
 		<view class="calendar">
 			<CalendarVue></CalendarVue>
 		</view>
-		<ButtomBarVue></ButtomBarVue>
 	</view>
 </template>
 

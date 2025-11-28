@@ -1,4 +1,4 @@
-import "./chunk-P2LSHJDD.js";
+import "./chunk-ZS7NZCD4.js";
 
 // ../../../../../../project/记账/demo_front/node_modules/vant/es/utils/basic.mjs
 function noop() {

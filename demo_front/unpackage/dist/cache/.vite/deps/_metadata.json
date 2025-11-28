@@ -1,55 +1,31 @@
 {
-  "hash": "c913e99e",
+  "hash": "03815b18",
   "configHash": "0b16a37c",
-  "lockfileHash": "b20f64c3",
-  "browserHash": "26a66de2",
+  "lockfileHash": "1c11a73a",
+  "browserHash": "bc40cdfb",
   "optimized": {
-    "@varlet/ui": {
-      "src": "../../../../../node_modules/@varlet/ui/es/index.mjs",
-      "file": "@varlet_ui.js",
-      "fileHash": "101b3575",
-      "needsInterop": false
-    },
-    "@varlet/ui/es/style": {
-      "src": "../../../../../node_modules/@varlet/ui/es/style.mjs",
-      "file": "@varlet_ui_es_style.js",
-      "fileHash": "2e9a1abd",
+    "ant-design-vue": {
+      "src": "../../../../../node_modules/ant-design-vue/es/index.js",
+      "file": "ant-design-vue.js",
+      "fileHash": "7aa4e8b2",
       "needsInterop": false
     },
     "default-passive-events": {
       "src": "../../../../../node_modules/default-passive-events/dist/index.module.js",
       "file": "default-passive-events.js",
-      "fileHash": "5850ae0a",
+      "fileHash": "9bca6042",
       "needsInterop": true
     },
     "vant": {
       "src": "../../../../../node_modules/vant/es/index.mjs",
       "file": "vant.js",
-      "fileHash": "8391f32a",
+      "fileHash": "fe55cb45",
       "needsInterop": false
-    },
-    "dayjs": {
-      "src": "../../../../../node_modules/dayjs/dayjs.min.js",
-      "file": "dayjs.js",
-      "fileHash": "1f0dd48d",
-      "needsInterop": true
-    },
-    "dayjs/plugin/toArray": {
-      "src": "../../../../../node_modules/dayjs/plugin/toArray.js",
-      "file": "dayjs_plugin_toArray.js",
-      "fileHash": "81c69e98",
-      "needsInterop": true
-    },
-    "dayjs/plugin/toObject": {
-      "src": "../../../../../node_modules/dayjs/plugin/toObject.js",
-      "file": "dayjs_plugin_toObject.js",
-      "fileHash": "1144ef42",
-      "needsInterop": true
     }
   },
   "chunks": {
-    "chunk-P2LSHJDD": {
-      "file": "chunk-P2LSHJDD.js"
+    "chunk-ZS7NZCD4": {
+      "file": "chunk-ZS7NZCD4.js"
     }
   }
 }

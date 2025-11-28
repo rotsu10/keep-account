@@ -28,10 +28,10 @@ const handleTimeRangeSelect = (data) => {
   
 	TypeText.value = data.type.text; //收入
     TypeValue.value = data.type.value; //1
-	categoryStatistics();
+	pie();
 };
 
-const categoryStatistics = async()=>{
+const pie = async()=>{
 	try{
 		const sendData = {
 			timeValue :timeValue.value,

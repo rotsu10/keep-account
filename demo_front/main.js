@@ -17,12 +17,12 @@ import { createSSRApp } from 'vue'
 import Vant from 'vant';
 import 'vant/lib/index.css';
 import { createPinia } from 'pinia';
-import Varlet from '@varlet/ui';
-import '@varlet/ui/es/style';
+import Antd from 'ant-design-vue';
+import 'ant-design-vue/dist/reset.css';
 export function createApp() {
   const app = createSSRApp(App);
   const pinia = createPinia();
-  app.use(Varlet);
+  app.use(Antd);
   app.use(Vant);
   app.use(pinia);
   return {

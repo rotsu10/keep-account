@@ -10,6 +10,7 @@
 				@click="switchToTab(item.url)"
 			>
 			{{ item.text }}
+			{{ item.icon }}
 			</van-tabbar-item>
 		</van-tabbar>
 	</view>
@@ -22,7 +23,8 @@
 	const tabList = [
 		{ text: '首页', name: 'home', url: '/pages/home/home',icon: 'home-o'},
 		{ text: '分类', name: 'category', url: '/pages/home/category' ,icon: 'apps-o'},
-		{ text: '我的', name: 'mine', url: '/pages/home/mine', icon: 'user-o'}
+		{ text: '我的', name: 'mine', url: '/pages/home/mine', icon: 'user-o'},
+		{ text: '图表', name: 'graph', url: '/pages/home/stastic', icon: 'user-o'}
 	]
 	
 	const switchToTab = (url) =>{
