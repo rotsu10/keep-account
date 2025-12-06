@@ -34,6 +34,7 @@
 		selectedTime:selectedTime.value,
 		selectedDate:selectedDate.value
 	}
+	console.log("时间选择器",date);
 	emit('sendDate',date);
 	
 </script>

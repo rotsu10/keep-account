@@ -64,7 +64,8 @@
 	  "path": "pages/home/stastics",
 	  "style": {
 	    "navigationStyle": "custom",
-	    "navigationBarTitleText": ""
+	    "navigationBarTitleText": "",
+		"disableScroll": false；
 	  }
 	},
     {
