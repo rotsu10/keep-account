@@ -1,17 +1,33 @@
 <template>
 	<view class="time">
-		<AllSelectTimeVue @send-Date ='time'></AllSelectTimeVue>
+		<AllSelectTimeVue @send-Date='time'></AllSelectTimeVue>
+		<pieChartVue></pieChartVue>
 	</view>
 </template>
 <script setup>
-	import AllSelectTimeVue from '../../components/AllSelectTime.vue';
+	import { ref } from 'vue';
 	
-	const time = (type,value)=>{
-		console.log("接收到子组件传来值",type,value);
+	import AllSelectTimeVue from '../../components/AllSelectTime.vue';
+	import pieChartVue from '../../components/pieChartVue.vue';
+	import dayjsTool from '../../utils/dayjsTool';
+	
+	const type = ref('');
+	const timeValue = ref('');
+	const time = (data)=>{
+		console.log("接收到子组件传来值",data);
+		type.value = data.type;
+		timeValue.value = data.value;
+		console.log(type.value,timeValue.value);
 	}
+	
+	
 </script>
 <style scoped>
 	.time{
 		margin: 40rpx;
 	}
 </style>
+<!-- 
+【根页面（TimeChartPage.vue）】→ 父组件（顶层容器）
+  ├─ 【TimePicker.vue】→ 子组件1（时间选择器）
+  └─ 【Charts.vue】→ 子组件2（图表/图标组件） -->

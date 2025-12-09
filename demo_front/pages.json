@@ -65,7 +65,7 @@
 	  "style": {
 	    "navigationStyle": "custom",
 	    "navigationBarTitleText": "",
-		"disableScroll": false；
+		"disableScroll": false
 	  }
 	},
     {
@@ -98,27 +98,6 @@
     },
 	{
 		"path" : "pages/record/moveCategory",
-		"style" : 
-		{
-			"navigationBarTitleText" : ""
-		}
-	},
-	{
-		"path" : "components/graph/CategoryStatistics",
-		"style" : 
-		{
-			"navigationBarTitleText" : ""
-		}
-	},
-	{
-		"path" : "components/graph/DatTrend",
-		"style" : 
-		{
-			"navigationBarTitleText" : ""
-		}
-	},
-	{
-		"path" : "components/graph/MonthTrend",
 		"style" : 
 		{
 			"navigationBarTitleText" : ""
