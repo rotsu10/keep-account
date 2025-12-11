@@ -20,7 +20,6 @@ import { createPinia } from 'pinia';
 import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/reset.css';
 
-
 if (typeof EventTarget !== "undefined") {
   let func = EventTarget.prototype.addEventListener;
   EventTarget.prototype.addEventListener = function (type, fn, capture) {

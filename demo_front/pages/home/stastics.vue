@@ -1,16 +1,14 @@
 <template>
 	<view class="time">
 		<AllSelectTimeVue @send-Date='time'></AllSelectTimeVue>
-		<pieChartVue></pieChartVue>
+		<PieChartVue></PieChartVue>
 	</view>
 </template>
 <script setup>
 	import { ref } from 'vue';
-	
 	import AllSelectTimeVue from '../../components/AllSelectTime.vue';
-	import pieChartVue from '../../components/pieChartVue.vue';
 	import dayjsTool from '../../utils/dayjsTool';
-	
+	import PieChartVue from '../../components/PieChart.vue';
 	const type = ref('');
 	const timeValue = ref('');
 	const time = (data)=>{
@@ -19,7 +17,6 @@
 		timeValue.value = data.value;
 		console.log(type.value,timeValue.value);
 	}
-	
 	
 </script>
 <style scoped>

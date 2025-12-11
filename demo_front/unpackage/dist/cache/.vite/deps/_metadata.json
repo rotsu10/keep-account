@@ -1,49 +1,49 @@
 {
-  "hash": "03815b18",
-  "configHash": "0b16a37c",
+  "hash": "dfcb34b0",
+  "configHash": "48d9fb93",
   "lockfileHash": "1c11a73a",
-  "browserHash": "0518b2fc",
+  "browserHash": "41629fa2",
   "optimized": {
     "ant-design-vue": {
       "src": "../../../../../node_modules/ant-design-vue/es/index.js",
       "file": "ant-design-vue.js",
-      "fileHash": "b59e1a67",
+      "fileHash": "0084d957",
       "needsInterop": false
     },
     "default-passive-events": {
       "src": "../../../../../node_modules/default-passive-events/dist/index.module.js",
       "file": "default-passive-events.js",
-      "fileHash": "9bca6042",
+      "fileHash": "a37ac3dc",
       "needsInterop": true
     },
     "vant": {
       "src": "../../../../../node_modules/vant/es/index.mjs",
       "file": "vant.js",
-      "fileHash": "d6cd2dbd",
+      "fileHash": "faf34f31",
       "needsInterop": false
     },
     "dayjs": {
       "src": "../../../../../node_modules/dayjs/dayjs.min.js",
       "file": "dayjs.js",
-      "fileHash": "6151cb59",
+      "fileHash": "d0c70a74",
       "needsInterop": true
     },
     "dayjs/plugin/toArray": {
       "src": "../../../../../node_modules/dayjs/plugin/toArray.js",
       "file": "dayjs_plugin_toArray.js",
-      "fileHash": "259c5e7f",
+      "fileHash": "36a805fb",
       "needsInterop": true
     },
     "dayjs/plugin/toObject": {
       "src": "../../../../../node_modules/dayjs/plugin/toObject.js",
       "file": "dayjs_plugin_toObject.js",
-      "fileHash": "ba224ade",
+      "fileHash": "9d357dbe",
       "needsInterop": true
     },
     "echarts": {
       "src": "../../../../../node_modules/echarts/index.js",
       "file": "echarts.js",
-      "fileHash": "1b31754f",
+      "fileHash": "ecd8e100",
       "needsInterop": false
     }
   },

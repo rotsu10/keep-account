@@ -220,4 +220,11 @@ public class UserController {
         UserBillVO vo = userService.updateBill(userBillDTO);
         return Result.success(vo);
     }
+
+    //根据年月日查询统计查询每个分类账单和
+    @PostMapping("/getCategorySum")
+    public Result<List<CategoryStatisticsVO>> getCategorySum(@RequestBody CategoryStatisticsDTO categoryStatisticsDTO){
+        log.info("根据年月日查询统计查询每个分类账单和:{}",categoryStatisticsDTO);
+        
+    }
 }
