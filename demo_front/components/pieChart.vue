@@ -11,7 +11,7 @@ import { onResize } from '@dcloudio/uni-app';
 import { http } from '../utils/request';
 
 
-const props = defineProps(['timeType', 'timeValue']);
+const props = defineProps(['type','timeType', 'timeValue']);
 const data = ref('');
 // 图表实例
 let myChart = null;
