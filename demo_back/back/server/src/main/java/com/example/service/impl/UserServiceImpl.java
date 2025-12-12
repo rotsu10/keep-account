@@ -270,5 +270,15 @@ public class UserServiceImpl implements UserService {
             throw new BillException(MessageConstant.BILL_NOT_EXISTS);
         }
     }
+
+    @Override
+    public List<CategoryStatisticsVO> getCategorySum(CategoryStatisticsDTO categoryStatisticsDTO) {
+        String timeType = categoryStatisticsDTO.getTimeType();//时间类型
+        String timeValue = categoryStatisticsDTO.getTimeValue();//具体时间
+        Long id = BaseContext.getCurrentId();
+        List<CategoryStatisticsVO> list = userBillMapper.categoryStatistics(id,null,timeValue,timeType);
+        log.info("userBill:{}",list);
+        return list;
+    }
 }
 

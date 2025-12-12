@@ -5,12 +5,26 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, watch } from 'vue';
 import * as echarts from 'echarts';
 import { onResize } from '@dcloudio/uni-app';
+import { http } from '../utils/request';
 
+
+const props = defineProps(['timeType', 'timeValue']);
+const data = ref('');
 // 图表实例
 let myChart = null;
+
+const getCategorySum = async()=>{
+	try{
+		const res = await http.post('/user/getCategorySum',{...props});
+		data.value =res;
+		console.log("查询到的结果是",res);
+	}catch(error){
+		console.error("查询错误",error)
+	}
+}
 
 // 初始化图表（仅适配移动端）
 const initChart = () => {
@@ -63,13 +77,7 @@ const initChart = () => {
           labelLine: {
             show: false
           },
-          data: [
-            { value: 1048, name: 'Search Engine' },
-            { value: 735, name: 'Direct' },
-            { value: 580, name: 'Email' },
-            { value: 484, name: 'Union Ads' },
-            { value: 300, name: 'Video Ads' }
-          ]
+          data: data.value
         }
       ]
     };
@@ -100,6 +108,11 @@ onUnmounted(() => {
     myChart = null;
   }
 });
+
+watch([() => props.type, () => props.timeValue], () => {
+  getCategorySum(); // 触发接口请求
+  initChart(); // 重新渲染图表
+}); 
 </script>
 
 <style scoped>

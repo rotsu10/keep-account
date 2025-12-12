@@ -1,7 +1,7 @@
 <template>
 	<view class="time">
 		<AllSelectTimeVue @send-Date='time'></AllSelectTimeVue>
-		<PieChartVue></PieChartVue>
+		<PieChartVue :time-type = 'type' :time-value = 'timeValue'></PieChartVue>
 	</view>
 </template>
 <script setup>

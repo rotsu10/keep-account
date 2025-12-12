@@ -225,6 +225,8 @@ public class UserController {
     @PostMapping("/getCategorySum")
     public Result<List<CategoryStatisticsVO>> getCategorySum(@RequestBody CategoryStatisticsDTO categoryStatisticsDTO){
         log.info("根据年月日查询统计查询每个分类账单和:{}",categoryStatisticsDTO);
-        
+        List<CategoryStatisticsVO> list= userService.getCategorySum(categoryStatisticsDTO);
+        log.info("list:{}", list);
+        return Result.success(list);
     }
 }

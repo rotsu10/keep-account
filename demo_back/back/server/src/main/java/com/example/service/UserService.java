@@ -68,4 +68,7 @@ public interface UserService {
 
     //更新修改账单信息
     UserBillVO updateBill(UserBillDTO userBillDTO);
+
+    //根据年月日查询统计查询每个分类账单和
+    List<CategoryStatisticsVO> getCategorySum(CategoryStatisticsDTO categoryStatisticsDTO);
 }
