@@ -1,7 +1,7 @@
 <template>
-	<view style="padding: 10px;">
+	<view>
 		<!-- 金额：数字输入框，绑定初始值并添加货币后缀 -->
-		<van-form>
+		<van-form @submit="onSubmit">
 			<van-cell-group>
 				<van-field
 					v-model="formData.amount"
@@ -19,17 +19,37 @@
 					v-model="formData.categoryName"
 					name="categoryName"
 					label="分类"
-					placeholder="请输入消费分类"
+					placeholder="分类名"
+					readonly
+					is-link
+					@click="openDialog"
 				/>
-			
-			
-			<!-- 日期：只读输入框（如需编辑可搭配日期选择器），绑定格式化后的初始值 -->
+				
+			<van-dialog v-model:show="DialogShow" title="选择分类" show-cancel-button >
+				
+				<view class="category-list">
+					<van-tag
+						v-for="(item,index) in categoryList"
+						:index = "item"
+						:type="formData.categoryName === item.name ? 'success' : 'primary'"
+						@click="selectCategory(item)"
+						class="category-tag"
+						round
+						size="large"
+						plain 
+					>
+					{{ item.name }}
+					</van-tag>
+				</view>
+			</van-dialog>
+
+			<!-- 日期 -->
 		
 				<van-field
 				  v-model="formData.createTime"
 				  is-link
 				  readonly
-				  name="datePicker"
+				  name="create_time"
 				  label="时间选择"
 				  placeholder="点击选择时间"
 				  @click="showPicker = true"
@@ -39,7 +59,7 @@
 				</van-popup>
 	
 			
-			<!-- 备注：文本输入框，绑定初始值（无备注时显示空） -->
+			<!-- 备注 -->
 
 				<van-field
 					v-model="formData.remark"
@@ -49,39 +69,55 @@
 				/>
 		
 			
-			<!-- 收支类型：文本输入框（如需编辑可搭配选择器），绑定初始值 -->
+			<!-- 收支类型 -->
 	
-				<van-field
-					v-model="formData.typeText"
-					name="type"
-					label="类型"
-					placeholder="请选择收支类型"
-				/>
+				<van-field name="type" label="收支类型">
+				  <template #input>
+				    <van-radio-group v-model="checked" direction="horizontal" disabled>
+				      <van-radio name="1">收入</van-radio>
+				      <van-radio name="2">支出</van-radio>
+				    </van-radio-group>
+				  </template>
+				</van-field>
+
 			</van-cell-group>
+			 <div style="margin: 16px;">
+			    <van-button round block type="primary" native-type="submit">
+			      提交
+			    </van-button>
+			  </div>
 		</van-form>
 		
 	</view>
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'; // 只导入vue原生的API
-import { onLoad } from '@dcloudio/uni-app'; // 单独导入UniApp的onLoad
+import { ref, reactive } from 'vue'; 
+import { onLoad } from '@dcloudio/uni-app'; 
 import { http } from '../../utils/request';
 import dayjs from 'dayjs';
-// 收支类型映射
-const typeMap = {
-	1: '收入',
-	2: '支出',
-	3: '转账'
-};
+const DialogShow = ref(false)
+//查询到的分类
+const categoryList = ref([]);
+// 添加分类的名字
+const openDialog = async()=>{
+	await getCategory();
+	DialogShow.value = true
+}
 
-// 表单数据对象，用于绑定 van-field 的 v-model
+// 选择分类：赋值给表单 + 关闭弹窗
+const selectCategory = (item) => {
+	formData.categoryName = item.name;
+	DialogShow.value = false;
+};
+// 收支类型
+const checked = ref('1');
+// 表单数据对象
 const formData = reactive({
 	amount: '',        // 金额
 	categoryName: '',  // 分类名称
 	createTime: '',    // 格式化后的日期
 	remark: '',        // 备注
-	typeText: '',      // 收支类型文本（收入/支出/转账）
 	type: ''           // 收支类型
 });
 
@@ -115,7 +151,7 @@ const loadBillDetail = async (id) => {
 
 // 初始化表单数据
 const initFormData = () => {
-	console.log("账单详情金额：", billDetail.value.amount);
+	// console.log("账单详情金额：", billDetail.value.amount);
 	// 金额
 	formData.amount = billDetail.value.amount || '';
 	// 分类名称
@@ -125,8 +161,44 @@ const initFormData = () => {
 	// 备注
 	formData.remark = billDetail.value.remark || '';
 	// 收支类型
-	formData.typeText = typeMap[billDetail.value.type] || '';
+	checked.value = String(billDetail.value.type) || '';
 	// 保留原始类型值
 	formData.type = billDetail.value.type || '';
 };
+//更改提交
+const onSubmit = (values) => {
+    console.log('submit', values);
+};
+
+// 获取分类数据
+const getCategory = async()=> {
+	try{
+		if (!formData.type) {
+			console.warn('收支类型为空，无法获取分类');
+			categoryList.value = [];
+			return;
+		}
+		const res  =  await http.get(`/user/queryTypeCategory?type=${formData.type}`)
+		categoryList.value = res||[];
+		console.log("分类数据：", categoryList.value);
+	}catch(error){
+		console.error('获取分类失败：', err);
+		categoryList.value = [];
+	}
+}
+
 </script>
+
+<style scoped>
+.category-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 15px;
+	padding: 10px;
+	justify-content: center;
+}
+.category-tag {
+	padding: 5px 12px;
+	cursor: pointer;
+}
+</style>

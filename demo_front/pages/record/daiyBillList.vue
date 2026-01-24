@@ -12,7 +12,7 @@
 			:key="item.id"
 			:label="`${item.categoryName}`"
 			:title="`${item.type === 1 ? '+' : '-'}${item.amount}`"
-			:value="`${item.createTime[1]}-${item.createTime[2]}`"
+			:value="`${dayjs(item.createTime).format('YYYY/MM/DD')}`"
 			@click="goToBillDetail(item.id)"
 		/>
 		</van-list>
@@ -23,7 +23,7 @@
 	import { useBillStore } from '../../stores/useBillStore';
 	import { onLoad } from '@dcloudio/uni-app';
 	import { ref } from 'vue';
-	
+	import dayjs from 'dayjs';
 	const billStore = useBillStore();
 	const currentDate = ref('');
 	const list = ref([]);

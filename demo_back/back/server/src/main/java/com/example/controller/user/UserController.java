@@ -106,6 +106,7 @@ public class UserController {
     public Result<List<Category>> queryTypeCategory(Integer type){
         log.info("根据类型查询分类：{}", type);
         List<Category> categoryList = userService.queryTypeCategory(type);
+        log.info("categoryList:{}",categoryList);
         return Result.success(categoryList);
     }
 
