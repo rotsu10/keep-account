@@ -46,7 +46,7 @@
 			console.log("dateParts",dateParts);
 			const dateObject = {
 				year: parseInt(dateParts[0]),
-				month: parseInt(dateParts[1]), // 直接使用，因为 '11' -> 11
+				month: parseInt(dateParts[1]),
 				day: parseInt(dateParts[2]),
 				page: currentPage.value, // 传递当前页码
 				pageSize: pageSize.value, // 传递每页条数

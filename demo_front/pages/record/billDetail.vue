@@ -1,72 +1,132 @@
 <template>
-	<view>
-		<van-cell-group>
-		  <!-- 金额：绑定 amount 字段，可加货币符号优化显示 -->
-		  <van-cell title="金额" :value="`${billDetail?.amount || 0}`" label="交易金额" />
-		</van-cell-group>
-		<van-cell-group>
-		  <!-- 分类：绑定 categoryName 字段（来自关联的category表） -->
-		  <van-cell title="分类" :value="billDetail?.categoryName" label="消费分类" />
-		</van-cell-group>
-		<van-cell-group>
-		  <!-- 日期：绑定 billDate 字段 -->
-		  <van-cell title="日期" :value="billDetail?.createTime? formatFullTime(billDetail.createTime): '未知日期'" label="交易日期" />
-		</van-cell-group>
-		<van-cell-group>
-		  <van-cell title="备注" :value="billDetail?.remark || '无备注'" label="附加说明" />
-		</van-cell-group>
-		<van-cell-group>
-		  <van-cell 
-		    title="类型" 
-		    :value="typeMap[billDetail?.type] || '未知类型'" 
-		    label="收支类型" 
-		  />
-		</van-cell-group>
+	<view style="padding: 10px;">
+		<!-- 金额：数字输入框，绑定初始值并添加货币后缀 -->
+		<van-form>
+			<van-cell-group>
+				<van-field
+					v-model="formData.amount"
+					name="amount"
+					label="金额"
+					placeholder="请输入交易金额"
+					type="number"
+					suffix="元"
+				/>
+			
+			
+			<!-- 分类：文本输入框，绑定初始值 -->
+			
+				<van-field
+					v-model="formData.categoryName"
+					name="categoryName"
+					label="分类"
+					placeholder="请输入消费分类"
+				/>
+			
+			
+			<!-- 日期：只读输入框（如需编辑可搭配日期选择器），绑定格式化后的初始值 -->
+		
+				<van-field
+				  v-model="formData.createTime"
+				  is-link
+				  readonly
+				  name="datePicker"
+				  label="时间选择"
+				  placeholder="点击选择时间"
+				  @click="showPicker = true"
+				/>
+				<van-popup v-model:show="showPicker" position="bottom">
+				  <van-date-picker @confirm="onConfirm" @cancel="showPicker = false" />
+				</van-popup>
+	
+			
+			<!-- 备注：文本输入框，绑定初始值（无备注时显示空） -->
+
+				<van-field
+					v-model="formData.remark"
+					name="remark"
+					label="备注"
+					placeholder="请输入附加说明"
+				/>
+		
+			
+			<!-- 收支类型：文本输入框（如需编辑可搭配选择器），绑定初始值 -->
+	
+				<van-field
+					v-model="formData.typeText"
+					name="type"
+					label="类型"
+					placeholder="请选择收支类型"
+				/>
+			</van-cell-group>
+		</van-form>
+		
 	</view>
 </template>
 
 <script setup>
-	import{ref} from 'vue';
-	import { onLoad } from '@dcloudio/uni-app';
-	import { http } from '../../utils/request';
-	const billId = ref('');
-	const billDetail = ref({})
-	const typeMap = {
-		1:'收入',
-		2:'支出',
-		3:'转账'
+import { ref, reactive } from 'vue'; // 只导入vue原生的API
+import { onLoad } from '@dcloudio/uni-app'; // 单独导入UniApp的onLoad
+import { http } from '../../utils/request';
+import dayjs from 'dayjs';
+// 收支类型映射
+const typeMap = {
+	1: '收入',
+	2: '支出',
+	3: '转账'
+};
+
+// 表单数据对象，用于绑定 van-field 的 v-model
+const formData = reactive({
+	amount: '',        // 金额
+	categoryName: '',  // 分类名称
+	createTime: '',    // 格式化后的日期
+	remark: '',        // 备注
+	typeText: '',      // 收支类型文本（收入/支出/转账）
+	type: ''           // 收支类型
+});
+
+//时间选择器
+const showPicker =ref(false)
+const onConfirm = ({ selectedValues }) => {
+      // formData.createTime = selectedValues.join('/');
+	  formData.createTime = dayjs(selectedValues).format('YYYY/MM/DD');
+      showPicker.value = false;
+    };
+// 账单详情数据
+const billDetail = ref({});
+
+onLoad((options) => {
+	console.log("页面入参：", options);
+	if (options.id) {
+		loadBillDetail(options.id);
 	}
-	
-	onLoad((options)=>{
-		console.log("接收的账单id:",options);
-		if(options.id){
-			billId.value = options.id;
-			loadBillDetail(options.id);
-		}
-	})
-	
-	// 完整时间格式化：[年,月,日,时,分,秒] → "yyyy-MM-dd HH:mm:ss"
-	const formatFullTime = (timeArr) => {
-	  const [year, month, day, hour, minute, second] = timeArr;
-	  
-	  // 对所有需要补零的部分（月、日、时、分、秒）处理：单数补零
-	  const pad = (num) => String(num).padStart(2, '0'); // 补零工具函数
-	  
-	  return `${year}-${pad(month)}-${pad(day)} ${pad(hour)}:${pad(minute)}:${pad(second)}`;
-	};
-	
-	
-	const loadBillDetail = async(id)=>{
-		try{
-			const res = await http.get(`/user/queryBillDetail?billId=${id}`)
-			console.log('账单详情:',res);
-			billDetail.value = res;
-		}catch(err){
-			console.log('查询账单详情失败err',err);
-		}
+});
+
+// 加载账单详情并初始化表单初始值
+const loadBillDetail = async (id) => {
+	try {
+		const res = await http.get(`/user/queryBillDetail?billId=${id}`);
+		billDetail.value = res;
+		initFormData();
+	} catch (err) {
+		console.log('查询账单详情失败', err);
 	}
+};
+
+// 初始化表单数据
+const initFormData = () => {
+	console.log("账单详情金额：", billDetail.value.amount);
+	// 金额
+	formData.amount = billDetail.value.amount || '';
+	// 分类名称
+	formData.categoryName = billDetail.value.categoryName || '';
+	// 日期
+	formData.createTime = dayjs(billDetail.value.createTime).format('YYYY/MM/DD');
+	// 备注
+	formData.remark = billDetail.value.remark || '';
+	// 收支类型
+	formData.typeText = typeMap[billDetail.value.type] || '';
+	// 保留原始类型值
+	formData.type = billDetail.value.type || '';
+};
 </script>
-
-<style>
-
-</style>

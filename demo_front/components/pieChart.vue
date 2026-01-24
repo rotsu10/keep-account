@@ -20,7 +20,6 @@ const getCategorySum = async()=>{
 	try{
 		const res = await http.post('/user/getCategorySum',{...props});
 		data.value =res;
-		console.log("查询到的结果是",res);
 	}catch(error){
 		console.error("查询错误",error)
 	}

@@ -11,9 +11,9 @@
 		</view>
 
 		<view class="button">
-			<van-button type="default" round size="normal" @click="handleTypeClick(1)" :class="{ 'button-active': activeType === 1 }">支出</van-button>
-			<van-button type="default" round size="normal" @click="handleTypeClick(2)" :class="{ 'button-active': activeType === 2 }">收入</van-button>
-			<van-button type="default" round size="normal" @click="handleTypeClick(3)" :class="{ 'button-active': activeType === 3 }">转账</van-button>
+			<van-button type="default" round size="normal" @click="handleTypeClick(1)" :class="{ 'button-active': activeType === 1 }">收入</van-button>
+			<van-button type="default" round size="normal" @click="handleTypeClick(2)" :class="{ 'button-active': activeType === 2 }">支出</van-button>
+			<!-- <van-button type="default" round size="normal" @click="handleTypeClick(3)" :class="{ 'button-active': activeType === 3 }">转账</van-button> -->
 		</view>
 
 		<view>
@@ -76,7 +76,7 @@
 	console.log("list",list.value);
 	
 	const onClickLeft = () => history.back(); //返回
-	const currentType = ref(1); // 当前选中的类型（1-支出，2-收入，3-转账）
+	const currentType = ref(1); // 当前选中的类型（1-收入，2-支出，3-转账）
 
 	const DialogShow = ref(false) //删除分类弹出层
 	const show = ref(false) //plus弹出层

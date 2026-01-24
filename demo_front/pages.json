@@ -1,29 +1,11 @@
-// {
-// 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-// 		{
-// 			"path": "pages/index/index",
-// 			"style": {
-// 				"navigationBarTitleText": "custom"
-// 			}
-// 		}
-// 	],
-// 	"globalStyle": {
-// 		"navigationBarTextStyle": "black",
-// 		"navigationBarTitleText": "index",
-// 		"navigationBarBackgroundColor": "#F8F8F8",
-// 		"backgroundColor": "#F8F8F8"
-// 	},
-// 	"uniIdRouter": {}
-// }
 {
   "pages": [
-	// {
-	// 	"path" : "pages/debug/index",
-	// 	"style" : 
-	// 	{
-	// 		"navigationBarTitleText" : "组件调试"
-	// 	}
-	// },
+    // {
+    //   "path": "pages/debug/index",
+    //   "style": {
+    //     "navigationBarTitleText": "组件调试"
+    //   }
+    // },
     {
       "path": "pages/common/login",
       "style": {
@@ -37,7 +19,7 @@
       "path": "pages/home/home",
       "style": {
         "navigationStyle": "custom",
-		"navigationBarTitleText":""
+        "navigationBarTitleText": ""
       }
     },
     {
@@ -60,49 +42,44 @@
         "navigationBarTitleText": ""
       }
     },
-	{
-	  "path": "pages/home/stastics",
-	  "style": {
-	    "navigationStyle": "custom",
-	    "navigationBarTitleText": "",
-		"disableScroll": false
-	  }
-	},
     {
-    	"path" : "pages/mine_list/queryByDate",
-    	"style" : 
-    	{
-    		"navigationBarTitleText" : ""
-    	}
-    },
-	{
-		"path" : "pages/mine_list/categoryStatistics",
-		"style" : 
-		{
-			"navigationBarTitleText" : ""
-		}
-	},
-    {
-    	"path" : "pages/record/billDetail",
-    	"style" : 
-    	{
-    		"navigationBarTitleText" : ""
-    	}
+      "path": "pages/home/stastics",
+      "style": {
+        "navigationStyle": "custom",
+        "navigationBarTitleText": "",
+        "disableScroll": false
+      }
     },
     {
-    	"path" : "pages/record/daiyBillList",
-    	"style" : 
-    	{
-    		"navigationBarTitleText" : ""
-    	}
+      "path": "pages/mine_list/queryByDate",
+      "style": {
+        "navigationBarTitleText": ""
+      }
     },
-	{
-		"path" : "pages/record/moveCategory",
-		"style" : 
-		{
-			"navigationBarTitleText" : ""
-		}
-	}
+    {
+      "path": "pages/mine_list/categoryStatistics",
+      "style": {
+        "navigationBarTitleText": ""
+      }
+    },
+    {
+      "path": "pages/record/billDetail",
+      "style": {
+        "navigationBarTitleText": ""
+      }
+    },
+    {
+      "path": "pages/record/daiyBillList",
+      "style": {
+        "navigationBarTitleText": ""
+      }
+    },
+    {
+      "path": "pages/record/moveCategory",
+      "style": {
+        "navigationBarTitleText": ""
+      }
+    }
   ],
   "tabBar": {
     "list": [
@@ -111,13 +88,13 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/home/category", 
+        "pagePath": "pages/home/category",
         "text": "分类"
       },
-	  {
-	    "pagePath": "pages/home/stastics",
-	    "text": "图表"
-	  },
+      {
+        "pagePath": "pages/home/stastics",
+        "text": "图表"
+      },
       {
         "pagePath": "pages/home/mine",
         "text": "我的"
