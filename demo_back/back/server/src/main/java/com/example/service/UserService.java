@@ -4,7 +4,6 @@ package com.example.service;
 import com.example.dto.*;
 import com.example.entity.*;
 import com.example.result.PageResult;
-import com.example.result.Result;
 import com.example.vo.*;
 
 import java.time.LocalDateTime;
@@ -70,5 +69,8 @@ public interface UserService {
     UserBillVO updateBill(UserBillDTO userBillDTO);
 
     //根据年月日查询统计查询每个分类账单和
-    List<CategoryStatisticsVO> getCategorySum(CategoryStatisticsDTO categoryStatisticsDTO);
+    List<CategoryStatisticsVO> getCategorySum(TimeDTO timeDTO);
+
+    //根据年月日统计所有账单
+    List<BillStatisticsVO> getSumByDate(TimeDTO timeDTO);
 }

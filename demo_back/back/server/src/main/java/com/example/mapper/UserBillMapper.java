@@ -1,13 +1,16 @@
 package com.example.mapper;
 import com.example.dto.BillDeleteDTO;
 import com.example.dto.RecordQueryDTO;
+import com.example.dto.TimeDTO;
 import com.example.dto.UserBillDTO;
 import com.example.entity.DailyCost;
 import com.example.entity.SumStatistics;
 import com.example.entity.UserBill;
+import com.example.vo.BillStatisticsVO;
 import com.example.vo.CategoryStatisticsVO;
 import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -49,4 +52,7 @@ public interface UserBillMapper {
 
     //更新修改账单
     int updateBill(UserBill userBill);
+
+    //根据年月日查询所有账单
+    List<BillStatisticsVO> getSumByDate(@Param("timeDTO")TimeDTO timeDTO,@Param("userId") Long userId);
 }

@@ -15,7 +15,8 @@
 </template>
 
 <script setup>
-	import { ref, onMounted, watch } from 'vue';
+	import { ref, onMounted, watch} from 'vue';
+	import {  onShow } from '@dcloudio/uni-app';
 	import { http } from '../utils/request';
 	import dayjs from 'dayjs'; 
 	
@@ -89,6 +90,38 @@
 	    });
 	};
 	
+	//重新渲染日历
+	async function refreshCalendarData() {
+			try {
+				// 1. 重新请求最新的每日花费数据
+				const result = await http.get("/user/queryDailyCosts", {}, {
+					loadingText: '加载花费数据...'
+				});
+				
+				// 2. 数据格式化（转为{日期: 收支数据}的map结构）
+				const dataList = Array.isArray(result) ? result : (result?.data || []);
+				const costMap = {};
+				dataList.forEach(item => {
+					const dateKey = formatDateKey(item.date);
+					costMap[dateKey] = {
+						income: item.income || 0,
+						cost: item.cost || 0
+					};
+				});
+				
+				// 3. 更新数据 + 强制刷新日历
+				dailyCosts.value = costMap;
+				calendarKey.value++; // key+1 → 日历组件重新渲染
+				console.log("日历数据已刷新：", costMap);
+			} catch (err) {
+				console.error("刷新每日花费失败：", err);
+				dailyCosts.value = {};
+			}
+		}
+	onShow(async () => {
+			await refreshCalendarData();
+		});
+	
 	// 监听收支数据变化，刷新日历
 	watch(
 		dailyCosts,
@@ -100,13 +133,4 @@
 </script>
 
 <style>
-	/* 可选：自定义日历收支金额样式 */
-	.van-calendar__day-top-info {
-		color: #f44336; /* 支出红色 */
-		font-size: 12px;
-	}
-	.van-calendar__day-bottom-info {
-		color: #4caf50; /* 收入绿色 */
-		font-size: 12px;
-	}
 </style>

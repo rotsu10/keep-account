@@ -79,7 +79,13 @@
       "style": {
         "navigationBarTitleText": ""
       }
-    }
+	},
+	{
+		"path": "components/LineChart",
+		"style": {
+			"navigationBarTitleText": ""
+		}
+	}
   ],
   "tabBar": {
     "list": [

@@ -44,7 +44,6 @@
 			</van-dialog>
 
 			<!-- 日期 -->
-		
 				<van-field
 				  v-model="formData.createTime"
 				  is-link
@@ -104,10 +103,10 @@ const openDialog = async()=>{
 	await getCategory();
 	DialogShow.value = true
 }
-
 // 选择分类：赋值给表单 + 关闭弹窗
 const selectCategory = (item) => {
 	formData.categoryName = item.name;
+	formData.categoryId = item.id
 	DialogShow.value = false;
 };
 // 收支类型
@@ -115,7 +114,8 @@ const checked = ref('1');
 // 表单数据对象
 const formData = reactive({
 	amount: '',        // 金额
-	categoryName: '',  // 分类名称
+	categoryName: '',  // 分类名
+	categoryId: '',  // 分类id
 	createTime: '',    // 格式化后的日期
 	remark: '',        // 备注
 	type: ''           // 收支类型
@@ -125,7 +125,7 @@ const formData = reactive({
 const showPicker =ref(false)
 const onConfirm = ({ selectedValues }) => {
       // formData.createTime = selectedValues.join('/');
-	  formData.createTime = dayjs(selectedValues).format('YYYY/MM/DD');
+	  formData.createTime = dayjs(selectedValues).format('YYYY-MM-DD');
       showPicker.value = false;
     };
 // 账单详情数据
@@ -156,8 +156,10 @@ const initFormData = () => {
 	formData.amount = billDetail.value.amount || '';
 	// 分类名称
 	formData.categoryName = billDetail.value.categoryName || '';
+	// 分类id
+	formData.categoryId = billDetail.value.categoryId || '';
 	// 日期
-	formData.createTime = dayjs(billDetail.value.createTime).format('YYYY/MM/DD');
+	formData.createTime = dayjs(billDetail.value.createTime).format('YYYY-MM-DD');
 	// 备注
 	formData.remark = billDetail.value.remark || '';
 	// 收支类型
@@ -165,9 +167,38 @@ const initFormData = () => {
 	// 保留原始类型值
 	formData.type = billDetail.value.type || '';
 };
-//更改提交
-const onSubmit = (values) => {
-    console.log('submit', values);
+// 提交表单
+const onSubmit = async (values) => {
+    try {
+		const submitData = {
+			id: billDetail.value.id || '', 
+			amount: formData.amount,
+			categoryId: formData.categoryId,
+			 //dayjs('2019-01-25').format('[YYYYescape] YYYY-MM-DDTHH:mm:ssZ[Z]') 
+			createTime: dayjs(formData.createTime).format('YYYY-MM-DD HH:mm:ss'),
+			remark: formData.remark,
+			type: formData.type
+		};
+
+		console.log('提交给后端的纯净数据：', submitData);
+		
+		const result = await http.post("/user/updateDetail", submitData, {
+			loadingText: '提交中...'
+		});
+
+		// 3. 提交成功反馈
+		uni.showToast({
+			title: '修改成功',
+			icon: 'success'
+		});
+
+	} catch (err) {
+		console.error('提交失败：', err);
+		uni.showToast({
+			title: '提交失败，请重试',
+			icon: 'error'
+		});
+	}
 };
 
 // 获取分类数据

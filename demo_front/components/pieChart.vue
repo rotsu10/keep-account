@@ -5,125 +5,179 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, watch } from 'vue';
+import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue';
 import * as echarts from 'echarts';
-import { onResize } from '@dcloudio/uni-app';
+// import { onResize } from '@dcloudio/uni-app';
 import { http } from '../utils/request';
 
-
-const props = defineProps(['type','timeType', 'timeValue']);
-const data = ref('');
-// 图表实例
+// 接收父组件传参
+const props = defineProps(['type', 'timeType', 'timeValue']);
+// 图表数据
+const chartData = ref([]);
+// ECharts实例
 let myChart = null;
+// 防抖标记
+// let resizeTimer = null;
 
-const getCategorySum = async()=>{
-	try{
-		const res = await http.post('/user/getCategorySum',{...props});
-		data.value =res;
-	}catch(error){
-		console.error("查询错误",error)
-	}
-}
-
-// 初始化图表（仅适配移动端）
-const initChart = () => {
-  // 获取移动端容器尺寸（统一逻辑）
-  uni.createSelectorQuery().select('#pie-chart').boundingClientRect(rect => {
-    if (!rect) return;
-
-    // 销毁旧实例
-    if (myChart) {
-      myChart.dispose();
-    }
-
-    // 初始化ECharts（移动端DOM获取兼容）
-    const chartDom = document.getElementById('pie-chart');
-    myChart = echarts.init(chartDom);
-
-    // 移动端专属配置
-    const option = {
-      tooltip: {
-        trigger: 'item',
-        textStyle: { fontSize: 12 } 
-      },
-      legend: {
-        top: '5%',
-        left: 'center',
-        textStyle: { fontSize: 11 }
-      },
-      series: [
-        {
-          name: 'Access From',
-          type: 'pie',
-          radius: ['35%', '65%'],
-          avoidLabelOverlap: false,
-          itemStyle: {
-            borderRadius: 8, 
-            borderColor: '#fff',
-            borderWidth: 1 
-          },
-          label: {
-            show: false,
-            position: 'center'
-          },
-          emphasis: {
-            label: {
-              show: true,
-              fontSize: 28, 
-              fontWeight: 'bold'
-            }
-          },
-          labelLine: {
-            show: false
-          },
-          data: data.value
-        }
-      ]
+// 1. 异步获取分类统计数据
+const getCategorySum = async () => {
+  try {
+    console.log("请求参数：", props);
+    const params = {
+      type: props.type,
+      timeType: props.timeType,
+      timeValue: props.timeValue
     };
-
-    myChart.setOption(option);
-  }).exec();
-};
-
-// 移动端屏幕旋转/尺寸变化适配
-const handleResize = () => {
-  if (myChart) {
-    myChart.resize();
+    const res = await http.post('/user/getCategorySum', params);
+    chartData.value = Array.isArray(res) ? res : [];
+    console.log("获取到的图表数据：", chartData.value);
+    updateChart();
+  } catch (error) {
+    console.error("查询分类统计失败：", error);
+    chartData.value = [];
   }
 };
 
-// 生命周期
-onMounted(() => {
-  // 移动端延迟初始化（确保DOM渲染）
-  setTimeout(initChart, 80);
-  // 监听移动端屏幕变化
-  onResize(handleResize);
+// 2. 初始化图表
+const initChart = async () => {
+  await nextTick();
+  uni.createSelectorQuery().select('#pie-chart').boundingClientRect(async (rect) => {
+    if (!rect || !rect.width || !rect.height) {
+      console.warn("图表容器未获取到尺寸，初始化失败");
+      return;
+    }
+
+    if (myChart) {
+      myChart.dispose();
+      myChart = null;
+    }
+
+    const chartDom = document.getElementById('pie-chart');
+    if (!chartDom) return;
+
+    myChart = echarts.init(chartDom);
+    setChartOption();
+  }).exec();
+};
+
+// 3. 更新图表配置
+const setChartOption = () => {
+  if (!myChart) return;
+
+  const option = {
+    tooltip: {
+      trigger: 'item',
+      textStyle: { fontSize: 12 },
+      position: ['50%', '50%'],
+    },
+    legend: {
+      top: '5%',
+      left: 'center',
+      textStyle: { fontSize: 11 },
+      formatter: (name) => {
+        return name.length > 6 ? `${name.slice(0, 6)}...` : name;
+      }
+    },
+    series: [
+      {
+        name: '收支金额', 
+        type: 'pie',
+        radius: ['35%', '65%'],
+        avoidLabelOverlap: false,
+        itemStyle: {
+          borderRadius: 8,
+          borderColor: '#fff',
+          borderWidth: 1
+        },
+        label: {
+          show: true,
+		  position:'outside',
+		  fontSize:10,
+          formatter: '{b}: {d}%' 
+        },
+		labelLine: {
+		    show: true, // 显示标签线
+			length:3,
+		    lineStyle: {
+		      width: 1, // 线宽
+		      color: '#666' ,// 线颜色
+			}
+		 },
+        emphasis: {
+          label: {
+            show: true,
+            fontSize: 12,
+            fontWeight: 'bold'
+          }
+        },
+        data: chartData.value
+      }
+    ]
+  };
+
+  myChart.setOption(option, true);
+};
+
+// 4. 仅更新图表数据
+const updateChart = () => {
+  if (!myChart) {
+    initChart();
+    return;
+  }
+  setChartOption();
+};
+
+// 5. 防抖处理屏幕尺寸变化（移动端性能优化）
+// const handleResize = () => {
+//   clearTimeout(resizeTimer);
+//   resizeTimer = setTimeout(() => {
+//     if (myChart) {
+//       myChart.resize();
+//     }
+//   }, 100); // 防抖延迟100ms
+// };
+
+// 6. 监听Props变化
+watch(
+  [() => props.type, () => props.timeType, () => props.timeValue],
+  async () => {
+    await getCategorySum(); 
+  },
+  {
+    immediate: true,
+    deep: true 
+  }
+);
+
+// 生命周期管理
+onMounted(async () => {
+  await initChart();
+  // onResize(handleResize);
 });
 
 onUnmounted(() => {
-  // 销毁实例释放内存（移动端性能优化）
+  // clearTimeout(resizeTimer);
   if (myChart) {
     myChart.dispose();
     myChart = null;
   }
 });
-
-watch([() => props.type, () => props.timeValue], () => {
-  getCategorySum(); // 触发接口请求
-  initChart(); // 重新渲染图表
-}); 
 </script>
 
 <style scoped>
 .chart-wrapper {
   width: 100%;
-  height: 400rpx; 
+  height: 400rpx;
   padding: 15rpx;
   box-sizing: border-box;
+  /* 移动端适配：避免容器被挤压 */
+  min-height: 200rpx;
 }
 
 .chart {
   width: 100%;
   height: 100%;
+  /* 确保容器有尺寸，避免ECharts初始化失败 */
+  display: block;
 }
 </style>

@@ -175,9 +175,9 @@ public class UserController {
 
     //根据日期和类型统计账单
     @PostMapping("/categoryStatistics")
-    public Result<List<CategoryStatisticsVO>> categoryStatistics(@RequestBody CategoryStatisticsDTO categoryStatisticsDTO){
-        log.info("根据日期和类型统计账单：{}", categoryStatisticsDTO);
-        List<CategoryStatisticsVO> list = userService.categoryStatistics(categoryStatisticsDTO.getType(),categoryStatisticsDTO.getTimeValue(),categoryStatisticsDTO.getTimeType());
+    public Result<List<CategoryStatisticsVO>> categoryStatistics(@RequestBody TimeDTO timeDTO){
+        log.info("根据日期和类型统计账单：{}", timeDTO);
+        List<CategoryStatisticsVO> list = userService.categoryStatistics(timeDTO.getType(), timeDTO.getTimeValue(), timeDTO.getTimeType());
         log.info("list:{}", list);
         return Result.success(list);
     }
@@ -208,8 +208,7 @@ public class UserController {
 
     //根据分类id查询账单
     @GetMapping("getBillByCategoryIds")
-    public Result<List<UserBillDTO>> getBillByCategoryIds(
-            @RequestParam List<Long> categoryIds){
+    public Result<List<UserBillDTO>> getBillByCategoryIds(@RequestParam List<Long> categoryIds){
         List<UserBillDTO> list = userService.getBillByCategoryIds(categoryIds);
         return Result.success(list);
     }
@@ -224,10 +223,27 @@ public class UserController {
 
     //根据年月日查询统计查询每个分类账单和
     @PostMapping("/getCategorySum")
-    public Result<List<CategoryStatisticsVO>> getCategorySum(@RequestBody CategoryStatisticsDTO categoryStatisticsDTO){
-        log.info("根据年月日查询统计查询每个分类账单和:{}",categoryStatisticsDTO);
-        List<CategoryStatisticsVO> list= userService.getCategorySum(categoryStatisticsDTO);
+    public Result<List<CategoryStatisticsVO>> getCategorySum(@RequestBody TimeDTO timeDTO){
+        log.info("根据年月日查询统计查询每个分类账单和:{}", timeDTO);
+        List<CategoryStatisticsVO> list= userService.getCategorySum(timeDTO);
         log.info("list:{}", list);
+        return Result.success(list);
+    }
+
+    //更新账单
+    @PostMapping("/updateDetail")
+    public Result updateDetail(@RequestBody UserBillDTO userBillDTO){
+        log.info("userBillDTO:{}",userBillDTO);
+        UserBillVO userBillVO = userService.updateBill(userBillDTO);
+        log.info("userBillVO:{}",userBillVO);
+        return Result.success(userBillVO);
+    }
+
+    //根据年月日统计所有账单  折线图 日期+sum
+    @PostMapping("/getSumByDate")
+    public Result<List<BillStatisticsVO>> getSumByDate(@RequestBody TimeDTO timeDTO){
+        log.info("根据年月日统计所有账单:{}", timeDTO);
+        List<BillStatisticsVO> list = userService.getSumByDate(timeDTO);
         return Result.success(list);
     }
 }

@@ -48,9 +48,9 @@
 	});
 
 	// 监听type变化
-	watch(type, () => {
-		selectedDate.value = '';
-	});
+	// watch(type, () => {
+	// 	selectedDate.value = '';
+	// });
 
 	// 发送数据的函数
 	const triggerEmit = () => {

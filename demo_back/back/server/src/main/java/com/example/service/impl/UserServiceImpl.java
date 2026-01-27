@@ -2,7 +2,6 @@ package com.example.service.impl;
 
 import com.example.entity.*;
 import com.example.exception.*;
-import com.example.result.Result;
 import com.example.vo.*;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -20,8 +19,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
-import javax.security.auth.login.AccountException;
-import javax.smartcardio.CardException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -272,13 +269,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<CategoryStatisticsVO> getCategorySum(CategoryStatisticsDTO categoryStatisticsDTO) {
-        String timeType = categoryStatisticsDTO.getTimeType();//时间类型
-        String timeValue = categoryStatisticsDTO.getTimeValue();//具体时间
+    public List<CategoryStatisticsVO> getCategorySum(TimeDTO timeDTO) {
+        String timeType = timeDTO.getTimeType();//时间类型
+        String timeValue = timeDTO.getTimeValue();//具体时间
+        Long type = timeDTO.getType();//具体时间
         Long id = BaseContext.getCurrentId();
-        List<CategoryStatisticsVO> list = userBillMapper.categoryStatistics(id,null,timeValue,timeType);
+        List<CategoryStatisticsVO> list = userBillMapper.categoryStatistics(id,type,timeValue,timeType);
         log.info("userBill:{}",list);
         return list;
     }
+
+    @Override
+    public List<BillStatisticsVO> getSumByDate(TimeDTO timeDTO) {
+
+        Long userId = BaseContext.getCurrentId();
+        List<BillStatisticsVO> list = userBillMapper.getSumByDate(timeDTO,userId);
+        log.info("userBillMapper.getSumByDate(timeDTO,userId):{}",list);
+        return list;
+    }
+
 }
 

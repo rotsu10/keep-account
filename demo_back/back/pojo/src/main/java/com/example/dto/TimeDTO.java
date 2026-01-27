@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class CategoryStatisticsDTO {
+public class TimeDTO {
     @JsonProperty(required = false)
     Long type;
 
