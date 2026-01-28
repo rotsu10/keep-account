@@ -196,7 +196,8 @@
             <when test="timeDTO.timeType == 'year'">DATE_FORMAT(b.create_time, '%Y-%m')</when>
             <when test="timeDTO.timeType == 'month'">DATE_FORMAT(b.create_time, '%Y-%m-%d')</when>
             <when test="timeDTO.timeType == 'week'">DATE_FORMAT(b.create_time, '%Y-%u-%w')</when>
-        </choose> AS timeValue,
+        </choose>
+        AS timeValue,
         SUM(b.amount) AS total
         FROM user_bill b
         WHERE
@@ -215,6 +216,7 @@
                 <when test="timeDTO.timeType == 'week'">
                     AND DATE_FORMAT(b.create_time, '%Y-%u') = #{timeDTO.timeValue}
                 </when>
+                <otherwise>DATE_FORMAT(b.create_time, '%Y-%m-%d')</otherwise>
             </choose>
         </if>
         GROUP BY timeValue

@@ -29,7 +29,7 @@
 	} from 'vue';
 	import dayjs from 'dayjs';
 
-	const type = ref('date');
+	const type = ref('year');
 	const selectedDate = ref('');
 	const categoryType = ref('');
 	const emit = defineEmits(['sendDate']);

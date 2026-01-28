@@ -8,7 +8,7 @@
 import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue';
 import * as echarts from 'echarts';
 // import { onResize } from '@dcloudio/uni-app';
-import { http } from '../utils/request';
+import { http } from '../../utils/request';
 
 // 接收父组件传参
 const props = defineProps(['type', 'timeType', 'timeValue']);

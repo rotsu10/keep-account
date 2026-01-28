@@ -7,13 +7,20 @@
 			:time-value = 'timeValue'
 			>
 		</PieChartVue>
+		<LineChart
+			:type = 'categoryType'
+			:time-type = 'timeType' 
+			:time-value = 'timeValue'
+			>
+		</LineChart>
 	</view>
 </template>
 <script setup>
 	import { ref } from 'vue';
 	import AllSelectTimeVue from '../../components/AllSelectTime.vue';
 	import dayjsTool from '../../utils/dayjsTool';
-	import PieChartVue from '../../components/PieChart.vue';
+	import PieChartVue from '../../components/charts/PieChart.vue';
+	import LineChart from '../../components/charts/LineChart.vue'
 	const timeType = ref('');
 	const timeValue = ref('');
 	const categoryType = ref('')
