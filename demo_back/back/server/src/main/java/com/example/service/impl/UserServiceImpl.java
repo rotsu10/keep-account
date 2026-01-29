@@ -283,7 +283,10 @@ public class UserServiceImpl implements UserService {
     public List<BillStatisticsVO> getSumByDate(TimeDTO timeDTO) {
 
         Long userId = BaseContext.getCurrentId();
-        List<BillStatisticsVO> list = userBillMapper.getSumByDate(timeDTO,userId);
+        String timeValue = timeDTO.getTimeValue();
+        String timeType = timeDTO.getTimeType();
+        Long type = timeDTO.getType();
+        List<BillStatisticsVO> list = userBillMapper.getSumByDate(userId,type,timeValue,timeType);
         log.info("userBillMapper.getSumByDate(timeDTO,userId):{}",list);
         return list;
     }

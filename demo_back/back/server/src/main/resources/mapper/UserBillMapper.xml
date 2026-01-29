@@ -149,74 +149,34 @@
         WHERE id = #{id} and user_id = #{userId}
     </update>
 
-<!--    <select id="getSumByDate" resultType="com.example.vo.BillStatisticsVO">-->
-<!--        SELECT-->
-<!--        &lt;!&ndash; 1. 按timeType格式化日期作为分组维度，别名匹配VO的timeValue &ndash;&gt;-->
-<!--        CASE-->
-<!--        WHEN #{timeDTO.timeType} = 'year' THEN DATE_FORMAT(b.create_time, '%Y')-->
-<!--        WHEN #{timeDTO.timeType} = 'month' THEN DATE_FORMAT(b.create_time, '%Y-%m')-->
-<!--        ELSE DATE_FORMAT(b.create_time, '%Y-%m-%d')-->
-<!--        END AS timeValue,-->
-<!--        &lt;!&ndash; 2. 聚合金额，别名匹配VO的total &ndash;&gt;-->
-<!--        SUM(b.amount) AS total-->
-<!--        FROM user_bill b-->
-<!--        <where>-->
-<!--            user_id = #{userId}-->
-<!--            <if test="timeDTO.type != null and timeDTO.type != ''">-->
-<!--                AND b.type = #{timeDTO.type}-->
-<!--            </if>-->
-<!--            <if test="timeDTO.timeType != null and timeDTO.timeValue != null and timeDTO.timeValue != ''">-->
-<!--                <choose>-->
-<!--                    <when test="timeDTO.timeType == 'year'">-->
-<!--                        AND DATE_FORMAT(b.create_time, '%Y') = #{timeDTO.timeValue}-->
-<!--                    </when>-->
-<!--                    <when test="timeDTO.timeType == 'month'">-->
-<!--                        AND DATE_FORMAT(b.create_time, '%Y-%m') = #{timeDTO.timeValue}-->
-<!--                    </when>-->
-<!--                    <when test="timeDTO.timeType == 'day'  or timeDTO.timeType == 'date' ">-->
-<!--                        AND DATE_FORMAT(b.create_time, '%Y-%m-%d') = #{timeDTO.timeValue}-->
-<!--                    </when>-->
-<!--                </choose>-->
-<!--            </if>-->
-<!--        </where>-->
-<!--        &lt;!&ndash; 3. 关键：GROUP BY 子句必须包含SELECT中的非聚合字段（即格式化后的timeValue） &ndash;&gt;-->
-<!--        GROUP BY-->
-<!--        CASE-->
-<!--        WHEN #{timeDTO.timeType} = 'year' THEN DATE_FORMAT(b.create_time, '%Y')-->
-<!--        WHEN #{timeDTO.timeType} = 'month' THEN DATE_FORMAT(b.create_time, '%Y-%m')-->
-<!--        ELSE DATE_FORMAT(b.create_time, '%Y-%m-%d')-->
-<!--        END-->
-<!--        &lt;!&ndash; 可选：按时间维度排序，结果更直观 &ndash;&gt;-->
-<!--        ORDER BY timeValue ASC-->
-<!--    </select>-->
-
     <select id="getSumByDate" resultType="com.example.vo.BillStatisticsVO">
         SELECT
         <choose>
-            <when test="timeDTO.timeType == 'year'">DATE_FORMAT(b.create_time, '%Y-%m')</when>
-            <when test="timeDTO.timeType == 'month'">DATE_FORMAT(b.create_time, '%Y-%m-%d')</when>
-            <when test="timeDTO.timeType == 'week'">DATE_FORMAT(b.create_time, '%Y-%u-%w')</when>
+            <when test="timeType == 'year'">DATE_FORMAT(b.create_time, '%Y-%m')</when>
+            <when test="timeType == 'month'">DATE_FORMAT(b.create_time, '%Y-%m-%d')</when>
+            <when test="timeType == 'week'">DATE_FORMAT(b.create_time, '%Y-%u-%w')</when>
+            <otherwise>DATE_FORMAT(b.create_time, '%Y-%m')</otherwise>
         </choose>
         AS timeValue,
-        SUM(b.amount) AS total
+        SUM(CASE WHEN b.type = '1' THEN b.amount ELSE 0 END)
+        - SUM(CASE WHEN b.type = '2' THEN b.amount ELSE 0 END)  AS total
         FROM user_bill b
         WHERE
         b.user_id = #{userId}
-        <if test="timeDTO.type != null and timeDTO.type != ''">
-            AND b.type = #{timeDTO.type}
+        <if test="type != null and type != ''">
+            AND b.type = #{type}
         </if>
-        <if test="timeDTO.timeType != null and timeDTO.timeValue != null and timeDTO.timeValue != ''">
+        <if test="timeType != null and timeValue != null and timeValue != ''">
             <choose>
-                <when test="timeDTO.timeType == 'year'">
-                    AND DATE_FORMAT(b.create_time, '%Y') = #{timeDTO.timeValue}
+                <when test="timeType == 'year'">
+                    AND DATE_FORMAT(b.create_time, '%Y') = #{timeValue}
                 </when>
-                <when test="timeDTO.timeType == 'month'">
-                    AND DATE_FORMAT(b.create_time, '%Y-%m') = #{timeDTO.timeValue}
+                <when test="timeType == 'month'">
+                    AND DATE_FORMAT(b.create_time, '%Y-%m') = #{timeValue}
                 </when>
-                <when test="timeDTO.timeType == 'week'">
-                    AND DATE_FORMAT(b.create_time, '%Y-%u') = #{timeDTO.timeValue}
+                <when test="timeType == 'week'">
+                    AND DATE_FORMAT(b.create_time, '%Y-%u') = #{timeValue}
                 </when>
-                <otherwise>DATE_FORMAT(b.create_time, '%Y-%m-%d')</otherwise>
             </choose>
         </if>
         GROUP BY timeValue

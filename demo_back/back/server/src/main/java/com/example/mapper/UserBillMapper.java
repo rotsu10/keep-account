@@ -54,5 +54,6 @@ public interface UserBillMapper {
     int updateBill(UserBill userBill);
 
     //根据年月日查询所有账单
-    List<BillStatisticsVO> getSumByDate(@Param("timeDTO")TimeDTO timeDTO,@Param("userId") Long userId);
+    List<BillStatisticsVO> getSumByDate(Long userId, Long type, String timeValue, String timeType);
+
 }

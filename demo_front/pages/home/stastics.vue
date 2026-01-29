@@ -13,6 +13,7 @@
 			:time-value = 'timeValue'
 			>
 		</LineChart>
+		<queryByDate></queryByDate>
 	</view>
 </template>
 <script setup>
@@ -20,7 +21,8 @@
 	import AllSelectTimeVue from '../../components/AllSelectTime.vue';
 	import dayjsTool from '../../utils/dayjsTool';
 	import PieChartVue from '../../components/charts/PieChart.vue';
-	import LineChart from '../../components/charts/LineChart.vue'
+	import LineChart from '../../components/charts/LineChart.vue';
+	import queryByDate from '../mine_list/queryByDate.vue'
 	const timeType = ref('');
 	const timeValue = ref('');
 	const categoryType = ref('')

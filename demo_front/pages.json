@@ -81,7 +81,19 @@
       }
 	},
 	{
-		"path": "components/LineChart",
+		"path": "components/charts/LineChart",
+		"style": {
+			"navigationBarTitleText": ""
+		}
+	},
+	{
+		"path": "components/charts/PieChart",
+		"style": {
+			"navigationBarTitleText": ""
+		}
+	},
+	{
+		"path": "components/BillList",
 		"style": {
 			"navigationBarTitleText": ""
 		}

@@ -71,7 +71,7 @@ const setChartOption = () => {
       position: ['50%', '50%'],
     },
     legend: {
-      top: '5%',
+      top: '2%',
       left: 'center',
       textStyle: { fontSize: 11 },
       formatter: (name) => {
@@ -82,8 +82,9 @@ const setChartOption = () => {
       {
         name: '收支金额', 
         type: 'pie',
-        radius: ['35%', '65%'],
-        avoidLabelOverlap: false,
+        radius: ['35%', '55%'],
+		center: ['50%', '50%'],
+        // avoidLabelOverlap: true,
         itemStyle: {
           borderRadius: 8,
           borderColor: '#fff',
@@ -93,14 +94,14 @@ const setChartOption = () => {
           show: true,
 		  position:'outside',
 		  fontSize:10,
-          formatter: '{b}: {d}%' 
+          formatter: '{b}: {d}%',
         },
 		labelLine: {
-		    show: true, // 显示标签线
-			length:3,
+		    show: true, 
+			length:5,
 		    lineStyle: {
-		      width: 1, // 线宽
-		      color: '#666' ,// 线颜色
+		      width: 1, 
+		      color: '#666' 
 			}
 		 },
         emphasis: {
@@ -167,17 +168,15 @@ onUnmounted(() => {
 <style scoped>
 .chart-wrapper {
   width: 100%;
-  height: 400rpx;
+  height: 600rpx;
   padding: 15rpx;
   box-sizing: border-box;
-  /* 移动端适配：避免容器被挤压 */
   min-height: 200rpx;
 }
 
 .chart {
   width: 100%;
   height: 100%;
-  /* 确保容器有尺寸，避免ECharts初始化失败 */
   display: block;
 }
 </style>
