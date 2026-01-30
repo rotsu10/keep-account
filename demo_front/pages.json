@@ -97,18 +97,6 @@
 		"style": {
 			"navigationBarTitleText": ""
 		}
-	},
-	{
-		"path": "components/BillList/BillList",
-		"style": {
-			"navigationBarTitleText": ""
-		}
-	},
-	{
-		"path": "components/BillList",
-		"style": {
-			"navigationBarTitleText": ""
-		}
 	}
   ],
   "tabBar": {

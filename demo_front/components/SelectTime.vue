@@ -41,8 +41,8 @@ const getInitDateArr = () => {
 	const dateArr = dayjs().toArray();
 	dateArr[1] = dateArr[1] + 1;
 	console.log("dateArr",dateArr)
-  // const dateArr = dayjsTool.timeArr(new Date());
-  return ref([dateArr[0], dateArr[1]]);
+	// const dateArr = dayjsTool.timeArr(new Date());
+	return ref([dateArr[0], dateArr[1]]);
 };
 const curDateArr = getInitDateArr();
 
