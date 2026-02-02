@@ -21,24 +21,9 @@
 <script setup>
 	import { ref, defineProps, watch,onMounted } from 'vue';
 	import dayjs from 'dayjs';
-	import {http} from '../utils/request.js'
+	import {http} from '../../utils/request.js'
 	
-	const props = defineProps({
-	// 选中的年份
-	year: {
-		type: Number,
-		required: false
-	},
-	// 选中的月份
-	month: {
-		type: Number,
-		required: false
-	},
-	day:{
-		type: Number,
-		required: false
-	}
-	});
+	const props = defineProps(['type', 'timeType', 'timeValue']);
 	console.log("props",props)
 	const loading = ref(false); // 加载中状态
 	const finished = ref(false); // 是否加载完毕

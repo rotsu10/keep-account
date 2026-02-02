@@ -103,7 +103,7 @@ const openDialog = async()=>{
 	await getCategory();
 	DialogShow.value = true
 }
-// 选择分类：赋值给表单 + 关闭弹窗
+// 选择分类
 const selectCategory = (item) => {
 	formData.categoryName = item.name;
 	formData.categoryId = item.id
