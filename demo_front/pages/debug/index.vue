@@ -1,8 +1,8 @@
 <template>
 	<view>
-		<TopBarVue></TopBarVue>
+		<ListChart></ListChart>
 	</view>
 </template>
 <script setup>
-	import TopBarVue from "../../components/TopBar.vue";
+	import ListChart from '../../components/charts/ListChart.vue'
 </script>

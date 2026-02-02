@@ -11,7 +11,7 @@
       v-for="item in list" 
       :key="item.id"
       :label="`${item.categoryName}`"
-      :title="`${item.type === 1 ? '-' : '+'}${item.amount}`"
+      :title="`${item.type === 1 ? '+' : '-'}${item.amount}`"
       :value="dayjs(item.createTime).format('MM/DD')"
       @click="goToBillDetail(item.id)"
     />

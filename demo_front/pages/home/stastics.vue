@@ -29,7 +29,7 @@
 	import BillList from '../../components/BillList.vue'
 	import finance from '../../components/finance.vue'
 	import dayjs from 'dayjs';
-	import ListChart from'../../components/charts/ListChart.vue'
+	// import ListChart from'../../components/charts/ListChart.vue'
 	const timeType = ref('');
 	const timeValue = ref('');
 	const categoryType = ref('');

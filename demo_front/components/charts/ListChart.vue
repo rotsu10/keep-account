@@ -11,8 +11,8 @@
       v-for="item in list" 
       :key="item.id"
       :label="`${item.categoryName}`"
-      :title="`${item.type === 1 ? '-' : '+'}${item.amount}`"
-      :value="dayjs(item.createTime).format('MM/DD')"
+      :title="`${item.type === 1 ? '+' : '-'}${item.amount}`"
+      :value="dayjs(item.createTime).format('YYYY/MM/DD')"
       @click="goToBillDetail(item.id)"
     />
   </van-list>
@@ -29,8 +29,9 @@
 	const finished = ref(false); // 是否加载完毕
 	const list = ref([]); // 账单列表数据
 	const currentPage = ref(1); // 当前页码
-	const pageSize = ref(10); // 每页条数
+	const pageSize = ref(5); // 每页条数
 	const total = ref(0); // 总条数
+	
 	
 	// 3. 加载账单数据
 	const loadData = async () => {
@@ -40,16 +41,17 @@
 	try {
 		// 查询条件 + 分页参数
 		const sendDate = {
-		year: props.year,
-		month: props.month,
-		day:props.day,
+		type:props.type,
+		timeType:props.timeType,
+		timeValue:props.timeValue,
 		page: currentPage.value,
 		pageSize: pageSize.value
 		};
 	
-		// 调用接口查询账单列表
-		const { records, total: totalCount } = await http.post("/user/queryRecordByDate", sendDate);
-		console.log("账单列表返回数据：", records, totalCount);
+		console.log("根据日期类型查询账单分页列表sendDate：", sendDate);
+		// 根据日期类型查询账单分页列表
+		const { records, total: totalCount } = await http.post("/user/ListChart", sendDate);
+		console.log("根据日期类型查询账单分页列表：", records);
 	
 		// 处理分页数据
 		if (currentPage.value === 1) {
@@ -64,7 +66,7 @@
 	
 		// 判断是否加载完毕（列表长度 >= 总条数）
 		if (list.value.length >= total.value || totalCount === 0) {
-		finished.value = true;
+			finished.value = true;
 		}
 	} catch (err) {
 		console.error("账单列表查询失败：", err.message);
@@ -83,7 +85,7 @@
 	
 	// 5. 监听 props 中的年月变化
 	watch(
-	() => [props.year, props.month,props.day],
+	() => [props.type, props.timeType,props.timeValue],
 	() => {
 		// 重置所有分页和数据状态
 		resetPagination();
