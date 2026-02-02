@@ -7,6 +7,7 @@
     <insert id="insertBill">
         insert into user_bill (user_id, category_id, amount, type, create_time, remark) values (#{userId}, #{categoryId}, #{amount}, #{type}, #{createTime}, #{remark})
     </insert>
+
     <select id="queryPageDate" resultType="com.example.entity.UserBill">
         select
         ub.*,
@@ -163,7 +164,7 @@
         FROM user_bill b
         WHERE
         b.user_id = #{userId}
-        <if test="type != null and type != ''">
+        <if test="type != null">
             AND b.type = #{type}
         </if>
         <if test="timeType != null and timeValue != null and timeValue != ''">
@@ -181,5 +182,30 @@
         </if>
         GROUP BY timeValue
         ORDER BY timeValue ASC
+    </select>
+
+
+    <select id="queryListChart" resultType="com.example.entity.UserBill">
+        select b.*
+        from user_bill b
+        left join keep_account.category c on b.category_id = c.id
+        where user_id = #{userId}
+        <if test="dto.type != null">
+            AND b.type = #{dto.type}
+        </if>
+        <if test="dto.timeType != null and dto.timeValue != null and dto.timeValue != ''">
+            <choose>
+                <when test="dto.timeType == 'year'">
+                    AND DATE_FORMAT(b.create_time, '%Y') = #{dto.timeValue}
+                </when>
+                <when test="dto.timeType == 'month'">
+                    AND DATE_FORMAT(b.create_time, '%Y-%m') = #{dto.timeValue}
+                </when>
+                <when test="dto.timeType == 'week'">
+                    AND DATE_FORMAT(b.create_time, '%Y-%u') = #{dto.timeValue}
+                </when>
+            </choose>
+        </if>
+        ORDER BY b.create_time ASC
     </select>
 </mapper>

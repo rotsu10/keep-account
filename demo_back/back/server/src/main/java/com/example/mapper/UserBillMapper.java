@@ -1,8 +1,5 @@
 package com.example.mapper;
-import com.example.dto.BillDeleteDTO;
-import com.example.dto.RecordQueryDTO;
-import com.example.dto.TimeDTO;
-import com.example.dto.UserBillDTO;
+import com.example.dto.*;
 import com.example.entity.DailyCost;
 import com.example.entity.SumStatistics;
 import com.example.entity.UserBill;
@@ -33,7 +30,7 @@ public interface UserBillMapper {
     List<DailyCost> queryDailyCosts(Long id);
 
     //根据时间范围和类型查询分类名和统计账单
-    List<CategoryStatisticsVO> categoryStatistics(Long id, Long type, String timeValue,String timeType);
+    List<CategoryStatisticsVO> categoryStatistics(Long id, Integer type, String timeValue,String timeType);
 
     //删除账单
     void deleteBill( List<Long> billIds,Long userId);
@@ -54,6 +51,8 @@ public interface UserBillMapper {
     int updateBill(UserBill userBill);
 
     //根据年月日查询所有账单
-    List<BillStatisticsVO> getSumByDate(Long userId, Long type, String timeValue, String timeType);
+    List<BillStatisticsVO> getSumByDate(Long userId, Integer type, String timeValue, String timeType);
 
+    //根据日期类型查询账单分页列表
+    Page<UserBill> queryListChart(@Param("dto") ListRecordPageDTO listRecordPageDTO,@Param("userId") Long userId);
 }

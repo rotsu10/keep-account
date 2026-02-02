@@ -246,4 +246,12 @@ public class UserController {
         List<BillStatisticsVO> list = userService.getSumByDate(timeDTO);
         return Result.success(list);
     }
+
+    //根据日期类型查询账单分页列表
+    @PostMapping("/ListChart")
+    public Result<PageResult<UserBill>> ListChart(@RequestBody ListRecordPageDTO listRecordPageDTO){
+        log.info("根据日期类型查询账单分页列表:{}",listRecordPageDTO);
+        PageResult<UserBill> userBillList =  userService.queryListChart(listRecordPageDTO);
+        return Result.success(userBillList);
+    }
 }

@@ -14,6 +14,7 @@ public class RecordQueryDTO {
     public Integer year;
     public Integer month;
     public Integer day;
+
     public Long userId;
     //页码
     private int page;

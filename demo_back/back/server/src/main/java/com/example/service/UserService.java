@@ -51,7 +51,7 @@ public interface UserService {
     UserLoginVO getUserInfo(Long userId);
 
     //根据时间范围和类型查询分类名和统计账单
-    List<CategoryStatisticsVO> categoryStatistics(Long type, String timeValue,String timeType);
+    List<CategoryStatisticsVO> categoryStatistics(Integer type, String timeValue,String timeType);
 
     //删除分类
     void deleteCategory(CategoryDeleteDTO categoryDeleteDTO);
@@ -73,4 +73,7 @@ public interface UserService {
 
     //根据年月日统计所有账单
     List<BillStatisticsVO> getSumByDate(TimeDTO timeDTO);
+
+    //根据日期类型查询账单分页列表
+    PageResult<UserBill> queryListChart(ListRecordPageDTO listRecordPageDTO);
 }

@@ -199,7 +199,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<CategoryStatisticsVO> categoryStatistics(Long type, String timeValue,String timeType) {
+    public List<CategoryStatisticsVO> categoryStatistics(Integer type, String timeValue,String timeType) {
         Long id = BaseContext.getCurrentId();
         List<CategoryStatisticsVO> list = userBillMapper.categoryStatistics( id ,type,timeValue,timeType);
         return list;
@@ -272,7 +272,7 @@ public class UserServiceImpl implements UserService {
     public List<CategoryStatisticsVO> getCategorySum(TimeDTO timeDTO) {
         String timeType = timeDTO.getTimeType();//时间类型
         String timeValue = timeDTO.getTimeValue();//具体时间
-        Long type = timeDTO.getType();//具体时间
+        Integer type = timeDTO.getType();//具体时间
         Long id = BaseContext.getCurrentId();
         List<CategoryStatisticsVO> list = userBillMapper.categoryStatistics(id,type,timeValue,timeType);
         log.info("userBill:{}",list);
@@ -285,10 +285,22 @@ public class UserServiceImpl implements UserService {
         Long userId = BaseContext.getCurrentId();
         String timeValue = timeDTO.getTimeValue();
         String timeType = timeDTO.getTimeType();
-        Long type = timeDTO.getType();
+        Integer type = timeDTO.getType();
         List<BillStatisticsVO> list = userBillMapper.getSumByDate(userId,type,timeValue,timeType);
         log.info("userBillMapper.getSumByDate(timeDTO,userId):{}",list);
         return list;
+    }
+
+
+
+    @Override
+    public PageResult<UserBill> queryListChart(ListRecordPageDTO listRecordPageDTO) {
+        Long userId = BaseContext.getCurrentId();
+        PageHelper.startPage(listRecordPageDTO.getPage(),listRecordPageDTO.getPageSize());
+        Page<UserBill> page = userBillMapper.queryListChart(listRecordPageDTO,userId);
+        long total = page.getTotal();
+        List<UserBill> records = page.getResult();
+        return new PageResult<>(total,records);
     }
 
 }
