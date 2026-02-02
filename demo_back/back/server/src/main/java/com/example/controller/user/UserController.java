@@ -252,6 +252,7 @@ public class UserController {
     public Result<PageResult<UserBill>> ListChart(@RequestBody ListRecordPageDTO listRecordPageDTO){
         log.info("根据日期类型查询账单分页列表:{}",listRecordPageDTO);
         PageResult<UserBill> userBillList =  userService.queryListChart(listRecordPageDTO);
+        log.info("根据日期类型查询账单分页列表:{}",userBillList);
         return Result.success(userBillList);
     }
 }

@@ -186,10 +186,10 @@
 
 
     <select id="queryListChart" resultType="com.example.entity.UserBill">
-        select b.*
+        select b.*,c.name as categoryName
         from user_bill b
         left join keep_account.category c on b.category_id = c.id
-        where user_id = #{userId}
+        where b.user_id = #{userId}
         <if test="dto.type != null">
             AND b.type = #{dto.type}
         </if>
