@@ -103,6 +103,12 @@
 		"style": {
 			"navigationBarTitleText": ""
 		}
+	},
+	{
+		"path": "components/PlusBillButton",
+		"style": {
+			"navigationBarTitleText": ""
+		}
 	}
   ],
   "tabBar": {

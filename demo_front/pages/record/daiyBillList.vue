@@ -16,6 +16,7 @@
 			@click="goToBillDetail(item.id)"
 		/>
 		</van-list>
+		<PlusBillButton :time="currentDate"></PlusBillButton>
 	</view>
 </template>
 
@@ -24,6 +25,7 @@
 	import { onLoad } from '@dcloudio/uni-app';
 	import { ref } from 'vue';
 	import dayjs from 'dayjs';
+	import PlusBillButton from '../../components/PlusBillButton.vue'
 	const billStore = useBillStore();
 	const currentDate = ref('');
 	const list = ref([]);
@@ -35,6 +37,7 @@
 	onLoad((options)=>{
 		if(options.date){
 			currentDate.value = options.date;
+			// currentDate.value = ref(dayjs().format('YYYY-MM-DD HH:mm:ss'));
 			console.log("currentDate",currentDate.value);
 			resetPagination();
 		}

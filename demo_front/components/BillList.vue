@@ -22,7 +22,6 @@
 	import { ref, defineProps, watch,onMounted } from 'vue';
 	import dayjs from 'dayjs';
 	import {http} from '../utils/request.js'
-	
 	const props = defineProps({
 	// 选中的年份
 	year: {

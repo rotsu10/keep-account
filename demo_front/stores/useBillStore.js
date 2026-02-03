@@ -40,7 +40,9 @@ export const useBillStore = defineStore('bill', {
 					remark: billData.remark || '',
 					categoryId: billData.categoryId,
 					type: billData.type,
+					createTime:billData.createTime
 				}
+				console.log("sendData",sendData)
 				const result = await http.post('/user/addBill', sendData, {
 					loadingText: '正在提交...',
 				});

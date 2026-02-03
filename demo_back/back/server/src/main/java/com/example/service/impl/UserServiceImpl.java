@@ -89,8 +89,11 @@ public class UserServiceImpl implements UserService {
     public void addBill(UserBillDTO userBillDTO) {
         UserBill userBill = new UserBill();
         BeanUtils.copyProperties(userBillDTO, userBill);
-
-        userBill.setCreateTime(LocalDateTime.now());
+        if(userBillDTO.getCreateTime()!=null){
+            userBill.setCreateTime(userBillDTO.getCreateTime());
+        }else{
+            userBill.setCreateTime(LocalDateTime.now());
+        }
         userBill.setUserId(BaseContext.getCurrentId());
         log.info("查询type的条件：userId={}, categoryId={}",
                 userBill.getUserId(),  // 应该是10（从BaseContext获取的）
