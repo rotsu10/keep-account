@@ -155,7 +155,7 @@
         <choose>
             <when test="timeType == 'year'">DATE_FORMAT(b.create_time, '%Y-%m')</when>
             <when test="timeType == 'month'">DATE_FORMAT(b.create_time, '%Y-%m-%d')</when>
-            <when test="timeType == 'week'">DATE_FORMAT(b.create_time, '%Y-%u-%w')</when>
+            <when test="timeType == 'date'">DATE_FORMAT(b.create_time, '%Y-%m-%d')</when>
             <otherwise>DATE_FORMAT(b.create_time, '%Y-%m')</otherwise>
         </choose>
         AS timeValue,
@@ -175,8 +175,8 @@
                 <when test="timeType == 'month'">
                     AND DATE_FORMAT(b.create_time, '%Y-%m') = #{timeValue}
                 </when>
-                <when test="timeType == 'week'">
-                    AND DATE_FORMAT(b.create_time, '%Y-%u') = #{timeValue}
+                <when test="timeType == 'date'">
+                    AND DATE_FORMAT(b.create_time, '%Y-%m-%d') = #{timeValue}
                 </when>
             </choose>
         </if>
@@ -201,8 +201,8 @@
                 <when test="dto.timeType == 'month'">
                     AND DATE_FORMAT(b.create_time, '%Y-%m') = #{dto.timeValue}
                 </when>
-                <when test="dto.timeType == 'week'">
-                    AND DATE_FORMAT(b.create_time, '%Y-%u') = #{dto.timeValue}
+                <when test="dto.timeType == 'date'">
+                    AND DATE_FORMAT(b.create_time, '%Y-%m-%d') = #{dto.timeValue}
                 </when>
             </choose>
         </if>

@@ -29,23 +29,22 @@
 	const finished = ref(false); // 是否加载完毕
 	const list = ref([]); // 账单列表数据
 	const currentPage = ref(1); // 当前页码
-	const pageSize = ref(5); // 每页条数
+	const pageSize = ref(10); // 每页条数
 	const total = ref(0); // 总条数
 	
-	
+	console.log("loading",loading.value)
 	// 3. 加载账单数据
 	const loadData = async () => {
-	if (loading.value || finished.value) return; 
-	loading.value = true;
-	
+	if (finished.value) return; 
+		
 	try {
 		// 查询条件 + 分页参数
 		const sendDate = {
-		type:props.type,
-		timeType:props.timeType,
-		timeValue:props.timeValue,
-		page: currentPage.value,
-		pageSize: pageSize.value
+			type:props.type,
+			timeType:props.timeType,
+			timeValue:props.timeValue,
+			page: currentPage.value,
+			pageSize: pageSize.value
 		};
 	
 		console.log("根据日期类型查询账单分页列表sendDate：", sendDate);
@@ -55,24 +54,26 @@
 	
 		// 处理分页数据
 		if (currentPage.value === 1) {
-		list.value = records;
+			list.value = records;
 		} else {
-		list.value = list.value.concat(records);
+			list.value = list.value.concat(records);
 		}
 	
 		// 更新总条数和分页状态
 		total.value = totalCount;
 		currentPage.value++; // 页码自增
-	
+		// debugger
+		console.log("currentPage.value++;",currentPage.value)
+		
 		// 判断是否加载完毕（列表长度 >= 总条数）
 		if (list.value.length >= total.value || totalCount === 0) {
 			finished.value = true;
 		}
 	} catch (err) {
 		console.error("账单列表查询失败：", err.message);
-	} finally {
-		loading.value = false;
-	}
+		}finally{
+			loading.value = false;
+		}
 	};
 	
 	// 4. 跳转账单详情
@@ -92,22 +93,23 @@
 		// 重新加载第一页数据
 		loadData();
 	},
-	{ deep: true } // 深度监听数组中的值变化
+	{ deep: true } ,// 深度监听数组中的值变化
+	{ immediate: true }
 	);
 	
 	// 6. 重置分页和数据状态
 	const resetPagination = () => {
-	currentPage.value = 1;
-	total.value = 0;
-	list.value = [];
-	finished.value = false;
-	loading.value = false;
+		currentPage.value = 1;
+		total.value = 0;
+		list.value = [];
+		finished.value = false;
+		loading.value = true;
 	};
 	
 	
-	onMounted(() => {
-	  loadData();
-	});
+	// onMounted(() => {
+	//   loadData();
+	// });
 	
 	defineExpose({
 	resetPagination

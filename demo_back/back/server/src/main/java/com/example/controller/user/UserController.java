@@ -242,10 +242,12 @@ public class UserController {
     //根据年月日统计所有账单  折线图 日期+sum
     @PostMapping("/getSumByDate")
     public Result<List<BillStatisticsVO>> getSumByDate(@RequestBody TimeDTO timeDTO){
-        log.info("根据年月日统计所有账单:{}", timeDTO);
+        log.info("根据年月日统计所有账单getSumByDate:{}", timeDTO);
         List<BillStatisticsVO> list = userService.getSumByDate(timeDTO);
+        log.info("根据年月日统计所有账单list:{}", list);
         return Result.success(list);
     }
+
 
     //根据日期类型查询账单分页列表
     @PostMapping("/ListChart")

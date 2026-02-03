@@ -22,12 +22,12 @@ const requestInterceptor = (config) => {
 	console.log('最终请求头:', config.header)
 
 	// 显示 loading
-	if (config.loading !== false) {
-		uni.showLoading({
-			title: config.loadingText || '加载中...',
-			mask: true
-		})
-	}
+	// if (config.loading !== false) {
+	// 	uni.showLoading({
+	// 		title: config.loadingText || '加载中...',
+	// 		mask: true
+	// 	})
+	// }
 
 	return config
 }
@@ -41,9 +41,9 @@ const responseInterceptor = (response, config) => {
 
 
 	// 隐藏 loading
-	if (config.loading !== false) {
-		uni.hideLoading()
-	}
+	// if (config.loading !== false) {
+	// 	uni.hideLoading()
+	// }
 
 	const {
 		statusCode,
@@ -112,8 +112,6 @@ const request = (config) => {
 			...config.header
 		},
 		timeout: config.timeout || 10000,
-		loading: config.loading !== false,
-		loadingText: config.loadingText || '加载中...',
 	}
 
 	const finalConfig = requestInterceptor(mergedConfig)
