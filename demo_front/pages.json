@@ -109,6 +109,12 @@
 		"style": {
 			"navigationBarTitleText": ""
 		}
+	},
+	{
+		"path": "stores/useLedger",
+		"style": {
+			"navigationBarTitleText": ""
+		}
 	}
   ],
   "tabBar": {
