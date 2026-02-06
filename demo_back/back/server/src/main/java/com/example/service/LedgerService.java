@@ -6,5 +6,5 @@ import com.example.vo.LedgerVO;
 public interface LedgerService {
 
     //添加账本
-    LedgerVO addLedger(LedgerDTO ledgerDTO);
+    void add(LedgerDTO ledgerDTO);
 }

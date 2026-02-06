@@ -4,7 +4,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mapper.LedgerMapper">
 
-    <insert id="addLedger">
-        insert into ledger(ledger_name, create_time) values (#{ledgerName},#{createTime})
+    <insert id="addLedger" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into ledger(ledger_name, create_time)
+        values (#{ledgerName}, CURRENT_TIMESTAMP)
+    </insert>
+
+    <!-- 关联表配置不变 -->
+    <insert id="addUserLedgerRelation">
+        insert into user_ledger_relation(user_id, ledger_id, create_time, is_owner)
+        values (#{userId}, #{ledgerId}, CURRENT_TIMESTAMP, 1)
     </insert>
 </mapper>

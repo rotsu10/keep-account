@@ -1,6 +1,7 @@
 package com.example.controller.user;
 
 import com.example.constant.JwtClaimsConstant;
+import com.example.context.BaseContext;
 import com.example.dto.LedgerDTO;
 import com.example.dto.UserLoginDTO;
 import com.example.entity.User;
@@ -30,9 +31,9 @@ public class LedgerController {
 
     //添加账本
     @PostMapping("/addLedger")
-    public Result<LedgerVO> addLedger(@RequestBody LedgerDTO ledgerDTO) {
+    public Result addLedger(@RequestBody LedgerDTO ledgerDTO) {
         log.info("ledgerDTO:{}", ledgerDTO);
-        LedgerVO ledgerVO =  ledgerService.addLedger(ledgerDTO);
-        return Result.success(ledgerVO);
+        ledgerService.add(ledgerDTO);
+        return Result.success();
     }
 }
