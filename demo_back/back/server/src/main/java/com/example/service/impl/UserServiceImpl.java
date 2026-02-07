@@ -97,8 +97,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserLoginVO getUserInfo(Long userId) {
-        return userMapper.getUserInfo(userId);
+    public UserLoginVO getUserInfo() {
+        Long userId = BaseContext.getCurrentId();
+        UserLoginVO userInfo = userMapper.getUserInfo(userId);
+        userInfo.setLedgerId(BaseContext.getCurrentId());
+        return userInfo;
     }
 }
 

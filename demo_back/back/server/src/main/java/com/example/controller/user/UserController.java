@@ -56,7 +56,6 @@ public class UserController {
 
         log.info("token:{}", token);
 
-        // LoginController 原有逻辑不变
         Long userId = user.getId();
         Long ledgerId = ledgerService.getDefaultLedgerIdByUserId(userId);
         UserLoginVO userLoginVO = UserLoginVO.builder()
@@ -106,8 +105,7 @@ public class UserController {
     @GetMapping("/getUserInfo")
     @Operation(summary = "获取用户信息")
     public Result<UserLoginVO> getUserInfo(){
-        Long userId = BaseContext.getCurrentId();
-        UserLoginVO userLoginVO = userService.getUserInfo(userId);
+        UserLoginVO userLoginVO = userService.getUserInfo();
         return Result.success(userLoginVO);
     }
 }

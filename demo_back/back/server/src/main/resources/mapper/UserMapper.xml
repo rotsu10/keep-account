@@ -31,6 +31,6 @@
         select user.created_time from user where id = #{id};
     </select>
     <select id="getUserInfo" resultType="com.example.vo.UserLoginVO">
-        select id,username from user where id = #{userId}
+        select id,username,phone,created_time  from user where id = #{userId}
     </select>
 </mapper>

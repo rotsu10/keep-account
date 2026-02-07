@@ -21,7 +21,7 @@ public interface UserService {
     LocalDateTime queryCreateTime(Long id);
 
     //获取用户详细信息
-    UserLoginVO getUserInfo(Long userId);
+    UserLoginVO getUserInfo();
 
 
 }
