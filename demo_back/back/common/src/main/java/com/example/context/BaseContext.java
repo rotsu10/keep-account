@@ -4,7 +4,7 @@ public class BaseContext {
     // 存储当前请求的用户ID
     private static final ThreadLocal<Long> USER_ID_THREAD_LOCAL = new ThreadLocal<>();
     // 存储当前请求的账本ID
-    private static final ThreadLocal<String> LEDGER_ID_THREAD_LOCAL = new ThreadLocal<>();
+    private static final ThreadLocal<Long> LEDGER_ID_THREAD_LOCAL = new ThreadLocal<>();
 
     // ========== 用户ID相关方法 ==========
     public static void setCurrentId(Long id) {
@@ -20,11 +20,11 @@ public class BaseContext {
     }
 
     // ========== 账本ID相关方法 ==========
-    public static void setLedgerId(String ledgerId) {
+    public static void setLedgerId(Long ledgerId) {
         LEDGER_ID_THREAD_LOCAL.set(ledgerId);
     }
 
-    public static String getLedgerId() {
+    public static Long getLedgerId() {
         return LEDGER_ID_THREAD_LOCAL.get();
     }
 

@@ -14,8 +14,9 @@ import java.util.Date;
 @AllArgsConstructor
 @Builder
 public class UserBillDTO {
-    private Long id;
+   private Long id;
     private Long userId; //关联用户
+    private Long ledgerId; //关联账本id
     private Long categoryId; //关联分类
     private BigDecimal amount; //金额
     private int type; //类型 1.收入 2.支出

@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 public class UserBill {
     private Long id;
     private Long userId; //关联用户
+    private Long ledgerId; //关联账本id
     private Long categoryId; //关联分类
     private String categoryName; //关联分类名
     private BigDecimal amount; //金额

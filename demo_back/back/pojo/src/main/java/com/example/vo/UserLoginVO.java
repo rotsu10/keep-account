@@ -18,4 +18,6 @@ public class UserLoginVO implements Serializable {
     private String username; //用户名
 
     private String token; //jwt令牌
+
+    private Long ledgerId; //账单ID
 }

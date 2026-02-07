@@ -16,7 +16,7 @@
     </select>
 
 
-    <insert id="insert">
+    <insert id="insert"  useGeneratedKeys="true" keyProperty="id">
         insert into user (username,phone,password,created_time) values (#{username},#{phone},#{password},#{createdTime})
     </insert>
 

@@ -41,6 +41,7 @@ public class BillServiceImpl implements BillService {
             userBill.setCreateTime(LocalDateTime.now());
         }
         userBill.setUserId(BaseContext.getCurrentId());
+        userBill.setLedgerId(BaseContext.getLedgerId());
         log.info("查询type的条件：userId={}, categoryId={}",
                 userBill.getUserId(),  // 应该是10（从BaseContext获取的）
                 userBill.getCategoryId());

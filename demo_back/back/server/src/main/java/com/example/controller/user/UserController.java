@@ -53,10 +53,12 @@ public class UserController {
 
         log.info("token:{}", token);
 
+        Long ledgerId = BaseContext.getLedgerId();
         UserLoginVO userLoginVO = UserLoginVO.builder()
                 .id(user.getId())
                 .username(user.getUsername())
                 .token(token)
+                .ledgerId(ledgerId)
                 .build();
 
         return Result.success(userLoginVO);

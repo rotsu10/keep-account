@@ -59,10 +59,11 @@ public class JwtTokenUserInterceptor implements HandlerInterceptor {
             return false;
         }
 
-        // 3. 新增：解析并校验账本ID
-        String ledgerId = request.getHeader(LEDGER_ID_HEADER);
-        // 校验账本ID非空（可根据业务扩展：比如校验账本ID是否属于当前用户）
-        if (ledgerId == null || ledgerId.trim().isEmpty()) {
+        // 3. 解析并校验账本ID（改造为Long类型）
+        String ledgerIdStr = request.getHeader(LEDGER_ID_HEADER); // 先获取字符串
+        Long ledgerId = null;
+        // 校验1：非空
+        if (ledgerIdStr == null || ledgerIdStr.trim().isEmpty()) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             response.setContentType("application/json;charset=UTF-8");
             PrintWriter writer = response.getWriter();
@@ -71,11 +72,23 @@ public class JwtTokenUserInterceptor implements HandlerInterceptor {
             writer.close();
             return false;
         }
-        // 将账本ID存入ThreadLocal
+        // 校验2：能解析为Long（防止前端传非数字）
+        try {
+            ledgerId = Long.parseLong(ledgerIdStr.trim());
+        } catch (NumberFormatException e) {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            response.setContentType("application/json;charset=UTF-8");
+            PrintWriter writer = response.getWriter();
+            writer.write("{\"code\":400,\"msg\":\"账本ID必须是数字，请检查后重试\"}");
+            writer.flush();
+            writer.close();
+            return false;
+        }
+
+        // 存入ThreadLocal（Long类型）
         BaseContext.setLedgerId(ledgerId);
         log.info("当前选中账本ID：{}", ledgerId);
 
-        // 4. 所有校验通过，放行
         return true;
     }
 
