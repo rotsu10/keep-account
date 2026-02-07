@@ -18,7 +18,7 @@ public class LedgerServiceImpl implements LedgerService {
     private LedgerMapper ledgerMapper;
 
     @Override
-    public void add(LedgerDTO ledgerDTO) {
+    public Long add(LedgerDTO ledgerDTO) {
         String ledgerName = ledgerDTO.getLedgerName();
         Long userId = BaseContext.getCurrentId();
 
@@ -33,6 +33,7 @@ public class LedgerServiceImpl implements LedgerService {
 
         // 4. 插入关联关系
         ledgerMapper.addUserLedgerRelation(userId, ledgerId);
+        return ledgerId;
     }
 
 }

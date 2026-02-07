@@ -73,14 +73,15 @@ public class UserServiceImpl implements UserService {
         user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
         user.setCreatedTime(LocalDateTime.now());
         int rows = userMapper.insert(user);
-        //获取用户id
+
+        //注册成功后生成默认账本，BaseContext存入ledgerId
         Long userId = user.getId();
         BaseContext.setCurrentId(userId);
-        //注册时，生成一个默认账本
         LedgerDTO ledgerDTO = LedgerDTO.builder()
                 .ledgerName("默认账本")
                 .build();
-        ledgerServiceImpl.add(ledgerDTO);
+        Long ledgerId = ledgerServiceImpl.add(ledgerDTO);
+        BaseContext.setLedgerId(ledgerId);
         if (rows > 0) {
             log.info("用户注册成功: {}", userRegisterDTO.getUsername());
         }

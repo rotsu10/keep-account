@@ -80,6 +80,7 @@ public class UserController {
         UserLoginVO userLoginVO = UserLoginVO.builder()
                 .id(user.getId())
                 .username(user.getUsername())
+                .ledgerId(BaseContext.getLedgerId())
                 .token(token)
                 .build();
 
