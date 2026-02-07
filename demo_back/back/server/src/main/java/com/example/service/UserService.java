@@ -15,11 +15,13 @@ public interface UserService {
     User login(UserLoginDTO userLoginDTO);
 
     //用户注册
-    User register(UserRegisterDTO userRegisterDTO);
+    UserRegisterVO register(UserRegisterDTO userRegisterDTO);
 
     //查询用户创建时间
     LocalDateTime queryCreateTime(Long id);
 
     //获取用户详细信息
     UserLoginVO getUserInfo(Long userId);
+
+
 }

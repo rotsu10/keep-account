@@ -6,6 +6,7 @@ import com.example.dto.*;
 import com.example.entity.*;
 import com.example.properties.JwtProperties;
 import com.example.result.PageResult;
+import com.example.service.LedgerService;
 import com.example.service.UserService;
 import com.example.vo.*;
 import io.swagger.v3.oas.annotations.Operation;
@@ -34,6 +35,8 @@ public class UserController {
     @Autowired
     private JwtProperties jwtProperties;
 
+    @Autowired
+    private LedgerService ledgerService;
 
     //用户登录
     @PostMapping("/login")
@@ -53,12 +56,14 @@ public class UserController {
 
         log.info("token:{}", token);
 
-        Long ledgerId = BaseContext.getLedgerId();
+        // LoginController 原有逻辑不变
+        Long userId = user.getId();
+        Long ledgerId = ledgerService.getDefaultLedgerIdByUserId(userId);
         UserLoginVO userLoginVO = UserLoginVO.builder()
                 .id(user.getId())
                 .username(user.getUsername())
                 .token(token)
-                .ledgerId(ledgerId)
+                .ledgerId(ledgerId) // 第一个账本ID作为默认
                 .build();
 
         return Result.success(userLoginVO);
@@ -67,9 +72,9 @@ public class UserController {
     @PostMapping("/register")
     @Operation(summary = "注册")
     public Result<UserLoginVO> register(@RequestBody UserRegisterDTO userRegisterDTO) {
-        User user = userService.register(userRegisterDTO);
+        UserRegisterVO registerVO = userService.register(userRegisterDTO);
         Map<String, Object> clams = new HashMap<>();
-        clams.put(JwtClaimsConstant.ID, user.getId());
+        clams.put(JwtClaimsConstant.ID, registerVO.getId());
         String token = JwtUtil.createJWT(
                 jwtProperties.getUserSecretKey(),
                 jwtProperties.getUserTtl(),
@@ -78,9 +83,9 @@ public class UserController {
         log.info("token:{}", token);
 
         UserLoginVO userLoginVO = UserLoginVO.builder()
-                .id(user.getId())
-                .username(user.getUsername())
-                .ledgerId(BaseContext.getLedgerId())
+                .id(registerVO .getId())
+                .username(registerVO.getUsername())
+                .ledgerId(registerVO.getLedgerId())
                 .token(token)
                 .build();
 
@@ -93,7 +98,7 @@ public class UserController {
         Long id = BaseContext.getCurrentId();
         log.info("查询用户创建时间:{}",id);
         LocalDateTime createTime = userService.queryCreateTime(id);
-        log.info("createTime",createTime);
+        log.info("createTime:",createTime);
         return Result.success(createTime);
     }
 

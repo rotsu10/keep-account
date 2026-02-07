@@ -36,4 +36,15 @@ public class LedgerServiceImpl implements LedgerService {
         return ledgerId;
     }
 
+    @Override
+    public Long getDefaultLedgerIdByUserId(Long userId) {
+        if (userId == null) {
+            return null;
+        }
+        // 查用户第一个创建的账本ID
+        Long defaultLedgerId = ledgerMapper.selectFirstLedgerIdByUserId(userId);
+        log.info("用户{}的默认账本ID（第一个创建）：{}", userId, defaultLedgerId);
+        return defaultLedgerId;
+    }
+
 }

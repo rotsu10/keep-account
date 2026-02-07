@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User register(UserRegisterDTO userRegisterDTO) {
+    public UserRegisterVO register(UserRegisterDTO userRegisterDTO) {
         log.info("用户注册{}", userRegisterDTO);
         // 1. 检查用户名是否存在
         User dbUserByUsername = userMapper.queryByUsername(userRegisterDTO.getUsername());
@@ -74,6 +74,9 @@ public class UserServiceImpl implements UserService {
         user.setCreatedTime(LocalDateTime.now());
         int rows = userMapper.insert(user);
 
+        if (rows > 0) {
+            log.info("用户注册成功: {}", userRegisterDTO.getUsername());
+        }
         //注册成功后生成默认账本，BaseContext存入ledgerId
         Long userId = user.getId();
         BaseContext.setCurrentId(userId);
@@ -81,11 +84,11 @@ public class UserServiceImpl implements UserService {
                 .ledgerName("默认账本")
                 .build();
         Long ledgerId = ledgerServiceImpl.add(ledgerDTO);
-        BaseContext.setLedgerId(ledgerId);
-        if (rows > 0) {
-            log.info("用户注册成功: {}", userRegisterDTO.getUsername());
-        }
-        return user;
+        return UserRegisterVO.builder()
+                .id(user.getId())
+                .username(user.getUsername())
+                .ledgerId(ledgerId) // 直接用变量，不依赖ThreadLocal
+                .build();
     }
 
     @Override

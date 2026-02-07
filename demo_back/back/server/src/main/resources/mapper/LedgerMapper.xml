@@ -14,4 +14,11 @@
         insert into user_ledger_relation(user_id, ledger_id, create_time, is_owner)
         values (#{userId}, #{ledgerId}, CURRENT_TIMESTAMP, 1)
     </insert>
+    <select id="selectFirstLedgerIdByUserId" resultType="java.lang.Long">
+        SELECT ledger_id
+        FROM user_ledger_relation
+        WHERE user_id = #{userId}
+        ORDER BY create_time   <!-- 优先按创建时间，时间相同按ID（防止重复） -->
+        LIMIT 1
+    </select>
 </mapper>
