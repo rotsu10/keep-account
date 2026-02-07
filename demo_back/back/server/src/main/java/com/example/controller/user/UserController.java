@@ -8,6 +8,8 @@ import com.example.properties.JwtProperties;
 import com.example.result.PageResult;
 import com.example.service.UserService;
 import com.example.vo.*;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,7 @@ import java.util.Map;
 @Slf4j
 @RestController
 @RequestMapping("/user")
+@Tag(name = "用户接口", description = "用户相关接口")
 public class UserController {
 
     @Autowired
@@ -30,8 +33,11 @@ public class UserController {
 
     @Autowired
     private JwtProperties jwtProperties;
+
+
     //用户登录
     @PostMapping("/login")
+    @Operation(summary = "登录")
     public Result<UserLoginVO> login(@RequestBody UserLoginDTO userLoginDTO) {
         log.info("用户登录：{}", userLoginDTO);
         User user = userService.login(userLoginDTO);
@@ -57,6 +63,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
+    @Operation(summary = "注册")
     public Result<UserLoginVO> register(@RequestBody UserRegisterDTO userRegisterDTO) {
         User user = userService.register(userRegisterDTO);
         Map<String, Object> clams = new HashMap<>();
@@ -77,40 +84,8 @@ public class UserController {
         return Result.success(userLoginVO);
     }
 
-
-    @PostMapping("/addBill")
-    public Result addBill(@RequestBody UserBillDTO userBillDTO){
-        log.info("添加账单：{}", userBillDTO);
-        userService.addBill(userBillDTO);
-        return Result.success();
-    }
-
-    @PostMapping("/addCategory")
-    public Result addCategory(@RequestBody CategoryDTO categoryDTO){
-        log.info("添加分类：{}", categoryDTO);
-        userService.addCategory(categoryDTO);
-        return Result.success();
-    }
-
-    @PostMapping("/queryCategory")
-    public Result<CategoryVO> queryCategory(@RequestBody CategoryDTO categoryDTO){
-        log.info("根据分类名和类型查询分类{}", categoryDTO);
-        Category category = userService.queryCategory(categoryDTO);
-        CategoryVO categoryVO = new CategoryVO();
-        BeanUtils.copyProperties(category,categoryVO);
-        return Result.success(categoryVO);
-    }
-
-
-    @GetMapping("/queryTypeCategory")
-    public Result<List<Category>> queryTypeCategory(Integer type){
-        log.info("根据类型查询分类：{}", type);
-        List<Category> categoryList = userService.queryTypeCategory(type);
-        log.info("categoryList:{}",categoryList);
-        return Result.success(categoryList);
-    }
-
     @GetMapping("/queryCreateTime")
+    @Operation(summary = "查询用户创建时间")
     public Result<LocalDateTime> queryCreateTime(){
         Long id = BaseContext.getCurrentId();
         log.info("查询用户创建时间:{}",id);
@@ -119,142 +94,12 @@ public class UserController {
         return Result.success(createTime);
     }
 
-    //根据时间查询账单
-    @PostMapping("/queryRecordByDate")
-    public Result<PageResult<UserBill>> queryPageDate(@RequestBody RecordQueryDTO recordQueryDTO){
-        log.info("查询{}账单", recordQueryDTO);
-        recordQueryDTO.userId = BaseContext.getCurrentId();
-        PageResult<UserBill> pageResult = userService.queryPageDate(recordQueryDTO);
-        log.info("pageResult:{}", pageResult);
-        return Result.success(pageResult);
-    }
-
-    //根据id和分类类型查询所有分类名
-    @GetMapping("/queryCategoryByType")
-    public Result<List<CategoryVO>> queryCategoryByType(@RequestParam("type") Integer type){
-        Long userId = BaseContext.getCurrentId();
-        log.info("id:{},type:{}",userId,type);
-        List<CategoryVO> list= userService.queryCategoryByType(userId,type);
-        log.info("查询所有的分类：{}",list);
-        return Result.success(list);
-    }
-
-    //根据账单id查询账单详情
-    @GetMapping("/queryBillDetail")
-    public Result<UserBillVO> queryBillDetail(@RequestParam("billId") Long billId){
-        log.info("账单为id:{}",billId);
-        UserBillVO userBillVO = userService.queryBillDetail(billId);
-        log.info("账单:{}",userBillVO);
-        return Result.success(userBillVO);
-    }
-
-    //根据传递的月份日统计收入和支出
-    @PostMapping("/statisticsQuery")
-    public Result<StatisticsQueryVO> statisticsQuery(@RequestBody StatisticsQueryDTO statisticsQueryDTO){
-        log.info("根据传递的月份和年份查询收入和支出：{}",statisticsQueryDTO);
-        StatisticsQueryVO statisticsQueryVO  = userService.statisticsQuery(statisticsQueryDTO);
-        log.info("查询收入和支出：{}",statisticsQueryVO);
-        return Result.success(statisticsQueryVO);
-    }
-
-    //查询每天花费
-    @GetMapping("/queryDailyCosts")
-    public Result<List<DailyCost>> queryDailyCosts(){
-        Long id = BaseContext.getCurrentId();
-        List<DailyCost> dailyCostsList = userService.queryDailyCosts(id);
-        return Result.success(dailyCostsList);
-    }
-
     //获取用户信息
     @GetMapping("/getUserInfo")
+    @Operation(summary = "获取用户信息")
     public Result<UserLoginVO> getUserInfo(){
         Long userId = BaseContext.getCurrentId();
         UserLoginVO userLoginVO = userService.getUserInfo(userId);
         return Result.success(userLoginVO);
-    }
-
-    //根据日期和类型统计账单
-    @PostMapping("/categoryStatistics")
-    public Result<List<CategoryStatisticsVO>> categoryStatistics(@RequestBody TimeDTO timeDTO){
-        log.info("根据日期和类型统计账单：{}", timeDTO);
-        List<CategoryStatisticsVO> list = userService.categoryStatistics(timeDTO.getType(), timeDTO.getTimeValue(), timeDTO.getTimeType());
-        log.info("list:{}", list);
-        return Result.success(list);
-    }
-
-    //删除分类
-    @DeleteMapping("/deleteCategory")
-    public Result deleteCategory(@RequestBody CategoryDeleteDTO categoryDeleteDTO){
-        log.info("删除分类：{}", categoryDeleteDTO);
-        userService.deleteCategory(categoryDeleteDTO);
-        return Result.success();
-    }
-
-    //改变账单分类
-    @PatchMapping("updateCategory/{billIds}")
-    public Result updateCategory(@RequestParam Long categoryId,@PathVariable List<Long> billIds){
-        log.info("改变账单分类：{},{}",categoryId,billIds);
-        userService.updateCategory(categoryId,billIds);
-        return Result.success();
-    }
-
-    //删除账单
-    @DeleteMapping("/deleteBill")
-    public Result deleteBill(List<Long> billIds){
-        log.info("删除账单{}",  billIds);
-        userService.deleteBill(billIds);
-        return Result.success();
-    }
-
-    //根据分类id查询账单
-    @GetMapping("getBillByCategoryIds")
-    public Result<List<UserBillDTO>> getBillByCategoryIds(@RequestParam List<Long> categoryIds){
-        List<UserBillDTO> list = userService.getBillByCategoryIds(categoryIds);
-        return Result.success(list);
-    }
-
-    //更新修改账单
-    @PostMapping("/updateBill")
-    public Result<UserBillVO> updateBill(@RequestBody UserBillDTO userBillDTO){
-        log.info("更新修改账单:{}",userBillDTO);
-        UserBillVO vo = userService.updateBill(userBillDTO);
-        return Result.success(vo);
-    }
-
-    //根据年月日查询统计查询每个分类账单和
-    @PostMapping("/getCategorySum")
-    public Result<List<CategoryStatisticsVO>> getCategorySum(@RequestBody TimeDTO timeDTO){
-        log.info("根据年月日查询统计查询每个分类账单和:{}", timeDTO);
-        List<CategoryStatisticsVO> list= userService.getCategorySum(timeDTO);
-        log.info("list:{}", list);
-        return Result.success(list);
-    }
-
-    //更新账单
-    @PostMapping("/updateDetail")
-    public Result updateDetail(@RequestBody UserBillDTO userBillDTO){
-        log.info("userBillDTO:{}",userBillDTO);
-        UserBillVO userBillVO = userService.updateBill(userBillDTO);
-        log.info("userBillVO:{}",userBillVO);
-        return Result.success(userBillVO);
-    }
-
-    //根据年月日统计所有账单  折线图 日期+sum
-    @PostMapping("/getSumByDate")
-    public Result<List<BillStatisticsVO>> getSumByDate(@RequestBody TimeDTO timeDTO){
-        log.info("根据年月日统计所有账单getSumByDate:{}", timeDTO);
-        List<BillStatisticsVO> list = userService.getSumByDate(timeDTO);
-        log.info("根据年月日统计所有账单list:{}", list);
-        return Result.success(list);
-    }
-
-
-    //根据日期类型查询账单分页列表
-    @PostMapping("/ListChart")
-    public Result<PageResult<UserBill>> ListChart(@RequestBody ListRecordPageDTO listRecordPageDTO){
-        log.info("根据日期类型查询账单分页列表:{}",listRecordPageDTO);
-        PageResult<UserBill> userBillList =  userService.queryListChart(listRecordPageDTO);
-        log.info("根据日期类型查询账单分页列表:{}",userBillList);
-        return Result.success(userBillList);
     }
 }

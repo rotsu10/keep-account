@@ -13,8 +13,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
+import java.io.PrintWriter;
+
 /**
- * jwt令牌校验的拦截器
+ * jwt令牌校验的拦截器（新增账本ID解析逻辑）
  */
 @Component
 @Slf4j
@@ -23,42 +25,66 @@ public class JwtTokenUserInterceptor implements HandlerInterceptor {
     @Autowired
     private JwtProperties jwtProperties;
 
-    /**
-     * 校验jwt
-     *
-     * @param request
-     * @param response
-     * @param handler
-     * @return
-     * @throws Exception
-     */
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    // 和前端约定的账本ID请求头名称（建议大写+横线分隔，符合HTTP规范）
+    private static final String LEDGER_ID_HEADER = "X-LEDGER-ID";
 
-        System.out.println("当前线程"+Thread.currentThread().getId());
-        //判断当前拦截到的是Controller的方法还是其他资源
+    /**
+     * 校验jwt + 解析并校验账本ID
+     */
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        System.out.println("当前线程" + Thread.currentThread().getId());
+
+        // 1. 非Controller方法直接放行（如静态资源）
         if (!(handler instanceof HandlerMethod)) {
-            //当前拦截到的不是动态方法，直接放行
             return true;
         }
 
-        //1、从请求头中获取令牌
+        // 2. 原有JWT令牌校验逻辑（保留）
         String token = request.getHeader(jwtProperties.getUserTokenName());
-
-        //2、校验令牌
         try {
-            log.info("jwt校验:{}", token);
+            log.info("JWT校验，token：{}", token);
             Claims claims = JwtUtil.parseJWT(jwtProperties.getUserSecretKey(), token);
-            log.info("clams:{}", claims);
             Long userId = Long.valueOf(claims.get(JwtClaimsConstant.ID).toString());
-            log.info("当前用户id：{}", userId);
-            //将id存入ThreadLocal
+            log.info("当前登录用户ID：{}", userId);
             BaseContext.setCurrentId(userId);
-            //3、通过，放行
-            return true;
         } catch (Exception ex) {
-            //4、不通过，响应401状态码
-            response.setStatus(401);
+            // JWT校验失败，返回401未授权
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.setContentType("application/json;charset=UTF-8");
+            PrintWriter writer = response.getWriter();
+            writer.write("{\"code\":401,\"msg\":\"登录状态失效，请重新登录\"}");
+            writer.flush();
+            writer.close();
             return false;
         }
+
+        // 3. 新增：解析并校验账本ID
+        String ledgerId = request.getHeader(LEDGER_ID_HEADER);
+        // 校验账本ID非空（可根据业务扩展：比如校验账本ID是否属于当前用户）
+        if (ledgerId == null || ledgerId.trim().isEmpty()) {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            response.setContentType("application/json;charset=UTF-8");
+            PrintWriter writer = response.getWriter();
+            writer.write("{\"code\":400,\"msg\":\"账本ID不能为空，请选择账本后重试\"}");
+            writer.flush();
+            writer.close();
+            return false;
+        }
+        // 将账本ID存入ThreadLocal
+        BaseContext.setLedgerId(ledgerId);
+        log.info("当前选中账本ID：{}", ledgerId);
+
+        // 4. 所有校验通过，放行
+        return true;
+    }
+
+    /**
+     * 新增：请求处理完成后清除ThreadLocal，避免内存泄漏
+     */
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        BaseContext.clearAll(); // 统一清除用户ID和账本ID
+        log.info("ThreadLocal已清空，线程{}资源释放", Thread.currentThread().getId());
     }
 }
