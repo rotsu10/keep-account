@@ -1,5 +1,6 @@
 package com.example.service.impl;
 
+import com.example.annotation.CheckLedgerExist;
 import com.example.constant.MessageConstant;
 import com.example.context.BaseContext;
 import com.example.dto.*;
@@ -32,6 +33,7 @@ public class BillServiceImpl implements BillService {
     @Autowired
     private UserBillMapper userBillMapper;
     @Override
+    @CheckLedgerExist
     public void addBill(UserBillDTO userBillDTO) {
         UserBill userBill = new UserBill();
         BeanUtils.copyProperties(userBillDTO, userBill);
@@ -54,16 +56,19 @@ public class BillServiceImpl implements BillService {
         //设置分页参数
         PageHelper.startPage(recordQueryDTO.getPage(),recordQueryDTO.getPageSize());
         //查询数据
-        Page<UserBill> page = userBillMapper.queryPageDate(recordQueryDTO);
+        Long ledgerId = BaseContext.getLedgerId();
+        Page<UserBill> page = userBillMapper.queryPageDate(recordQueryDTO,ledgerId);
         long total = page.getTotal();
         List<UserBill> records = page.getResult();
+
         return new PageResult<>(total,records);
     }
 
     @Override
     public UserBillVO queryBillDetail(Long billId) {
         Long id = BaseContext.getCurrentId();
-        UserBill userBill = userBillMapper.selectBillDetail(id,billId);
+        Long ledgerId = BaseContext.getLedgerId();
+        UserBill userBill = userBillMapper.selectBillDetail(id,billId,ledgerId);
         log.info("UserBill:{}",userBill);
         UserBillVO userBillVO = new UserBillVO();
         BeanUtils.copyProperties(userBill,userBillVO);
@@ -77,8 +82,8 @@ public class BillServiceImpl implements BillService {
         Integer month = statisticsQueryDTO.getMonth();
         Integer day = statisticsQueryDTO.getDay();
         Long userId = BaseContext.getCurrentId();
-        log.info("year:{}  month:{} day:{} userId:{}",year,month,day,userId);
-        SumStatistics sum = userBillMapper.getSumAll(year, month, day,userId);
+        Long ledgerId = BaseContext.getLedgerId();
+        SumStatistics sum = userBillMapper.getSumAll(year, month, day,userId,ledgerId);
         log.info("userBill:{}",sum);
         // 1. 初始化默认值
         BigDecimal income = BigDecimal.ZERO;
@@ -97,28 +102,34 @@ public class BillServiceImpl implements BillService {
     }
 
     @Override
-    public List<DailyCost> queryDailyCosts(Long id) {
-        List<DailyCost> DailyCost= userBillMapper.queryDailyCosts(id);
+    public List<DailyCost> queryDailyCosts() {
+        Long id = BaseContext.getCurrentId();
+        Long ledgerId = BaseContext.getLedgerId();
+        List<DailyCost> DailyCost= userBillMapper.queryDailyCosts(id,ledgerId);
         return DailyCost;
     }
 
     @Override
     public List<CategoryStatisticsVO> categoryStatistics(Integer type, String timeValue, String timeType) {
         Long id = BaseContext.getCurrentId();
-        List<CategoryStatisticsVO> list = userBillMapper.categoryStatistics( id ,type,timeValue,timeType);
+        Long ledgerId = BaseContext.getLedgerId();
+        List<CategoryStatisticsVO> list = userBillMapper.categoryStatistics( id ,type,timeValue,timeType,ledgerId);
         return list;
     }
 
     @Override
-    public void deleteBill(List<Long> billIds) {
+    public void deleteBill(BillDeleteDTO billDeleteDTO) {
         Long userId = BaseContext.getCurrentId();
-        userBillMapper.deleteBill(billIds,userId);
+        Long ledgerId = BaseContext.getLedgerId();
+        List<Long> billIds = billDeleteDTO.getBillIds();
+        userBillMapper.deleteBill(billIds,userId,ledgerId);
     }
 
     @Override
     public List<UserBillDTO> getBillByCategoryIds(List<Long> categoryIds) {
         Long userId = BaseContext.getCurrentId();
-        List<UserBillDTO> list= userBillMapper.getBillByCategoryIds(categoryIds,userId);
+        Long ledgerId = BaseContext.getLedgerId();
+        List<UserBillDTO> list= userBillMapper.getBillByCategoryIds(categoryIds,userId,ledgerId);
         return list;
     }
 
@@ -128,12 +139,13 @@ public class BillServiceImpl implements BillService {
         BeanUtils.copyProperties(userBillDTO,userBill);
 
         Long userId = BaseContext.getCurrentId();
+        Long ledgerId = BaseContext.getLedgerId();
         userBill.setUserId(userId);
-        int row = userBillMapper.updateBill(userBill);
+        int row = userBillMapper.updateBill(userBill,ledgerId);
         if(row>0){
             Long billId = userBill.getId();
             UserBillVO userBillVO = new UserBillVO();
-            BeanUtils.copyProperties(userBillMapper.selectBillDetail(userId,billId),userBillVO);
+            BeanUtils.copyProperties(userBillMapper.selectBillDetail(userId,billId,ledgerId),userBillVO);
             return userBillVO;
         }else {
             throw new BillException(MessageConstant.BILL_NOT_EXISTS);
@@ -146,7 +158,8 @@ public class BillServiceImpl implements BillService {
         String timeValue = timeDTO.getTimeValue();//具体时间
         Integer type = timeDTO.getType();//具体时间
         Long id = BaseContext.getCurrentId();
-        List<CategoryStatisticsVO> list = userBillMapper.categoryStatistics(id,type,timeValue,timeType);
+        Long ledgerId = BaseContext.getLedgerId();
+        List<CategoryStatisticsVO> list = userBillMapper.categoryStatistics(id,type,timeValue,timeType,ledgerId);
         log.info("userBill:{}",list);
         return list;
     }
@@ -155,10 +168,12 @@ public class BillServiceImpl implements BillService {
     public List<BillStatisticsVO> getSumByDate(TimeDTO timeDTO) {
 
         Long userId = BaseContext.getCurrentId();
+        Long ledgerId = BaseContext.getLedgerId();
+
         String timeValue = timeDTO.getTimeValue();
         String timeType = timeDTO.getTimeType();
         Integer type = timeDTO.getType();
-        List<BillStatisticsVO> list = userBillMapper.getSumByDate(userId,type,timeValue,timeType);
+        List<BillStatisticsVO> list = userBillMapper.getSumByDate(userId,type,timeValue,timeType,ledgerId);
         log.info("userBillMapper.getSumByDate(timeDTO,userId):{}",list);
         return list;
     }
@@ -166,8 +181,10 @@ public class BillServiceImpl implements BillService {
     @Override
     public PageResult<UserBill> queryListChart(ListRecordPageDTO listRecordPageDTO) {
         Long userId = BaseContext.getCurrentId();
+        Long ledgerId = BaseContext.getLedgerId();
+
         PageHelper.startPage(listRecordPageDTO.getPage(),listRecordPageDTO.getPageSize());
-        Page<UserBill> page = userBillMapper.queryListChart(listRecordPageDTO,userId);
+        Page<UserBill> page = userBillMapper.queryListChart(listRecordPageDTO,userId,ledgerId);
         long total = page.getTotal();
         List<UserBill> records = page.getResult();
         return new PageResult<>(total,records);

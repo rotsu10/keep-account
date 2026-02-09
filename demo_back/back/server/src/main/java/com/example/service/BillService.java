@@ -27,13 +27,13 @@ public interface BillService {
     StatisticsQueryVO statisticsQuery(StatisticsQueryDTO statisticsQueryDTO);
 
     //查询每日花费
-    List<DailyCost> queryDailyCosts(Long id);
+    List<DailyCost> queryDailyCosts();
 
     //根据时间范围和类型查询分类名和统计账单
     List<CategoryStatisticsVO> categoryStatistics(Integer type, String timeValue, String timeType);
 
     //删除账单
-    void deleteBill(List<Long> billIds);
+    void deleteBill(BillDeleteDTO billDeleteDTO);
 
     //根据分类id查询账单
     List<UserBillDTO> getBillByCategoryIds(List<Long> categoryIds);

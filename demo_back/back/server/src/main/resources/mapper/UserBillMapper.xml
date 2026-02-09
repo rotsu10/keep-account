@@ -14,21 +14,21 @@
         c.name as categoryName
         from user_bill ub
         left join category c on ub.category_id = c.id
-        where ub.user_id = #{userId}
-        <if test="year != null">
-            and year(ub.create_time) = #{year}
+        where ub.user_id = #{queryDTO.userId} and ledger_id = #{ledgerId}
+        <if test="queryDTO.year != null">
+            and year(ub.create_time) = #{queryDTO.year}
         </if>
-        <if test="month != null">
-            and month(ub.create_time) = #{month}
+        <if test="queryDTO.month != null">
+            and month(ub.create_time) = #{queryDTO.month}
         </if>
-        <if test="day != null">
-            and day(ub.create_time) = #{day}
+        <if test="queryDTO.day != null">
+            and day(ub.create_time) = #{queryDTO.day}
         </if>
         order by ub.create_time desc
     </select>
     <select id="selectBillDetail" resultType="com.example.entity.UserBill">
         select user_bill.*,category.name as categoryName from user_bill  left join category on user_bill.category_id = category.id
-        where user_bill.user_id = #{userId} and user_bill.id = #{billId}
+        where user_bill.user_id = #{userId} and user_bill.id = #{billId} and user_bill.ledger_id = #{ledgerId}
     </select>
     <select id="getSumAll" resultType="com.example.entity.SumStatistics">
         select
@@ -38,7 +38,7 @@
         from user_bill
         where year(create_time) = #{year}
             and month(create_time) = #{month}
-            and user_id = #{userId}
+            and user_id = #{userId} and ledger_id = #{ledgerId}
             <if test="day != null">
                 and day(create_time) = #{day}
             </if>
@@ -51,7 +51,7 @@
         FROM
             user_bill
         WHERE
-            user_id = #{id}
+            user_id = #{id} and ledger_id = #{ledgerId}
         GROUP BY
             DATE(create_time)
         ORDER BY
@@ -67,7 +67,7 @@
         LEFT JOIN
         category c ON b.category_id = c.id
         <where>
-            b.user_id = #{id}
+            b.user_id = #{id} and b.ledger_id = #{ledgerId}
             <if test="type != null and type != ''">
                 AND b.type = #{type}
             </if>
@@ -92,9 +92,17 @@
     </select>
 
     <delete id="deleteBill">
-        delete from user_bill where id in <foreach collection="billIds" item="id" open="(" separator="," close=")">
-        #{id}
-    </foreach> and user_id = #{userId}
+        delete from user_bill
+        where 1=1
+        <!-- 1. 批量匹配账单ID，处理空列表 -->
+        <if test="billIds != null and billIds.size() > 0">
+            and id in
+            <foreach collection="billIds" item="id" open="(" separator="," close=")">
+                #{id}
+            </foreach>
+        </if>
+        and user_id = #{userId}
+        and ledger_id = #{ledgerId}
     </delete>
 
     <delete id="deleteBillByCategoryIds">
@@ -119,7 +127,7 @@
     <select id="getBillByCategoryIds" resultType="com.example.dto.UserBillDTO">
         select * from user_bill
         where
-        user_id = #{userId}
+        user_id = #{userId} and ledger_id = #{ledgerId}
         <if test="categoryIds != null and categoryIds.size() > 0">
             and category_id in
             <foreach collection="categoryIds" item="category" open="(" separator="," close=")">
@@ -131,23 +139,23 @@
     <update id="updateBill">
         UPDATE user_bill
         <set>
-            <if test="categoryId != null and categoryId != ''">
-                category_id = #{categoryId},
+            <if test="userBill.categoryId != null and userBill.categoryId != ''">
+                category_id = #{userBill.categoryId},
             </if>
-            <if test="amount != null and amount != '' ">
-                amount = #{amount},
+            <if test="userBill.amount != null and userBill.amount != '' ">
+                amount = #{userBill.amount},
             </if>
-            <if test="type != null and type != ''">
-                type = #{type},
+            <if test="userBill.type != null and userBill.type != ''">
+                type = #{userBill.type},
             </if>
-            <if test="remark != null and remark != ''">
-                remark = #{remark},
+            <if test="userBill.remark != null and userBill.remark != ''">
+                remark = #{userBill.remark},
             </if>
-            <if test="createTime != null">
-                create_time = #{createTime},
+            <if test="userBill.createTime != null">
+                create_time = #{userBill.createTime},
             </if>
         </set>
-        WHERE id = #{id} and user_id = #{userId}
+        WHERE id = #{userBill.id} and user_id = #{userBill.userId} and user_bill.ledger_id = #{ledgerId}
     </update>
 
     <select id="getSumByDate" resultType="com.example.vo.BillStatisticsVO">
@@ -163,7 +171,7 @@
         - SUM(CASE WHEN b.type = '2' THEN b.amount ELSE 0 END)  AS total
         FROM user_bill b
         WHERE
-        b.user_id = #{userId}
+        b.user_id = #{userId} and b.ledger_id = #{ledgerId}
         <if test="type != null">
             AND b.type = #{type}
         </if>
@@ -189,7 +197,7 @@
         select b.*,c.name as categoryName
         from user_bill b
         left join keep_account.category c on b.category_id = c.id
-        where b.user_id = #{userId}
+        where b.user_id = #{userId} and b.ledger_id = #{ledgerId}
         <if test="dto.type != null">
             AND b.type = #{dto.type}
         </if>

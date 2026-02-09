@@ -1,6 +1,7 @@
 package com.example.controller.user;
 
 
+import com.example.annotation.CheckLedgerExist;
 import com.example.context.BaseContext;
 import com.example.dto.*;
 import com.example.entity.DailyCost;
@@ -31,6 +32,7 @@ public class BillController {
 
     @PostMapping("/addBill")
     @Operation(summary = "添加账单")
+    @CheckLedgerExist
     public Result addBill(@RequestBody UserBillDTO userBillDTO){
         log.info("添加账单：{}", userBillDTO);
         billService.addBill(userBillDTO);
@@ -39,6 +41,7 @@ public class BillController {
 
     //根据时间查询账单
     @Operation(summary = "根据时间查询账单")
+    @CheckLedgerExist
     @PostMapping("/queryRecordByDate")
     public Result<PageResult<UserBill>> queryPageDate(@RequestBody RecordQueryDTO recordQueryDTO){
         log.info("查询{}账单", recordQueryDTO);
@@ -49,6 +52,7 @@ public class BillController {
     }
 
     //根据账单id查询账单详情
+    @CheckLedgerExist
     @Operation(summary = "根据账单id查询账单详情")
     @GetMapping("/queryBillDetail")
     public Result<UserBillVO> queryBillDetail(@RequestParam("billId") Long billId){
@@ -59,6 +63,7 @@ public class BillController {
     }
 
     //根据传递的月份日统计收入和支出
+    @CheckLedgerExist
     @Operation(summary = "根据传递的月份日统计收入和支出")
     @PostMapping("/statisticsQuery")
     public Result<StatisticsQueryVO> statisticsQuery(@RequestBody StatisticsQueryDTO statisticsQueryDTO){
@@ -69,15 +74,16 @@ public class BillController {
     }
 
     //查询每天花费
+    @CheckLedgerExist
     @Operation(summary = "查询每天花费")
     @GetMapping("/queryDailyCosts")
     public Result<List<DailyCost>> queryDailyCosts(){
-        Long id = BaseContext.getCurrentId();
-        List<DailyCost> dailyCostsList = billService.queryDailyCosts(id);
+        List<DailyCost> dailyCostsList = billService.queryDailyCosts();
         return Result.success(dailyCostsList);
     }
 
     //根据日期和类型统计账单
+    @CheckLedgerExist
     @Operation(summary = "根据日期和类型统计账单")
     @PostMapping("/categoryStatistics")
     public Result<List<CategoryStatisticsVO>> categoryStatistics(@RequestBody TimeDTO timeDTO){
@@ -88,15 +94,17 @@ public class BillController {
     }
 
     //删除账单
+    @CheckLedgerExist
     @Operation(summary = "删除账单")
     @DeleteMapping("/deleteBill")
-    public Result deleteBill(List<Long> billIds){
-        log.info("删除账单{}",  billIds);
-        billService.deleteBill(billIds);
+    public Result deleteBill(@RequestBody BillDeleteDTO billDeleteDTO){
+        log.info("删除账单{}",  billDeleteDTO);
+        billService.deleteBill(billDeleteDTO);
         return Result.success();
     }
 
     //根据分类id查询账单
+    @CheckLedgerExist
     @Operation(summary = "根据分类id查询账单")
     @GetMapping("getBillByCategoryIds")
     public Result<List<UserBillDTO>> getBillByCategoryIds(@RequestParam List<Long> categoryIds){
@@ -105,6 +113,7 @@ public class BillController {
     }
 
     //更新修改账单
+    @CheckLedgerExist
     @Operation(summary = "更新修改账单")
     @PostMapping("/updateBill")
     public Result<UserBillVO> updateBill(@RequestBody UserBillDTO userBillDTO){
@@ -114,6 +123,7 @@ public class BillController {
     }
 
     //根据年月日查询统计查询每个分类账单和
+    @CheckLedgerExist
     @Operation(summary = "根据年月日查询统计查询每个分类账单和")
     @PostMapping("/getCategorySum")
     public Result<List<CategoryStatisticsVO>> getCategorySum(@RequestBody TimeDTO timeDTO){
@@ -124,6 +134,7 @@ public class BillController {
     }
 
     //更新账单
+    @CheckLedgerExist
     @PostMapping("/updateDetail")
     @Operation(summary = "更新账单")
     public Result updateDetail(@RequestBody UserBillDTO userBillDTO){
@@ -134,6 +145,7 @@ public class BillController {
     }
 
     //根据年月日统计所有账单  折线图 日期+sum
+    @CheckLedgerExist
     @PostMapping("/getSumByDate")
     @Operation(summary = "根据年月日统计所有账单")
     public Result<List<BillStatisticsVO>> getSumByDate(@RequestBody TimeDTO timeDTO){
@@ -144,6 +156,7 @@ public class BillController {
     }
 
     //根据日期类型查询账单分页列表
+    @CheckLedgerExist
     @PostMapping("/ListChart")
     @Operation(summary = "根据日期类型查询账单分页列表")
     public Result<PageResult<UserBill>> ListChart(@RequestBody ListRecordPageDTO listRecordPageDTO){

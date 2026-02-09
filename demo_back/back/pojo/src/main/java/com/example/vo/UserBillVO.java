@@ -15,6 +15,8 @@ import java.util.Date;
 public class UserBillVO {
     private Long id;
     private Long userId; //关联用户
+    private Long ledgerId; //账本id
+    private String ledgerName; //账本名
     private Long categoryId; //关联分类
     private String categoryName; //关联分类名
     private BigDecimal amount; //金额

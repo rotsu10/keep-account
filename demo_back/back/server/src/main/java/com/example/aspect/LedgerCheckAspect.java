@@ -4,6 +4,7 @@ import com.example.annotation.CheckLedgerExist;
 
 import com.example.context.BaseContext;
 import com.example.service.impl.LedgerCheckService;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -18,6 +19,7 @@ import java.lang.reflect.Method;
 /**
  * 账本校验切面：拦截所有加了@CheckLedgerExist的方法，执行前置校验
  */
+@Slf4j
 @Aspect // 标记为切面类
 @Component // 交给Spring管理
 @Order(1) // 执行顺序（优先于其他切面，比如日志切面）
@@ -57,6 +59,7 @@ public class LedgerCheckAspect {
 
         // 4. 执行校验
         boolean isValid = ledgerCheckService.checkLedgerValid(ledgerId, userId);
+        log.info("该用户是否可访问此账本isValid {} ", isValid);
         if (!isValid) {
             // 5. 校验失败处理（可自定义：抛异常/日志）
             ledgerCheckService.handleCheckFail(annotation.throwException(), annotation.message());

@@ -5,6 +5,7 @@ import com.example.context.BaseContext;
 import com.example.dto.LedgerDTO;
 import com.example.result.Result;
 import com.example.service.LedgerService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,7 @@ public class LedgerController {
 
     //添加账本
     @PostMapping("/addLedger")
+    @Operation(summary = "添加账本")
     public Result addLedger(@RequestBody LedgerDTO ledgerDTO) {
         log.info("ledgerDTO:{}", ledgerDTO);
         ledgerService.add(ledgerDTO);

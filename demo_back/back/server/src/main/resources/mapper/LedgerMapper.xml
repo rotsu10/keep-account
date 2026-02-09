@@ -21,4 +21,14 @@
         ORDER BY create_time   <!-- 优先按创建时间，时间相同按ID（防止重复） -->
         LIMIT 1
     </select>
+    <select id="countByLedgerIdAndUserId" resultType="java.lang.Integer">
+        select count(id) from user_ledger_relation
+        where 1=1
+        <if test="userId != null">
+            and user_id = #{userId}
+        </if>
+        <if test="ledgerId != null">
+            and ledger_id = #{ledgerId}
+        </if>
+    </select>
 </mapper>
