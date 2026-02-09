@@ -1,10 +1,7 @@
 package com.example.handler;
 
 
-import com.example.exception.AccountFoundException;
-import com.example.exception.AccountNotFoundException;
-import com.example.exception.CategoryException;
-import com.example.exception.PasswordErrorException;
+import com.example.exception.*;
 import com.example.result.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -49,5 +46,10 @@ public class GlobalException {
     public Result<String> handleAllException(Exception ex) {
         log.error("系统异常：{}", ex.getMessage(), ex); // 打印完整堆栈，方便排查
         return Result.error("未知错误"); // 返回友好提示，避免暴露敏感信息
+    }
+
+    @ExceptionHandler(BusinessException.class)
+    public Result<?> handleBusinessException(BusinessException e) {
+        return Result.error(e.getMessage());
     }
 }

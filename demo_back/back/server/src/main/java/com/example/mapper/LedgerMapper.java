@@ -14,4 +14,7 @@ public interface LedgerMapper {
 
     //获取默认账本id
     Long selectFirstLedgerIdByUserId(Long userId);
+
+    //账本是否存在且属于当前用户
+    Integer countByLedgerIdAndUserId(Long ledgerId, Long userId);
 }
