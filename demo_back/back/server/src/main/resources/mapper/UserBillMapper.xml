@@ -107,20 +107,22 @@
 
     <delete id="deleteBillByCategoryIds">
         delete from user_bill
-               where category_id in
+               where ledger_id = #{ledgerId} and
+                     category_id in
                      <foreach collection="categoryIds" open="(" separator="," close=")" item="categoryId">
                      #{categoryId}
                     </foreach>
     </delete>
 
     <update id="updateCategory">
-        update user_bill set category_id = #{categoryId} where id in <foreach collection="billIds" item="billId" open="(" separator="," close=")">
+        update user_bill set category_id = #{categoryId} where ledger_id = #{ledgerId} id in <foreach collection="billIds" item="billId" open="(" separator="," close=")">
         #{billId}
     </foreach>
     </update>
 
     <select id="getBillIdsByCategoryIds" resultType="java.lang.Long">
-        select id from user_bill where category_id in <foreach collection="categoryIds" item="category" open="(" separator="," close=")">
+        select id from user_bill where ledger_id = #{ledgerId} and
+                                     category_id in <foreach collection="categoryIds" item="category" open="(" separator="," close=")">
         #{category}
     </foreach>
     </select>

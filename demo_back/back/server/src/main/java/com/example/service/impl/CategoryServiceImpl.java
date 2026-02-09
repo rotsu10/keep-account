@@ -30,13 +30,15 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<Category> queryTypeCategory(Integer type) {
-        return categoryMapper.queryCategoryType(type);
+        Long ledgerId = BaseContext.getLedgerId();
+        return categoryMapper.queryCategoryType(type,ledgerId);
     }
 
     @Override
     public void addCategory(CategoryDTO categoryDTO) {
+        Long ledgerId = BaseContext.getLedgerId();
         //添加分类前，需检查该类型是否有该分类
-        Category queryCategory = categoryMapper.queryCategory(categoryDTO);
+        Category queryCategory = categoryMapper.queryCategory(categoryDTO,ledgerId);
         if(queryCategory != null){
             throw new CategoryException(MessageConstant.CATEGORY_EXISTS);
         }
@@ -44,13 +46,14 @@ public class CategoryServiceImpl implements CategoryService {
         BeanUtils.copyProperties(categoryDTO, category);
         category.setUserId(BaseContext.getCurrentId());
         category.setCreateTime(LocalDateTime.now());
-        categoryMapper.insertCategory(category);
+        categoryMapper.insertCategory(category,ledgerId);
     }
 
     @Override
     public Category queryCategory(CategoryDTO categoryDTO) {
         categoryDTO.setUserId(BaseContext.getCurrentId());
-        Category category = categoryMapper.queryCategory(categoryDTO);
+        Long ledgerId = BaseContext.getLedgerId();
+        Category category = categoryMapper.queryCategory(categoryDTO,ledgerId);
         if(category == null){
             throw new CategoryException(MessageConstant.CATEGORY_NOT_EXISTS);
         }else{
@@ -60,7 +63,8 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<CategoryVO> queryCategoryByType(Long userId , Integer type) {
-        List<CategoryVO> list = categoryMapper.queryCategoryByType(userId,type);
+        Long ledgerId = BaseContext.getLedgerId();
+        List<CategoryVO> list = categoryMapper.queryCategoryByType(userId,type,ledgerId);
         return list;
     }
 
@@ -69,13 +73,13 @@ public class CategoryServiceImpl implements CategoryService {
         List<Long> categoryIds = categoryDeleteDTO.getCategoryIds();
         String strategy = categoryDeleteDTO.getStrategy();
         Long userId = BaseContext.getCurrentId();
-
+        Long ledgerId = BaseContext.getLedgerId();
         //根据策略处理账单
         if ("move".equals(strategy)) {
             //转移该分类下账单
             Long targetCategoryId = categoryDeleteDTO.getTargetCategoryId();
             log.info("转移该分类下账单:{}",targetCategoryId);
-            List<Long> billIdsToMove = userBillMapper.getBillIdsByCategoryIds(categoryIds, userId);
+            List<Long> billIdsToMove = userBillMapper.getBillIdsByCategoryIds(categoryIds, userId,ledgerId);
             if(billIdsToMove == null || billIdsToMove.isEmpty()){
                 throw new CategoryException(MessageConstant.MOVE_BILL_NOT_EXISTS);
             }
@@ -83,16 +87,17 @@ public class CategoryServiceImpl implements CategoryService {
             updateCategory(targetCategoryId,billIdsToMove);
         } else if ("delete".equals(strategy)) {
             // 删除分类下的所有账单
-            userBillMapper.deleteBillByCategoryIds(categoryIds);
+            userBillMapper.deleteBillByCategoryIds(categoryIds,ledgerId);
         }else{
             throw new CategoryException(MessageConstant.STRATEGY_ERROR);
         }
         //删除分类
-        categoryMapper.deleteCategoriesBatch(categoryIds,userId);
+        categoryMapper.deleteCategoriesBatch(categoryIds,userId,ledgerId);
     }
 
     @Override
     public void updateCategory(Long categoryId, List<Long> billIds) {
-        userBillMapper.updateCategory(categoryId,billIds);
+        Long ledgerId = BaseContext.getLedgerId();
+        userBillMapper.updateCategory(categoryId,billIds,ledgerId);
     }
 }

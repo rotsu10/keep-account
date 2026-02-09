@@ -36,13 +36,13 @@ public interface UserBillMapper {
     void deleteBill( List<Long> billIds,Long userId,Long ledgerId);
 
     //删除该分类下所有账单
-    void deleteBillByCategoryIds(List<Long> categoryIds);
+    void deleteBillByCategoryIds(List<Long> categoryIds,Long ledgerId);
 
     //修改账单分类
-    void updateCategory(Long categoryId, List<Long> billIds);
+    void updateCategory(Long categoryId, List<Long> billIds,Long ledgerId);
 
     //根据分类id查询账单id
-    List<Long> getBillIdsByCategoryIds(List<Long> categoryIds, Long userId);
+    List<Long> getBillIdsByCategoryIds(List<Long> categoryIds, Long userId,Long ledgerId);
 
     //根据分类id查询账单
     List<UserBillDTO> getBillByCategoryIds(List<Long> categoryIds, Long userId,Long ledgerId);
