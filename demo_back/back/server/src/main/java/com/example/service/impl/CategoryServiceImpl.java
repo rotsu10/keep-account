@@ -37,6 +37,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public void addCategory(CategoryDTO categoryDTO) {
         Long ledgerId = BaseContext.getLedgerId();
+        categoryDTO.setUserId(BaseContext.getCurrentId());
         //添加分类前，需检查该类型是否有该分类
         Category queryCategory = categoryMapper.queryCategory(categoryDTO,ledgerId);
         if(queryCategory != null){
@@ -62,8 +63,9 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<CategoryVO> queryCategoryByType(Long userId , Integer type) {
+    public List<CategoryVO> queryCategoryByType(Integer type) {
         Long ledgerId = BaseContext.getLedgerId();
+        Long userId = BaseContext.getCurrentId();
         List<CategoryVO> list = categoryMapper.queryCategoryByType(userId,type,ledgerId);
         return list;
     }

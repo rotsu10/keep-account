@@ -19,12 +19,11 @@ public interface CategoryService {
     Category queryCategory(CategoryDTO categoryDTO);
 
     //根据id和分类类型查询所有分类名
-    List<CategoryVO> queryCategoryByType(Long userId , Integer type);
+    List<CategoryVO> queryCategoryByType(Integer type);
 
     //删除分类
     void deleteCategory(CategoryDeleteDTO categoryDeleteDTO);
 
     //修改账单分类
     void updateCategory(Long categoryId, List<Long> billIds);
-
 }

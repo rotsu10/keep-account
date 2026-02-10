@@ -6,18 +6,30 @@
 
 
     <insert id="insertCategory">
-        insert into category( user_id, name,ledger_id ,type, create_time)VALUES (#{userId}, #{name},#{ledgerId}, #{type},#{createTime})
+        insert into category(
+        user_id,
+        name,
+        ledger_id,
+        type,
+        create_time
+        ) VALUES (
+        #{category.userId},
+        #{category.name},
+        #{ledgerId},
+        #{category.type},
+        #{category.createTime}
+        )
     </insert>
 
     <select id="queryCategory" resultType="com.example.entity.Category">
-        select id, user_id, name, type, create_time from category where user_id = #{userId}
-                                                                    and name = #{name}
-                                                                    and type = #{type}
+        select * from category where user_id = #{categoryDTO.userId}
+                                                                    and name = #{categoryDTO.name}
+                                                                    and type = #{categoryDTO.type}
                                                                     and ledger_id = #{ledgerId}
     </select>
 
     <select id="queryCategoryType" resultType="com.example.entity.Category">
-        select id, user_id, name, type from category  where type = #{type} and ledger_id = #{ledgerId} order by name
+        select * from category  where type = #{type} and ledger_id = #{ledgerId} order by name
     </select>
     <select id="queryCategoryByType" resultType="com.example.vo.CategoryVO">
         select id, user_id, name, type from category

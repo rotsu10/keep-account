@@ -115,7 +115,7 @@
     </delete>
 
     <update id="updateCategory">
-        update user_bill set category_id = #{categoryId} where ledger_id = #{ledgerId} id in <foreach collection="billIds" item="billId" open="(" separator="," close=")">
+        update user_bill set category_id = #{categoryId} where ledger_id = #{ledgerId}  and id in <foreach collection="billIds" item="billId" open="(" separator="," close=")">
         #{billId}
     </foreach>
     </update>
