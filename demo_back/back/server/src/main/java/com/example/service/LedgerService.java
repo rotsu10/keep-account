@@ -16,4 +16,6 @@ public interface LedgerService {
     //获取所有账本
     List<LedgerVO> getAllLedger();
 
+    //删除账本
+    void deleteLedger(Long ledgerId);
 }

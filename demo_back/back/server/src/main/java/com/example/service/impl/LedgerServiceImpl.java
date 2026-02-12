@@ -3,6 +3,7 @@ package com.example.service.impl;
 import com.example.context.BaseContext;
 import com.example.dto.LedgerDTO;
 import com.example.entity.Ledger;
+import com.example.exception.LedgerException;
 import com.example.mapper.LedgerMapper;
 import com.example.service.LedgerService;
 import com.example.vo.LedgerVO;
@@ -56,5 +57,22 @@ public class LedgerServiceImpl implements LedgerService {
         return list;
     }
 
+    @Override
+    public void deleteLedger(Long ledgerId) {
+        //判断该用户是否有权限删除
+        Long userId = BaseContext.getCurrentId();
+        Integer isOwner  = ledgerMapper.isLedgerOwner(userId,ledgerId);
+        if(isOwner==null){
+            throw new LedgerException("不允许访问该账本");
+        } else if (isOwner == 0) {
+            throw new LedgerException("非账本创建者，不允许删除");
+        }else {
+            //先删除该账本下账单，分类
+            ledgerMapper.deleteBillByLedgerId(ledgerId);
+            ledgerMapper.deleteCategoryByLedgerId(ledgerId);
+            //删除账本
+            ledgerMapper.deleteLedger(ledgerId);
+        }
+    }
 
 }

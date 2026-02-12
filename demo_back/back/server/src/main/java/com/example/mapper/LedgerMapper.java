@@ -23,4 +23,19 @@ public interface LedgerMapper {
 
     //获取所有
     List<LedgerVO> getAllLedger(Long userId);
+
+    //判断是否为账本所有者
+    Integer isLedgerOwner(Long userId, Long ledgerId);
+
+    //删除账本下账单
+    void deleteBillByLedgerId(Long ledgerId);
+
+    //删除账本下分类
+    void deleteCategoryByLedgerId(Long ledgerId);
+
+    //删除账本表中数据
+    void deleteLedger(Long ledgerId);
+
+    //删除用户-账本表中数据
+
 }

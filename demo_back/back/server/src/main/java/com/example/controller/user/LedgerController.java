@@ -43,5 +43,11 @@ public class LedgerController {
         return Result.success(list);
     }
 
-
+    //删除账本
+    @DeleteMapping("deleteLedger")
+    @Operation(summary = "删除账本")
+    public Result deleteLedger(Long ledgerId){
+        ledgerService.deleteLedger(ledgerId);
+        return Result.success();
+    }
 }

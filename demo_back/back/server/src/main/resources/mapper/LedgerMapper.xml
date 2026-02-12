@@ -37,4 +37,18 @@
             left join ledger on ledger.id = ubr.ledger_id
                  where ubr.user_id = #{userId}
     </select>
+    <select id="isLedgerOwner" resultType="java.lang.Integer">
+        select is_owner from user_ledger_relation where user_id =#{userId} and ledger_id = #{ledgerId}
+    </select>
+
+    <delete id="deleteBillByLedgerId">
+        delete from user_bill where ledger_id = #{ledgerId}
+    </delete>
+    <delete id="deleteCategoryByLedgerId">
+        delete from category where ledger_id = #{ledgerId}
+    </delete>
+    <delete id="deleteLedger">
+        delete from ledger where ledger.id = #{ledgerId}
+    </delete>
+
 </mapper>
