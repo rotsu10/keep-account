@@ -21,7 +21,8 @@
 <script setup>
 	import { ref, defineProps, watch,onMounted } from 'vue';
 	import dayjs from 'dayjs';
-	import {http} from '../../utils/request.js'
+	// import {http} from '../../utils/request.js'
+import { API_PATH } from '../../api/api.js';
 	
 	const props = defineProps(['type', 'timeType', 'timeValue']);
 	console.log("props",props)
@@ -49,7 +50,8 @@
 	
 		console.log("根据日期类型查询账单分页列表sendDate：", sendDate);
 		// 根据日期类型查询账单分页列表
-		const { records, total: totalCount } = await http.post("/user/ListChart", sendDate);
+		// const { records, total: totalCount } = await http.post("/user/ListChart", sendDate);
+		const { records, total: totalCount } = await http.post(API_PATH.BILL.LIST_CHART, sendDate);
 		console.log("根据日期类型查询账单分页列表：", records);
 	
 		// 处理分页数据

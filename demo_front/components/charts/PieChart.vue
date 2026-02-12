@@ -9,6 +9,7 @@ import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue';
 import * as echarts from 'echarts';
 // import { onResize } from '@dcloudio/uni-app';
 import { http } from '../../utils/request';
+import { API_PATH } from '../../api/api';
 
 // 接收父组件传参
 const props = defineProps(['type', 'timeType', 'timeValue']);
@@ -28,7 +29,8 @@ const getCategorySum = async () => {
       timeType: props.timeType,
       timeValue: props.timeValue
     };
-    const res = await http.post('/user/getCategorySum', params);
+    // const res = await http.post('/user/getCategorySum', params);
+    const res = await http.post(API_PATH.BILL.GET_CATEGORY_SUM, params);
     chartData.value = Array.isArray(res) ? res : [];
     console.log("获取到的图表数据：", chartData.value);
     updateChart();

@@ -22,6 +22,7 @@
 	import { ref, defineProps, watch,onMounted } from 'vue';
 	import dayjs from 'dayjs';
 	import {http} from '../utils/request.js'
+	import { API_PATH } from '../api/api.js';
 	const props = defineProps({
 	// 选中的年份
 	year: {
@@ -61,7 +62,8 @@
 		};
 	
 		// 调用接口查询账单列表
-		const { records, total: totalCount } = await http.post("/user/queryRecordByDate", sendDate);
+		// const { records, total: totalCount } = await http.post("/user/queryRecordByDate", sendDate);
+		const { records, total: totalCount } = await http.post(API_PATH.BILL.QUERY_BY_DATE, sendDate);
 		console.log("账单列表返回数据：", records, totalCount);
 	
 		// 处理分页数据

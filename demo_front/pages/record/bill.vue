@@ -28,12 +28,14 @@
 
 
 <script setup>
-	import {http} from '@/utils/request.js'; // 导入请求工具
+	// import {http} from '@/utils/request.js'; // 导入请求工具
 	import {ref,onMounted,watch} from 'vue';
 	import {storeToRefs} from 'pinia';
 	import { useBillStore } from '../../stores/useBillStore';
 	import { onLoad } from '@dcloudio/uni-app'; 
 	import dayjs from 'dayjs';
+	import { API_PATH } from '../../api/api';
+	// import { http } from '../../utils/request';
 	const billStore = useBillStore();
 	// 定义页面数据
 	const productPrice = ref(''); // 商品价格
@@ -100,7 +102,11 @@
 	//根据类型获取所有分类数据
 	const getCategoryList = async () => {
 		try {
-			const res = await http.get(`/user/queryCategoryByType?type=${payType.value}`);
+			// const res = await http.get(`/user/queryCategoryByType?type=${payType.value}`);
+			 const res = await http.get(
+			    API_PATH.CATEGORY.QUERY_BY_TYPE,
+			    { type: payType.value } // GET 参数会自动拼为 ?type=1
+			);
 			console.log("根据类型获取所有分类数据res:", res);
 			categoryList.value = res;
 		} catch (err) {

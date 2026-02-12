@@ -30,6 +30,7 @@
 <script setup>
 	import {ref} from 'vue';
 	import { http } from '../../utils/request';
+	import { API_PATH } from '../../api/api';
 	const username = ref('');
 	const phone = ref('');
 	const password = ref('');
@@ -51,7 +52,8 @@
 				phone:phone.value,
 				password:password.value
 			}
-			const result = await http.post('/user/register',sendData);
+			// const result = await http.post('/user/register',sendData);
+			const result = await http.post(API_PATH.USER.REGISTER, sendData);
 			console.log("注册成功result:",result);
 			uni.setStorageSync('token', result.token)
 			uni.navigateTo({ url: '/pages/common/login' });

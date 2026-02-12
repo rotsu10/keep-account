@@ -19,7 +19,7 @@
 	import {  onShow } from '@dcloudio/uni-app';
 	import { http } from '../utils/request';
 	import dayjs from 'dayjs'; 
-	
+	import { API_PATH } from '../api/api.js'
 	// 1. 去掉 Pinia，改用 ref 直接管理数据（核心修改）
 	const dailyCosts = ref({}); // 每日收支数据（响应式）
 	// 用于强制刷新日历的 key
@@ -53,10 +53,13 @@
 	async function fetchDailyCosts() {
 		try {
 			// await 等待异步请求结果
-			const result = await http.get("/user/queryDailyCosts", {}, {
-				loadingText: '加载花费数据...'
-			});
+			// const result = await http.get("/bill/queryDailyCosts", {}, {
+			// 	loadingText: '加载花费数据...'
+			// });
 			
+			
+			const result = http.get(API_PATH.BILL.QUERY_DAILY_COSTS);
+			 console.log("API中的result",result)
 			// 安全校验：确保 result 是数组
 			const dataList = Array.isArray(result) ? result : (result?.data || []);
 			console.log("dataList",dataList)
@@ -94,9 +97,11 @@
 	async function refreshCalendarData() {
 			try {
 				// 1. 重新请求最新的每日花费数据
-				const result = await http.get("/user/queryDailyCosts", {}, {
-					loadingText: '加载花费数据...'
-				});
+				// const result = await http.get("/bill/queryDailyCosts", {}, {
+				// 	loadingText: '加载花费数据...'
+				// });
+				const result = http.get(API_PATH.BILL.QUERY_DAILY_COSTS);
+				console.log("API中的result",result)
 				
 				// 2. 数据格式化（转为{日期: 收支数据}的map结构）
 				const dataList = Array.isArray(result) ? result : (result?.data || []);

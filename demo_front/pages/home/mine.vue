@@ -42,6 +42,7 @@
 	import {onMounted,ref} from 'vue';
 	import ButtomBarVue from '../../components/ButtomBar.vue';
 	import {http} from '../../utils/request';
+	import { API_PATH } from '../../api/api'
 	const userName = ref('');
 	const id = ref('');
 	
@@ -55,7 +56,8 @@
 	
 	const getUserInfo = async () => {
 		try {
-			const res = await http.get("/user/getUserInfo", {}, {});
+			// const res = await http.get("/user/getUserInfo", {}, {});
+			const res =http.get(API_PATH.USER.INFO)
 			console.log("用户详细信息res:", res);
 			userName.value = res.username;
 			id.value = res.id;

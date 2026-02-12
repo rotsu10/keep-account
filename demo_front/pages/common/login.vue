@@ -18,58 +18,96 @@
 
 <script setup>
 import { ref } from 'vue';
+import { http } from '../../utils/request';
+import { API_PATH } from '../../api/api';
 const title = ref('Hello，欢迎使用');
 const username = ref('');
 const password = ref('');
 //登录
-const login = () => {
-// 非空校验
-if (!username.value) {
-  uni.showToast({ title: '请输入用户名', icon: 'none' });
-  return; 
-}
-if (!password.value) {
-  uni.showToast({ title: '请输入密码', icon: 'none' });
-  return;
-}
+// const login = () => {
+// // 非空校验
+// if (!username.value) {
+//   uni.showToast({ title: '请输入用户名', icon: 'none' });
+//   return; 
+// }
+// if (!password.value) {
+//   uni.showToast({ title: '请输入密码', icon: 'none' });
+//   return;
+// }
 
-uni.request({
-  url: 'http://localhost:8080/user/login', 
-  method: 'POST',
-  header: { 'Content-Type': 'application/json' },
-  data: {
+// uni.request({
+//   url: 'http://localhost:8080/user/login', 
+//   method: 'POST',
+//   header: { 'Content-Type': 'application/json' },
+//   data: {
+//     username: username.value,
+//     password: password.value,
+//   },
+//   success: (res) => {
+//     const { statusCode, data: result } = res;
+// 	  console.log("接口完整返回：", result); 
+    
+//     if (statusCode !== 200) {
+//       uni.showToast({ title: `请求失败, ${statusCode}`, icon: 'none' });
+//       return;
+//     }
+
+//     if (!result) {
+//       uni.showToast({ title: "接口返回空数据", icon: "none" });
+//       return;
+//     }
+
+//     if (result.code === 1) {
+//         uni.showToast({ title: "登录成功" });
+//         uni.setStorageSync('token', result.data.token);
+// 		uni.setStorageSync('ledgerId',result.data.ledgerId)
+// 		console.log("token是：", result.data.token);
+// 		console.log("ledgerId是：", result.data.ledgerId);
+//         uni.reLaunch({ url: '/pages/home/home' });
+//       } else {
+//         uni.showToast({ title: result.message, icon: 'none' });
+//       }
+	  
+//     },
+//     fail: (error) => {
+//       console.error('请求失败:', error);
+//       uni.showToast({ title: '网络错误，请检查跨域和后端服务', icon: 'none' });
+//     }
+//   });
+// };
+
+const login = async () => {
+  // 非空校验
+  if (!username.value) {
+    uni.showToast({ title: '请输入用户名', icon: 'none' });
+    return; 
+  }
+  if (!password.value) {
+    uni.showToast({ title: '请输入密码', icon: 'none' });
+    return;
+  }
+
+  const data = {
     username: username.value,
     password: password.value,
-  },
-  success: (res) => {
-    const { statusCode, data: result } = res;
-	  console.log("接口完整返回：", result); 
+  };
+
+  try {
+    const result = await http.post(API_PATH.USER.LOGIN, data);
     
-    if (statusCode !== 200) {
-      uni.showToast({ title: `请求失败, ${statusCode}`, icon: 'none' });
-      return;
-    }
 
-    if (!result) {
-      uni.showToast({ title: "接口返回空数据", icon: "none" });
-      return;
-    }
-
-    if (result.code === 1) {
-        uni.showToast({ title: "登录成功" });
-        uni.setStorageSync('token', result.data.token); 
-		console.log("token是：", result.data.token);
-        uni.reLaunch({ url: '/pages/home/home' });
-      } else {
-        uni.showToast({ title: result.message, icon: 'none' });
-      }
-	  
-    },
-    fail: (error) => {
-      console.error('请求失败:', error);
-      uni.showToast({ title: '网络错误，请检查跨域和后端服务', icon: 'none' });
-    }
-  });
+    uni.showToast({ title: "登录成功" });
+    
+    uni.setStorageSync('token', result.token);
+    uni.setStorageSync('ledgerId', result.ledgerId);
+    
+    console.log("token是：", result.token);
+    console.log("ledgerId是：", result.ledgerId);
+    uni.reLaunch({ url: '/pages/home/home' });
+    
+  } catch (error) {
+    console.error('登录异常：', error); 
+  }
 };
 
 	const register = ()=>{

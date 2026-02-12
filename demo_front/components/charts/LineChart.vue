@@ -8,7 +8,7 @@
 import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue';
 import * as echarts from 'echarts';
 import {http} from '../../utils/request.js'
-
+import { API_PATH } from '../../api/api.js';
 // 接收父组件传参
 const props = defineProps(['type', 'timeType', 'timeValue']);
 // 折线图数据
@@ -26,7 +26,8 @@ const getSumByDate = async () => {
       timeValue: props.timeValue
     };
 	console.log("折线图params",params)
-    const res = await http.post('/user/getSumByDate', params);
+    // const res = await http.post('/user/getSumByDate', params);
+    const res = await http.post(API_PATH.BILL.GET_SUM_BY_DATE, params);
     console.log("获取到的折线图数据res：", res);
     chartData.value = Array.isArray(res) ? res : [];
     console.log("获取到的折线图数据：", chartData.value);

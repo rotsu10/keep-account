@@ -93,7 +93,8 @@
 <script setup>
 import { ref, reactive } from 'vue'; 
 import { onLoad } from '@dcloudio/uni-app'; 
-import { http } from '../../utils/request';
+// import { http } from '../../utils/request';
+import { API_PATH } from '../../api/api';
 import dayjs from 'dayjs';
 const DialogShow = ref(false)
 //查询到的分类
@@ -141,7 +142,11 @@ onLoad((options) => {
 // 加载账单详情并初始化表单初始值
 const loadBillDetail = async (id) => {
 	try {
-		const res = await http.get(`/user/queryBillDetail?billId=${id}`);
+		// const res = await http.get(`/user/queryBillDetail?billId=${id}`);
+		const res = await http.get(
+			API_PATH.BILL.QUERY_DETAIL,
+			{billId: id},
+		)
 		billDetail.value = res;
 		initFormData();
 	} catch (err) {
@@ -182,10 +187,11 @@ const onSubmit = async (values) => {
 
 		console.log('提交给后端的纯净数据：', submitData);
 		
-		const result = await http.post("/user/updateDetail", submitData, {
-			loadingText: '提交中...'
-		});
-
+		// const result = await http.post("/user/updateDetail", submitData, {
+		// 	loadingText: '提交中...'
+		// });
+		
+		const result = await http.post(API_PATH.BILL.UPDATE_DETAIL,submitData)
 		// 3. 提交成功反馈
 		uni.showToast({
 			title: '修改成功',

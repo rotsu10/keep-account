@@ -9,7 +9,9 @@ const BASE_URL = "http://localhost:8080";
 const requestInterceptor = (config) => {
 	// 添加 token
 	const token = uni.getStorageSync('token')
+	const ledgerId = uni.getStorageSync('ledgerId')
 	console.log('从存储获取的 token:', token)
+	console.log('从存储获取的 ledgerId:', ledgerId)
 	if (token) {
 		config.header = {
 			...config.header,
@@ -18,6 +20,16 @@ const requestInterceptor = (config) => {
 		console.log('✅ 已添加 Authorization 头')
 	} else {
 		console.log('❌ 未找到 token，请求将无认证信息')
+	}
+	
+	if (ledgerId) {
+		config.header = {
+			...config.header,
+			'X-LEDGER-ID': ledgerId 
+		}
+		console.log('✅ 已添加 X-LEDGER-ID 头')
+	} else {
+		console.log('❌ 未找到 ledgerId，请求将无认证信息')
 	}
 	console.log('最终请求头:', config.header)
 
@@ -28,7 +40,6 @@ const requestInterceptor = (config) => {
 	// 		mask: true
 	// 	})
 	// }
-
 	return config
 }
 
@@ -200,3 +211,11 @@ export const http = {
 }
 
 export default request
+
+
+// const BASE_URL = "http://localhost:8080";
+// export const BASE_URL = "http://localhost:8080"; // 环境变量
+// export const API_PATH = {
+//   USER: '/api/user',
+//   CATEGORY: '/api/category'
+// };

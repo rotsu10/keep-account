@@ -12,7 +12,7 @@ import { ref, onMounted ,onUnmounted} from 'vue';
 import * as echarts from 'echarts';
 import TimeRangeVue from '../../components/TimeRange.vue';
 import { http } from '../../utils/request';
-
+import { API_PATH } from '../../api/api';
 const timeValue = ref('');
 const timeType = ref('');
 const TypeText = ref('');
@@ -39,7 +39,8 @@ const pie = async()=>{
 			type:TypeValue.value,
 		}
 		console.log("sendData:", sendData);
-		const res =await http.post("/user/categoryStatistics",sendData,{});
+		// const res =await http.post("/user/categoryStatistics",sendData,{});
+		const res = http.post(API_PATH.BILL.CATEGORY_STATISTICS,sendData)
 		console.log("统计结果",res);
 		if(res){
 			const newOption = {

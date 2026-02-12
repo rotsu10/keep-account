@@ -1,6 +1,6 @@
 import {defineStore} from 'pinia';
 import {http} from '../utils/request'; // 确保导入了你的 http 工具
-
+import { API_PATH } from '../api/api';
 
 export const useCategoryStore = defineStore('category',{
 	state:()=>({
@@ -12,10 +12,14 @@ export const useCategoryStore = defineStore('category',{
 		//根据类型查询分类
 		async queryCategoryType(type){
 			try{
-				const url = `/user/queryTypeCategory?type=${type}`;
-				const result = await http.get(url,
-				{loading:'加载中'},
-				);
+				// const url = `/user/queryTypeCategory?type=${type}`;
+				// const result = await http.get(url,
+				// {loading:'加载中'},
+				// );
+				const result = await http.get(
+					API_PATH.CATEGORY.QUERY_BY_TYPE_BASIC,
+					{type:type}
+				)
 				console.log("后端返回数据result:",result);
 				this.categoryList = result;
 				this.currentType = type;
@@ -63,7 +67,8 @@ export const useCategoryStore = defineStore('category',{
 					type : searchCategoryData.type
 				}
 				console.log("queryCategory的sendData:",sendData);
-				const result = await http.post('/user/queryCategory',sendData,{loadingText:'加载中'});
+				// const result = await http.post('/user/queryCategory',sendData,{loadingText:'加载中'});
+				const result = await http.post(API_PATH.CATEGORY.QUERY_BY_NAME_AND_TYPE,sendData,{loadingText:'加载中'});
 				this.categoryList = [result] || [];
 				console.log("this.categoryList:",this.categoryList);
 			}catch(err){
@@ -82,7 +87,8 @@ export const useCategoryStore = defineStore('category',{
 					targetCategoryId:deleteCategoryData.targetCategoryId
 				}
 				console.log("sendData:",sendData)
-				await http.delete("/user/deleteCategory",sendData);
+				// await http.delete("/user/deleteCategory",sendData);
+				await http.delete(API_PATH.CATEGORY.DELETE,sendData);
 				if (this.currentType) {
 				    await this.queryCategoryType(this.currentType);
 				} else {

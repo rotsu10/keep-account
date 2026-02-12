@@ -20,11 +20,12 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { http } from '../../utils/request';
-
+// import { http } from '../../utils/request';
+import { API_PATH } from '../../api/api';
 import SelectTimeVue from '../../components/SelectTime.vue';
 import financeVue from '../../components/finance.vue';
 import BillList from '../../components/BillList.vue';
+import { http } from '../../utils/request';
 
 // 财务统计数据
 const totalIncome = ref(0);
@@ -52,8 +53,9 @@ const handleDateChange = (selectDate) => {
 const loadStatisticsData = async () => {
   try {
     const { year, month } = selectedDate.value;
-    const statistics = await http.post("/user/statisticsQuery", { year, month });
-    totalIncome.value = statistics.income;
+    // const statistics = await http.post("/user/statisticsQuery", { year, month });
+    const statistics = http.post(API_PATH.BILL.STATISTICS_QUERY,{ year, month })
+	totalIncome.value = statistics.income;
     totalExpense.value = statistics.expense;
     totalTransfer.value = statistics.transfer;
   } catch (err) {

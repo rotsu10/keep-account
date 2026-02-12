@@ -62,13 +62,11 @@
 
 <script setup>
 	import {ref ,onMounted} from 'vue';
-	import { http } from '../../utils/request';
 	import ButtomBar from '../../components/ButtomBar.vue';
 	import { showConfirmDialog } from 'vant';
 	import {useCategoryStore} from '../../stores/useCategoryStore';
 	import { useBillStore } from '../../stores/useBillStore';
 	import { storeToRefs } from 'pinia';
-	
 	const categoryStore = useCategoryStore();
 	const billStore = useBillStore();
 	

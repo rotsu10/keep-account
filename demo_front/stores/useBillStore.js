@@ -2,7 +2,7 @@
 
 import {defineStore} from 'pinia';
 import {http} from '../utils/request';
-
+import { API_PATH } from '../api/api';
 export const useBillStore = defineStore('bill', {
 	state: () => ({
 		dailyCosts: {}, // 存储每日花费
@@ -14,10 +14,14 @@ export const useBillStore = defineStore('bill', {
 		//获取每日花费
 		async fetchDailyCosts() {
 			try {
-				const result = await http.get("/user/queryDailyCosts", {}, {
+				// const result = await http.get("/user/queryDailyCosts", {}, {
+				// 	loadingText: '加载花费数据...'
+				// });
+				
+				const result = await http.get(API_PATH.BILL.QUERY_DAILY_COSTS, {}, {
 					loadingText: '加载花费数据...'
 				});
-
+				
 				const costMap = {};
 				result.forEach(item => {
 					costMap[item.date] = item;
@@ -43,7 +47,7 @@ export const useBillStore = defineStore('bill', {
 					createTime:billData.createTime
 				}
 				console.log("sendData",sendData)
-				const result = await http.post('/user/addBill', sendData, {
+				const result = await http.post(API_PATH.BILL.ADD, sendData, {
 					loadingText: '正在提交...',
 				});
 				uni.showToast({
@@ -66,7 +70,8 @@ export const useBillStore = defineStore('bill', {
 				const params = {
 				    categoryIds: [categoryId].join(',')
 				};
-		        const res = await http.get("/user/getBillByCategoryIds", params);
+		        // const res = await http.get("/user/getBillByCategoryIds", params);
+		        const res = await http.get(API_PATH.BILL.GET_BY_CATEGORY_IDS, params);
 				console.log("查询账单res",res);
 				if(res==null || res.length === 0){
 					throw new Error("该分类下没有账单");
@@ -91,7 +96,8 @@ export const useBillStore = defineStore('bill', {
 			};
 			
 			try{
-				const res = await http.post("/user/queryRecordByDate",sendData);
+				// const res = await http.post("/user/queryRecordByDate",sendData);
+				const res = await http.post(API_PATH.BILL.QUERY_BY_DATE,sendData);
 				const data = res || {};
 				const records = data.records || [];
 				const total = data.total || 0;
