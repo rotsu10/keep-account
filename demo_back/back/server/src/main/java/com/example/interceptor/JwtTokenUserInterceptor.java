@@ -40,7 +40,7 @@ public class JwtTokenUserInterceptor implements HandlerInterceptor {
             return true;
         }
 
-        // 2. 原有JWT令牌校验逻辑（保留）
+        // 2. 原有JWT令牌校验逻辑
         String token = request.getHeader(jwtProperties.getUserTokenName());
         try {
             log.info("JWT校验，token：{}", token);

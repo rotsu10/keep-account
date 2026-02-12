@@ -67,6 +67,7 @@ public class CategoryServiceImpl implements CategoryService {
         Long ledgerId = BaseContext.getLedgerId();
         Long userId = BaseContext.getCurrentId();
         List<CategoryVO> list = categoryMapper.queryCategoryByType(userId,type,ledgerId);
+
         return list;
     }
 

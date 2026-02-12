@@ -31,14 +31,27 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
      *
      * @param registry
      */
+//    protected void addInterceptors(InterceptorRegistry registry) {
+//        log.info("开始注册自定义拦截器...");
+//        registry.addInterceptor(jwtTokenUserInterceptor)
+//                .addPathPatterns("/user/**")
+//                .addPathPatterns("/ledger/**")
+//                .addPathPatterns("/bill/**")
+//                .addPathPatterns("/category/**")
+//                .excludePathPatterns("/user/login", "/user/register");
+//    }
+
+    @Override
     protected void addInterceptors(InterceptorRegistry registry) {
         log.info("开始注册自定义拦截器...");
         registry.addInterceptor(jwtTokenUserInterceptor)
-                .addPathPatterns("/user/**")
-                .addPathPatterns("/ledger/**")
-                .addPathPatterns("/bill/**")
-                .addPathPatterns("/category/**")
-                .excludePathPatterns("/user/login", "/user/register");
+                // 1. 先指定要拦截的路径（所有业务接口）
+                .addPathPatterns("/user/**", "/ledger/**", "/bill/**", "/category/**")
+                // 2. 排除登录/注册接口（精确匹配，支持通配）
+                .excludePathPatterns(
+                        "/user/login",        // 精确排除 POST /user/login
+                        "/user/register"     // 精确排除 POST /user/register
+                );
     }
 
 

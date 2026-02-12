@@ -32,4 +32,6 @@ public class LedgerController {
         ledgerService.add(ledgerDTO);
         return Result.success();
     }
+
+    //获取账本id
 }
