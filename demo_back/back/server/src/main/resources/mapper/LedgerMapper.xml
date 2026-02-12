@@ -31,4 +31,10 @@
             and ledger_id = #{ledgerId}
         </if>
     </select>
+    <select id="getAllLedger" resultType="com.example.vo.LedgerVO">
+        select ubr.*,user.username AS ownerName,ledger.ledger_name  from user_ledger_relation ubr
+            left join user on user.id = ubr.user_id
+            left join ledger on ledger.id = ubr.ledger_id
+                 where ubr.user_id = #{userId}
+    </select>
 </mapper>

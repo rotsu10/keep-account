@@ -1,18 +1,20 @@
 package com.example.controller.user;
 
+import com.example.annotation.CheckLedgerExist;
 import com.example.constant.JwtClaimsConstant;
 import com.example.context.BaseContext;
 import com.example.dto.LedgerDTO;
 import com.example.result.Result;
 import com.example.service.LedgerService;
+import com.example.vo.LedgerVO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @Slf4j
@@ -33,5 +35,13 @@ public class LedgerController {
         return Result.success();
     }
 
-    //获取账本id
+    //获取所有账本
+    @GetMapping("getAllLedger")
+    @Operation(summary = "获取所有账本")
+    public Result<List<LedgerVO>> getAllLedger() {
+        List<LedgerVO> list= ledgerService.getAllLedger();
+        return Result.success(list);
+    }
+
+
 }

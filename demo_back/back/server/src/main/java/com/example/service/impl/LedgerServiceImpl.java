@@ -10,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Slf4j
 @Service
 public class LedgerServiceImpl implements LedgerService {
@@ -46,5 +48,13 @@ public class LedgerServiceImpl implements LedgerService {
         log.info("用户{}的默认账本ID（第一个创建）：{}", userId, defaultLedgerId);
         return defaultLedgerId;
     }
+
+    @Override
+    public List<LedgerVO> getAllLedger() {
+        Long userId = BaseContext.getCurrentId();
+        List<LedgerVO> list= ledgerMapper.getAllLedger(userId);
+        return list;
+    }
+
 
 }
