@@ -5,11 +5,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ListRecordPageDTO {
+public class ListRecordPageDTO implements Serializable {
     //分类类型
     Integer type;
     //时间

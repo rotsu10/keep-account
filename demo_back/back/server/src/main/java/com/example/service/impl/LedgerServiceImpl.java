@@ -1,8 +1,10 @@
 package com.example.service.impl;
 
 import com.example.context.BaseContext;
+import com.example.dto.AddLedgerUserDTO;
 import com.example.dto.LedgerDTO;
 import com.example.entity.Ledger;
+import com.example.entity.User;
 import com.example.exception.LedgerException;
 import com.example.mapper.LedgerMapper;
 import com.example.service.LedgerService;
@@ -45,7 +47,8 @@ public class LedgerServiceImpl implements LedgerService {
             return null;
         }
         // 查用户第一个创建的账本ID
-        Long defaultLedgerId = ledgerMapper.selectFirstLedgerIdByUserId(userId);
+//        Long defaultLedgerId = ledgerMapper.selectFirstLedgerIdByUserId(userId);
+        Long defaultLedgerId = ledgerMapper.selectDefaultLedgerIdByUserId(userId);
         log.info("用户{}的默认账本ID（第一个创建）：{}", userId, defaultLedgerId);
         return defaultLedgerId;
     }
@@ -73,6 +76,14 @@ public class LedgerServiceImpl implements LedgerService {
             //删除账本
             ledgerMapper.deleteLedger(ledgerId);
         }
+    }
+
+    @Override
+    public User addLedgerUser(AddLedgerUserDTO addLedgerUserDTO) {
+        Long ledgerId = addLedgerUserDTO.getLedgerId();
+        List<Long> userIds = addLedgerUserDTO.getUserIds();
+        User user = ledgerMapper.addUserLedgerRelation(ledgerId,userIds);
+        return user;
     }
 
 }

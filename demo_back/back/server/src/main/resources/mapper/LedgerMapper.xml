@@ -11,15 +11,17 @@
 
     <!-- 关联表配置不变 -->
     <insert id="addUserLedgerRelation">
-        insert into user_ledger_relation(user_id, ledger_id, create_time, is_owner)
-        values (#{userId}, #{ledgerId}, CURRENT_TIMESTAMP, 1)
+        insert into user_ledger_relation(user_id, ledger_id, create_time, is_owner,is_default)
+        values (#{userId}, #{ledgerId}, CURRENT_TIMESTAMP, 1,1)
     </insert>
-    <select id="selectFirstLedgerIdByUserId" resultType="java.lang.Long">
-        SELECT ledger_id
-        FROM user_ledger_relation
-        WHERE user_id = #{userId}
-        ORDER BY create_time   <!-- 优先按创建时间，时间相同按ID（防止重复） -->
-        LIMIT 1
+    <select id="selectDefaultLedgerIdByUserId" resultType="java.lang.Long">
+<!--        SELECT ledger_id-->
+<!--        FROM user_ledger_relation-->
+<!--        WHERE user_id = #{userId}-->
+<!--        ORDER BY create_time   &lt;!&ndash; 优先按创建时间，时间相同按ID（防止重复） &ndash;&gt;-->
+<!--        LIMIT 1-->
+        select ledger_id from user_ledger_relation
+                         where user_id = #{userId} and is_default = 1
     </select>
     <select id="countByLedgerIdAndUserId" resultType="java.lang.Integer">
         select count(id) from user_ledger_relation
@@ -50,5 +52,7 @@
     <delete id="deleteLedger">
         delete from ledger where ledger.id = #{ledgerId}
     </delete>
+
+
 
 </mapper>

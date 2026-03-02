@@ -57,7 +57,7 @@
 	const getUserInfo = async () => {
 		try {
 			// const res = await http.get("/user/getUserInfo", {}, {});
-			const res =http.get(API_PATH.USER.INFO)
+			const res =await http.get(API_PATH.USER.INFO)
 			console.log("用户详细信息res:", res);
 			userName.value = res.username;
 			id.value = res.id;

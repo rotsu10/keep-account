@@ -62,7 +62,7 @@ public class UserController {
                 .id(user.getId())
                 .username(user.getUsername())
                 .token(token)
-                .ledgerId(ledgerId) // 第一个账本ID作为默认
+                .ledgerId(ledgerId)
                 .build();
 
         return Result.success(userLoginVO);

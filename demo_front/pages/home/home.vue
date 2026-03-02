@@ -7,6 +7,9 @@
 		<view class="calendar">
 			<CalendarVue></CalendarVue>
 		</view>
+		<view>
+			用户账本ID: {{ledgerId}}
+		</view>
 	</view>
 </template>
 
@@ -27,6 +30,8 @@
 			}
 		})
 	}
+	
+	const ledgerId = uni.getStorageSync('ledgerId');
 </script>
 
 <style scoped>

@@ -21,8 +21,8 @@
 <script setup>
 	import { ref, defineProps, watch,onMounted } from 'vue';
 	import dayjs from 'dayjs';
-	// import {http} from '../../utils/request.js'
-import { API_PATH } from '../../api/api.js';
+	import {http} from '../../utils/request.js'
+	import { API_PATH } from '../../api/api.js';
 	
 	const props = defineProps(['type', 'timeType', 'timeValue']);
 	console.log("props",props)

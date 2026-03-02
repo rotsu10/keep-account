@@ -5,13 +5,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CategoryDeleteDTO {
+public class CategoryDeleteDTO implements Serializable {
     //删除的分类的id
     private List<Long> categoryIds;
     //删除策略 move delete

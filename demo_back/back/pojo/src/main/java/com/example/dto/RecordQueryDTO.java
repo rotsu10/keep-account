@@ -6,11 +6,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class RecordQueryDTO {
+public class RecordQueryDTO implements Serializable {
     public Integer year;
     public Integer month;
     public Integer day;

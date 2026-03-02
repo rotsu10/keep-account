@@ -14,7 +14,7 @@
         c.name as categoryName
         from user_bill ub
         left join category c on ub.category_id = c.id
-        where ub.user_id = #{queryDTO.userId} and ledger_id = #{ledgerId}
+        where ub.user_id = #{queryDTO.userId} and ub.ledger_id = #{ledgerId}
         <if test="queryDTO.year != null">
             and year(ub.create_time) = #{queryDTO.year}
         </if>

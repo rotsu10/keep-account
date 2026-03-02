@@ -35,7 +35,7 @@
 	import { onLoad } from '@dcloudio/uni-app'; 
 	import dayjs from 'dayjs';
 	import { API_PATH } from '../../api/api';
-	// import { http } from '../../utils/request';
+	import { http } from '../../utils/request';
 	const billStore = useBillStore();
 	// 定义页面数据
 	const productPrice = ref(''); // 商品价格

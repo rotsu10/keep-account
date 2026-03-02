@@ -93,7 +93,7 @@
 <script setup>
 import { ref, reactive } from 'vue'; 
 import { onLoad } from '@dcloudio/uni-app'; 
-// import { http } from '../../utils/request';
+import { http } from '../../utils/request';
 import { API_PATH } from '../../api/api';
 import dayjs from 'dayjs';
 const DialogShow = ref(false)

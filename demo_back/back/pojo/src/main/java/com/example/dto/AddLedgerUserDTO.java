@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class BillDeleteDTO implements Serializable {
-    //删除账单的id
-    private List<Long> billIds;
+public class AddLedgerUserDTO implements Serializable {
+    private List<Long> userIds;
+    private Long LedgerId;
 }

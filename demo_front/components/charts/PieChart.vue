@@ -7,7 +7,6 @@
 <script setup>
 import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue';
 import * as echarts from 'echarts';
-// import { onResize } from '@dcloudio/uni-app';
 import { http } from '../../utils/request';
 import { API_PATH } from '../../api/api';
 
@@ -17,10 +16,30 @@ const props = defineProps(['type', 'timeType', 'timeValue']);
 const chartData = ref([]);
 // ECharts实例
 let myChart = null;
-// 防抖标记
-// let resizeTimer = null;
 
-// 1. 异步获取分类统计数据
+// 1. 封装确保图表初始化的函数
+const ensureChartInit = async () => {
+  if (myChart) return; // 已有实例直接返回
+  await nextTick();
+  return new Promise((resolve) => {
+    uni.createSelectorQuery().select('#pie-chart').boundingClientRect((rect) => {
+      if (!rect || !rect.width || !rect.height) {
+        resolve(false);
+        return;
+      }
+      const chartDom = document.getElementById('pie-chart');
+      if (chartDom) {
+        myChart = echarts.init(chartDom);
+        myChart.resize({ width: rect.width, height: rect.height });
+        resolve(true);
+      } else {
+        resolve(false);
+      }
+    }).exec();
+  });
+};
+
+// 2. 异步获取分类统计数据
 const getCategorySum = async () => {
   try {
     console.log("请求参数：", props);
@@ -29,10 +48,11 @@ const getCategorySum = async () => {
       timeType: props.timeType,
       timeValue: props.timeValue
     };
-    // const res = await http.post('/user/getCategorySum', params);
     const res = await http.post(API_PATH.BILL.GET_CATEGORY_SUM, params);
     chartData.value = Array.isArray(res) ? res : [];
     console.log("获取到的图表数据：", chartData.value);
+    
+    await ensureChartInit();
     updateChart();
   } catch (error) {
     console.error("查询分类统计失败：", error);
@@ -40,7 +60,7 @@ const getCategorySum = async () => {
   }
 };
 
-// 2. 初始化图表
+// 3. 初始化图表
 const initChart = async () => {
   await nextTick();
   uni.createSelectorQuery().select('#pie-chart').boundingClientRect(async (rect) => {
@@ -58,11 +78,12 @@ const initChart = async () => {
     if (!chartDom) return;
 
     myChart = echarts.init(chartDom);
+    myChart.resize({ width: rect.width, height: rect.height });
     setChartOption();
   }).exec();
 };
 
-// 3. 更新图表配置
+// 4. 更新图表配置
 const setChartOption = () => {
   if (!myChart) return;
 
@@ -85,8 +106,7 @@ const setChartOption = () => {
         name: '收支金额', 
         type: 'pie',
         radius: ['35%', '55%'],
-		center: ['50%', '50%'],
-        // avoidLabelOverlap: true,
+        center: ['50%', '50%'],
         itemStyle: {
           borderRadius: 8,
           borderColor: '#fff',
@@ -94,18 +114,18 @@ const setChartOption = () => {
         },
         label: {
           show: true,
-		  position:'outside',
-		  fontSize:10,
+          position:'outside',
+          fontSize:10,
           formatter: '{b}: {d}%',
         },
-		labelLine: {
-		    show: true, 
-			length:5,
-		    lineStyle: {
-		      width: 1, 
-		      color: '#666' 
-			}
-		 },
+        labelLine: {
+          show: true, 
+          length:5,
+          lineStyle: {
+            width: 1, 
+            color: '#666' 
+          }
+        },
         emphasis: {
           label: {
             show: true,
@@ -121,7 +141,7 @@ const setChartOption = () => {
   myChart.setOption(option, true);
 };
 
-// 4. 仅更新图表数据
+// 5. 更新图表数据
 const updateChart = () => {
   if (!myChart) {
     initChart();
@@ -129,16 +149,6 @@ const updateChart = () => {
   }
   setChartOption();
 };
-
-// 5. 防抖处理屏幕尺寸变化（移动端性能优化）
-// const handleResize = () => {
-//   clearTimeout(resizeTimer);
-//   resizeTimer = setTimeout(() => {
-//     if (myChart) {
-//       myChart.resize();
-//     }
-//   }, 100); // 防抖延迟100ms
-// };
 
 // 6. 监听Props变化
 watch(
@@ -155,11 +165,9 @@ watch(
 // 生命周期管理
 onMounted(async () => {
   await initChart();
-  // onResize(handleResize);
 });
 
 onUnmounted(() => {
-  // clearTimeout(resizeTimer);
   if (myChart) {
     myChart.dispose();
     myChart = null;

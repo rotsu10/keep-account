@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import { http } from "../utils/request";
 
 export const useLedger = defineStore('ledger',{
 	

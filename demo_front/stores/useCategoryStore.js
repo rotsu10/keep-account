@@ -45,7 +45,10 @@ export const useCategoryStore = defineStore('category',{
 					type : categoryData.type//分类类型
 				};
 				console.log("：store中addCategory：",sendData);
-				const result  = await http.post('/user/addCategory',sendData,{
+				// const result  = await http.post('/user/addCategory',sendData,{
+				// 	loadingText:'正在提交中'
+				// });
+				const result  = await http.post(API_PATH.CATEGORY.ADD,sendData,{
 					loadingText:'正在提交中'
 				});
 				console.log('提交分类：',result);

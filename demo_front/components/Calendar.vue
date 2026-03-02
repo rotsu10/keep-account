@@ -41,7 +41,7 @@
 		// 处理金额：避免无数据时 toFixed 报错
 		const income = dayData.income || 0;
 		const cost = dayData.cost || 0;
-		
+		console.log("处理金额",income,cost)
 		return {
 			...day,
 			bottomInfo: income > 0 ? `+${income.toFixed(2)}` : '', // 收入
@@ -57,9 +57,8 @@
 			// 	loadingText: '加载花费数据...'
 			// });
 			
-			
-			const result = http.get(API_PATH.BILL.QUERY_DAILY_COSTS);
-			 console.log("API中的result",result)
+			const result =await http.get(API_PATH.BILL.QUERY_DAILY_COSTS);
+			 console.log("每日收支数据",result)
 			// 安全校验：确保 result 是数组
 			const dataList = Array.isArray(result) ? result : (result?.data || []);
 			console.log("dataList",dataList)
@@ -100,7 +99,7 @@
 				// const result = await http.get("/bill/queryDailyCosts", {}, {
 				// 	loadingText: '加载花费数据...'
 				// });
-				const result = http.get(API_PATH.BILL.QUERY_DAILY_COSTS);
+				const result =await http.get(API_PATH.BILL.QUERY_DAILY_COSTS);
 				console.log("API中的result",result)
 				
 				// 2. 数据格式化（转为{日期: 收支数据}的map结构）
