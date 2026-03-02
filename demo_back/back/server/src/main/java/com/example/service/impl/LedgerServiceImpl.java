@@ -86,4 +86,11 @@ public class LedgerServiceImpl implements LedgerService {
         return user;
     }
 
+    @Override
+    public LedgerVO getLedgerDetail(Long ledgerId) {
+        Long userId = BaseContext.getCurrentId();
+        LedgerVO ledgerVO = ledgerMapper.getLedgerDetail(ledgerId,userId);
+        return ledgerVO;
+    }
+
 }

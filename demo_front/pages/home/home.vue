@@ -8,7 +8,7 @@
 			<CalendarVue></CalendarVue>
 		</view>
 		<view>
-			用户账本ID: {{ledgerId}}
+			<LedgerShow></LedgerShow>
 		</view>
 	</view>
 </template>
@@ -16,6 +16,7 @@
 <script setup>
 	import ButtomBarVue from '../../components/ButtomBar.vue'
 	import CalendarVue from '../../components/Calendar.vue'
+	import LedgerShow from '../../components/Ledger/LedgerShow.vue'
 	const plusAccountPage = ()=>{
 		uni.navigateTo({
 			url:'/pages/record/bill',
@@ -31,7 +32,7 @@
 		})
 	}
 	
-	const ledgerId = uni.getStorageSync('ledgerId');
+	// const ledgerId = uni.getStorageSync('ledgerId');
 </script>
 
 <style scoped>

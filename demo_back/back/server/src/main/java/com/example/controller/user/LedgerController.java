@@ -28,8 +28,6 @@ public class LedgerController {
 
     @Autowired
     private LedgerService ledgerService;
-    @Autowired
-    private LedgerMapper ledgerMapper;
 
     //添加账本
     @PostMapping("/addLedger")
@@ -70,5 +68,15 @@ public class LedgerController {
         log.info("addLedgerUser:{}", addLedgerUserDTO);
         User user = ledgerService.addLedgerUser(addLedgerUserDTO);
         return Result.success(user);
+    }
+
+    //根据账本id查询账本详情
+    @PostMapping("LedgerDetailById")
+    @Operation(summary = "账本id查询账本详情")
+    @CheckLedgerExist(message = "根据账本id查询账本详情")
+    public Result<LedgerVO> ledgerDetailById(Long ledgerId){
+        log.info("ledgerDetailById:{}", ledgerId);
+        LedgerVO ledgerVO = ledgerService.getLedgerDetail(ledgerId);
+        return Result.success(ledgerVO);
     }
 }

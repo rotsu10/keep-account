@@ -23,4 +23,7 @@ public interface LedgerService {
 
     //账本添加参与者 （添加用户-账本表中数据）
     User addLedgerUser(AddLedgerUserDTO addLedgerUserDTO);
+
+    //根据账本id查询账本相关信息
+    LedgerVO getLedgerDetail(Long ledgerId);
 }

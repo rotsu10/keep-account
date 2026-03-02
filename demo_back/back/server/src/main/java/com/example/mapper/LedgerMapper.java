@@ -41,6 +41,9 @@ public interface LedgerMapper {
     //添加账本参与者 （添加用户-账本表中数据）
     User addUserLedgerRelation(Long ledgerId, List<Long> userIds);
 
+    //根据账本id查询账本相关信息
+    LedgerVO getLedgerDetail(Long ledgerId,Long userId);
+
     //删除用户-账本表中数据
 
 }
