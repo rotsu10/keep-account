@@ -4,13 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-
-
     <groupId>com.example</groupId>
     <artifactId>back</artifactId>
     <version>1.0-SNAPSHOT</version>
-
-<!--    父工程-->
     <packaging>pom</packaging>
     <modules>
         <module>server</module>
@@ -18,28 +14,25 @@
         <module>common</module>
     </modules>
 
-
-    <!--    公共配置-->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.5.5</version>
     </parent>
 
-
     <properties>
-        <maven.compiler.source>23</maven.compiler.source>
-        <maven.compiler.target>23</maven.compiler.target>
+        <!-- 统一使用 Java 17 -->
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <lombok>1.18.38</lombok>
     </properties>
-    <!--    导入对应的启动器-->
+
     <dependencies>
+        <!-- 公共依赖（所有模块都会继承） -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
-        <!-- SpringDoc核心依赖（替代springfox） -->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
@@ -48,7 +41,30 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
-            <version>3.5.8</version>
+            <!-- 版本由父 POM 管理，无需指定 -->
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <!-- 将 compiler 插件放在 plugins 下，所有子模块自动继承 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <source>17</source>
+                    <target>17</target>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <!-- 使用 Spring Boot 管理的 Lombok 版本 -->
+                            <version>${lombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

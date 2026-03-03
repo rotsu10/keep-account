@@ -1,7 +1,8 @@
 // utils/request.js
 
 // const BASE_URL = '/api'
-const BASE_URL = "http://localhost:8080";
+import {env} from '../config/env.js'
+const BASE_URL = env.BASE_URL;
 
 /**
  * 请求拦截器
