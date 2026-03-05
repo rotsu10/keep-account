@@ -1,34 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  模块描述：记账系统后端通用工具模块（common）
+  核心作用：
+    - 存放全项目通用的工具类、自定义注解、常量、统一返回结果、异常处理器等
+    - 引入全项目共用的第三方工具依赖（如Lombok、JWT），避免子模块重复引入
+    - 该模块不包含业务逻辑，仅提供通用能力，供server、pojo等模块依赖
+-->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!-- POM模型版本，固定为4.0.0（Maven 2/3通用） -->
     <modelVersion>4.0.0</modelVersion>
+
+    <!-- 继承父工程配置：复用父工程的依赖版本、编译配置等核心配置 -->
     <parent>
-        <groupId>com.example</groupId>
-        <artifactId>back</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <groupId>com.example</groupId>          <!-- 父工程组ID -->
+        <artifactId>back</artifactId>           <!-- 父工程工件ID -->
+        <version>1.0-SNAPSHOT</version>        <!-- 父工程版本 -->
     </parent>
 
+    <!-- 当前模块工件ID：common（通用工具模块） -->
     <artifactId>common</artifactId>
 
+    <!-- 依赖配置：仅引入全项目通用的工具类依赖，不引入业务相关依赖 -->
     <dependencies>
+        <!-- 1. 通用工具依赖 -->
+        <!-- Lombok：简化代码（生成getter/setter/构造方法等），全项目通用 -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <scope>provided</scope> <!-- 版本由父 POM 管理 -->
+            <!-- scope=provided：仅编译时生效，运行时由依赖该模块的子模块提供（避免包冲突） -->
+            <scope>provided</scope>
+            <!-- 版本由父POM的spring-boot-starter-parent统一管理，无需手动声明 -->
         </dependency>
-        <!-- 其他依赖保持不变 -->
+
+        <!-- 2. JWT相关依赖：用于生成/解析JWT令牌（用户登录认证、接口鉴权） -->
+        <!-- JWT核心API：提供JWT创建、解析、验证的核心接口 -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-api</artifactId>
-            <version>0.11.5</version>
+            <version>0.11.5</version> <!-- JJWT 0.11.x适配Java 8+，兼容Spring Boot 3.x -->
         </dependency>
+        <!-- JWT实现包：JJWT的核心实现，仅运行时需要（scope=runtime） -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-impl</artifactId>
             <version>0.11.5</version>
+            <!-- scope=runtime：编译时不需要，仅运行时加载（减少编译依赖） -->
             <scope>runtime</scope>
         </dependency>
+        <!-- JWT JSON序列化包：基于Jackson实现JWT的JSON数据解析，仅运行时需要 -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-jackson</artifactId>
@@ -37,3 +58,44 @@
         </dependency>
     </dependencies>
 </project>
+
+
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<project xmlns="http://maven.apache.org/POM/4.0.0"-->
+<!--         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+<!--         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">-->
+<!--    <modelVersion>4.0.0</modelVersion>-->
+<!--    <parent>-->
+<!--        <groupId>com.example</groupId>-->
+<!--        <artifactId>back</artifactId>-->
+<!--        <version>1.0-SNAPSHOT</version>-->
+<!--    </parent>-->
+
+<!--    <artifactId>common</artifactId>-->
+
+<!--    <dependencies>-->
+<!--        <dependency>-->
+<!--            <groupId>org.projectlombok</groupId>-->
+<!--            <artifactId>lombok</artifactId>-->
+<!--            <scope>provided</scope> &lt;!&ndash; 版本由父 POM 管理 &ndash;&gt;-->
+<!--        </dependency>-->
+<!--        &lt;!&ndash; 其他依赖保持不变 &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>io.jsonwebtoken</groupId>-->
+<!--            <artifactId>jjwt-api</artifactId>-->
+<!--            <version>0.11.5</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>io.jsonwebtoken</groupId>-->
+<!--            <artifactId>jjwt-impl</artifactId>-->
+<!--            <version>0.11.5</version>-->
+<!--            <scope>runtime</scope>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>io.jsonwebtoken</groupId>-->
+<!--            <artifactId>jjwt-jackson</artifactId>-->
+<!--            <version>0.11.5</version>-->
+<!--            <scope>runtime</scope>-->
+<!--        </dependency>-->
+<!--    </dependencies>-->
+<!--</project>-->

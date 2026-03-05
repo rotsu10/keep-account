@@ -1,57 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  模块描述：记账系统后端核心业务模块（server）
+  核心功能：
+    - 包含Spring Boot启动类，负责项目启动
+    - 实现控制器(Controller)、服务层(Service)、数据访问层(Mapper)等核心业务逻辑
+    - 依赖common（通用工具）、pojo（实体类）模块，引入Web、数据库、安全等核心依赖
+-->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!-- POM模型版本，固定为4.0.0（Maven 2/3通用） -->
     <modelVersion>4.0.0</modelVersion>
+
+    <!-- 继承父工程配置：复用父工程的依赖版本、编译配置等 -->
     <parent>
-        <groupId>com.example</groupId>
-        <artifactId>back</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <groupId>com.example</groupId>          <!-- 父工程组ID -->
+        <artifactId>back</artifactId>           <!-- 父工程工件ID -->
+        <version>1.0-SNAPSHOT</version>        <!-- 父工程版本 -->
     </parent>
 
+    <!-- 当前模块工件ID：server（核心业务模块） -->
     <artifactId>server</artifactId>
 
+    <!-- 依赖配置：当前模块所需的业务依赖（父工程已有的依赖无需重复引入） -->
     <dependencies>
+        <!-- 1. 内部模块依赖 -->
+        <!-- 通用工具模块：引入自定义注解、工具类、统一返回结果等 -->
         <dependency>
             <groupId>com.example</groupId>
             <artifactId>common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <!-- 实体类模块：引入数据库实体、DTO、VO等数据模型 -->
+        <dependency>
+            <groupId>com.example</groupId>
+            <artifactId>pojo</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope> <!-- 编译时依赖（默认值，可省略） -->
+        </dependency>
 
+        <!-- 2. 第三方工具依赖 -->
+        <!-- Lombok：简化实体类代码（自动生成getter/setter/构造方法等） -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
+
+        <!-- 3. Spring Boot核心依赖 -->
+        <!-- Spring Boot Web：提供Web开发支持（Tomcat、Spring MVC、RESTful接口等） -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>3.0.5</version>
-        </dependency>
-
-
+        <!-- Spring Boot核心：提供自动配置、依赖注入等核心功能（web依赖已包含，可省略） -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot</artifactId>
         </dependency>
+        <!-- Spring Boot Security：提供接口安全认证、权限控制（如登录验证、接口权限） -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <!-- 4. 数据库相关依赖 -->
+        <!-- MyBatis整合Spring Boot：简化MyBatis配置，实现数据库访问 -->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>3.0.5</version> <!-- 适配Spring Boot 3.x的稳定版本 -->
+        </dependency>
+        <!-- MySQL驱动：连接MySQL数据库（建议替换为新坐标com.mysql:mysql-connector-j） -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.33</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.example</groupId>
-            <artifactId>pojo</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
+
+        <!-- 5. 分页插件依赖 -->
+        <!-- PageHelper分页插件：简化MyBatis分页查询（适配Spring Boot） -->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
@@ -59,10 +86,154 @@
         </dependency>
     </dependencies>
 
+    <!-- 全局属性配置：覆盖/补充父工程的属性 -->
     <properties>
-        <maven.compiler.source>23</maven.compiler.source>
-        <maven.compiler.target>23</maven.compiler.target>
+        <!-- Java编译版本：与父工程一致（JDK 17），可省略（继承父工程配置） -->
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <!-- 项目文件编码：与父工程一致（UTF-8），可省略 -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- Spring Boot版本变量：与父工程版本一致，用于打包插件版本统一 -->
+        <spring-boot.version>3.5.5</spring-boot.version>
     </properties>
 
+    <!-- 构建配置：编译、打包相关配置 -->
+    <build>
+        <plugins>
+            <!-- 1. Maven编译插件：指定JDK版本和编码（与父工程重复，可省略） -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version> <!-- 适配JDK 17的稳定版本 -->
+                <configuration>
+                    <source>17</source>       <!-- 源码编译版本 -->
+                    <target>17</target>       <!-- 目标编译版本 -->
+                    <encoding>UTF-8</encoding><!-- 编译编码 -->
+                </configuration>
+            </plugin>
+
+            <!-- 2. Spring Boot打包插件：将项目打包为可执行JAR包 -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version> <!-- 引用自定义变量，统一版本 -->
+                <configuration>
+                    <!-- 项目启动类全路径：需与实际启动类包名+类名一致 -->
+                    <mainClass>com.example.Application</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>repackage</id>    <!-- 重打包执行ID -->
+                        <goals>
+                            <!-- 执行repackage目标：将普通JAR转为可执行JAR -->
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
+
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<project xmlns="http://maven.apache.org/POM/4.0.0"-->
+<!--         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+<!--         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">-->
+<!--    <modelVersion>4.0.0</modelVersion>-->
+<!--    <parent>-->
+<!--        <groupId>com.example</groupId>-->
+<!--        <artifactId>back</artifactId>-->
+<!--        <version>1.0-SNAPSHOT</version>-->
+<!--    </parent>-->
+
+<!--    <artifactId>server</artifactId>-->
+
+
+<!--    <dependencies>-->
+<!--        <dependency>-->
+<!--            <groupId>com.example</groupId>-->
+<!--            <artifactId>common</artifactId>-->
+<!--            <version>1.0-SNAPSHOT</version>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>org.projectlombok</groupId>-->
+<!--            <artifactId>lombok</artifactId>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-web</artifactId>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.mybatis.spring.boot</groupId>-->
+<!--            <artifactId>mybatis-spring-boot-starter</artifactId>-->
+<!--            <version>3.0.5</version>-->
+<!--        </dependency>-->
+
+
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot</artifactId>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>mysql</groupId>-->
+<!--            <artifactId>mysql-connector-java</artifactId>-->
+<!--            <version>8.0.33</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-security</artifactId>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>com.example</groupId>-->
+<!--            <artifactId>pojo</artifactId>-->
+<!--            <version>1.0-SNAPSHOT</version>-->
+<!--            <scope>compile</scope>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>com.github.pagehelper</groupId>-->
+<!--            <artifactId>pagehelper-spring-boot-starter</artifactId>-->
+<!--            <version>2.1.0</version>-->
+<!--        </dependency>-->
+<!--    </dependencies>-->
+
+<!--    <properties>-->
+<!--        <maven.compiler.source>17</maven.compiler.source>-->
+<!--        <maven.compiler.target>17</maven.compiler.target>-->
+<!--        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
+<!--        &lt;!&ndash; 定义 spring-boot.version 变量，值和你的 Spring Boot 版本一致 &ndash;&gt;-->
+<!--        <spring-boot.version>3.5.5</spring-boot.version>-->
+<!--    </properties>-->
+
+<!--    <build>-->
+<!--        <plugins>-->
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-compiler-plugin</artifactId>-->
+<!--                <version>3.11.0</version>&lt;!&ndash; 适配 JDK 17 的稳定版本 &ndash;&gt;-->
+<!--                <configuration>-->
+<!--                    <source>17</source>-->
+<!--                    <target>17</target>-->
+<!--                    <encoding>UTF-8</encoding>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+<!--            &lt;!&ndash; Spring Boot 打包插件 &ndash;&gt;-->
+<!--            <plugin>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--                <version>${spring-boot.version}</version>&lt;!&ndash; 现在能解析变量了 &ndash;&gt;-->
+<!--                <configuration>-->
+<!--                    <mainClass>com.example.Application</mainClass>&lt;!&ndash; 你的启动类全路径 &ndash;&gt;-->
+<!--                </configuration>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>repackage</id>-->
+<!--                        <goals>-->
+<!--                            <goal>repackage</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
+<!--        </plugins>-->
+<!--    </build>-->
+<!--</project>-->

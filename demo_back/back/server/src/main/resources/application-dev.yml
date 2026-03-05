@@ -10,5 +10,5 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/keep_account?useSSL=false&serverTimezone=UTC
     username: xn
-    password: 051013
+    password: FfHRARdRP7SwRx5B
 

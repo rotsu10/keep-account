@@ -11,3 +11,7 @@ const prodEnv = {
 
 // 判断当前环境（UniApp内置环境变量）
 export const env = process.env.NODE_ENV === 'production' ? prodEnv : devEnv;
+
+
+console.log('当前运行环境：', process.env.NODE_ENV);
+console.log('当前接口地址：', env.BASE_URL);

@@ -5,6 +5,9 @@
     "default-passive-events": "^4.0.0",
     "echarts": "^6.0.0",
     "pinia": "^3.0.3",
-    "vant": "^4.9.21"
+    "vant": "^4.9.22"
+  },
+  "devDependencies": {
+    "@dcloudio/vite-plugin-uni": "^3.0.0-alpha-3000020210521001"
   }
 }

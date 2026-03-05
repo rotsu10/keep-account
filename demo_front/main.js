@@ -1,4 +1,4 @@
-import App from './App'
+import App from './App.vue'
 import 'default-passive-events'
 // #ifndef VUE3
 import Vue from 'vue'

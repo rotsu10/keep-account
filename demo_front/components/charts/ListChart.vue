@@ -95,8 +95,8 @@
 		// 重新加载第一页数据
 		loadData();
 	},
-	{ deep: true } ,// 深度监听数组中的值变化
-	{ immediate: true }
+	
+	{ deep: true, immediate: true } 
 	);
 	
 	// 6. 重置分页和数据状态

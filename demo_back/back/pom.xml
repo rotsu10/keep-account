@@ -1,65 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  项目描述：记账系统后端父POM文件
+  作用：统一管理多模块项目的依赖版本、编译配置、公共依赖
+  模块说明：
+    - server：核心业务模块（Spring Boot启动类、控制器、服务层等）
+    - pojo：实体类模块（数据库实体、DTO、VO等）
+    - common：通用工具模块（工具类、自定义注解、统一返回结果等）
+-->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!-- POM模型版本，固定为4.0.0（Maven 2/3通用） -->
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- 1. 项目基本信息配置 -->
+    <!-- 项目唯一标识组ID：公司/组织域名反写 -->
     <groupId>com.example</groupId>
+    <!-- 项目工件ID：父工程名称 -->
     <artifactId>back</artifactId>
+    <!-- 项目版本：SNAPSHOT表示快照版（开发中），RELEASE表示正式版 -->
     <version>1.0-SNAPSHOT</version>
+    <!-- 打包方式：pom表示该工程为父工程，用于聚合模块和统一配置 -->
     <packaging>pom</packaging>
+
+    <!-- 2. 聚合模块配置：声明当前父工程包含的子模块 -->
     <modules>
-        <module>server</module>
-        <module>pojo</module>
-        <module>common</module>
+        <module>server</module>   <!-- 核心业务模块（Spring Boot启动模块） -->
+        <module>pojo</module>     <!-- 实体类模块 -->
+        <module>common</module>   <!-- 通用工具模块 -->
     </modules>
 
+    <!-- 3. 父依赖配置：继承Spring Boot官方父工程，简化依赖版本管理 -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.5.5</version>
+        <version>3.5.5</version>  <!-- Spring Boot版本号 -->
     </parent>
 
+    <!-- 4. 全局属性配置：统一管理编译、编码等公共属性 -->
     <properties>
-        <!-- 统一使用 Java 17 -->
+        <!-- Java编译版本：指定JDK 17（需与本地/服务器JDK版本一致） -->
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+        <!-- 项目文件编码：统一UTF-8，避免中文乱码 -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- 补充lombok版本（原配置缺失，避免编译报错） -->
+        <lombok.version>1.18.34</lombok.version>
     </properties>
 
+    <!-- 5. 公共依赖配置：所有子模块可直接继承这些依赖（无需重复引入） -->
     <dependencies>
-        <!-- 公共依赖（所有模块都会继承） -->
+        <!-- Spring Boot核心依赖：提供自动配置、依赖管理等核心功能 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
+
+        <!-- SpringDoc依赖：自动生成Swagger API文档（替代传统Swagger2） -->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
             <version>2.8.14</version>
         </dependency>
+
+        <!-- Spring AOP依赖：支持面向切面编程（如自定义拦截器、日志切面等） -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
-            <!-- 版本由父 POM 管理，无需指定 -->
         </dependency>
     </dependencies>
 
+    <!-- 6. 构建配置：统一管理编译插件、打包插件等 -->
     <build>
         <plugins>
-            <!-- 将 compiler 插件放在 plugins 下，所有子模块自动继承 -->
+            <!-- Maven编译插件：指定JDK编译版本，配置注解处理器（如Lombok） -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
+                <version>3.11.0</version>  <!-- 插件版本 -->
                 <configuration>
+                    <!-- 编译源码版本（与全局属性一致） -->
                     <source>17</source>
                     <target>17</target>
+                    <!-- 注解处理器路径：指定Lombok注解处理器，解决Lombok注解编译问题 -->
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
-                            <!-- 使用 Spring Boot 管理的 Lombok 版本 -->
                             <version>${lombok.version}</version>
                         </path>
                     </annotationProcessorPaths>
@@ -68,3 +95,69 @@
         </plugins>
     </build>
 </project>
+
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<project xmlns="http://maven.apache.org/POM/4.0.0"-->
+<!--         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+<!--         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">-->
+<!--    <modelVersion>4.0.0</modelVersion>-->
+
+<!--    <groupId>com.example</groupId>-->
+<!--    <artifactId>back</artifactId>-->
+<!--    <version>1.0-SNAPSHOT</version>-->
+<!--    <packaging>pom</packaging>-->
+<!--    <modules>-->
+<!--        <module>server</module>-->
+<!--        <module>pojo</module>-->
+<!--        <module>common</module>-->
+<!--    </modules>-->
+
+<!--    <parent>-->
+<!--        <groupId>org.springframework.boot</groupId>-->
+<!--        <artifactId>spring-boot-starter-parent</artifactId>-->
+<!--        <version>3.5.5</version>-->
+<!--    </parent>-->
+
+<!--    <properties>-->
+<!--        <maven.compiler.source>17</maven.compiler.source>-->
+<!--        <maven.compiler.target>17</maven.compiler.target>-->
+<!--        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
+<!--    </properties>-->
+
+<!--    <dependencies>-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter</artifactId>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.springdoc</groupId>-->
+<!--            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>-->
+<!--            <version>2.8.14</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-aop</artifactId>-->
+<!--        </dependency>-->
+<!--    </dependencies>-->
+
+<!--    <build>-->
+<!--        <plugins>-->
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-compiler-plugin</artifactId>-->
+<!--                <version>3.11.0</version>-->
+<!--                <configuration>-->
+<!--                    <source>17</source>-->
+<!--                    <target>17</target>-->
+<!--                    <annotationProcessorPaths>-->
+<!--                        <path>-->
+<!--                            <groupId>org.projectlombok</groupId>-->
+<!--                            <artifactId>lombok</artifactId>-->
+<!--                            <version>${lombok.version}</version>-->
+<!--                        </path>-->
+<!--                    </annotationProcessorPaths>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+<!--        </plugins>-->
+<!--    </build>-->
+<!--</project>-->
