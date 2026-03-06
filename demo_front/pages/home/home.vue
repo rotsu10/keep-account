@@ -9,7 +9,10 @@
 			<CalendarVue></CalendarVue>
 		</view>
 		<view>
-			<LedgerShow></LedgerShow>
+			<LedgerShow 
+			   @queryLedgerDetail="handleQueryLedgerDetail"
+			>
+			</LedgerShow>
 		</view>
 	</view>
 </template>
@@ -18,6 +21,7 @@
 	import ButtomBarVue from '../../components/ButtomBar.vue'
 	import CalendarVue from '../../components/Calendar.vue'
 	import LedgerShow from '../../components/Ledger/LedgerShow.vue'
+	import { API_PATH } from '../../api/api'
 	const plusAccountPage = ()=>{
 		uni.navigateTo({
 			url:'/pages/record/bill',
@@ -34,6 +38,8 @@
 	}
 	
 	// const ledgerId = uni.getStorageSync('ledgerId');
+	
+	
 </script>
 
 <style scoped>

@@ -212,11 +212,3 @@ export const http = {
 }
 
 export default request
-
-
-// const BASE_URL = "http://localhost:8080";
-// export const BASE_URL = "http://localhost:8080"; // 环境变量
-// export const API_PATH = {
-//   USER: '/api/user',
-//   CATEGORY: '/api/category'
-// };

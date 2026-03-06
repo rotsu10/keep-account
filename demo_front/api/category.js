@@ -35,7 +35,8 @@ export const queryCategoryByType = (params = {}) => {
 // 5. 删除分类（DELETE 请求）
 export const deleteCategory = (data = {}) => {
   // data 是请求体：如 { id: 1, type: 1 }（对应 CategoryDeleteDTO）
-  return http.delete(API_PATH.CATEGORY.DELETE, { data });
+  // return http.delete(API_PATH.CATEGORY.DELETE, { data });
+  return http.delete(API_PATH.CATEGORY.DELETE, data);
 };
 
 // 6. 批量修改账单所属分类（PATCH 请求）
