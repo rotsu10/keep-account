@@ -89,8 +89,8 @@ const setChartOption = () => {
     },
     series: [{
       name: '收支总金额', type: 'line', symbol: 'circle', symbolSize: 6,
-      areaStyle: { color: echarts.graphic.LinearGradient(0, 0, 0, 1, [{ offset: 0, color: 'rgba(64, 158, 255, 0.3)' }, { offset: 1, color: 'rgba(64, 158, 255, 0.05)' }]) },
-      lineStyle: { width: 2, color: '#409eff' },
+      areaStyle: { show: false },
+	  lineStyle: { width: 2, color: '#409eff' },
       emphasis: { symbol: 'circle', symbolSize: 8 },
       data: seriesData
     }]

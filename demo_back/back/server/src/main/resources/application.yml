@@ -2,7 +2,6 @@ server:
   port: 8080
 
 spring:
-
   profiles:
     active: dev
 #  web:
@@ -21,3 +20,4 @@ example:
     user-secret-key: a-string-secret-at-least-256-bits-long
     user-ttl: 604800000
     user-token-name: authentication
+

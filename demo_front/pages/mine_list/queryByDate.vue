@@ -1,3 +1,4 @@
+<!-- 月度收支 -->
 <template>
   <view class="bill-container">
     <!-- 日期选择器 -->
@@ -54,10 +55,11 @@ const loadStatisticsData = async () => {
   try {
     const { year, month } = selectedDate.value;
     // const statistics = await http.post("/user/statisticsQuery", { year, month });
-    const statistics = http.post(API_PATH.BILL.STATISTICS_QUERY,{ year, month })
+    const statistics =await http.post(API_PATH.BILL.STATISTICS_QUERY,{ year, month })
 	totalIncome.value = statistics.income;
     totalExpense.value = statistics.expense;
     totalTransfer.value = statistics.transfer;
+	console.log("月度账单：", statistics);
   } catch (err) {
     console.error("财务统计查询失败：", err.message);
   }

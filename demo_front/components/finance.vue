@@ -36,6 +36,7 @@
 			default: 0
 		}
 	});
+	console.log("月度账单props：", props);
 </script>
 
 <style scoped>

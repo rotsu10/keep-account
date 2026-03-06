@@ -1,3 +1,4 @@
+<!-- 图表 -->
 <template>
 	<view class="time">
 		<AllSelectTimeVue @sendDate='handleDateChange'></AllSelectTimeVue>
