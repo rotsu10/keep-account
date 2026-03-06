@@ -76,14 +76,40 @@ public class BillServiceImpl implements BillService {
         return userBillVO;
     }
 
+//    @Override
+//    public StatisticsQueryVO statisticsQuery(TimeDTO timeDTO) {
+//        Integer year = statisticsQueryDTO.getYear();
+//        Integer month = statisticsQueryDTO.getMonth();
+//        Integer day = statisticsQueryDTO.getDay();
+//        Long userId = BaseContext.getCurrentId();
+//        Long ledgerId = BaseContext.getLedgerId();
+//        SumStatistics sum = userBillMapper.getSumAll(year, month, day,userId,ledgerId);
+//        log.info("userBill:{}",sum);
+//        // 1. 初始化默认值
+//        BigDecimal income = BigDecimal.ZERO;
+//        BigDecimal expense = BigDecimal.ZERO;
+//        BigDecimal transfer = BigDecimal.ZERO;
+//
+//        // 2. 如果 sum 不为 null，再从 sum 中获取值
+//        if (sum != null) {
+//            income = sum.getIncome();
+//            expense = sum.getExpense();
+//            transfer = sum.getTransfer();
+//        }
+//
+//        // 3. 返回结果
+//        return new StatisticsQueryVO(income, expense, transfer);
+//    }
+
+
     @Override
-    public StatisticsQueryVO statisticsQuery(StatisticsQueryDTO statisticsQueryDTO) {
-        Integer year = statisticsQueryDTO.getYear();
-        Integer month = statisticsQueryDTO.getMonth();
-        Integer day = statisticsQueryDTO.getDay();
+    public StatisticsQueryVO statisticsQuery(TimeDTO timeDTO) {
+        String timeValue = timeDTO.getTimeValue();
+        String timeType = timeDTO.getTimeType();
+        Integer type = timeDTO.getType();
         Long userId = BaseContext.getCurrentId();
         Long ledgerId = BaseContext.getLedgerId();
-        SumStatistics sum = userBillMapper.getSumAll(year, month, day,userId,ledgerId);
+        SumStatistics sum = userBillMapper.getSumAll(timeType, timeValue,type,userId,ledgerId);
         log.info("userBill:{}",sum);
         // 1. 初始化默认值
         BigDecimal income = BigDecimal.ZERO;
@@ -100,6 +126,7 @@ public class BillServiceImpl implements BillService {
         // 3. 返回结果
         return new StatisticsQueryVO(income, expense, transfer);
     }
+
 
     @Override
     public List<DailyCost> queryDailyCosts() {

@@ -62,13 +62,12 @@ public class BillController {
         return Result.success(userBillVO);
     }
 
-    //根据传递的月份日统计收入和支出
     @CheckLedgerExist
-    @Operation(summary = "根据传递的月份日统计收入和支出")
+    @Operation(summary = "根据日期和类型统计账单和")
     @PostMapping("/statisticsQuery")
-    public Result<StatisticsQueryVO> statisticsQuery(@RequestBody StatisticsQueryDTO statisticsQueryDTO){
-        log.info("根据传递的月份和年份查询收入和支出：{}",statisticsQueryDTO);
-        StatisticsQueryVO statisticsQueryVO  = billService.statisticsQuery(statisticsQueryDTO);
+    public Result<StatisticsQueryVO> statisticsQuery(@RequestBody TimeDTO timeDTO){
+        log.info("根据日期和类型统计账单和：{}",timeDTO);
+        StatisticsQueryVO statisticsQueryVO  = billService.statisticsQuery(timeDTO);
         log.info("查询收入和支出：{}",statisticsQueryVO);
         return Result.success(statisticsQueryVO);
     }

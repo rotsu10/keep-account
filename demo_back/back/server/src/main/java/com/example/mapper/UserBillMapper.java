@@ -23,8 +23,9 @@ public interface UserBillMapper {
     //根据账单id查询账单详情
     UserBill selectBillDetail(Long userId, Long billId,Long ledgerId);
 
-    //根据年月查询账单统计
-    SumStatistics getSumAll(Integer year, Integer month,Integer day, Long userId, Long ledgerId);
+    //根据年月和类型统计账单和
+//    SumStatistics getSumAll(Integer year, Integer month,Integer day, Long userId, Long ledgerId);
+    SumStatistics getSumAll(String timeType, String timeValue, Integer type, Long userId, Long ledgerId);
 
     //查询每日花费
     List<DailyCost> queryDailyCosts(Long id,Long ledgerId);
@@ -57,4 +58,5 @@ public interface UserBillMapper {
     Page<UserBill> queryListChart(@Param("dto") ListRecordPageDTO listRecordPageDTO,
                                   @Param("userId") Long userId,
                                   @Param("ledgerId") Long ledgerId);
+
 }

@@ -23,8 +23,9 @@ public interface BillService {
     //根据账单id查询账单详情
     UserBillVO queryBillDetail(Long billId);
 
-    //根据年月查询账单统计收入和支出
-    StatisticsQueryVO statisticsQuery(StatisticsQueryDTO statisticsQueryDTO);
+    //根据年月和类型统计账单和
+//    StatisticsQueryVO statisticsQuery(StatisticsQueryDTO statisticsQueryDTO);
+    StatisticsQueryVO statisticsQuery(TimeDTO timeDTO);
 
     //查询每日花费
     List<DailyCost> queryDailyCosts();
