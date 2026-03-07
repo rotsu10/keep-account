@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { http } from "../utils/request";
 import { API_PATH } from "../api/api";
-
+import { ledgerDetailById } from "../api/ledger";
 export const useLedgerStore = defineStore('ledger', {
   state: () => ({
     // 核心全局状态：当前选中的账本ID（从本地存储初始化）
@@ -29,13 +29,16 @@ export const useLedgerStore = defineStore('ledger', {
         return;
       }
       try {
-        const result = await http.post(API_PATH.LEGER.LEGER_DETAIL_BY_ID, { ledgerId });
-        this.ledgerName = result.ledgerName || '';
+        // const result = await http.get(API_PATH.LEDGER.LEDGER_DETAIL_BY_ID, ledgerId );
+        const result = await ledgerDetailById(ledgerId)
+		console.log("当前账本详情store",result)
+		this.ledgerName = result.ledgerName || '';
         this.createTime = result.createTime || '';
         this.ownerId = result.ownerId || '';
         this.billCount = result.billCount || 0;
         this.totalIncomeAmount = result.totalIncomeAmount || 0;
         this.totalOutcomeAmount = result.totalOutcomeAmount || 0;
+		return result;
       } catch (error) {
         console.error("查询账本详情失败", error);
         uni.showToast({ title: '查询账本详情失败', icon: 'none' });
@@ -56,7 +59,7 @@ export const useLedgerStore = defineStore('ledger', {
     async deleteLedger(ledgerId) {
       if (!ledgerId) return;
       try {
-        await http.delete(API_PATH.LEGER.DELETE,  { ledgerId });
+        await http.delete(API_PATH.LEDGER.DELETE,  { ledgerId });
         uni.showToast({ title: '删除账本成功', icon: 'success' });
         // 删除后清空当前账本ID（如果删除的是当前选中的账本）
         if (ledgerId === this.ledgerId) {

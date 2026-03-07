@@ -54,18 +54,19 @@
     </delete>
 
     <select id="getLedgerDetail" resultType="com.example.vo.LedgerVO">
-        select
+        select l.id,
             l.ledger_name,
             l.create_time,
             COUNT(ub.id) AS billCount,
             SUM(CASE WHEN ub.type = 1 THEN ub.amount ELSE 0 END) as totalIncomeAmount,
             SUM(CASE WHEN ub.type = 2 THEN ub.amount ELSE 0 END) as totalOutcomeAmount,
+            MAX(ub.user_id) as ownerId
         from ledger l
                  left join user_bill ub on ub.ledger_id = l.id
                  left join user_ledger_relation ular on ular.ledger_id = l.id
         where
             l.id = #{ledgerId}
-          and ular.user_id = #{userId}
+          and ular.user_id = #{userId} and ular.is_owner = 1
         group by l.id, l.ledger_name, l.create_time;
     </select>
 

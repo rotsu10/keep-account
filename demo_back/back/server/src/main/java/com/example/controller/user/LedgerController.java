@@ -71,10 +71,10 @@ public class LedgerController {
     }
 
     //根据账本id查询账本详情
-    @PostMapping("LedgerDetailById")
+    @GetMapping("LedgerDetailById")
     @Operation(summary = "账本id查询账本详情")
     @CheckLedgerExist(message = "根据账本id查询账本详情")
-    public Result<LedgerVO> ledgerDetailById(Long ledgerId){
+    public Result<LedgerVO> ledgerDetailById(@RequestParam Long ledgerId){
         log.info("ledgerDetailById:{}", ledgerId);
         LedgerVO ledgerVO = ledgerService.getLedgerDetail(ledgerId);
         return Result.success(ledgerVO);

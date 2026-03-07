@@ -2,7 +2,7 @@
 // 引入请求工具
 import { http } from '@/utils/request';
 // 引入接口路径常量
-// import { API_PATH } from '@/config/api';
+import { API_PATH } from './api';
 
 /**
  * 用户模块接口集合

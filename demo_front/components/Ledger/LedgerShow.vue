@@ -8,7 +8,7 @@
 	const ledgerId = uni.getStorageSync('ledgerId');
 	const emit = defineEmits(['queryLedgerDetail'])
 	const handleClick = () =>{
-		emit('queryLedgerDetail');
+		emit('queryLedgerDetail',ledgerId);
 	}
 </script>
 
