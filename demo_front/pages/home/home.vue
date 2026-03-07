@@ -44,7 +44,6 @@
 		try{
 			console.log("当前账本ledgerId",ledgerId)
 			const result = await ledgerStore.queryLedgerDetailByID({ledgerId})
-			console.log("当前账本详情",result)
 		}catch(error){
 			console.error("查询账本详情失败",error)
 		}
