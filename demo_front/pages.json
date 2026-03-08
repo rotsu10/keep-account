@@ -111,7 +111,7 @@
 		}
 	},
 	{
-		"path": "stores/useLedger",
+		"path": "stores/useLedgerStore",
 		"style": {
 			"navigationBarTitleText": ""
 		}

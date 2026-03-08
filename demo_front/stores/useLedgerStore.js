@@ -79,4 +79,4 @@ export const useLedgerStore = defineStore('ledger', {
       return state.totalIncomeAmount - state.totalOutcomeAmount;
     }
   }
-});
+}); 
