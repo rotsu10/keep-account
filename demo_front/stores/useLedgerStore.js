@@ -9,7 +9,7 @@ import {
 } from "../api/api";
 import {
 	ledgerDetailById,
-	addLedger
+	addLedger,getAllLedger
 } from "../api/ledger";
 export const useLedgerStore = defineStore('ledger', {
 	state: () => ({
@@ -96,6 +96,13 @@ export const useLedgerStore = defineStore('ledger', {
 		},
 		// 5.添加账本
 		async addLedger(ledgerName) {
+			if(!ledgerName){
+				uni.showToast({
+					icon:"error",
+					title:"填写完整信息"
+				});
+				return;
+			}
 			try{
 				console.log("ledgerName",ledgerName)
 				await addLedger({ledgerName});
@@ -103,10 +110,17 @@ export const useLedgerStore = defineStore('ledger', {
 				console.error("添加账本失败",error);
 			}
 		},
+		// 6.查询所有账本
+		async getAllLedger(){
+			try{
+				const result = await getAllLedger();
+				return result;
+			}catch(error){
+				console.error("查询所有账本失败",error)
+			}
+		},
 	},
 
-
-	
 
 	getters: {
 		// 收支差额
