@@ -1,38 +1,46 @@
 <template>
-	<view @click="handleClick" class="ledgerShow">
-		 {{ledgerId}}{{ledgerName}}
+	<view class="ledgerShow">
+		 {{ledgerId}}{{ledgerStore.ledgerName}}
+		  <van-icon name="arrow-down" @click="linkToAllLedger" size="14" />
 	</view>
 </template>
 
 <script setup>
-	import { ref } from 'vue'; // 引入ref用于声明响应式变量
+	import { ref,onMounted } from 'vue'; // 引入ref用于声明响应式变量
 	import { useLedgerStore } from '../../stores/useLedgerStore';
 	
-	// 1. 初始化ledgerStore
 	const ledgerStore = useLedgerStore();
 	
-	// 2. 从本地缓存获取ledgerId（顶层声明，模板可访问）
 	const ledgerId = uni.getStorageSync('ledgerId');
 	
-	// 3. 声明ledgerName为响应式变量（顶层声明，模板/函数均可访问）
 	const ledgerName = ref(''); 
 	
 	// 4. 定义自定义事件
 	const emit = defineEmits(['queryLedgerDetail']);
 	
-	// 5. 点击事件处理函数
-	const handleClick = () => {
-		// 触发父组件事件，传递ledgerId
-		emit('queryLedgerDetail', ledgerId);
-		// 更新ledgerName的值（从store中获取）
-		// ledgerName.value = ledgerStore.ledgerName;
-	};
 	
-	// 可选：页面初始化时就从store获取ledgerName（根据需求决定）
-	ledgerName.value = ledgerStore.ledgerName;
+	onMounted(() => {
+			// 先校验ledgerId是否有效，避免传递空值
+			if (ledgerId) {
+				emit('queryLedgerDetail', ledgerId);
+				console.log("页面加载自动触发查询账本详情，ledgerId：", ledgerId);
+			} else {
+				console.log("ledgerId为空，跳过自动查询");
+			}
+		});
 	
-	// 此时console.log能正常访问ledgerName
-	console.log("ledgerName", ledgerName.value);
+	const linkToAllLedger = () =>{
+		console.log("跳转到allLedger");
+		uni.navigateTo({
+			url: '/pages/record/allLedger', 
+			success: () => {
+				console.log("跳转成功");
+			},
+			fail: (err) => {
+				console.error("跳转失败：", err);
+			},
+		});
+	}
 </script>
 
 <style>
@@ -40,7 +48,6 @@
    		font-weight: 500;
 		width: 200rpx;
 		height: 40rpx;
-		/* 可选：添加行高，让文字垂直居中 */
 		line-height: 40rpx;
 	}
 </style>

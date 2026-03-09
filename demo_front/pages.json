@@ -121,6 +121,12 @@
 		"style": {
 			"navigationBarTitleText": ""
 		}
+	},
+	{
+		"path": "pages/record/allLedger",
+		"style": {
+			"navigationBarTitleText": ""
+		}
 	}
   ],
   "tabBar": {

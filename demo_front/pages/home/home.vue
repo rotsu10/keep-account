@@ -48,7 +48,6 @@
 			console.error("查询账本详情失败",error)
 		}
 	}
-	// const ledgerId = uni.getStorageSync('ledgerId');
 	
 	
 </script>

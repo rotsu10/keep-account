@@ -22,7 +22,7 @@ export const useLedgerStore = defineStore('ledger', {
       uni.setStorageSync('ledgerId', ledgerId);
     },
 
-    // 2. 根据账本ID查询详情（更新state）
+    // 2. 根据账本ID查询详情
     async queryLedgerDetailByID(ledgerId = this.ledgerId) {
       if (!ledgerId) {
         uni.showToast({ title: '账本ID不能为空', icon: 'none' });
