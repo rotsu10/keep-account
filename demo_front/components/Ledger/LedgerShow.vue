@@ -32,7 +32,7 @@
 	const linkToAllLedger = () =>{
 		console.log("跳转到allLedger");
 		uni.navigateTo({
-			url: '/pages/record/allLedger', 
+			url: '/pages/ledger/allLedger', 
 			success: () => {
 				console.log("跳转成功");
 			},

@@ -123,8 +123,16 @@
 		}
 	},
 	{
-		"path": "pages/record/allLedger",
+		"path": "pages/ledger/allLedger",
 		"style": {
+			"navigationStyle": "custom",
+			"navigationBarTitleText": ""
+		}
+	},
+	{
+		"path": "pages/ledger/ledgerDetail",
+		"style": {
+			"navigationStyle": "custom",
 			"navigationBarTitleText": ""
 		}
 	}

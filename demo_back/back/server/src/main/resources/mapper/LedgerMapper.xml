@@ -10,9 +10,32 @@
     </insert>
 
     <!-- 关联表配置不变 -->
+    <!-- 新增/修改：addUserLedgerRelation 插入语句 -->
     <insert id="addUserLedgerRelation">
-        insert into user_ledger_relation(user_id, ledger_id, create_time, is_owner,is_default)
-        values (#{userId}, #{ledgerId}, CURRENT_TIMESTAMP, 1,1)
+        insert into user_ledger_relation(
+        user_id,
+        ledger_id,
+        create_time,
+        is_owner,
+        is_default
+        )
+        values (
+        #{userId},
+        #{ledgerId},
+        CURRENT_TIMESTAMP,
+        1,
+        <!-- 修复：子查询套一层临时表 -->
+        CASE
+        WHEN (
+        SELECT COUNT(*) FROM (
+        SELECT 1 FROM user_ledger_relation
+        WHERE user_id = #{userId}
+        AND is_default = 1
+        ) AS t  <!-- 关键：临时表别名 t -->
+        ) = 0 THEN 1  <!-- 无默认账本 → 设为默认 -->
+        ELSE 0        <!-- 有默认账本 → 设为非默认 -->
+        END
+        )
     </insert>
     <select id="selectDefaultLedgerIdByUserId" resultType="java.lang.Long">
 <!--        SELECT ledger_id-->
