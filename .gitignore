@@ -30,3 +30,5 @@ demo_front/.env
 demo_front/.env.local
 demo_front/.env.development.local
 demo_front/.env.production.local
+demo_front/unpackage/cache/wgt/
+demo_front/unpackage/
