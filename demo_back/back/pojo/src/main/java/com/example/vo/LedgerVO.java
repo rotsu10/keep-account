@@ -23,7 +23,8 @@ public class LedgerVO{
     // 账本所有者名称（关联user表的用户名）
     private Integer ownerId;
     private String ownerName;
-
+    //是否为默认账本
+    private boolean isDefault;
     //账本下的账单数量
     private Integer billCount;
     //账本收入金额
