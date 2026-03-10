@@ -36,3 +36,9 @@ export const addLedgerUser = (data = {}) => {
 export const ledgerDetailById = (params = {}) => {
   return http.get(API_PATH.LEDGER.LEDGER_DETAIL_BY_ID,params);
 };
+
+// 6. 修改默认账本（POST 请求）
+export const switchLedger = (params = {}) => {
+	const url = `${API_PATH.LEDGER.SWITCH_LEDGER}?ledgerId=${params}`;
+	return http.post(url);
+};

@@ -215,7 +215,7 @@ const getCategory = async()=> {
 			categoryList.value = [];
 			return;
 		}
-		const res  =  await http.get(`/user/queryTypeCategory?type=${formData.type}`)
+		const res  =  await http.get(`/category/queryTypeCategory?type=${formData.type}`)
 		categoryList.value = res||[];
 		console.log("分类数据：", categoryList.value);
 	}catch(error){

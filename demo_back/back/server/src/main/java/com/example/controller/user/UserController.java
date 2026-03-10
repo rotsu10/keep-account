@@ -45,6 +45,7 @@ public class UserController {
         log.info("用户登录：{}", userLoginDTO);
         User user = userService.login(userLoginDTO);
 
+        log.info("user={}", user);
         //TODO：Jwt令牌
         //登录成功后。生成jwt令牌
         Map<String, Object> clams = new HashMap<>();
@@ -61,6 +62,8 @@ public class UserController {
         UserLoginVO userLoginVO = UserLoginVO.builder()
                 .id(user.getId())
                 .username(user.getUsername())
+                .phone(user.getPhone())
+                .createdTime(user.getCreatedTime())
                 .token(token)
                 .ledgerId(ledgerId)
                 .build();

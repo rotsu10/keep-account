@@ -16,12 +16,13 @@
 				icon="location-o"
 				v-for="item in allLedger"
 				:key="item.id"
-				:title="item.ledgerName"
-				@click="selectLedger(item.id)"
+				:title="item.ledgerName || '未命名账本'"  
+				:value="item.ledgerId" 
+				@click="selectLedger(item.ledgerId)"
 			></van-cell>
 		</van-cell-group>
-		
-		
+
+	
 		<!-- 添加账本弹出层 -->
 		<van-dialog
 		  v-model:show="show" 
@@ -40,42 +41,82 @@
 </template>
 
 <script setup>
-	import { onMounted,ref } from 'vue';
+	import { onMounted, ref } from 'vue';
 	import { useLedgerStore } from '../../stores/useLedgerStore';
+
 	const ledgerStore = useLedgerStore();
-	const LedgerName = ref('')
-	const show = ref(false)
+	const LedgerName = ref('');
+	const show = ref(false);
+	const allLedger = ref([]);
 	
-	const allLedger = ref('')
+	const onClickLeft = () => {
+		uni.navigateBack({
+			delta: 1 // 返回上一级页面
+		});
+	};
 	
-	const onClickLeft = () => history.back();
-	
-	const showAddLedger = () =>{
+	const showAddLedger = () => {
 		show.value = true;
 		LedgerName.value = '';
-	}
+	};
 	
-	const addLedger = async ()=>{
-		const ledgerName = LedgerName.value;
-		await ledgerStore.addLedger(ledgerName);
-	}
+	const addLedger = async () => {
+
+		const ledgerName = LedgerName.value.trim();
+		if (!ledgerName) {
+			uni.showToast({ title: '账本名称不能为空', icon: 'none' });
+			return;
+		}
+		
+		try {
+			await ledgerStore.addLedger(ledgerName);
+			uni.showToast({ title: '添加账本成功', icon: 'success' });
+			show.value = false; // 关闭弹窗
+			
+			// 添加成功后刷新账本列表
+			const result = await ledgerStore.getAllLedger();
+			allLedger.value = result || [];
+		} catch (error) {
+			console.error("添加账本失败：", error);
+			uni.showToast({ title: '添加账本失败', icon: 'none' });
+		}
+	};
 	
-	onMounted(async()=>{
-		const result = await ledgerStore.getAllLedger();
-		allLedger.value = result;
-	})
+	onMounted(async () => {
+		try {
+			const result = await ledgerStore.getAllLedger();
+			allLedger.value = result || [];
+		} catch (error) {
+			console.error("查询账本列表失败：", error);
+			uni.showToast({ title: '加载账本失败', icon: 'none' });
+		}
+	});
 
 
-	const selectLedger = (ledger) => {
-		console.log("选中账本：", ledger);
-		// 示例：切换到选中的账本
-		ledgerStore.setCurrentLedgerId(ledger.id);
-		// 示例：查询该账本详情
-		// 示例：返回上一页/跳转到账本详情页
-		uni.navigateBack();
-	}
+	const selectLedger = async (ledgerId) => {
+		console.log("开始切换账本，ID：", ledgerId);
+		
+	
+		if (!ledgerId || ledgerId <= 0) {
+			uni.showToast({ title: '账本ID异常', icon: 'none' });
+			return;
+		}
+		
+		try {
+			await ledgerStore.switchLedger(ledgerId);
+			uni.showToast({ title: '切换账本成功', icon: 'success' });
+			
+			uni.navigateBack({ delta: 1 });
+		} catch (error) {
+			console.error("切换账本失败：", error);
+			uni.showToast({ title: '切换账本失败', icon: 'none' });
+		}
+	};
 </script>
 
-<style>
-	       
+<style scoped>
+	.empty-tip {
+		padding: 50rpx;
+		text-align: center;
+	}
 </style>

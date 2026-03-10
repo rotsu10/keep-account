@@ -38,7 +38,7 @@
         </if>
     </select>
     <select id="getAllLedger" resultType="com.example.vo.LedgerVO">
-        select ubr.*,user.username AS ownerName,ledger.ledger_name  from user_ledger_relation ubr
+        select ubr.*,user.username AS ownerName,ledger.ledger_name,ledger.id as ledgerId, user.id as ownerId  from user_ledger_relation ubr
             left join user on user.id = ubr.user_id
             left join ledger on ledger.id = ubr.ledger_id
                  where ubr.user_id = #{userId}
@@ -74,6 +74,17 @@
         group by l.id, l.ledger_name, l.create_time;
     </select>
 
-
+    <update id="switchLedger">
+        UPDATE user_ledger_relation
+        SET is_default = CASE
+            -- 条件1：指定账本 → 强制设为1（优先级最高）
+                             WHEN user_id = #{userId} AND ledger_id = #{ledgerId} THEN 1
+            -- 条件2：同用户下原默认账本（排除指定账本）→ 设为0
+                             WHEN user_id = #{userId} AND is_default = 1 AND ledger_id != #{ledgerId} THEN 0
+            -- 其他记录 → 保持原值
+                             ELSE is_default
+            END
+        WHERE user_id = #{userId};
+    </update>
 
 </mapper>

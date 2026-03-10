@@ -9,7 +9,7 @@ import {
 } from "../api/api";
 import {
 	ledgerDetailById,
-	addLedger,getAllLedger
+	addLedger,getAllLedger,switchLedger
 } from "../api/ledger";
 export const useLedgerStore = defineStore('ledger', {
 	state: () => ({
@@ -119,6 +119,15 @@ export const useLedgerStore = defineStore('ledger', {
 				console.error("查询所有账本失败",error)
 			}
 		},
+		//7.切换账本
+		async switchLedger(ledgerId){
+			try{
+				console.log("切换账本type",typeof ledgerId)
+				const result =await switchLedger(ledgerId);
+			}catch(error){
+				console.log("切换账本失败error",error)
+			}
+		}
 	},
 
 

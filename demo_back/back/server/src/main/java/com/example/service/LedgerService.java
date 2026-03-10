@@ -26,4 +26,7 @@ public interface LedgerService {
 
     //根据账本id查询账本相关信息
     LedgerVO getLedgerDetail(Long ledgerId);
+
+    //切换默认账本
+    void switchLedger(Long ledgerId);
 }

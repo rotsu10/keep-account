@@ -1,10 +1,12 @@
 package com.example.service.impl;
 
+import com.example.constant.MessageConstant;
 import com.example.context.BaseContext;
 import com.example.dto.AddLedgerUserDTO;
 import com.example.dto.LedgerDTO;
 import com.example.entity.Ledger;
 import com.example.entity.User;
+import com.example.exception.BillException;
 import com.example.exception.LedgerException;
 import com.example.mapper.LedgerMapper;
 import com.example.service.LedgerService;
@@ -91,6 +93,16 @@ public class LedgerServiceImpl implements LedgerService {
         Long userId = BaseContext.getCurrentId();
         LedgerVO ledgerVO = ledgerMapper.getLedgerDetail(ledgerId,userId);
         return ledgerVO;
+    }
+
+    @Override
+    public void switchLedger(Long ledgerId) {
+        Long userId = BaseContext.getCurrentId();
+        int row = ledgerMapper.switchLedger(ledgerId,userId);
+
+        if (row == 0) {
+            throw new LedgerException(MessageConstant.LEDGER_NOT_EXISTS);
+        }
     }
 
 }

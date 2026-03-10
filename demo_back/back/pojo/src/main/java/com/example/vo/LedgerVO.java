@@ -12,14 +12,18 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class LedgerVO{
-    //账本ID
+    //用户-账本ID
     private Long id;
+    //账本ID
+    private Long ledgerId;
     //账本名称
     private String ledgerName;
     //账本创建时间
     private LocalDateTime createTime;
     // 账本所有者名称（关联user表的用户名）
     private Integer ownerId;
+    private String ownerName;
+
     //账本下的账单数量
     private Integer billCount;
     //账本收入金额

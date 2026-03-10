@@ -46,7 +46,7 @@ public class LedgerController {
 //
 //    }
     //获取所有账本
-    @GetMapping("getAllLedger")
+    @GetMapping("/getAllLedger")
     @Operation(summary = "获取所有账本")
     public Result<List<LedgerVO>> getAllLedger() {
         List<LedgerVO> list= ledgerService.getAllLedger();
@@ -54,7 +54,7 @@ public class LedgerController {
     }
 
     //删除账本
-    @DeleteMapping("deleteLedger")
+    @DeleteMapping("/deleteLedger")
     @Operation(summary = "删除账本")
     public Result deleteLedger(@RequestParam Long ledgerId){
         ledgerService.deleteLedger(ledgerId);
@@ -62,7 +62,7 @@ public class LedgerController {
     }
 
     //账本添加参与者 （添加用户-账本表中数据）
-    @PostMapping("addLedgerUser")
+    @PostMapping("/addLedgerUser")
     @Operation(summary = "添加账本参与者")
     public Result<User> addLedgerUser(@RequestBody AddLedgerUserDTO addLedgerUserDTO) {
         log.info("addLedgerUser:{}", addLedgerUserDTO);
@@ -71,12 +71,21 @@ public class LedgerController {
     }
 
     //根据账本id查询账本详情
-    @GetMapping("LedgerDetailById")
+    @GetMapping("/LedgerDetailById")
     @Operation(summary = "账本id查询账本详情")
     @CheckLedgerExist(message = "根据账本id查询账本详情")
     public Result<LedgerVO> ledgerDetailById(@RequestParam Long ledgerId){
         log.info("ledgerDetailById:{}", ledgerId);
         LedgerVO ledgerVO = ledgerService.getLedgerDetail(ledgerId);
         return Result.success(ledgerVO);
+    }
+
+    //切换默认账本
+    @PostMapping("/switchLedger")
+    @Operation(summary = "切换默认账本")
+    public Result switchLedger(Long ledgerId){
+        log.info("switchLedger:{}", ledgerId);
+        ledgerService.switchLedger(ledgerId);
+        return Result.success();
     }
 }
