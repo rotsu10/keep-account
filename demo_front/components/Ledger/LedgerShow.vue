@@ -1,6 +1,6 @@
 <template>
 	<view class="ledgerShow">
-		 {{ledgerId}}{{ledgerStore.ledgerName}}
+		 {{ledgerStore.ledgerId}}{{ledgerStore.ledgerName}}
 		  <van-icon name="arrow-down" @click="linkToAllLedger" size="14" />
 	</view>
 </template>

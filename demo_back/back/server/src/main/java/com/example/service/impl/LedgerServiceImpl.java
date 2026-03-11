@@ -99,9 +99,10 @@ public class LedgerServiceImpl implements LedgerService {
     public void switchLedger(Long ledgerId) {
         Long userId = BaseContext.getCurrentId();
         int row = ledgerMapper.switchLedger(ledgerId,userId);
-
         if (row == 0) {
             throw new LedgerException(MessageConstant.LEDGER_NOT_EXISTS);
+        }else {
+            BaseContext.setLedgerId(ledgerId);
         }
     }
 

@@ -58,7 +58,7 @@
     </delete>
 
     <select id="getLedgerDetail" resultType="com.example.vo.LedgerVO">
-        select l.id,
+        select l.id as ledgerId,
             l.ledger_name,
             l.create_time,
             COUNT(ub.id) AS billCount,
@@ -69,8 +69,8 @@
                  left join user_bill ub on ub.ledger_id = l.id
                  left join user_ledger_relation ular on ular.ledger_id = l.id
         where
-            l.id = #{ledgerId}
-          and ular.user_id = #{userId} and ular.is_owner = 1
+            ular.ledger_id  = #{ledgerId}
+          and ular.user_id = #{userId}
         group by l.id, l.ledger_name, l.create_time;
     </select>
 

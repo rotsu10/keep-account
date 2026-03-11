@@ -61,14 +61,24 @@
 </template>
 
 <script setup>
-	import {ref ,onMounted} from 'vue';
+	import {ref ,onMounted,watch} from 'vue';
 	import ButtomBar from '../../components/ButtomBar.vue';
 	import { showConfirmDialog } from 'vant';
 	import {useCategoryStore} from '../../stores/useCategoryStore';
 	import { useBillStore } from '../../stores/useBillStore';
 	import { storeToRefs } from 'pinia';
+	import { useLedgerStore } from '../../stores/useLedgerStore';
+	
+	
 	const categoryStore = useCategoryStore();
 	const billStore = useBillStore();
+	const ledgerStore = useLedgerStore();
+	
+	const { ledgerId } = storeToRefs(ledgerStore);
+	
+	console.log("ledgerId",ledgerId.value)
+	
+	
 	
 	const {categoryList:list} = storeToRefs(categoryStore);
 	console.log("list",list.value);
@@ -187,6 +197,13 @@
 			})
 		}
 	}
+	
+	watch(ledgerId, (newLedgerId) => {
+		console.log("检测到ledgerId改变")
+	  if (newLedgerId) {
+	    categoryStore.queryCategoryType(currentType.value); // 账本切换后刷新分类
+	  }
+	}, { immediate: true });
 </script>
 
 <style scoped>

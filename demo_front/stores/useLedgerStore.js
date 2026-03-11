@@ -14,7 +14,7 @@ import {
 export const useLedgerStore = defineStore('ledger', {
 	state: () => ({
 		// 核心全局状态：当前选中的账本ID（从本地存储初始化）
-		ledgerId: uni.getStorageSync('ledgerId') || '',
+		ledgerId:'',
 		// 账本详情
 		ledgerName: '',
 		createTime: '',
@@ -44,6 +44,7 @@ export const useLedgerStore = defineStore('ledger', {
 				// const result = await http.get(API_PATH.LEDGER.LEDGER_DETAIL_BY_ID, ledgerId );
 				const result = await ledgerDetailById(ledgerId)
 				console.log("当前账本详情store", result)
+				this.ledgerId = result.ledgerId || '';
 				this.ledgerName = result.ledgerName || '';
 				this.createTime = result.createTime || '';
 				this.ownerId = result.ownerId || '';
@@ -119,11 +120,18 @@ export const useLedgerStore = defineStore('ledger', {
 				console.error("查询所有账本失败",error)
 			}
 		},
+		
+		
 		//7.切换账本
 		async switchLedger(ledgerId){
 			try{
 				console.log("切换账本type",typeof ledgerId)
 				const result =await switchLedger(ledgerId);
+				
+				this.setCurrentLedgerId(ledgerId);
+				await this.queryLedgerDetailByID({ledgerId});
+
+				return result;
 			}catch(error){
 				console.log("切换账本失败error",error)
 			}

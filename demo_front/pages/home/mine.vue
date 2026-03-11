@@ -17,6 +17,18 @@
 				</view>
 			</view>
 		</view>
+		
+		<view class="user">
+			<van-image class="photo" round src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg" alt="" />
+			<view class="user_info">
+				<view class="name">
+					{{ userName }}
+				</view>
+				<view class="ID">
+					ID:{{ id }}
+				</view>
+			</view>
+		</view>
 
 		<view class="settings">
 			<van-cell-group inset>

@@ -2,18 +2,23 @@
 <template>
 	<view>
 		<!-- 页面内容 -->
+		<van-nav-bar title="日历">
+		  <template #right>
+		    <LedgerShow 
+		      @queryLedgerDetail="handleQueryLedgerDetail"
+		      style="width: 100%;"
+		    ></LedgerShow>
+		  </template >
+		</van-nav-bar>
+		
+		
 		<view class="content">
 			<van-button icon="plus" type="primary" round class="plus" @click="plusAccountPage"/>
 		</view>
 		<view class="calendar">
 			<CalendarVue></CalendarVue>
 		</view>
-		<view>
-			<LedgerShow 
-			   @queryLedgerDetail="handleQueryLedgerDetail"
-			>
-			</LedgerShow>
-		</view>
+		
 	</view>
 </template>
 
