@@ -63,15 +63,14 @@
             l.create_time,
             COUNT(ub.id) AS billCount,
             SUM(CASE WHEN ub.type = 1 THEN ub.amount ELSE 0 END) as totalIncomeAmount,
-            SUM(CASE WHEN ub.type = 2 THEN ub.amount ELSE 0 END) as totalOutcomeAmount,
-            MAX(ub.user_id) as ownerId
+            SUM(CASE WHEN ub.type = 2 THEN ub.amount ELSE 0 END) as totalOutcomeAmount
         from ledger l
                  left join user_bill ub on ub.ledger_id = l.id
                  left join user_ledger_relation ular on ular.ledger_id = l.id
         where
             ular.ledger_id  = #{ledgerId}
           and ular.user_id = #{userId}
-        group by l.id, l.ledger_name, l.create_time;
+        group by l.id;
     </select>
 
     <update id="switchLedger">
@@ -86,5 +85,12 @@
             END
         WHERE user_id = #{userId};
     </update>
+
+
+    <select id="getLedgerOwner" resultType="com.example.entity.User">
+        select ulr.user_id as id,user.username from user_ledger_relation ulr
+                       left join user on ulr.user_id = user.id
+                       where ledger_id = #{ledgerId}  and is_owner = 1
+    </select>
 
 </mapper>

@@ -91,7 +91,12 @@ public class LedgerServiceImpl implements LedgerService {
     @Override
     public LedgerVO getLedgerDetail(Long ledgerId) {
         Long userId = BaseContext.getCurrentId();
+        //查询账本信息
         LedgerVO ledgerVO = ledgerMapper.getLedgerDetail(ledgerId,userId);
+        //查询账本owner信息
+        User user = ledgerMapper.getLedgerOwner(ledgerId);
+        ledgerVO.setOwnerId(user.getId());
+        ledgerVO.setOwnerName(user.getUsername());
         return ledgerVO;
     }
 

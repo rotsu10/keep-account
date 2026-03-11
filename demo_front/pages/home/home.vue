@@ -18,7 +18,6 @@
 		<view class="calendar">
 			<CalendarVue></CalendarVue>
 		</view>
-		
 	</view>
 </template>
 

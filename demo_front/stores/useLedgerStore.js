@@ -19,6 +19,7 @@ export const useLedgerStore = defineStore('ledger', {
 		ledgerName: '',
 		createTime: '',
 		ownerId: '',
+		ownerName:'',
 		billCount: 0,
 		totalIncomeAmount: 0, // 总收入
 		totalOutcomeAmount: 0, // 总支出
@@ -48,6 +49,7 @@ export const useLedgerStore = defineStore('ledger', {
 				this.ledgerName = result.ledgerName || '';
 				this.createTime = result.createTime || '';
 				this.ownerId = result.ownerId || '';
+				this.ownerName = result.ownerName || '';
 				this.billCount = result.billCount || 0;
 				this.totalIncomeAmount = result.totalIncomeAmount || 0;
 				this.totalOutcomeAmount = result.totalOutcomeAmount || 0;
@@ -126,11 +128,11 @@ export const useLedgerStore = defineStore('ledger', {
 		async switchLedger(ledgerId){
 			try{
 				console.log("切换账本type",typeof ledgerId)
-				const result =await switchLedger(ledgerId);
+				await switchLedger(ledgerId);
 				
 				this.setCurrentLedgerId(ledgerId);
-				await this.queryLedgerDetailByID({ledgerId});
-
+				const result = await this.queryLedgerDetailByID({ledgerId});
+				console.log("切换账本result",result)
 				return result;
 			}catch(error){
 				console.log("切换账本失败error",error)

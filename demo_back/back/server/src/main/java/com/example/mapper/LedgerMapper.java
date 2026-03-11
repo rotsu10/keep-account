@@ -47,6 +47,9 @@ public interface LedgerMapper {
     //切换默认账本
     int switchLedger(Long ledgerId,Long userId);
 
+    //查询账本创建者信息
+    User getLedgerOwner(Long ledgerId);
+
     //删除用户-账本表中数据
 
 }

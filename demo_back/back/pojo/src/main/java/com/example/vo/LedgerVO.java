@@ -21,7 +21,7 @@ public class LedgerVO{
     //账本创建时间
     private LocalDateTime createTime;
     // 账本所有者名称（关联user表的用户名）
-    private Integer ownerId;
+    private Long ownerId;
     private String ownerName;
     //是否为默认账本
     private boolean isDefault;

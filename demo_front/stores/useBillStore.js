@@ -3,6 +3,8 @@
 import {defineStore} from 'pinia';
 import {http} from '../utils/request';
 import { API_PATH } from '../api/api';
+import { useLedgerStore } from './useLedgerStore';
+import { watch } from 'vue';
 export const useBillStore = defineStore('bill', {
 	state: () => ({
 		dailyCosts: {}, // 存储每日花费

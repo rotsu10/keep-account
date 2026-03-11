@@ -36,6 +36,8 @@
 	import dayjs from 'dayjs';
 	import { API_PATH } from '../../api/api';
 	import { http } from '../../utils/request';
+	import { useLedgerStore } from '../../stores/useLedgerStore';
+	const ledgerStore = useLedgerStore();
 	const billStore = useBillStore();
 	// 定义页面数据
 	const productPrice = ref(''); // 商品价格
@@ -82,6 +84,9 @@
 				type: payType.value,
 				createTime:dayjs(createTime.value).format('YYYY-MM-DD HH:mm:ss')
 			})
+			// const ledgerId = uni.getStorageSync("ledgerId");
+			// const result = await ledgerStore.queryLedgerDetailByID({ledgerId});
+			console.log('添加账本后查询ledger',result)
 			uni.showToast({
 				title: '添加成功',
 				icon: 'success'
