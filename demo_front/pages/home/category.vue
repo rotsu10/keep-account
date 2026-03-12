@@ -1,5 +1,6 @@
 <template>
 	<view>
+		
 		<view class="clascustom-nav">
 			<!-- 导航栏 -->
 			<van-nav-bar title="分类">
@@ -13,7 +14,6 @@
 		<view class="button">
 			<van-button type="default" round size="normal" @click="handleTypeClick(1)" :class="{ 'button-active': activeType === 1 }">收入</van-button>
 			<van-button type="default" round size="normal" @click="handleTypeClick(2)" :class="{ 'button-active': activeType === 2 }">支出</van-button>
-			<!-- <van-button type="default" round size="normal" @click="handleTypeClick(3)" :class="{ 'button-active': activeType === 3 }">转账</van-button> -->
 		</view>
 
 		<view>
@@ -68,7 +68,6 @@
 	import { useBillStore } from '../../stores/useBillStore';
 	import { storeToRefs } from 'pinia';
 	import { useLedgerStore } from '../../stores/useLedgerStore';
-	
 	
 	const categoryStore = useCategoryStore();
 	const billStore = useBillStore();
@@ -170,8 +169,13 @@
 		}
 		try{
 			console.log("deleteCategoryData:",deleteCategoryData)
+			//删除分类
 			await categoryStore.deleteCategory(deleteCategoryData);
-			categoryStore.queryCategoryType(currentType.value);
+			//刷新分类列表
+			await categoryStore.queryCategoryType(currentType.value);
+			//刷新账本信息
+			const ledgerId = uni.getStorageSync("ledgerId");
+			await ledgerStore.queryLedgerDetailByID({ledgerId});
 		}catch(err){
 			console.log("删除分类失败err",err);
 		}finally {

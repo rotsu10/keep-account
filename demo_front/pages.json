@@ -25,6 +25,7 @@
     {
       "path": "pages/record/bill",
       "style": {
+		"navigationStyle": "custom",
         "navigationBarTitleText": ""
       }
     },

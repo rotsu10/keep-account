@@ -22,7 +22,7 @@
 
 <script setup>
 	import { useBillStore } from '../../stores/useBillStore';
-	import { onLoad } from '@dcloudio/uni-app';
+	import { onLoad, onShow, onUnload } from '@dcloudio/uni-app';
 	import { ref } from 'vue';
 	import dayjs from 'dayjs';
 	import PlusBillButton from '../../components/PlusBillButton.vue'
@@ -34,11 +34,31 @@
 	const currentPage = ref(1); // 当前页码
 	const pageSize = ref(10); // 每页条数
 	const total = ref(0); // 总条数
+	
+	//重新加载列表
+	const refreshList = () => {
+		// 重置分页状态
+		resetPagination();
+		// 手动触发加载第一页数据
+		loadData();
+	}
+	
+	
+	onShow(() => {
+	  // 页面显示时监听全局事件
+	  console.log("页面显示时监听全局事件")
+	  uni.$on('billAdded', refreshList);
+	});
+	
+	// 3. 页面卸载时移除监听（防止内存泄漏）
+	onUnload(() => {
+	  uni.$off('billAdded', refreshList);
+	});
+	
+	
 	onLoad((options)=>{
 		if(options.date){
 			currentDate.value = options.date;
-			// currentDate.value = ref(dayjs().format('YYYY-MM-DD HH:mm:ss'));
-			console.log("currentDate",currentDate.value);
 			resetPagination();
 		}
 	})

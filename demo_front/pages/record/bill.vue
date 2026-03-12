@@ -1,26 +1,36 @@
+<!-- 添加账单页面 -->
 <template>
+	<view class="nav">
+		<van-nav-bar title="添加账本" 
+			left-arrow @click-left="onClickLeft"
+			/>
+	</view>
 	<view>
+		<!-- 账单价格,备注 -->
 		<van-cell-group inset>
 			<van-field v-model="productPrice" type="number" number="9.2" label="商品价格" placeholder="限制9位整数2位小数" />
 			<van-field v-model="message" rows="1" autosize label="备注" type="textarea" placeholder="请输入备注" />
 		</van-cell-group>
 		
+		<!-- 分类 -->
 		<van-divider :style="{ color: '#1989fa', borderColor: '#1989fa', padding: '16px 16px' }">分类
 		</van-divider>
-		
 		<van-radio-group v-model="categoryId" class="radio-group">
 			<van-radio v-for="category in categoryList" :key="category.id" :name="category.id">
 				{{category.name}}
 			</van-radio>
+			
 		</van-radio-group>
 		
+		<!-- 支付类型 -->
 		<van-divider :style="{ color: '#1989fa', borderColor: '#1989fa', padding: '16px 16px' }">支付类型
 		</van-divider>
-		
 		<van-radio-group v-model="payType" class="radio-group">
 			<van-radio name="1">收入</van-radio>
 			<van-radio name="2">支出</van-radio>
 		</van-radio-group>
+		
+		<!-- 添加 -->
 		<!-- <van-button type="primary" round size = 'large' @click = addCount>添加</van-button> -->
 		<van-button type="primary" round size="large" @click='handleSubmit'>添加</van-button>
 	</view>
@@ -49,9 +59,10 @@
 	const createTime = ref('')
 	onLoad((options) => {
 		createTime.value = options.time;
-		console.log("bill 页面接收并解码后的 time：", createTime.value,dayjs(createTime.value).format('YYYY-MM-DD HH:mm:ss'));
 	});
 	
+	// 返回
+	 const onClickLeft = () => history.back();
 	// 添加按钮点击事件
 	const handleSubmit = async() => {
 		if (!productPrice.value) {
@@ -84,13 +95,15 @@
 				type: payType.value,
 				createTime:dayjs(createTime.value).format('YYYY-MM-DD HH:mm:ss')
 			})
-			// const ledgerId = uni.getStorageSync("ledgerId");
-			// const result = await ledgerStore.queryLedgerDetailByID({ledgerId});
-			console.log('添加账本后查询ledger',result)
+			const ledgerId = uni.getStorageSync("ledgerId");
+			const result = await ledgerStore.queryLedgerDetailByID({ledgerId});
 			uni.showToast({
 				title: '添加成功',
 				icon: 'success'
 			});
+			// 重新加载账本列表
+			uni.$emit('billAdded');
+			
 			productPrice.value = '';
 			message.value = '';
 			categoryId.value = '';
