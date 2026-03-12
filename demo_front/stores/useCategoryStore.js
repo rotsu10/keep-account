@@ -23,7 +23,7 @@ export const useCategoryStore = defineStore('category',{
 				console.log("后端返回数据result:",result);
 				this.categoryList = result;
 				this.currentType = type;
-				return true;
+				return result;
 			}catch(err){
 				console.error('请求失败err：',err);
 				uni.showToast({

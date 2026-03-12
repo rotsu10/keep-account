@@ -92,5 +92,4 @@
                        left join user on ulr.user_id = user.id
                        where ledger_id = #{ledgerId}  and is_owner = 1
     </select>
-
 </mapper>

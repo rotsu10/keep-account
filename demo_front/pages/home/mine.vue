@@ -20,7 +20,7 @@
 
 
 		<view>
-			<view class="ledger">
+			<view class="ledger" @click="goToLedgerDetail">
 				<!-- 第一行：账本信息标题（独占一行、居中） -->
 				<van-row justify="center" align="center" class="ledger-title-row">
 					<van-col span="24" class="ledger_title">账本信息</van-col>
@@ -116,7 +116,13 @@
 			});
 		}
 	}
-
+	//查询账本详情
+	const goToLedgerDetail = () =>{
+		const url = `/pages/ledger/ledgerDetail`;
+		uni.navigateTo({
+			url:url,
+		})
+	}
 	onMounted(() => {
 		getUserInfo();
 	});
