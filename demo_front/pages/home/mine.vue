@@ -27,7 +27,7 @@
 				
 				</van-row>
 
-				<!-- 第二行及以后：账本详情数据（分行/分栏展示） -->
+				<!-- 第二行及以后：账本详情数据 -->
 				<van-row justify="space-around" align="left" class="ledger-data-row">
 					<van-col span="12">账本名称:{{ ledgerStore.ledgerName }}</van-col>
 				</van-row>

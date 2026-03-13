@@ -105,13 +105,6 @@
 		}
 	);
 
-	
-
-
-	// onMounted(() => {
-	//   loadData();
-	// });
-
 	defineExpose({
 		resetPagination
 	});

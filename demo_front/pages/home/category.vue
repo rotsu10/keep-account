@@ -202,12 +202,16 @@
 		}
 	}
 	
-	watch(ledgerId, (newLedgerId) => {
+	watch(
+		ledgerId, 
+		(newLedgerId) => {
 		console.log("检测到ledgerId改变")
-	  if (newLedgerId) {
-	    categoryStore.queryCategoryType(currentType.value); // 账本切换后刷新分类
-	  }
-	}, { immediate: true });
+		if (newLedgerId) {
+				categoryStore.queryCategoryType(currentType.value); // 账本切换后刷新分类
+			}
+		}, 
+		{immediate: true },
+	);
 </script>
 
 <style scoped>

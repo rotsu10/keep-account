@@ -14,9 +14,20 @@
 			:title="`${item.type === 1 ? '+' : '-'}${item.amount}`"
 			:value="`${dayjs(item.createTime).format('YYYY/MM/DD')}`"
 			@click="goToBillDetail(item.id)"
+			@longpress="deleteByLongPress(item.id)"
 		/>
 		</van-list>
+		
+		<!-- 添加账单按钮 -->
 		<PlusBillButton :time="currentDate"></PlusBillButton>
+		
+		<!-- 删除账单弹窗 -->
+		<van-dialog v-model:show="DialogShow" title="删除账单"  show-cancel-button
+		confirm-button-text="确认删除" cancel-button-text="取消" @confirm="confirmDelete()">
+			<van-row  justify="center">
+				<view class="delete">删除该账单</view>
+			</van-row>
+		</van-dialog>
 	</view>
 </template>
 
@@ -26,6 +37,8 @@
 	import { ref } from 'vue';
 	import dayjs from 'dayjs';
 	import PlusBillButton from '../../components/PlusBillButton.vue'
+	import { deleteBill } from '../../api/bill';
+	
 	const billStore = useBillStore();
 	const currentDate = ref('');
 	const list = ref([]);
@@ -34,7 +47,9 @@
 	const currentPage = ref(1); // 当前页码
 	const pageSize = ref(10); // 每页条数
 	const total = ref(0); // 总条数
-	
+	// 删除账单
+	const DialogShow = ref(false)
+	const bill = ref('')  //所选删除账单
 	//重新加载列表
 	const refreshList = () => {
 		// 重置分页状态
@@ -111,11 +126,30 @@
 		finished.value = false;
 	};
 	
+	//账单详情
 	const goToBillDetail =(billId)=>{
 		console.log("账单id:",billId);
 		uni.navigateTo({
 		    url: `/pages/record/billDetail?id=${billId}`
 		})
+	}
+	
+	//删除账单
+	const deleteByLongPress = (billId) =>{
+		console.log("删除账单item",billId);
+		bill.value = billId;
+		DialogShow.value = true;
+	}
+	const confirmDelete = async() =>{
+		try{
+			const data = {
+				billIds:[bill.value],
+			};
+			await deleteBill(data);
+			refreshList();
+		}catch(error){
+			console.error("删除账单失败error",error)
+		}
 	}
 </script>
 <style>

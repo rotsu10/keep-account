@@ -48,7 +48,8 @@ export const categoryStatistics = (data = {}) => {
 // 7. 删除账单（DELETE 请求）
 export const deleteBill = (data = {}) => {
   // data 是请求体：如 { billId: 1 }（对应 BillDeleteDTO）
-  return http.delete(API_PATH.BILL.DELETE, { data });
+  console.log("删除账本data",data)
+  return http.delete(API_PATH.BILL.DELETE, data);
 };
 
 // 8. 根据分类id查询账单（GET 请求）
