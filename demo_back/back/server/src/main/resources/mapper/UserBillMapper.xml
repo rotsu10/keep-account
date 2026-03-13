@@ -246,4 +246,13 @@
         </if>
         ORDER BY b.create_time DESC
     </select>
+
+
+    <select id="queryBillByLedger" resultType="com.example.entity.UserBill">
+        select * from user_bill
+            where ledger_id = #{ledgerId}
+                <if test="billType!=null and billType!='' ">
+                    and type = #{billType}
+                </if>
+    </select>
 </mapper>

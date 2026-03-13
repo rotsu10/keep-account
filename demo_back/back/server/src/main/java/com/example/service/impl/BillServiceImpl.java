@@ -216,4 +216,17 @@ public class BillServiceImpl implements BillService {
         List<UserBill> records = page.getResult();
         return new PageResult<>(total,records);
     }
+
+    @Override
+    public PageResult<UserBill> queryBillByLedger(QueryBillByLedgerDTO queryBillByLedgerDTO) {
+        PageHelper.startPage(queryBillByLedgerDTO.getPage(),queryBillByLedgerDTO.getPageSize());
+
+        Integer billType = queryBillByLedgerDTO.getBillType();      //账单类型
+        Long ledgerId = queryBillByLedgerDTO.getLedgerId();         //账本id
+
+        Page<UserBill> page = userBillMapper.queryBillByLedger(billType,ledgerId);
+        long total = page.getTotal();
+        List<UserBill> result = page.getResult();
+        return new PageResult<>(total,result);
+    }
 }

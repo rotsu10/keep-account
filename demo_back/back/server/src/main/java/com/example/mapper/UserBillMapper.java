@@ -59,4 +59,6 @@ public interface UserBillMapper {
                                   @Param("userId") Long userId,
                                   @Param("ledgerId") Long ledgerId);
 
+    //查询账本下所有账单 billType账单类型
+    Page<UserBill> queryBillByLedger(Integer billType, Long ledgerId);
 }

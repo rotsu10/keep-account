@@ -50,4 +50,8 @@ public interface BillService {
 
     //根据日期类型查询账单分页列表
     PageResult<UserBill> queryListChart(ListRecordPageDTO listRecordPageDTO);
+
+    //查询账本下所有账单 billType账单类型
+    PageResult<UserBill> queryBillByLedger(QueryBillByLedgerDTO queryBillByLedgerDTO);
+
 }

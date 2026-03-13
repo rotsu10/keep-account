@@ -164,4 +164,14 @@ public class BillController {
         log.info("根据日期类型查询账单分页列表:{}",userBillList);
         return Result.success(userBillList);
     }
+
+    @CheckLedgerExist
+    @PostMapping("/queryBillByLedger")
+    @Operation(summary = "查询账本下所有账单")
+    public Result<PageResult<UserBill>> queryBillByLedger(@RequestBody QueryBillByLedgerDTO queryBillByLedgerDTO)
+    {
+        log.info("queryBillByLedgerDTO:{}",queryBillByLedgerDTO);
+        PageResult<UserBill> userBillList = billService.queryBillByLedger(queryBillByLedgerDTO);
+        return Result.success(userBillList);
+    }
 }
