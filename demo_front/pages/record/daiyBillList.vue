@@ -47,6 +47,10 @@
 	const currentPage = ref(1); // 当前页码
 	const pageSize = ref(10); // 每页条数
 	const total = ref(0); // 总条数
+	
+	// 存储当前页面的查询参数（统一管理）
+	const currentQueryParams = ref({});
+	
 	// 删除账单
 	const DialogShow = ref(false)
 	const bill = ref('')  //所选删除账单
@@ -72,8 +76,25 @@
 	
 	
 	onLoad((options)=>{
-		if(options.date){
-			currentDate.value = options.date;
+		currentQueryParams.value = {
+			ledgerId: options.ledgerId || '', // 账本ID（账本详情页传）
+			billType: options.billType || '', // 账单类型（账本详情页传）
+			date: options.date || '', // 日期（其他页面传）
+		};
+		  
+		// if(options.date){
+		// 	currentDate.value = options.date;
+		// 	resetPagination();
+		// }
+		
+		if(currentQueryParams.value.ledgerId){
+			const ledgerId = currentQueryParams.value.ledgerId;
+			const billType =  currentQueryParams.value.billType;
+			queryBillByLedger(ledgerId,billType);
+		}
+		
+		if(currentQueryParams.value.date){
+			currentDate.value = currentQueryParams.value.date;
 			resetPagination();
 		}
 	})
@@ -149,6 +170,15 @@
 			refreshList();
 		}catch(error){
 			console.error("删除账单失败error",error)
+		}
+	}
+	
+	// 查询账本下所有账单
+	const queryBillByLedger = async(ledgerId,billType) =>{
+		try{
+			console.log("ledgerId,billType",ledgerId,billType)
+		}catch(error){
+			console.error("")
 		}
 	}
 </script>
