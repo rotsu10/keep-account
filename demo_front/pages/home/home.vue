@@ -22,7 +22,6 @@
 </template>
 
 <script setup>
-	import ButtomBarVue from '../../components/ButtomBar.vue'
 	import CalendarVue from '../../components/Calendar.vue'
 	import LedgerShow from '../../components/Ledger/LedgerShow.vue'
 	import { API_PATH } from '../../api/api'

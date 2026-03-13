@@ -1,29 +1,34 @@
 <template>
-	<view>
-		  <van-cell-group inset>
-		    <van-field
-		      v-model="username"
-		      required
-		      important
-		      label="用户名"
-		    />
-		    <van-field
-		      v-model="phone"
-		      required
-		      important
-		      label="手机号"
-		    />
-			<van-field
-			v-model="password" 
-			required 
-			important 
-			type="password" 
-			label="密码"
-			/>
-		  </van-cell-group>
-	</view>
-	<view class="register_button">
-		<van-button round type="primary" size="normal" @click="userRegister">注册</van-button>
+	<view >
+		<view>
+			  <van-cell-group inset>
+			    <van-field
+			      v-model="username"
+			      required
+			      important
+			      label="用户名"
+				  placeholder="请输入用户名"
+			    />
+			    <van-field
+			      v-model="phone"
+			      required
+			      important
+			      label="手机号"
+				  placeholder="请输入手机号"
+			    />
+				<van-field
+				v-model="password" 
+				required 
+				important 
+				type="password" 
+				label="密码"
+				placeholder="请输入密码"
+				/>
+			  </van-cell-group>
+		</view>
+		<view class="register_button">
+			<van-button round type="primary" size="normal" @click="userRegister">注册</van-button>
+		</view>
 	</view>
 </template>
 
@@ -35,22 +40,22 @@
 	const phone = ref('');
 	const password = ref('');
 	const userRegister =async ()=>{
-		if(!username.value || !phone.value || !password.value ){
+		if(!username.value.trim() || !phone.value.trim() || !password.value.trim() ){
 			uni.showToast({
 				title:'请填写完整信息',
 				icon:'none',
 			})
 			return;
 		}
-		if (!/^1[3-9]\d{9}$/.test(phone.value)) {
+		if (!/^1[3-9]\d{9}$/.test(phone.value.trim())) {
 		    uni.showToast({ title: '手机号格式不正确', icon: 'none' });
 		    return;
 		}
 		try{
 			const sendData = {
-				username:username.value,
-				phone:phone.value,
-				password:password.value
+				username:username.value.trim(),
+				phone:phone.value.trim(),
+				password:password.value.trim()
 			}
 			// const result = await http.post('/user/register',sendData);
 			const result = await http.post(API_PATH.USER.REGISTER, sendData);

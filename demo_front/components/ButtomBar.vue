@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
 	<view>
 		<van-tabbar :fixed="true" :placeholder="true">
 			<van-tabbar-item 
@@ -43,4 +43,6 @@
 
 <style scoped>
 
-</style>
+</style -->>
+
+<template></template>

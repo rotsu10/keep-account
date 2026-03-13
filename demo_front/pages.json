@@ -13,20 +13,23 @@
       }
     },
     {
-      "path": "pages/common/register"
+      "path": "pages/common/register",
+	  "style": {
+	    "navigationBarTitleText": "注册"
+	  }
     },
     {
       "path": "pages/home/home",
       "style": {
         "navigationStyle": "custom",
-        "navigationBarTitleText": ""
+        "navigationBarTitleText": "首页"
       }
     },
     {
       "path": "pages/record/bill",
       "style": {
 		"navigationStyle": "custom",
-        "navigationBarTitleText": ""
+        "navigationBarTitleText": "账单"
       }
     },
     {
@@ -47,93 +50,92 @@
       "path": "pages/home/stastics",
       "style": {
         "navigationStyle": "custom",
-        "navigationBarTitleText": "",
-        "disableScroll": false
+        "navigationBarTitleText": "图表"
       }
     },
     {
       "path": "pages/mine_list/queryByDate",
       "style": {
-        "navigationBarTitleText": ""
+        "navigationBarTitleText": "月度收支"
       }
     },
     {
       "path": "pages/mine_list/categoryStatistics",
       "style": {
-        "navigationBarTitleText": ""
+        "navigationBarTitleText": "分类统计"
       }
     },
     {
       "path": "pages/record/billDetail",
       "style": {
-        "navigationBarTitleText": ""
+        "navigationBarTitleText": "账单详情"
       }
     },
     {
       "path": "pages/record/daiyBillList",
       "style": {
-        "navigationBarTitleText": ""
+        "navigationBarTitleText": "每日账单列表"
       }
     },
     {
       "path": "pages/record/moveCategory",
       "style": {
-        "navigationBarTitleText": ""
+        "navigationBarTitleText": "分类"
       }
 	},
 	{
 		"path": "components/charts/LineChart",
 		"style": {
-			"navigationBarTitleText": ""
+			"navigationBarTitleText": "折线图"
 		}
 	},
 	{
 		"path": "components/charts/PieChart",
 		"style": {
-			"navigationBarTitleText": ""
+			"navigationBarTitleText": "饼状图"
 		}
 	},
 	{
 		"path": "components/BillList",
 		"style": {
-			"navigationBarTitleText": ""
+			"navigationBarTitleText": "账单列表"
 		}
 	},
 	{
 		"path": "components/charts/ListChart",
 		"style": {
-			"navigationBarTitleText": ""
+			"navigationBarTitleText": "折线图"
 		}
 	},
 	{
 		"path": "components/PlusBillButton",
 		"style": {
-			"navigationBarTitleText": ""
-		}
-	},
-	{
-		"path": "stores/useLedgerStore",
-		"style": {
-			"navigationBarTitleText": ""
+			"navigationBarTitleText": "添加账单"
 		}
 	},
 	{
 		"path": "components/Ledger/LedgerShow",
 		"style": {
-			"navigationBarTitleText": ""
+			"navigationBarTitleText": "账本"
 		}
 	},
 	{
 		"path": "pages/ledger/allLedger",
 		"style": {
 			"navigationStyle": "custom",
-			"navigationBarTitleText": ""
+			"navigationBarTitleText": "所有账本"
 		}
 	},
 	{
 		"path": "pages/ledger/ledgerDetail",
 		"style": {
 			"navigationStyle": "custom",
+			"navigationBarTitleText": "账本详情"
+		}
+	},
+	{
+		"path": "utils/navBar",
+		"style": {
 			"navigationBarTitleText": ""
 		}
 	}

@@ -40,7 +40,7 @@
 				</van-divider>
 				<van-row justify="space-around" align="center" class="ledger-data-row">
 					<van-col span="12">创建者:{{ ledgerStore.ownerName }}</van-col>
-					<van-col span="12">账单数量:{{ ledgerStore.billCount }}</van-col>
+					<van-col span="12" @click="queryLedgerBill" >账单数量:{{ ledgerStore.billCount }}</van-col>
 				</van-row>
 				<van-row justify="space-around" align="center" class="ledger-data-row">
 					<van-col span="12">总收入:{{ ledgerStore.totalIncomeAmount }}</van-col>
@@ -53,9 +53,9 @@
 
 		<view class="settings">
 			<van-cell-group inset>
-				<van-cell title="分类" is-link size="large" />
+				<!-- <van-cell title="分类" is-link size="large" />
 				<van-cell title="导入" is-link size="large" />
-				<van-cell title="导出" is-link size="large" />
+				<van-cell title="导出" is-link size="large" /> -->
 				<van-cell title="分类统计" is-link @click="navigateTo('/pages/mine_list/categoryStatistics')"
 					size="large" />
 				<van-cell title="日趋" is-link size="large" />
@@ -65,9 +65,6 @@
 				<van-cell title="设置" is-link size="large" />
 				<van-cell title="意见" is-link size="large" />
 			</van-cell-group>
-		</view>
-		<view>
-			<ButtomBarVue></ButtomBarVue>
 		</view>
 	</view>
 
@@ -79,7 +76,6 @@
 		onMounted,
 		ref
 	} from 'vue';
-	import ButtomBarVue from '../../components/ButtomBar.vue';
 	import {
 		http
 	} from '../../utils/request';
@@ -122,6 +118,11 @@
 		uni.navigateTo({
 			url:url,
 		})
+	}
+	
+	// 查询账本下所有账单
+	const queryLedgerBill = ()=>{
+		
 	}
 	onMounted(() => {
 		getUserInfo();
@@ -181,7 +182,7 @@
 		display: flex;
 		flex-direction: column;
 		/* 改为纵向排列，让行上下分布 */
-		height: 300rpx;
+		height: 350rpx;
 		margin: 20rpx 60rpx;
 		border-radius: 8rpx;
 		background-color: #e0e2d9;

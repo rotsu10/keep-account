@@ -5,8 +5,8 @@
 		</view>
 		<view class="login">
 			<van-cell-group inset>
-			  <van-field v-model="username" label="用户名" placeholder="请输入用户名" />
-			  <van-field v-model="password" type="password" label="密码" />
+			  <van-field v-model="username"   label="用户名" placeholder="请输入用户名" />
+			  <van-field v-model="password"   type="password" label="密码" />
 			</van-cell-group>
 		</view>
 		<view class="button_login">
@@ -27,18 +27,18 @@ const password = ref('');
 
 const login = async () => {
   // 非空校验
-  if (!username.value) {
+  if (!username.value.trim()) {
     uni.showToast({ title: '请输入用户名', icon: 'none' });
     return; 
   }
-  if (!password.value) {
+  if (!password.value.trim()) {
     uni.showToast({ title: '请输入密码', icon: 'none' });
     return;
   }
 
   const data = {
-    username: username.value,
-    password: password.value,
+    username: username.value.trim(),
+    password: password.value.trim(),
   };
 
   try {
