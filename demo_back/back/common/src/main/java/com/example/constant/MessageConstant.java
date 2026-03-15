@@ -33,4 +33,6 @@ public class MessageConstant {
     public static final String MOVE_BILL_NOT_EXISTS = "该分类下没有账单";
     public static final String BILL_NOT_EXISTS = "账单不存在";
     public static final String LEDGER_NOT_EXISTS = "账本不存在";
+    public static final String USER_NOT_FOUND = "用户不存在";
+    public static final String ADD_LEDGER_PARTICIPANT_ERROR = "添加账本参与者失败";
 }

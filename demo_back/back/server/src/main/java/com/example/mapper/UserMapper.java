@@ -26,4 +26,8 @@ public interface UserMapper {
 
     //获取用户详细信息
     UserLoginVO getUserInfo(Long userId);
+
+    //判断当前用户是否有效
+    User isValidUser(Long userId, String userName, String phone);
+
 }

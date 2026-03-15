@@ -6,13 +6,15 @@ import com.example.dto.AddLedgerUserDTO;
 import com.example.dto.LedgerDTO;
 import com.example.entity.Ledger;
 import com.example.entity.User;
-import com.example.exception.BillException;
 import com.example.exception.LedgerException;
 import com.example.mapper.LedgerMapper;
+import com.example.mapper.UserMapper;
 import com.example.service.LedgerService;
 import com.example.vo.LedgerVO;
-import com.example.vo.UserRegisterVO;
+import com.example.vo.UserLoginVO;
+import com.example.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,8 @@ public class LedgerServiceImpl implements LedgerService {
 
     @Autowired
     private LedgerMapper ledgerMapper;
+    @Autowired
+    private UserMapper userMapper;
 
     @Override
     public Long add(LedgerDTO ledgerDTO) {
@@ -82,11 +86,13 @@ public class LedgerServiceImpl implements LedgerService {
     }
 
     @Override
-    public User addLedgerUser(AddLedgerUserDTO addLedgerUserDTO) {
-        Long ledgerId = addLedgerUserDTO.getLedgerId();
-        List<Long> userIds = addLedgerUserDTO.getUserIds();
-        User user = ledgerMapper.addUserLedgerRelation(ledgerId,userIds);
-        return user;
+    public void addLedgerUser(UserVO userVO) {
+        Long ledgerId = userVO.getLedgerId();
+        Long userId = userVO.getId();
+        int rows = ledgerMapper.addUserLedgerRelation(userId,ledgerId);
+        if(rows==0){
+            throw new LedgerException(MessageConstant.ADD_LEDGER_PARTICIPANT_ERROR);
+        }
     }
 
     @Override
@@ -113,9 +119,8 @@ public class LedgerServiceImpl implements LedgerService {
     }
 
     @Override
-    public List<UserRegisterVO> getAllLedgerUser(Long ledgerId) {
-        List<UserRegisterVO> list = ledgerMapper.getAllLedgerUser(ledgerId);
+    public List<UserVO> getAllLedgerUser(Long ledgerId) {
+        List<UserVO> list = ledgerMapper.getAllLedgerUser(ledgerId);
         return list;
     }
-
 }

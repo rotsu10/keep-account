@@ -1,21 +1,21 @@
 package com.example.controller.user;
 
 import com.example.annotation.CheckLedgerExist;
-import com.example.constant.JwtClaimsConstant;
-import com.example.context.BaseContext;
+import com.example.constant.MessageConstant;
 import com.example.dto.AddLedgerUserDTO;
 import com.example.dto.LedgerDTO;
 import com.example.entity.User;
-import com.example.mapper.LedgerMapper;
+import com.example.exception.LedgerException;
+import com.example.exception.UserNotFoundException;
 import com.example.result.Result;
 import com.example.service.LedgerService;
+import com.example.service.UserService;
 import com.example.vo.LedgerVO;
 import com.example.vo.UserLoginVO;
-import com.example.vo.UserRegisterVO;
+import com.example.vo.UserVO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,6 +30,8 @@ public class LedgerController {
 
     @Autowired
     private LedgerService ledgerService;
+    @Autowired
+    private UserService userService;
 
     //添加账本
     @PostMapping("/addLedger")
@@ -66,10 +68,19 @@ public class LedgerController {
     //账本添加参与者 （添加用户-账本表中数据）
     @PostMapping("/addLedgerUser")
     @Operation(summary = "添加账本参与者")
-    public Result<User> addLedgerUser(@RequestBody AddLedgerUserDTO addLedgerUserDTO) {
+    public Result addLedgerUser(@RequestBody AddLedgerUserDTO addLedgerUserDTO) {
         log.info("addLedgerUser:{}", addLedgerUserDTO);
-        User user = ledgerService.addLedgerUser(addLedgerUserDTO);
-        return Result.success(user);
+        if(addLedgerUserDTO.getLedgerId()==null && addLedgerUserDTO.getUserId()==null){
+            throw new UserNotFoundException(MessageConstant.USER_NOT_FOUND);
+        }
+        UserVO userVO = userService.isValidUser(
+                addLedgerUserDTO.getUserId(),
+                addLedgerUserDTO.getUserName(),
+                addLedgerUserDTO.getPhone()
+        );
+        userVO.setLedgerId(addLedgerUserDTO.getLedgerId());
+        ledgerService.addLedgerUser(userVO);
+        return Result.success();
     }
 
     //根据账本id查询账本详情
@@ -96,9 +107,7 @@ public class LedgerController {
     @Operation(summary = "查询所有账本参与者")
     public Result getAllLedgerUser(@RequestParam Long ledgerId){
         log.info("getAllLedgerUser:{}", ledgerId);
-        List<UserRegisterVO> list = ledgerService.getAllLedgerUser(ledgerId);
+        List<UserVO> list = ledgerService.getAllLedgerUser(ledgerId);
         return Result.success(list);
     }
-
-
 }

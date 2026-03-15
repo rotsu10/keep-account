@@ -22,7 +22,7 @@
 		<!-- 添加参与者弹窗 -->
 		<van-dialog v-model:show="show" title="添加参与者" show-cancel-button show-confirm-button @confirm="addParticipant">
 			<div style="padding: 10px 0;">
-				<van-field v-model="participantValue" label="参与者信息" placeholder="请输入参与者名称/手机号/id等" type="text"
+				<van-field v-model="participantValue" label="参与者信息" placeholder="请输入参与者名称或者id" type="text"
 					clearable />
 			</div>
 		</van-dialog>

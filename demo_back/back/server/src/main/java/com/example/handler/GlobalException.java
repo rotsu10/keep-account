@@ -41,11 +41,17 @@ public class GlobalException {
         return Result.error(e.getMessage());
     }
 
+    @ExceptionHandler(UserNotFoundException.class)
+    public Result<String> handleUserErrorException(UserNotFoundException e){
+        log.info("用户查询错误{}", e.getMessage());
+        return Result.error(e.getMessage());
+    }
+
     // 处理所有其他未捕获的异常
     @ExceptionHandler(Exception.class)
     public Result<String> handleAllException(Exception ex) {
-        log.error("系统异常：{}", ex.getMessage(), ex); // 打印完整堆栈，方便排查
-        return Result.error("未知错误"); // 返回友好提示，避免暴露敏感信息
+        log.error("系统异常：{}", ex.getMessage(), ex);
+        return Result.error("未知错误");
     }
 
     @ExceptionHandler(BusinessException.class)

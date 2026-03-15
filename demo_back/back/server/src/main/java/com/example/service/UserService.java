@@ -22,4 +22,7 @@ public interface UserService {
 
     //获取用户详细信息
     UserLoginVO getUserInfo();
+
+    //判断当前用户是否存在
+    UserVO isValidUser(Long userId, String userName, String phone);
 }

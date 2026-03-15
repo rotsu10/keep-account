@@ -103,5 +103,16 @@ public class UserServiceImpl implements UserService {
         userInfo.setLedgerId(BaseContext.getCurrentId());
         return userInfo;
     }
+
+    @Override
+    public UserVO isValidUser(Long userId, String userName, String phone) {
+        User user =  userMapper.isValidUser(userId,userName,phone);
+        if (user == null) {
+            throw new UserNotFoundException(MessageConstant.USER_NOT_FOUND);
+        }
+        UserVO userVO = new UserVO();
+        BeanUtils.copyProperties(user,userVO);
+        return userVO;
+    }
 }
 

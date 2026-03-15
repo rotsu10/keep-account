@@ -13,6 +13,8 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class AddLedgerUserDTO implements Serializable {
-    private List<Long> userIds;
-    private Long LedgerId;
+    private String userName;
+    private Long userId;
+    private Long ledgerId;
+    private String phone;
 }

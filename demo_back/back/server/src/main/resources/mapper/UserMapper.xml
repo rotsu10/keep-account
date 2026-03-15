@@ -33,4 +33,18 @@
     <select id="getUserInfo" resultType="com.example.vo.UserLoginVO">
         select id,username,phone,created_time  from user where id = #{userId}
     </select>
+    <select id="isValidUser" resultType="com.example.entity.User">
+        select id, username, phone, created_time from user
+          <where>
+              <if test="userId !=null and userId!='' ">
+                  id = #{userId}
+              </if>
+              <if test="userName !=null and userName!='' ">
+                 username = #{userName}
+              </if>
+              <if test="phone !=null and phone!='' ">
+                 phone = #{phone}
+              </if>
+          </where>
+    </select>
 </mapper>
