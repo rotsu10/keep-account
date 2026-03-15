@@ -89,6 +89,11 @@ public class LedgerServiceImpl implements LedgerService {
     public void addLedgerUser(UserVO userVO) {
         Long ledgerId = userVO.getLedgerId();
         Long userId = userVO.getId();
+        //检查该用户是否已经在该账本中
+        Integer count =  ledgerMapper.countByUserIdAndLedgerId(userId,ledgerId);
+        if (count > 0 && count != null) {
+            throw  new LedgerException(MessageConstant.ALREADY_EXISTS_PARTICIPANT);
+        }
         int rows = ledgerMapper.addUserLedgerRelation(userId,ledgerId);
         if(rows==0){
             throw new LedgerException(MessageConstant.ADD_LEDGER_PARTICIPANT_ERROR);

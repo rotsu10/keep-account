@@ -51,5 +51,8 @@ public interface LedgerMapper {
     //查询所有账本参与者
     List<UserVO> getAllLedgerUser(Long ledgerId);
 
+    //查询用户-账本关联表
+    Integer countByUserIdAndLedgerId(Long userId, Long ledgerId);
+
     //删除用户-账本表中数据
 }

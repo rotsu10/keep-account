@@ -96,9 +96,8 @@
         select ulr.user_id as id,ulr.ledger_id,user.username from user_ledger_relation ulr
             left join user on user.id = ulr.user_id where ledger_id = #{ledgerId}
     </select>
-
-    <insert id="addParticipant">
-
-    </insert>
+    <select id="countByUserIdAndLedgerId" resultType="java.lang.Integer">
+        select count(*) from user_ledger_relation where ledger_id = #{ledgerId} and user_id = #{userId}
+    </select>
 
 </mapper>
