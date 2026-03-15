@@ -27,8 +27,9 @@
         order by ub.create_time desc
     </select>
     <select id="selectBillDetail" resultType="com.example.entity.UserBill">
-        select user_bill.*,category.name as categoryName from user_bill
+        select user_bill.*,category.name as categoryName ,user.username as belongName from user_bill
             left join category on user_bill.category_id = category.id
+            left join user on user_bill.user_id = user.id
         where user_bill.user_id = #{userId} and user_bill.id = #{billId} and user_bill.ledger_id = #{ledgerId}
     </select>
 <!--    <select id="getSumAll" resultType="com.example.entity.SumStatistics">-->

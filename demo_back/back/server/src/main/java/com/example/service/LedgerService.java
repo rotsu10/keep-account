@@ -4,6 +4,7 @@ import com.example.dto.AddLedgerUserDTO;
 import com.example.dto.LedgerDTO;
 import com.example.entity.User;
 import com.example.vo.LedgerVO;
+import com.example.vo.UserRegisterVO;
 
 import java.util.List;
 
@@ -29,4 +30,7 @@ public interface LedgerService {
 
     //切换默认账本
     void switchLedger(Long ledgerId);
+
+    //查询账本所有参与者
+    List<UserRegisterVO> getAllLedgerUser(Long ledgerId);
 }

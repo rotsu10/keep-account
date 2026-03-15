@@ -19,6 +19,7 @@ public class UserBillVO {
     private String ledgerName; //账本名
     private Long categoryId; //关联分类
     private String categoryName; //关联分类名
+    private String belongName;  //账单归属name
     private BigDecimal amount; //金额
     private int type; //类型 1.收入 2.支出
     private LocalDateTime createTime; //记账时间

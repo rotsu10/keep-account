@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view class="clascustom-nav">
-			<van-nav-bar title="标题" left-arrow @click-left="onClickLeft" />
+			<van-nav-bar title="账本详情" left-arrow @click-left="onClickLeft" />
 		</view>
 		<view>
 			<van-cell-group inset>
@@ -10,11 +10,11 @@
 			  	<van-cell title="创建者ID" :value="ledgerStore.ownerId" />
 			  	<van-cell title="创建者" :value="ledgerStore.ownerName" />
 			  	<van-cell title="账单数量" :value="ledgerStore.billCount" @click="queryBillByLedger(ledgerStore.ledgerId)"/>
-			  	<van-cell title="总收入" :value="ledgerStore.totalIncomeAmount" @click="queryBillByLedger(ledgerStore.ledgerId,1)"/>
-			  	<van-cell title="总支出" :value="ledgerStore.totalOutcomeAmount" @click="queryBillByLedger(ledgerStore.ledgerId,2)"/>
+			  	<van-cell title="总收入" :value="ledgerStore.totalIncomeAmount"/>
+			  	<van-cell title="总支出" :value="ledgerStore.totalOutcomeAmount"/>
+				<van-cell title="账本参与者" is-link @click="goToParticipant(ledgerId)"  />
 			</van-cell-group>
 		</view>
-		
 	</view>
 </template>
 
@@ -29,7 +29,6 @@
 	const ledgerId = uni.getStorageSync('ledgerId');
 	onMounted(async()=>{
 		const result =await ledgerStore.queryLedgerDetailByID({ledgerId});
-		console.log("result",result)
 	})
 
 		
@@ -42,6 +41,13 @@
 		uni.navigateTo({
 			url:`/pages/record/daiyBillList?params=${encodeURIComponent(JSON.stringify(queryParams))}`
 		})
+	}
+	
+	//账本参与者页面
+	const goToParticipant = (ledgerId) => {
+	  uni.navigateTo({
+	    url: `/pages/ledger/ledgerParticipant?ledgerId=${ledgerId}`
+	  })
 	}
 </script>
 

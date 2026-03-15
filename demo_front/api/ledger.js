@@ -42,3 +42,9 @@ export const switchLedger = (params = {}) => {
 	const url = `${API_PATH.LEDGER.SWITCH_LEDGER}?ledgerId=${params}`;
 	return http.post(url);
 };
+
+// 6. 查询所有账本参与者（GET 请求）
+export const getAllLedgerUser = (params = {}) => {
+	const url = `${API_PATH.LEDGER.GET_ALL_LEDGER_USER}?ledgerId=${params}`;
+	return http.get(url);
+};

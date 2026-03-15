@@ -10,6 +10,8 @@ import com.example.mapper.LedgerMapper;
 import com.example.result.Result;
 import com.example.service.LedgerService;
 import com.example.vo.LedgerVO;
+import com.example.vo.UserLoginVO;
+import com.example.vo.UserRegisterVO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
@@ -88,4 +90,15 @@ public class LedgerController {
         ledgerService.switchLedger(ledgerId);
         return Result.success();
     }
+
+    //查询所有账本参与者
+    @GetMapping("/getAllLedgerUser")
+    @Operation(summary = "查询所有账本参与者")
+    public Result getAllLedgerUser(@RequestParam Long ledgerId){
+        log.info("getAllLedgerUser:{}", ledgerId);
+        List<UserRegisterVO> list = ledgerService.getAllLedgerUser(ledgerId);
+        return Result.success(list);
+    }
+
+
 }

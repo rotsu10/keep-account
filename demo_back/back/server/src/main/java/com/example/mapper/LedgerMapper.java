@@ -4,6 +4,7 @@ import com.example.dto.AddLedgerUserDTO;
 import com.example.entity.Ledger;
 import com.example.entity.User;
 import com.example.vo.LedgerVO;
+import com.example.vo.UserRegisterVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -50,6 +51,9 @@ public interface LedgerMapper {
     //查询账本创建者信息
     User getLedgerOwner(Long ledgerId);
 
+
+    //查询所有账本参与者
+    List<UserRegisterVO> getAllLedgerUser(Long ledgerId);
     //删除用户-账本表中数据
 
 }

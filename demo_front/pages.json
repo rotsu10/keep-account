@@ -138,6 +138,19 @@
 		"style": {
 			"navigationBarTitleText": ""
 		}
+	},
+	{
+		"path": "pages/record/filterBill",
+		"style": {
+			"navigationBarTitleText": ""
+		}
+	},
+	{
+		"path": "pages/ledger/ledgerParticipant",
+		"style": {
+			"navigationStyle": "custom",
+			"navigationBarTitleText": "账本参与者"
+		}
 	}
   ],
   "tabBar": {

@@ -77,21 +77,9 @@
 	
 	onLoad((options)=>{
 		currentQueryParams.value = {
-			ledgerId: options.ledgerId || '', // 账本ID（账本详情页传）
-			billType: options.billType || '', // 账单类型（账本详情页传）
 			date: options.date || '', // 日期（其他页面传）
 		};
-		  
-		// if(options.date){
-		// 	currentDate.value = options.date;
-		// 	resetPagination();
-		// }
-		
-		if(currentQueryParams.value.ledgerId){
-			const ledgerId = currentQueryParams.value.ledgerId;
-			const billType =  currentQueryParams.value.billType;
-			queryBillByLedger(ledgerId,billType);
-		}
+	
 		
 		if(currentQueryParams.value.date){
 			currentDate.value = currentQueryParams.value.date;
@@ -112,8 +100,6 @@
 			};
 			console.log("dateObject",dateObject);
 			const { records, total: totalCount } = await billStore.queryBillList(dateObject);
-			console.log("records",records);
-			console.log("currentPage",currentPage);
 			if(totalCount == 0) finished.value = true;
 			if(currentPage.value === 1){
 				list.value = records;
@@ -173,14 +159,6 @@
 		}
 	}
 	
-	// 查询账本下所有账单
-	const queryBillByLedger = async(ledgerId,billType) =>{
-		try{
-			console.log("ledgerId,billType",ledgerId,billType)
-		}catch(error){
-			console.error("")
-		}
-	}
 </script>
 <style>
 </style>

@@ -39,6 +39,7 @@ export const API_PATH = {
 	  DELETE:'ledger/deleteLedger',					//删除账本
 	  ADD_LEDGERUSER:'/ledger/addLedgerUser',		//账本添加参与者 （添加用户-账本表中数据）
 	  LEDGER_DETAIL_BY_ID:'/ledger/LedgerDetailById',	//根据账本id查询账本详情
-	  SWITCH_LEDGER:'/ledger/switchLedger'
+	  SWITCH_LEDGER:'/ledger/switchLedger'				,//切换默认账本
+	  GET_ALL_LEDGER_USER:'/ledger/getAllLedgerUser'
   }
 };

@@ -22,6 +22,9 @@
 					</view>
 				</van-dialog>
 
+				<!-- 账单所属 -->
+				<van-field v-model="formData.belongName" name="belongName" label="账单所属"/>
+				
 				<!-- 日期 -->
 				<van-field v-model="formData.createTime" is-link readonly name="create_time" label="时间选择"
 					placeholder="点击选择时间" @click="showPicker = true" />
@@ -35,7 +38,6 @@
 
 
 				<!-- 收支类型 -->
-
 				<van-field name="type" label="收支类型">
 					<template #input>
 						<van-radio-group v-model="checked" direction="horizontal" disabled>
@@ -92,6 +94,7 @@
 		amount: '', // 金额
 		categoryName: '', // 分类名
 		categoryId: '', // 分类id
+		belongName:'', //账单所属
 		createTime: '', // 格式化后的日期
 		remark: '', // 备注
 		type: '' // 收支类型
@@ -143,6 +146,8 @@
 		formData.categoryId = billDetail.value.categoryId || '';
 		// 日期
 		formData.createTime = dayjs(billDetail.value.createTime).format('YYYY-MM-DD');
+		//账单所属
+		formData.belongName = billDetail.value.belongName || '';
 		// 备注
 		formData.remark = billDetail.value.remark || '';
 		// 收支类型
@@ -162,9 +167,6 @@
 				remark: formData.remark,
 				type: formData.type
 			};
-
-			console.log('提交给后端的纯净数据：', submitData);
-
 
 			const result = await http.post(API_PATH.BILL.UPDATE_DETAIL, submitData)
 			// 3. 提交成功反馈

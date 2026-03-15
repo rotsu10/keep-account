@@ -61,7 +61,6 @@ public class BillController {
         log.info("账单:{}",userBillVO);
         return Result.success(userBillVO);
     }
-
     @CheckLedgerExist
     @Operation(summary = "根据日期和类型统计账单和")
     @PostMapping("/statisticsQuery")

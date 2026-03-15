@@ -11,6 +11,7 @@ import com.example.exception.LedgerException;
 import com.example.mapper.LedgerMapper;
 import com.example.service.LedgerService;
 import com.example.vo.LedgerVO;
+import com.example.vo.UserRegisterVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -109,6 +110,12 @@ public class LedgerServiceImpl implements LedgerService {
         }else {
             BaseContext.setLedgerId(ledgerId);
         }
+    }
+
+    @Override
+    public List<UserRegisterVO> getAllLedgerUser(Long ledgerId) {
+        List<UserRegisterVO> list = ledgerMapper.getAllLedgerUser(ledgerId);
+        return list;
     }
 
 }
