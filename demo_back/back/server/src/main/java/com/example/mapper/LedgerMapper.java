@@ -15,8 +15,9 @@ public interface LedgerMapper {
     void addLedger(Ledger ledger);
 
     //添加账本与userId关系
-    /// 不能修改
     int addUserLedgerRelation(@Param("userId") Long userId, @Param("ledgerId") Long ledgerId);
+
+    int addUserLedgerRelation2(@Param("userId") Long userId, @Param("ledgerId") Long ledgerId);
 
     //获取默认账本id
     Long selectDefaultLedgerIdByUserId(Long userId);

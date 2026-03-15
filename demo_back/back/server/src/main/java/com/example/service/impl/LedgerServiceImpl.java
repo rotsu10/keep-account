@@ -94,7 +94,7 @@ public class LedgerServiceImpl implements LedgerService {
         if (count > 0 && count != null) {
             throw  new LedgerException(MessageConstant.ALREADY_EXISTS_PARTICIPANT);
         }
-        int rows = ledgerMapper.addUserLedgerRelation(userId,ledgerId);
+        int rows = ledgerMapper.addUserLedgerRelation2(userId,ledgerId);
         if(rows==0){
             throw new LedgerException(MessageConstant.ADD_LEDGER_PARTICIPANT_ERROR);
         }

@@ -18,6 +18,14 @@
                                 (SELECT 1 FROM user_ledger_relation
                                         WHERE user_id = #{userId} AND is_default = 1) AS t  ) = 0 THEN 1 ELSE 0 END)
     </insert>
+
+    <insert id="addUserLedgerRelation2">
+        insert into user_ledger_relation(user_id,ledger_id,create_time,is_owner,is_default)
+        values (#{userId},#{ledgerId},CURRENT_TIMESTAMP,0,
+                CASE WHEN (SELECT COUNT(*) FROM
+                    (SELECT 1 FROM user_ledger_relation
+                     WHERE user_id = #{userId} AND is_default = 1) AS t  ) = 0 THEN 1 ELSE 0 END)
+    </insert>
     <select id="selectDefaultLedgerIdByUserId" resultType="java.lang.Long">
 <!--        SELECT ledger_id-->
 <!--        FROM user_ledger_relation-->
@@ -69,7 +77,6 @@
                  left join user_ledger_relation ular on ular.ledger_id = l.id
         where
             ular.ledger_id  = #{ledgerId}
-          and ular.user_id = #{userId}
         group by l.id;
     </select>
 

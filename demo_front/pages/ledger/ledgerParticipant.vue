@@ -4,7 +4,7 @@
 		<!-- 添加参与者 -->
 		<view class="clascustom-nav">
 			<!-- 导航栏 -->
-			<van-nav-bar title="参与者">
+			<van-nav-bar title="参与者"  left-arrow @click-left="onClickLeft">
 				<template #right>
 					<van-icon name="plus" size="18" @click="showAddDialog" />
 				</template>
@@ -44,6 +44,8 @@
 	const show = ref(false);
 	const participantValue = ref('');
 	const ledgerId = ref('')
+	
+	const onClickLeft = () => uni.navigateBack();
 	onLoad((options) => {
 		console.log("页面入参：", options);
 		ledgerId.value = options.ledgerId;

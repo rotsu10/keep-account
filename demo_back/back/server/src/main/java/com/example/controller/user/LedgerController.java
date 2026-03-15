@@ -42,7 +42,6 @@ public class LedgerController {
         return Result.success();
     }
 
-
     //获取账本相关信息
 //    @GetMapping("getLedgerInfo")
 //    @Operation(summary = "获取账本")
