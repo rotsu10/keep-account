@@ -36,4 +36,6 @@ public class MessageConstant {
     public static final String USER_NOT_FOUND = "用户不存在";
     public static final String ADD_LEDGER_PARTICIPANT_ERROR = "添加账本参与者失败";
     public static final String ALREADY_EXISTS_PARTICIPANT = "该用户已关联此账本，无需重复添加";
+    public static final String NOT_PERMISSION= "无权限进行此操作";
+    public static final String ALREADY_SEND= "已发送过邀请，请勿重复发送";
 }

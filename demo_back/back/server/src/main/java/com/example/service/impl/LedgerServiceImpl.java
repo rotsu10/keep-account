@@ -106,7 +106,7 @@ public class LedgerServiceImpl implements LedgerService {
         //查询账本信息
         LedgerVO ledgerVO = ledgerMapper.getLedgerDetail(ledgerId,userId);
         //查询账本owner信息
-        User user = ledgerMapper.getLedgerOwner(ledgerId);
+        User user = ledgerMapper.getLedgerCreator(ledgerId);
         ledgerVO.setOwnerId(user.getId());
         ledgerVO.setOwnerName(user.getUsername());
         return ledgerVO;

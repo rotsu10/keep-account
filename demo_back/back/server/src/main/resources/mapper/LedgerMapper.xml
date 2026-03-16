@@ -94,7 +94,7 @@
     </update>
 
 
-    <select id="getLedgerOwner" resultType="com.example.entity.User">
+    <select id="getLedgerCreator" resultType="com.example.entity.User">
         select ulr.user_id as id,user.username from user_ledger_relation ulr
                        left join user on ulr.user_id = user.id
                        where ledger_id = #{ledgerId}  and is_owner = 1
@@ -106,5 +106,10 @@
     <select id="countByUserIdAndLedgerId" resultType="java.lang.Integer">
         select count(*) from user_ledger_relation where ledger_id = #{ledgerId} and user_id = #{userId}
     </select>
+
+    <select id="getLedgerCreatorId" resultType="java.lang.Long">
+        select user_id from user_ledger_relation where is_owner = 1 and ledger_id = #{ledgerId}
+    </select>
+
 
 </mapper>

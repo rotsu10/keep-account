@@ -1,4 +1,4 @@
-package com.example.controller.user;
+package com.example.controller;
 
 import com.example.constant.JwtClaimsConstant;
 import com.example.context.BaseContext;

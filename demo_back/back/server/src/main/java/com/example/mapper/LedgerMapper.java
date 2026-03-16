@@ -47,13 +47,17 @@ public interface LedgerMapper {
     int switchLedger(Long ledgerId,Long userId);
 
     //查询账本创建者信息
-    User getLedgerOwner(Long ledgerId);
+    User getLedgerCreator(Long ledgerId);
 
     //查询所有账本参与者
     List<UserVO> getAllLedgerUser(Long ledgerId);
 
     //查询用户-账本关联表
     Integer countByUserIdAndLedgerId(Long userId, Long ledgerId);
+
+    //获取账本创建者id
+    Long getLedgerCreatorId(Long ledgerId);
+
 
     //删除用户-账本表中数据
 }

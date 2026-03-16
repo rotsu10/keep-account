@@ -1,0 +1,102 @@
+package com.example.service.impl;
+
+import com.example.constant.MessageConstant;
+import com.example.context.BaseContext;
+import com.example.dto.SendInviteRequestDTO;
+import com.example.entity.LedgerInvite;
+import com.example.entity.NoticeMessage;
+import com.example.entity.User;
+import com.example.enums.InviteStatusEnum;
+import com.example.exception.InviteException;
+import com.example.exception.LedgerException;
+import com.example.exception.UserNotFoundException;
+import com.example.mapper.LedgerInviteMapper;
+import com.example.mapper.LedgerMapper;
+import com.example.mapper.UserMapper;
+import com.example.service.LedgerInviteService;
+import com.example.utils.NoticeProducer;
+import com.example.vo.LedgerInviteVO;
+import com.example.vo.LedgerVO;
+import com.example.vo.UserLoginVO;
+import com.example.vo.UserVO;
+import lombok.Builder;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Slf4j
+@Service
+public class LedgerInviteServiceImpl implements LedgerInviteService {
+
+    @Autowired
+    private LedgerInviteMapper ledgerInviteMapper;
+    @Autowired
+    private LedgerMapper ledgerMapper;
+    @Autowired
+    private UserMapper userMapper;
+
+    @Autowired
+    private NoticeProducer noticeProducer;
+
+    @Override
+    public LedgerInvite sendInvite(SendInviteRequestDTO dto) {
+        Long inviterId = BaseContext.getCurrentId();
+        Long ledgerId = dto.getLedgerId();
+        Long inviteeId = dto.getInviteeId();
+
+        // 1. 检查账本是否存在
+        LedgerVO ledgervo = ledgerMapper.getLedgerDetail(ledgerId,inviterId);
+        if(ledgervo==null){
+            throw new InviteException(MessageConstant.LEDGER_NOT_EXISTS);
+        }
+        //2. 检查是否为账本创建者
+        Long creatorId = ledgerMapper.getLedgerCreatorId(ledgerId);
+        if (!creatorId.equals(inviterId)){
+            throw new InviteException(MessageConstant.NOT_PERMISSION);
+        }
+        // 3. 检查被邀请人是否存在
+        User validUser = userMapper.isValidUser(inviteeId,dto.getInviteeName(),dto.getPhone());
+        if(validUser==null){
+            throw new UserNotFoundException(MessageConstant.USER_NOT_FOUND);
+        }
+        inviteeId = validUser.getId();
+        // 4. 检查是否已经是账本成员
+        Integer i = ledgerMapper.countByLedgerIdAndUserId(ledgerId, inviteeId);
+        if(i >0 ){
+            throw new LedgerException(MessageConstant.ALREADY_EXISTS_PARTICIPANT);
+        }
+
+        // 5. 检查是否已有待处理的邀请
+        LedgerInvite existingInvite = ledgerInviteMapper.findByLedgerAndUsers(ledgerId,inviteeId);
+        if(existingInvite != null){
+            throw new InviteException(MessageConstant.ALREADY_SEND);
+        }
+        //6.创建邀请记录
+        LedgerInvite invite = LedgerInvite.builder()
+                .inviterId(inviterId)
+                .inviteeId(inviteeId)
+                .ledgerId(ledgerId)
+                .status(0)
+                .build();
+
+        ledgerInviteMapper.insert(invite);
+        Long id = invite.getId();
+        //7.发送邀请
+        try {
+            NoticeMessage noticeMessage = NoticeMessage.builder()
+                    .receiverId(inviteeId)
+                    .type(InviteStatusEnum.getByCode(0).getDesc())
+                    .bizId(id)
+                    .build();
+            noticeMessage.setContent(String.format("用户 %s 邀请您加入账本《%s》", inviterId, ledgervo.getLedgerName()));
+            noticeProducer.sendNotice(noticeMessage);
+        } catch (Exception e) {
+            log.error("发送邀请通知失败", e);
+            // 通知发送失败不影响邀请记录的创建
+        }
+//        LedgerInviteVO ledgerInviteVO = new LedgerInviteVO();
+//        BeanUtils.copyProperties(dto,ledgerInviteVO);
+        return invite;
+    }
+}

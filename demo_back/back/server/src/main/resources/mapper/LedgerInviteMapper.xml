@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.LedgerInviteMapper">
+
+    <select id="findByLedgerAndUsers" resultType="com.example.entity.LedgerInvite">
+        select * from ledger_invite where ledger_id = #{ledgerId} and invitee_id = #{inviteeId}
+    </select>
+    <insert id="insert" useGeneratedKeys = "true"  keyProperty = "id" keyColumn = "id">
+        insert into ledger_invite(ledger_id, inviter_id, invitee_id, status) values (#{ledgerId},#{inviterId},#{inviteeId},#{status})
+    </insert>
+
+</mapper>

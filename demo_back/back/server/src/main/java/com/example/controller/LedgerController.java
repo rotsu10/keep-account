@@ -1,4 +1,4 @@
-package com.example.controller.user;
+package com.example.controller;
 
 import com.example.annotation.CheckLedgerExist;
 import com.example.constant.MessageConstant;

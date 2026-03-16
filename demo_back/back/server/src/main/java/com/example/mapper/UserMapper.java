@@ -1,5 +1,6 @@
 package com.example.mapper;
 
+import ch.qos.logback.core.net.SMTPAppenderBase;
 import com.example.entity.User;
 import com.example.vo.UserLoginVO;
 import org.apache.ibatis.annotations.Mapper;
