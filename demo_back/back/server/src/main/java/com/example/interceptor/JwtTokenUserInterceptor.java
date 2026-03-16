@@ -16,7 +16,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import java.io.PrintWriter;
 
 /**
- * jwt令牌校验的拦截器（新增账本ID解析逻辑）
+ * jwt令牌校验的拦截器
  */
 @Component
 @Slf4j

@@ -5,6 +5,21 @@ spring:
     url: jdbc:mysql://localhost:3306/keep_account?useSSL=false&serverTimezone=UTC
     username: xn
     password: FfHRARdRP7SwRx5B
+  rabbitmq:
+    host: 172.30.128.171  # 生产服务器内网IP
+    port: 5672
+    username: account_user  # 自定义账号（替代guest）
+    password: 12345678      # 自定义密码（替代guest）
+    virtual-host: /account  # 专属虚拟主机（替代/）
+    # 新增连接池配置（提升性能）
+    cache:
+      channel:
+        size: 50
+      connection:
+        size: 10
+    # 新增消息确认（保证消息不丢）
+    publisher-confirm-type: correlated
+    publisher-returns: true
 
 
 

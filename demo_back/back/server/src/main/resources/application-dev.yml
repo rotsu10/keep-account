@@ -5,4 +5,10 @@ spring:
     url: jdbc:mysql://localhost:3306/keep_account?useSSL=false&serverTimezone=UTC
     username: root
     password: root
-
+  rabbitmq:
+    #服务器公网ip
+    host: 121.197.3.19
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /

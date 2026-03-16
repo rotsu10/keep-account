@@ -29,9 +29,6 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <!-- scope=provided：仅编译时生效，运行时由依赖该模块的子模块提供（避免包冲突） -->
-            <scope>provided</scope>
-            <!-- 版本由父POM的spring-boot-starter-parent统一管理，无需手动声明 -->
         </dependency>
 
         <!-- 2. JWT相关依赖：用于生成/解析JWT令牌（用户登录认证、接口鉴权） -->
@@ -56,46 +53,15 @@
             <version>0.11.5</version>
             <scope>runtime</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.amqp</groupId>
+            <artifactId>spring-rabbit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.example</groupId>
+            <artifactId>pojo</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 </project>
-
-
-<!--<?xml version="1.0" encoding="UTF-8"?>-->
-<!--<project xmlns="http://maven.apache.org/POM/4.0.0"-->
-<!--         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
-<!--         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">-->
-<!--    <modelVersion>4.0.0</modelVersion>-->
-<!--    <parent>-->
-<!--        <groupId>com.example</groupId>-->
-<!--        <artifactId>back</artifactId>-->
-<!--        <version>1.0-SNAPSHOT</version>-->
-<!--    </parent>-->
-
-<!--    <artifactId>common</artifactId>-->
-
-<!--    <dependencies>-->
-<!--        <dependency>-->
-<!--            <groupId>org.projectlombok</groupId>-->
-<!--            <artifactId>lombok</artifactId>-->
-<!--            <scope>provided</scope> &lt;!&ndash; 版本由父 POM 管理 &ndash;&gt;-->
-<!--        </dependency>-->
-<!--        &lt;!&ndash; 其他依赖保持不变 &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>io.jsonwebtoken</groupId>-->
-<!--            <artifactId>jjwt-api</artifactId>-->
-<!--            <version>0.11.5</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>io.jsonwebtoken</groupId>-->
-<!--            <artifactId>jjwt-impl</artifactId>-->
-<!--            <version>0.11.5</version>-->
-<!--            <scope>runtime</scope>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>io.jsonwebtoken</groupId>-->
-<!--            <artifactId>jjwt-jackson</artifactId>-->
-<!--            <version>0.11.5</version>-->
-<!--            <scope>runtime</scope>-->
-<!--        </dependency>-->
-<!--    </dependencies>-->
-<!--</project>-->

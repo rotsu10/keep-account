@@ -53,6 +53,12 @@ public class GlobalException {
         return Result.error(e.getMessage());
     }
 
+    @ExceptionHandler(InviteException.class)
+    public Result<String> handleInviteErrorException(InviteException e){
+        log.info("账本邀请错误{}", e.getMessage());
+        return Result.error(e.getMessage());
+    }
+
 
     // 处理所有其他未捕获的异常
     @ExceptionHandler(Exception.class)
