@@ -102,7 +102,8 @@
 		};
 		
 		await addLedgerUser(params);
-		
+		//刷新列表
+		getUserList(ledgerId.value);
 		 // 关闭弹窗 + 清空输入框
 		show.value = false;
 		participantValue.value = '';
