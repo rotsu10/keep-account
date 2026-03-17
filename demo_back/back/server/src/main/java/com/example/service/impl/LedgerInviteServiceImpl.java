@@ -4,6 +4,7 @@ import com.example.constant.MessageConstant;
 import com.example.context.BaseContext;
 import com.example.dto.SendInviteRequestDTO;
 import com.example.entity.LedgerInvite;
+import com.example.entity.Member;
 import com.example.entity.NoticeMessage;
 import com.example.entity.User;
 import com.example.enums.InviteStatusEnum;
@@ -20,6 +21,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDateTime;
 
 @Slf4j
 @Service
@@ -94,5 +97,59 @@ public class LedgerInviteServiceImpl implements LedgerInviteService {
             throw new InviteException(e.getMessage());
         }
         return invite;
+    }
+
+    @Override
+    public void acceptInvite(Long inviteId) {
+        Long userId = BaseContext.getCurrentId();
+        LedgerInvite invite = ledgerInviteMapper.getInviteDetail(inviteId);
+
+        //账本不存在
+        if (invite == null) {
+            throw new InviteException(MessageConstant.LEDGER_NOT_EXISTS);
+        }
+
+        //权限校验 本人操作
+        if (!invite.getInviteeId().equals(userId)) {
+            throw new InviteException(MessageConstant.NOT_PERMISSION);
+        }
+
+        //已经处理
+        if (invite.getStatus() != 0) {
+            throw new InviteException(MessageConstant.ALREADY_HANDLE);
+        }
+
+        //检查是否为成员
+        Integer i = ledgerMapper.countByLedgerIdAndUserId(invite.getLedgerId(), userId);
+        if (i != null) {
+            // 如果已经是成员，直接更新邀请状态
+            ledgerInviteMapper.updateStatus(inviteId,1);
+            return;
+        }
+
+        //4.添加成员
+        Member member = Member.builder()
+                .userId(userId)
+                .ledgerId(invite.getLedgerId())
+                .createTime(LocalDateTime.now())
+                .isDefault(0)
+                .isOwner(0)
+                .build();
+
+        ledgerMapper.insert(member);
+        //更新invite表status
+        ledgerInviteMapper.updateStatus(inviteId,1);
+        try {
+            String username = userMapper.getUserInfo(userId).getUsername();
+            NoticeMessage noticeMessage = NoticeMessage.builder()
+                    .receiverId(userId)
+                    .content(String.format("用户 %s 已接受您的账本邀请", username))
+                    .type(InviteStatusEnum.getByCode(1).getDesc())
+                    .bizId(inviteId)
+                    .build();
+            noticeProducer.sendNotice(noticeMessage);
+        } catch (Exception e) {
+            log.error("发送接受邀请通知失败", e);
+        }
     }
 }

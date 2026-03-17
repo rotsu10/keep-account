@@ -11,4 +11,15 @@
         insert into ledger_invite(ledger_id, inviter_id, invitee_id, status) values (#{ledgerId},#{inviterId},#{inviteeId},#{status})
     </insert>
 
+    <select id="getInviteDetail" resultType="com.example.entity.LedgerInvite">
+        select id, ledger_id, inviter_id, invitee_id, status, create_time, update_time from ledger_invite
+                where id = #{inviteId}
+    </select>
+
+    <update id="updateStatus">
+        update ledger_invite set
+                    status = #{status} ,update_time = NOW()
+                             where id = #{inviteId}
+    </update>
+
 </mapper>

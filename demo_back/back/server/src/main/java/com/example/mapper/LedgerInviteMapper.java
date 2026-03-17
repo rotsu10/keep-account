@@ -11,4 +11,11 @@ public interface LedgerInviteMapper {
 
     //添加邀请记录
     void insert(LedgerInvite invite);
+
+    //获取邀请记录详情
+    LedgerInvite getInviteDetail(Long inviteId);
+
+    //更新状态
+    void updateStatus(Long inviteId, int status);
+
 }

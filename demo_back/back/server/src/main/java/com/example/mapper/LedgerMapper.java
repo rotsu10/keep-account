@@ -1,6 +1,7 @@
 package com.example.mapper;
 
 import com.example.entity.Ledger;
+import com.example.entity.Member;
 import com.example.entity.User;
 import com.example.vo.LedgerVO;
 import com.example.vo.UserVO;
@@ -57,6 +58,9 @@ public interface LedgerMapper {
 
     //获取账本创建者id
     Long getLedgerCreatorId(Long ledgerId);
+
+    //添加成员ulr
+    void insert(Member member);
 
 
     //删除用户-账本表中数据

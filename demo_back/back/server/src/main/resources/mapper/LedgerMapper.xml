@@ -111,5 +111,22 @@
         select user_id from user_ledger_relation where is_owner = 1 and ledger_id = #{ledgerId}
     </select>
 
+    <insert id="insert" parameterType="com.example.entity.Member">
+        INSERT INTO user_ledger_relation (
+        user_id,
+        ledger_id,
+        create_time,
+        is_owner,
+        is_default
+        )
+        VALUES (
+        #{userId},
+        #{ledgerId},
+        #{createTime, jdbcType=TIMESTAMP},
+        #{isOwner, jdbcType=TINYINT},
+        #{isDefault, jdbcType=TINYINT}
+        )
+    </insert>
+
 
 </mapper>
