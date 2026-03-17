@@ -15,15 +15,11 @@ import com.example.mapper.LedgerMapper;
 import com.example.mapper.UserMapper;
 import com.example.service.LedgerInviteService;
 import com.example.utils.NoticeProducer;
-import com.example.vo.LedgerInviteVO;
 import com.example.vo.LedgerVO;
-import com.example.vo.UserLoginVO;
-import com.example.vo.UserVO;
-import lombok.Builder;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Service
@@ -40,6 +36,7 @@ public class LedgerInviteServiceImpl implements LedgerInviteService {
     private NoticeProducer noticeProducer;
 
     @Override
+    @Transactional(rollbackFor = {InviteException.class, UserNotFoundException.class, LedgerException.class})
     public LedgerInvite sendInvite(SendInviteRequestDTO dto) {
         Long inviterId = BaseContext.getCurrentId();
         Long ledgerId = dto.getLedgerId();
@@ -94,9 +91,8 @@ public class LedgerInviteServiceImpl implements LedgerInviteService {
         } catch (Exception e) {
             log.error("发送邀请通知失败", e);
             // 通知发送失败不影响邀请记录的创建
+            throw new InviteException(e.getMessage());
         }
-//        LedgerInviteVO ledgerInviteVO = new LedgerInviteVO();
-//        BeanUtils.copyProperties(dto,ledgerInviteVO);
         return invite;
     }
 }
