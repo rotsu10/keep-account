@@ -2,14 +2,17 @@
 	<view style="padding: 10px;">
 		<van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" @load="onLoad"
 			:immediate-check="false">
-			<!-- 空数据提示 -->
-			<view v-if="!loading && list.length === 0" style="text-align: center; padding: 30px 0;">
-				暂无待处理的账本邀请
-			</view>
+			
 
 			<!-- 邀请列表项 -->
 			<van-cell v-for="item in list" :key="item.id" :title="`账本邀请 ${item.id}`"
 				:label="`邀请人ID：${item.inviterId || '未知'}`" arrow="right">
+				<van-button type="primary" size="small" @click="handleInviteAction(item.id,1)">
+					接受
+				</van-button>
+				<van-button type="primary" size="small" @click="handleInviteAction(item.id,2)" :style="{ margin: '0 20rpx' }">
+					拒绝
+				</van-button>
 			</van-cell>
 		</van-list>
 	</view>
@@ -21,7 +24,9 @@
 		ref
 	} from 'vue';
 	import {
-		pendingList
+		acceptInvite,
+		pendingList,
+		rejecttInvite
 	} from '../../api/invite';
 
 	// 邀请列表
@@ -51,15 +56,31 @@
 		}
 	}
 
-	// van-list 的 load 事件（适配组件触发逻辑，无需额外处理）
+
 	const onLoad = () => {
-		// 因为不需要分页，仅在首次触发时调用加载方法（防止重复调用）
 		if (!finished.value) {
 			getPendingList();
 		}
 	}
-
-	// 组件挂载时触发首次加载
+		
+	const handleInviteAction = async(inviteId,status) => {
+		console.log("处理邀请",inviteId,status)
+		// 接受
+		try{
+			if(status == 1){
+				await acceptInvite(inviteId);
+			}
+			//拒绝
+			if(status == 2){
+				await rejecttInvite(inviteId);
+			}
+		}catch(error){
+			console.error("处理邀请失败error",error);
+		}finally{
+			getPendingList();
+		}
+	}
+	
 	onMounted(() => {
 		getPendingList();
 	});

@@ -123,7 +123,7 @@ public class LedgerInviteServiceImpl implements LedgerInviteService {
 
         //检查是否为成员
         Integer i = ledgerMapper.countByLedgerIdAndUserId(invite.getLedgerId(), userId);
-        if (i != null) {
+        if (i != null && i !=0 ) {
             // 如果已经是成员，直接更新邀请状态
             ledgerInviteMapper.updateStatus(inviteId,1);
             return;

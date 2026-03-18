@@ -46,6 +46,6 @@ export const API_PATH = {
 	  SEND:'/invite/send',		//发送邀请
 	  ACCEPT:"/invite/accept",			//接受邀请
 	  REJECT:"/invite/reject",			//拒绝邀请
-	  PEDNDING:"/invite/pending",	//查询待处理的邀请
+	  PEDNING:"/invite/pending",	//查询待处理的邀请
   }
 };

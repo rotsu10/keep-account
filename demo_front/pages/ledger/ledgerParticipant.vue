@@ -79,7 +79,7 @@
 			return { type: 'phone', value: trimValue };
 		}
 		// 3. 其余情况判定为用户名
-		return { type: 'userName', value: trimValue };
+		return { type: 'inviteeName', value: trimValue };
 	}
 	
 	//添加参与者
