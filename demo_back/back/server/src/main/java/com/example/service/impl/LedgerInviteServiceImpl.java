@@ -16,13 +16,16 @@ import com.example.mapper.LedgerMapper;
 import com.example.mapper.UserMapper;
 import com.example.service.LedgerInviteService;
 import com.example.utils.NoticeProducer;
+import com.example.vo.LedgerInviteVO;
 import com.example.vo.LedgerVO;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -84,12 +87,13 @@ public class LedgerInviteServiceImpl implements LedgerInviteService {
         Long id = invite.getId();
         //7.发送邀请
         try {
+            String inviterName = userMapper.getUserInfo(inviteeId).getUsername();
             NoticeMessage noticeMessage = NoticeMessage.builder()
                     .receiverId(inviteeId)
                     .type(InviteStatusEnum.getByCode(0).getDesc())
                     .bizId(id)
                     .build();
-            noticeMessage.setContent(String.format("用户 %s 邀请您加入账本《%s》", inviterId, ledgervo.getLedgerName()));
+            noticeMessage.setContent(String.format("用户 %s 邀请您加入账本《%s》", inviterName, ledgervo.getLedgerName()));
             noticeProducer.sendNotice(noticeMessage);
         } catch (Exception e) {
             log.error("发送邀请通知失败", e);
@@ -100,6 +104,7 @@ public class LedgerInviteServiceImpl implements LedgerInviteService {
     }
 
     @Override
+    @Transactional(rollbackFor = {InviteException.class, UserNotFoundException.class, LedgerException.class})
     public void acceptInvite(Long inviteId) {
         Long userId = BaseContext.getCurrentId();
         LedgerInvite invite = ledgerInviteMapper.getInviteDetail(inviteId);
@@ -150,6 +155,52 @@ public class LedgerInviteServiceImpl implements LedgerInviteService {
             noticeProducer.sendNotice(noticeMessage);
         } catch (Exception e) {
             log.error("发送接受邀请通知失败", e);
+            throw new InviteException(e.getMessage());
         }
+    }
+
+    @Override
+    public void rejectInvite(Long inviteId) {
+        Long userId = BaseContext.getCurrentId();
+        LedgerInvite invite = ledgerInviteMapper.getInviteDetail(inviteId);
+
+        //账本不存在
+        if (invite == null) {
+            throw new InviteException(MessageConstant.LEDGER_NOT_EXISTS);
+        }
+
+        //权限校验 本人操作
+        if (!invite.getInviteeId().equals(userId)) {
+            throw new InviteException(MessageConstant.NOT_PERMISSION);
+        }
+
+        //已经处理
+        if (invite.getStatus() != 0) {
+            throw new InviteException(MessageConstant.ALREADY_HANDLE);
+        }
+
+        //更新状态 拒绝
+        ledgerInviteMapper.updateStatus(inviteId,2);
+
+        try {
+            String username = userMapper.getUserInfo(userId).getUsername();
+            NoticeMessage noticeMessage = NoticeMessage.builder()
+                    .receiverId(userId)
+                    .content(String.format("用户 %s 已拒绝您的账本邀请", username))
+                    .type(InviteStatusEnum.getByCode(2).getDesc())
+                    .bizId(inviteId)
+                    .build();
+            noticeProducer.sendNotice(noticeMessage);
+        } catch (Exception e) {
+            log.error("发送拒绝邀请通知失败", e);
+            throw new InviteException(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<LedgerInvite> getPendingInvites() {
+        Long userId = BaseContext.getCurrentId();
+        List<LedgerInvite> list= ledgerInviteMapper.getPendingInvites(userId);
+        return list;
     }
 }

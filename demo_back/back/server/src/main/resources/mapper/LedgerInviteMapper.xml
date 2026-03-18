@@ -22,4 +22,10 @@
                              where id = #{inviteId}
     </update>
 
+    <select id="getPendingInvites" resultType="com.example.entity.LedgerInvite">
+        select * from ledger_invite where invitee_id = #{userId} and status = 0;
+    </select>
+
+
+
 </mapper>
