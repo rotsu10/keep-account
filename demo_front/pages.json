@@ -151,6 +151,12 @@
 			"navigationStyle": "custom",
 			"navigationBarTitleText": "账本参与者"
 		}
+	},
+	{
+		"path": "pages/ledger/ledgerInvite",
+		"style": {
+			"navigationBarTitleText": "邀请"
+		}
 	}
   ],
   "tabBar": {

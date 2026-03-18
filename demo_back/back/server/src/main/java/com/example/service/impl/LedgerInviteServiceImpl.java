@@ -15,7 +15,6 @@ import com.example.mapper.LedgerInviteMapper;
 import com.example.mapper.LedgerMapper;
 import com.example.mapper.UserMapper;
 import com.example.service.LedgerInviteService;
-import com.example.mq.NoticeProducer;
 import com.example.vo.LedgerVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +35,8 @@ public class LedgerInviteServiceImpl implements LedgerInviteService {
     @Autowired
     private UserMapper userMapper;
 
-    @Autowired
-    private NoticeProducer noticeProducer;
+//    @Autowired
+//    private NoticeProducer noticeProducer;
 
     @Override
     @Transactional(rollbackFor = {InviteException.class, UserNotFoundException.class, LedgerException.class})
@@ -84,20 +83,20 @@ public class LedgerInviteServiceImpl implements LedgerInviteService {
         ledgerInviteMapper.insert(invite);
         Long id = invite.getId();
         //7.发送邀请
-        try {
-            String inviterName = userMapper.getUserInfo(inviteeId).getUsername();
-            NoticeMessage noticeMessage = NoticeMessage.builder()
-                    .receiverId(inviteeId)
-                    .type(InviteStatusEnum.getByCode(0).getDesc())
-                    .bizId(id)
-                    .build();
-            noticeMessage.setContent(String.format("用户 %s 邀请您加入账本《%s》", inviterName, ledgervo.getLedgerName()));
-            noticeProducer.sendNotice(noticeMessage);
-        } catch (Exception e) {
-            log.error("发送邀请通知失败", e);
-            // 通知发送失败不影响邀请记录的创建
-            throw new InviteException(e.getMessage());
-        }
+//        try {
+//            String inviterName = userMapper.getUserInfo(inviteeId).getUsername();
+//            NoticeMessage noticeMessage = NoticeMessage.builder()
+//                    .receiverId(inviteeId)
+//                    .type(InviteStatusEnum.getByCode(0).getDesc())
+//                    .bizId(id)
+//                    .build();
+//            noticeMessage.setContent(String.format("用户 %s 邀请您加入账本《%s》", inviterName, ledgervo.getLedgerName()));
+//            noticeProducer.sendNotice(noticeMessage);
+//        } catch (Exception e) {
+//            log.error("发送邀请通知失败", e);
+//            // 通知发送失败不影响邀请记录的创建
+//            throw new InviteException(e.getMessage());
+//        }
         return invite;
     }
 
@@ -142,18 +141,18 @@ public class LedgerInviteServiceImpl implements LedgerInviteService {
         ledgerMapper.insert(member);
         //更新invite表status
         ledgerInviteMapper.updateStatus(inviteId,1);
-        try {
-            String username = userMapper.getUserInfo(userId).getUsername();
-            NoticeMessage noticeMessage = NoticeMessage.builder()
-                    .receiverId(userId)
-                    .content(String.format("用户 %s 已接受您的账本邀请", username))
-                    .type(InviteStatusEnum.getByCode(1).getDesc())
-                    .bizId(inviteId)
-                    .build();
-            noticeProducer.sendNotice(noticeMessage);
-        } catch (Exception e) {
-            log.error("发送接受邀请通知失败", e);
-        }
+//        try {
+//            String username = userMapper.getUserInfo(userId).getUsername();
+//            NoticeMessage noticeMessage = NoticeMessage.builder()
+//                    .receiverId(userId)
+//                    .content(String.format("用户 %s 已接受您的账本邀请", username))
+//                    .type(InviteStatusEnum.getByCode(1).getDesc())
+//                    .bizId(inviteId)
+//                    .build();
+//            noticeProducer.sendNotice(noticeMessage);
+//        } catch (Exception e) {
+//            log.error("发送接受邀请通知失败", e);
+//        }
     }
 
     @Override
@@ -179,18 +178,18 @@ public class LedgerInviteServiceImpl implements LedgerInviteService {
         //更新状态 拒绝
         ledgerInviteMapper.updateStatus(inviteId,2);
 
-        try {
-            String username = userMapper.getUserInfo(userId).getUsername();
-            NoticeMessage noticeMessage = NoticeMessage.builder()
-                    .receiverId(userId)
-                    .content(String.format("用户 %s 已拒绝您的账本邀请", username))
-                    .type(InviteStatusEnum.getByCode(2).getDesc())
-                    .bizId(inviteId)
-                    .build();
-            noticeProducer.sendNotice(noticeMessage);
-        } catch (Exception e) {
-            log.error("发送拒绝邀请通知失败", e);
-        }
+//        try {
+//            String username = userMapper.getUserInfo(userId).getUsername();
+//            NoticeMessage noticeMessage = NoticeMessage.builder()
+//                    .receiverId(userId)
+//                    .content(String.format("用户 %s 已拒绝您的账本邀请", username))
+//                    .type(InviteStatusEnum.getByCode(2).getDesc())
+//                    .bizId(inviteId)
+//                    .build();
+//            noticeProducer.sendNotice(noticeMessage);
+//        } catch (Exception e) {
+//            log.error("发送拒绝邀请通知失败", e);
+//        }
     }
 
     @Override

@@ -40,6 +40,12 @@ export const API_PATH = {
 	  ADD_LEDGERUSER:'/ledger/addLedgerUser',		//账本添加参与者 （添加用户-账本表中数据）
 	  LEDGER_DETAIL_BY_ID:'/ledger/LedgerDetailById',	//根据账本id查询账本详情
 	  SWITCH_LEDGER:'/ledger/switchLedger'				,//切换默认账本
-	  GET_ALL_LEDGER_USER:'/ledger/getAllLedgerUser',	//获取所有账本参与者
+	  GET_ALL_LEDGER_USER:'/ledger/getAllLedgerUser',	//获取所有账本参与者  
+  },
+  INVITE:{
+	  SEND:'/invite/send',		//发送邀请
+	  ACCEPT:"/invite/accept",			//接受邀请
+	  REJECT:"/invite/reject",			//拒绝邀请
+	  PEDNDING:"/invite/pending",	//查询待处理的邀请
   }
 };

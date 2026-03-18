@@ -37,9 +37,9 @@
 		ref
 	} from 'vue';
 	import {
-		getAllLedgerUser,addLedgerUser
+		getAllLedgerUser
 	} from '../../api/ledger';
-
+	import { sendInvite } from '../../api/invite';
 	const userList = ref([]);
 	const show = ref(false);
 	const participantValue = ref('');
@@ -72,7 +72,7 @@
 		const trimValue = value.trim();
 		// 1. 判断是否为数字ID（纯数字）
 		if (/^\d+$/.test(trimValue)) {
-			return { type: 'userId', value: Number(trimValue) };
+			return { type: 'inviteeId', value: Number(trimValue) };
 		}
 		// 2. 判断是否为手机号（11位数字，以1开头）
 		if (/^1[3-9]\d{9}$/.test(trimValue)) {
@@ -96,12 +96,12 @@
 		console.log('要添加的参与者：', participantValue.value);
 		const { type, value } = judgeInputType(trimValue)
 		console.log('输入类型：', type, '值：', value);
-		const params = {
+		const data = {
 			[type]: value,
 			ledgerId:ledgerId.value
 		};
 		
-		await addLedgerUser(params);
+		await sendInvite(data);
 		//刷新列表
 		getUserList(ledgerId.value);
 		 // 关闭弹窗 + 清空输入框
