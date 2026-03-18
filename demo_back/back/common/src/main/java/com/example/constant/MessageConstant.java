@@ -39,4 +39,5 @@ public class MessageConstant {
     public static final String NOT_PERMISSION= "无权限进行此操作";
     public static final String ALREADY_SEND= "已发送过邀请，请勿重复发送";
     public static final String ALREADY_HANDLE= "已处理";
+    public static final String NOT_PEEDING_INVITE ="没有邀请";
 }

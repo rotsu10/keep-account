@@ -1,13 +1,14 @@
-package com.example.utils;
+package com.example.mq;
 import com.example.entity.NoticeMessage;
 import com.example.exception.BusinessException;
 import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
-import org.springframework.amqp.core.Queue;
+
+import static com.example.constant.RabbitMqConstant.LEDGER_INVITE_ROUTING_KEY;
+import static com.example.constant.RabbitMqConstant.NOTICE_EXCHANGE;
 
 /**
  * 通知消息生产者
@@ -21,14 +22,6 @@ public class NoticeProducer {
     // RabbitMQ模板
     private final RabbitTemplate rabbitTemplate;
 
-    // 消息队列名称（可配置在yml中）
-    private static final String LEDGER_INVITE_QUEUE = "ledger.invite.queue";
-
-    @Bean
-    public Queue ledgerInviteQueue() {
-        return new Queue(LEDGER_INVITE_QUEUE, true); // 第二个参数为是否持久化
-    }
-
     /**
      * 发送通知消息
      */
@@ -37,7 +30,10 @@ public class NoticeProducer {
             Long bizId = noticeMessage.getBizId();
             Long receiverId = noticeMessage.getReceiverId();
             String type = noticeMessage.getType();
-            rabbitTemplate.convertAndSend(LEDGER_INVITE_QUEUE, noticeMessage);
+            rabbitTemplate.convertAndSend(
+                    NOTICE_EXCHANGE,
+                    LEDGER_INVITE_ROUTING_KEY,
+                    noticeMessage);
             log.info("通知发送成功，bizId：{}，inviteeId:{},status：{}",bizId ,receiverId, type);
         } catch (Exception e) {
             log.error("RabbitMQ消息发送失败，bizId：{}，receiverId：{}，异常信息：",

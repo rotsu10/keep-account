@@ -15,11 +15,9 @@ import com.example.mapper.LedgerInviteMapper;
 import com.example.mapper.LedgerMapper;
 import com.example.mapper.UserMapper;
 import com.example.service.LedgerInviteService;
-import com.example.utils.NoticeProducer;
-import com.example.vo.LedgerInviteVO;
+import com.example.mq.NoticeProducer;
 import com.example.vo.LedgerVO;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -155,7 +153,6 @@ public class LedgerInviteServiceImpl implements LedgerInviteService {
             noticeProducer.sendNotice(noticeMessage);
         } catch (Exception e) {
             log.error("发送接受邀请通知失败", e);
-            throw new InviteException(e.getMessage());
         }
     }
 
@@ -193,7 +190,6 @@ public class LedgerInviteServiceImpl implements LedgerInviteService {
             noticeProducer.sendNotice(noticeMessage);
         } catch (Exception e) {
             log.error("发送拒绝邀请通知失败", e);
-            throw new InviteException(e.getMessage());
         }
     }
 

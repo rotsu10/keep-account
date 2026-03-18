@@ -45,6 +45,7 @@ public class LedgerInviteController {
     }
 
     @Operation(summary = "查询待处理的邀请")
+    @GetMapping("/pending")
     public Result<List<LedgerInvite>> pending(){
         List<LedgerInvite> list = ledgerInviteService.getPendingInvites();
         return Result.success(list);
