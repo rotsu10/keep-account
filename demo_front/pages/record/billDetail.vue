@@ -22,8 +22,21 @@
 					</view>
 				</van-dialog>
 
-				<!-- 账单所属 -->
-				<van-field v-model="formData.belongName" name="belongName" label="账单所属"/>
+				<!-- 账单付款人 -->
+				<van-field v-model="formData.belongName" name="belongName" label="账单付款人"></van-field>
+				
+				<!-- 账本类型 -->
+				<van-field name="billType" label="账单类型">
+					<template #input>
+						<van-radio-group v-model="billType" direction="horizontal">
+							<van-radio name="single">单人账本</van-radio>
+							<van-radio name="multiple">多人账本</van-radio>
+						</van-radio-group>
+					</template>
+				</van-field>
+		
+				<!-- 账本参与者 -->
+				
 				
 				<!-- 日期 -->
 				<van-field v-model="formData.createTime" is-link readonly name="create_time" label="时间选择"
@@ -89,12 +102,15 @@
 	};
 	// 收支类型
 	const checked = ref('1');
+	//账单类型
+	const billType = ref('single');
 	// 表单数据对象
 	const formData = reactive({
 		amount: '', // 金额
 		categoryName: '', // 分类名
 		categoryId: '', // 分类id
 		belongName:'', //账单所属
+		userId:'', //账单所属ID
 		createTime: '', // 格式化后的日期
 		remark: '', // 备注
 		type: '' // 收支类型
@@ -105,7 +121,6 @@
 	const onConfirm = ({
 		selectedValues
 	}) => {
-		// formData.createTime = selectedValues.join('/');
 		formData.createTime = dayjs(selectedValues).format('YYYY-MM-DD');
 		showPicker.value = false;
 	};
@@ -129,6 +144,7 @@
 				},
 			)
 			billDetail.value = res;
+			console.log("账本详情res",res)
 			initFormData();
 		} catch (err) {
 			console.log('查询账单详情失败', err);
@@ -148,6 +164,10 @@
 		formData.createTime = dayjs(billDetail.value.createTime).format('YYYY-MM-DD');
 		//账单所属
 		formData.belongName = billDetail.value.belongName || '';
+		//账单所属ID
+		formData.userId = billDetail.value.userId || '';
+		//账单所属
+		formData.billType = billDetail.value.billType || '';
 		// 备注
 		formData.remark = billDetail.value.remark || '';
 		// 收支类型
@@ -162,12 +182,13 @@
 				id: billDetail.value.id || '',
 				amount: formData.amount,
 				categoryId: formData.categoryId,
-				//dayjs('2019-01-25').format('[YYYYescape] YYYY-MM-DDTHH:mm:ssZ[Z]') 
+				userName:formData.belongName,
 				createTime: dayjs(formData.createTime).format('YYYY-MM-DD HH:mm:ss'),
 				remark: formData.remark,
-				type: formData.type
+				type: formData.type,
 			};
-
+			
+			console.log("billType",billType)
 			const result = await http.post(API_PATH.BILL.UPDATE_DETAIL, submitData)
 			// 3. 提交成功反馈
 			uni.showToast({

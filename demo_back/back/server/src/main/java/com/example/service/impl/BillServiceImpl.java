@@ -6,9 +6,12 @@ import com.example.context.BaseContext;
 import com.example.dto.*;
 import com.example.entity.DailyCost;
 import com.example.entity.SumStatistics;
+import com.example.entity.User;
 import com.example.entity.UserBill;
 import com.example.exception.BillException;
+import com.example.exception.UserNotFoundException;
 import com.example.mapper.UserBillMapper;
+import com.example.mapper.UserMapper;
 import com.example.result.PageResult;
 import com.example.service.BillService;
 import com.example.vo.BillStatisticsVO;
@@ -21,6 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -32,6 +36,9 @@ public class BillServiceImpl implements BillService {
 
     @Autowired
     private UserBillMapper userBillMapper;
+    @Autowired
+    private UserMapper userMapper;
+
     @Override
     @CheckLedgerExist
     public void addBill(UserBillDTO userBillDTO) {
@@ -161,13 +168,20 @@ public class BillServiceImpl implements BillService {
     }
 
     @Override
+    @Transactional
     public UserBillVO updateBill(UserBillDTO userBillDTO) {
+        //修改账单所属者
+        //1.查询此人是否存在
+        User byUsername = userMapper.getByUsername(userBillDTO.getUserName());
+        if(byUsername==null){
+            throw new UserNotFoundException(MessageConstant.USER_NOT_FOUND);
+        }
+
         UserBill userBill = new UserBill();
         BeanUtils.copyProperties(userBillDTO,userBill);
-
-        Long userId = BaseContext.getCurrentId();
-        Long ledgerId = BaseContext.getLedgerId();
+        Long userId = byUsername.getId();
         userBill.setUserId(userId);
+        Long ledgerId = BaseContext.getLedgerId();
         int row = userBillMapper.updateBill(userBill,ledgerId);
         if(row>0){
             Long billId = userBill.getId();

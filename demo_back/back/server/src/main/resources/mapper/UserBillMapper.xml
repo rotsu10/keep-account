@@ -185,8 +185,11 @@
             <if test="userBill.createTime != null">
                 create_time = #{userBill.createTime},
             </if>
+            <if test="userBill.userId != null">
+                user_id = #{userBill.userId},
+            </if>
         </set>
-        WHERE id = #{userBill.id} and user_id = #{userBill.userId} and user_bill.ledger_id = #{ledgerId}
+        WHERE id = #{userBill.id}  and user_bill.ledger_id = #{ledgerId}
     </update>
 
     <select id="getSumByDate" resultType="com.example.vo.BillStatisticsVO">

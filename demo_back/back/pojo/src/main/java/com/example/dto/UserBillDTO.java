@@ -15,8 +15,9 @@ import java.util.Date;
 @AllArgsConstructor
 @Builder
 public class UserBillDTO implements Serializable {
-   private Long id;
-    private Long userId; //关联用户
+    private Long id;
+    private Long userId; //关联用户ID
+    private String userName; //关联用户姓名
     private Long ledgerId; //关联账本id
     private Long categoryId; //关联分类
     private BigDecimal amount; //金额
