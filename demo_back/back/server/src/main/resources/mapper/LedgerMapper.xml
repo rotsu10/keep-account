@@ -66,18 +66,17 @@
     </delete>
 
     <select id="getLedgerDetail" resultType="com.example.vo.LedgerVO">
-        select l.id as ledgerId,
+        SELECT
+            l.id AS ledgerId,
             l.ledger_name,
             l.create_time,
-            COUNT(ub.id) AS billCount,
-            SUM(CASE WHEN ub.type = 1 THEN ub.amount ELSE 0 END) as totalIncomeAmount,
-            SUM(CASE WHEN ub.type = 2 THEN ub.amount ELSE 0 END) as totalOutcomeAmount
-        from ledger l
-                 left join user_bill ub on ub.ledger_id = l.id
-                 left join user_ledger_relation ular on ular.ledger_id = l.id
-        where
-            ular.ledger_id  = #{ledgerId}
-        group by l.id;
+            COUNT(ub.id) AS billCount,  -- 无需DISTINCT，因为无笛卡尔积
+            SUM(CASE WHEN ub.type=1 THEN ub.amount ELSE 0 END) AS totalIncomeAmount,
+            SUM(CASE WHEN ub.type=2 THEN ub.amount ELSE 0 END) AS totalOutcomeAmount
+        FROM ledger l
+                 LEFT JOIN user_bill ub ON ub.ledger_id = l.id
+        WHERE l.id =#{ledgerId}
+        GROUP BY l.id, l.ledger_name, l.create_time;
     </select>
 
     <update id="switchLedger">

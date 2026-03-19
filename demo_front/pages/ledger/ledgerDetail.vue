@@ -5,6 +5,7 @@
 		</view>
 		<view>
 			<van-cell-group inset>
+				<van-cell title="账本id" :value="ledgerStore.ledgerId" />
 			    <van-cell title="账本名称" :value="ledgerStore.ledgerName" />
 				<van-cell title="创建时间" :value="ledgerStore.createTime" />
 			  	<van-cell title="创建者ID" :value="ledgerStore.ownerId" />

@@ -14,7 +14,7 @@
         c.name as categoryName
         from user_bill ub
         left join category c on ub.category_id = c.id
-        where ub.user_id = #{queryDTO.userId} and ub.ledger_id = #{ledgerId}
+        where ub.ledger_id = #{ledgerId}
         <if test="queryDTO.year != null">
             and year(ub.create_time) = #{queryDTO.year}
         </if>
@@ -30,7 +30,7 @@
         select user_bill.*,category.name as categoryName ,user.username as belongName from user_bill
             left join category on user_bill.category_id = category.id
             left join user on user_bill.user_id = user.id
-        where user_bill.user_id = #{userId} and user_bill.id = #{billId} and user_bill.ledger_id = #{ledgerId}
+        where user_bill.id = #{billId} and user_bill.ledger_id = #{ledgerId}
     </select>
 <!--    <select id="getSumAll" resultType="com.example.entity.SumStatistics">-->
 <!--        select-->
@@ -80,7 +80,7 @@
         FROM
             user_bill
         WHERE
-            user_id = #{id} and ledger_id = #{ledgerId}
+            ledger_id = #{ledgerId}
         GROUP BY
             DATE(create_time)
         ORDER BY
