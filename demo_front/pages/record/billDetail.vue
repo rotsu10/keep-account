@@ -12,7 +12,6 @@
 					is-link @click="openDialog" />
 
 				<van-dialog v-model:show="DialogShow" title="选择分类" show-cancel-button>
-
 					<view class="category-list">
 						<van-tag v-for="(item,index) in categoryList" :index="item"
 							:type="formData.categoryName === item.name ? 'success' : 'primary'"
@@ -37,13 +36,13 @@
 
 				<!-- 折叠面板 -->
 				<van-collapse v-model="collapseNames" v-if="billType === 'multiple'">
-					
+
 					<!-- 付款人  -->
 					<van-collapse-item title="付款人信息" name="payer" is-link>
 						<van-field v-model="formData.belongName" name="belongName" label="实际付款人" disabled />
 						<van-field v-model="formData.userId" name="userId" label="付款人ID" disabled />
 					</van-collapse-item>
-					
+
 					<!-- 账本参与人 -->
 					<van-collapse-item title="账本参与人" name="participant">
 						<!-- 参与人列表 -->
@@ -53,7 +52,12 @@
 								<van-button size="small" type="primary" @click="plusParticipant">添加</van-button>
 							</view>
 							<!-- 参与人列表项 -->
-							
+							<view class="selected-participant-list">
+								<van-tag v-for="(item,index) in selectedParticipants" :index="item"
+									class="selected-participant--tag" round size="large" plain>
+									{{ item.username}}
+								</van-tag>
+							</view>
 							<!-- 合计金额提示 -->
 							<view class="total-tip">
 								参与人分摊合计： 元（需等于账单总金额 {{ formData.amount }} 元）
@@ -62,7 +66,7 @@
 					</van-collapse-item>
 				</van-collapse>
 
-				
+
 
 				<!-- 日期 -->
 				<van-field v-model="formData.createTime" is-link readonly name="create_time" label="时间选择"
@@ -92,7 +96,20 @@
 					提交
 				</van-button>
 			</div>
-		</van-form>	
+		</van-form>
+
+		<!-- 添加账单参与人 -->
+		<van-dialog v-model:show="addParticipantShow" title="选择账单参与者" show-cancel-button
+			@confirm="handleParticipantConfirm">
+			<view class="category-list">
+				<van-tag v-for="(item, index) in ledgerUserList" :key="index"
+					:class="['category-tag', isSelected(item) ? 'selected-tag' : '']" round size="large"
+					@click="toggleSelect(item)">
+					{{ item.username }}
+					<van-icon name="success" v-if="isSelected(item)" class="selected-icon" />
+				</van-tag>
+			</view>
+		</van-dialog>
 	</view>
 </template>
 
@@ -110,19 +127,75 @@
 	import {
 		API_PATH
 	} from '../../api/api';
+	import {
+		getAllLedgerUser
+	} from "../../api/ledger.js"
+	import {
+		useLedgerStore
+	} from '../../stores/useLedgerStore';
 	import dayjs from 'dayjs';
 	const collapseNames = ref(['payer', 'participant']);
-	
-	
+	const ledgerStore = useLedgerStore();
+	const addParticipantShow = ref(false)
 	const DialogShow = ref(false)
 	//查询到的分类
 	const categoryList = ref([]);
+	//全部账本参与者
+	const ledgerUserList = ref([])
 	// 添加分类的名字
 	const openDialog = async () => {
 		await getCategory();
 		DialogShow.value = true
 	}
-	
+
+
+	// 存储选中的参与者（核心：用数组管理多选状态）
+	const selectedParticipants = ref([]);
+
+	// 切换选中/取消选中
+	const toggleSelect = (item) => {
+		// 判断当前项是否已选中
+		const isExist = selectedParticipants.value.some(p => p.id === item.id);
+		if (isExist) {
+			// 已选中：移除
+			selectedParticipants.value = selectedParticipants.value.filter(p => p.id !== item.id);
+		} else {
+			// 未选中：添加
+			selectedParticipants.value.push(item);
+		}
+	};
+
+	// 判断某一项是否选中（供模板使用）
+	const isSelected = (item) => {
+		return selectedParticipants.value.some(p => p.id === item.id);
+	};
+
+	//  点击弹窗“确认”按钮的回调（获取选中列表）
+	const handleParticipantConfirm = () => {
+		if (selectedParticipants.value.length === 0) {
+			uni.showToast({
+				title: '请至少选择一位参与者',
+				icon: 'none'
+			});
+			return;
+		}
+		// 输出选中的参与者列表
+		console.log('选中的参与者：', selectedParticipants.value);
+		// 示例：提取选中的ID数组
+		const selectedIds = selectedParticipants.value.map(p => p.id);
+		console.log('选中的参与者ID：', selectedIds);
+
+		// 这里写你的业务逻辑（比如提交选中的参与者到后端）
+		// await addBillParticipants(selectedIds);
+
+		// 关闭弹窗
+		addParticipantShow.value = false;
+	};
+
+
+
+
+
 	// 选择分类
 	const selectCategory = (item) => {
 		formData.categoryName = item.name;
@@ -162,10 +235,19 @@
 			loadBillDetail(options.id);
 		}
 	});
-	
+
 	//添加账单参与者
-	const plusParticipant = () =>{
-		
+	const plusParticipant = () => {
+		const ledgerId = ledgerStore.ledgerId
+		addParticipantShow.value = true;
+		getUserList(ledgerId);
+	}
+
+	//查询所有账本参与者
+	const getUserList = async (ledgerId) => {
+		const userList = await getAllLedgerUser(ledgerId);
+		ledgerUserList.value = userList;
+		console.log("userList", userList)
 	}
 
 	// 加载账单详情并初始化表单初始值
@@ -258,7 +340,7 @@
 </script>
 
 <style scoped>
-	.category-list {
+	.category-list ,.selected-participant-list{
 		display: flex;
 		flex-wrap: wrap;
 		gap: 15px;
@@ -266,28 +348,57 @@
 		justify-content: center;
 	}
 
-	.category-tag {
+	.category-tag ,.selected-participant-tag {
 		padding: 5px 12px;
 		cursor: pointer;
 	}
-	
+
 	.participant-container {
-	  padding: 16px;
+		padding: 16px;
 	}
-	
+
 	.participant-title {
-	  display: flex;
-	  align-items: center; /* 垂直居中 */
-	  position: relative; /* 给按钮绝对定位用 */
-	  margin-bottom: 16px;
-	  font-weight: 500;
+		display: flex;
+		align-items: center;
+		/* 垂直居中 */
+		position: relative;
+		/* 给按钮绝对定位用 */
+		margin-bottom: 16px;
+		font-weight: 500;
 	}
-	
+
 	/* 添加按钮：靠右显示 */
 	.participant-title .van-button {
-	  position: absolute;
-	  right: 0;
-	  top: 50%;
-	  transform: translateY(-50%);
+		position: absolute;
+		right: 0;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+
+	.category-list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px;
+		/* 标签之间的间距 */
+		padding: 10px 0;
+	}
+
+	.category-tag {
+		cursor: pointer;
+		transition: all 0.2s;
+	}
+
+	/* 选中状态的样式 */
+	.selected-tag {
+		background-color: #1989fa;
+		/* 蓝色（与vant主题一致） */
+		color: #fff;
+		border-color: #1989fa;
+	}
+
+	.selected-icon {
+		margin-left: 5px;
+		font-size: 12px;
 	}
 </style>
