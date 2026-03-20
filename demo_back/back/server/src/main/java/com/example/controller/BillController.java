@@ -5,14 +5,12 @@ import com.example.annotation.CheckLedgerExist;
 import com.example.context.BaseContext;
 import com.example.dto.*;
 import com.example.entity.DailyCost;
+import com.example.entity.Participant;
 import com.example.entity.UserBill;
 import com.example.result.PageResult;
 import com.example.result.Result;
 import com.example.service.BillService;
-import com.example.vo.BillStatisticsVO;
-import com.example.vo.CategoryStatisticsVO;
-import com.example.vo.StatisticsQueryVO;
-import com.example.vo.UserBillVO;
+import com.example.vo.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
@@ -104,7 +102,7 @@ public class BillController {
     //根据分类id查询账单
     @CheckLedgerExist
     @Operation(summary = "根据分类id查询账单")
-    @GetMapping("getBillByCategoryIds")
+    @GetMapping("/getBillByCategoryIds")
     public Result<List<UserBillDTO>> getBillByCategoryIds(@RequestParam List<Long> categoryIds){
         List<UserBillDTO> list = billService.getBillByCategoryIds(categoryIds);
         return Result.success(list);
@@ -173,4 +171,14 @@ public class BillController {
         PageResult<UserBill> userBillList = billService.queryBillByLedger(queryBillByLedgerDTO);
         return Result.success(userBillList);
     }
+
+    @GetMapping("/queryBillParticipant/{billId}")
+    @Operation(summary = "查询账单参与者")
+    public Result<List<Participant>> queryBillParticipant(@PathVariable Long billId){
+        log.info("queryBillParticipant:{}",billId);
+        List<Participant> vo = billService.queryBillParticipant(billId);
+        return Result.success(vo);
+    }
+
+    
 }

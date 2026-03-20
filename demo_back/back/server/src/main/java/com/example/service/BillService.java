@@ -3,12 +3,10 @@ package com.example.service;
 import com.example.dto.*;
 import com.example.entity.Category;
 import com.example.entity.DailyCost;
+import com.example.entity.Participant;
 import com.example.entity.UserBill;
 import com.example.result.PageResult;
-import com.example.vo.BillStatisticsVO;
-import com.example.vo.CategoryStatisticsVO;
-import com.example.vo.StatisticsQueryVO;
-import com.example.vo.UserBillVO;
+import com.example.vo.*;
 
 import java.util.List;
 
@@ -54,4 +52,6 @@ public interface BillService {
     //查询账本下所有账单 billType账单类型
     PageResult<UserBill> queryBillByLedger(QueryBillByLedgerDTO queryBillByLedgerDTO);
 
+    //查询账单参与者
+    List<Participant> queryBillParticipant(Long billId);
 }

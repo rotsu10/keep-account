@@ -4,20 +4,15 @@ import com.example.annotation.CheckLedgerExist;
 import com.example.constant.MessageConstant;
 import com.example.context.BaseContext;
 import com.example.dto.*;
-import com.example.entity.DailyCost;
-import com.example.entity.SumStatistics;
-import com.example.entity.User;
-import com.example.entity.UserBill;
+import com.example.entity.*;
 import com.example.exception.BillException;
 import com.example.exception.UserNotFoundException;
+import com.example.mapper.ParticipantMapper;
 import com.example.mapper.UserBillMapper;
 import com.example.mapper.UserMapper;
 import com.example.result.PageResult;
 import com.example.service.BillService;
-import com.example.vo.BillStatisticsVO;
-import com.example.vo.CategoryStatisticsVO;
-import com.example.vo.StatisticsQueryVO;
-import com.example.vo.UserBillVO;
+import com.example.vo.*;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -38,6 +34,8 @@ public class BillServiceImpl implements BillService {
     private UserBillMapper userBillMapper;
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private ParticipantMapper participantMapper
 
     @Override
     @CheckLedgerExist
@@ -242,5 +240,15 @@ public class BillServiceImpl implements BillService {
         long total = page.getTotal();
         List<UserBill> result = page.getResult();
         return new PageResult<>(total,result);
+    }
+
+    @Override
+    public List<Participant> queryBillParticipant(Long billId) {
+        UserBill bill =  userBillMapper.getBillById(billId);
+        if(bill==null){
+            throw new BillException(MessageConstant.BILL_NOT_EXISTS);
+        }
+        List<Participant> list = participantMapper.queryBillParticipant(billId);
+        return list;
     }
 }

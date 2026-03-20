@@ -259,4 +259,8 @@
                     and type = #{billType}
                 </if>
     </select>
+
+    <select id="getBillById" resultType="com.example.entity.UserBill">
+        select * from user_bill where id = #{billId}
+    </select>
 </mapper>
