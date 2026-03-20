@@ -39,5 +39,7 @@ public class MessageConstant {
     public static final String NOT_PERMISSION= "无权限进行此操作";
     public static final String ALREADY_SEND= "已发送过邀请，请勿重复发送";
     public static final String ALREADY_HANDLE= "已处理";
-    public static final String NOT_PEEDING_INVITE ="没有邀请";
+    public static final String NOT_PENDING_INVITE ="没有邀请";
+    public static final String PARTICIPANT_EXISTS ="已添加该成员，请勿重复添加";
+    public static final String AMOUNT_ERROR ="金额不得超过总额";
 }

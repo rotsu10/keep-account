@@ -27,7 +27,6 @@ public class BillController {
 
     @Autowired
     private BillService billService;
-
     @PostMapping("/addBill")
     @Operation(summary = "添加账单")
     @CheckLedgerExist
@@ -171,14 +170,4 @@ public class BillController {
         PageResult<UserBill> userBillList = billService.queryBillByLedger(queryBillByLedgerDTO);
         return Result.success(userBillList);
     }
-
-    @GetMapping("/queryBillParticipant/{billId}")
-    @Operation(summary = "查询账单参与者")
-    public Result<List<Participant>> queryBillParticipant(@PathVariable Long billId){
-        log.info("queryBillParticipant:{}",billId);
-        List<Participant> vo = billService.queryBillParticipant(billId);
-        return Result.success(vo);
-    }
-
-    
 }

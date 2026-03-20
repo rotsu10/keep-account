@@ -52,6 +52,5 @@ public interface BillService {
     //查询账本下所有账单 billType账单类型
     PageResult<UserBill> queryBillByLedger(QueryBillByLedgerDTO queryBillByLedgerDTO);
 
-    //查询账单参与者
-    List<Participant> queryBillParticipant(Long billId);
+
 }

@@ -34,11 +34,14 @@ public class BillServiceImpl implements BillService {
     private UserBillMapper userBillMapper;
     @Autowired
     private UserMapper userMapper;
+
     @Autowired
-    private ParticipantMapper participantMapper
+    private ParticipantMapper participantMapper;
+
 
     @Override
     @CheckLedgerExist
+    @Transactional(rollbackFor = Exception.class)
     public void addBill(UserBillDTO userBillDTO) {
         UserBill userBill = new UserBill();
         BeanUtils.copyProperties(userBillDTO, userBill);
@@ -65,7 +68,6 @@ public class BillServiceImpl implements BillService {
         Page<UserBill> page = userBillMapper.queryPageDate(recordQueryDTO,ledgerId);
         long total = page.getTotal();
         List<UserBill> records = page.getResult();
-
         return new PageResult<>(total,records);
     }
 
@@ -80,32 +82,6 @@ public class BillServiceImpl implements BillService {
         log.info("UserBillVO:{}",userBillVO);
         return userBillVO;
     }
-
-//    @Override
-//    public StatisticsQueryVO statisticsQuery(TimeDTO timeDTO) {
-//        Integer year = statisticsQueryDTO.getYear();
-//        Integer month = statisticsQueryDTO.getMonth();
-//        Integer day = statisticsQueryDTO.getDay();
-//        Long userId = BaseContext.getCurrentId();
-//        Long ledgerId = BaseContext.getLedgerId();
-//        SumStatistics sum = userBillMapper.getSumAll(year, month, day,userId,ledgerId);
-//        log.info("userBill:{}",sum);
-//        // 1. 初始化默认值
-//        BigDecimal income = BigDecimal.ZERO;
-//        BigDecimal expense = BigDecimal.ZERO;
-//        BigDecimal transfer = BigDecimal.ZERO;
-//
-//        // 2. 如果 sum 不为 null，再从 sum 中获取值
-//        if (sum != null) {
-//            income = sum.getIncome();
-//            expense = sum.getExpense();
-//            transfer = sum.getTransfer();
-//        }
-//
-//        // 3. 返回结果
-//        return new StatisticsQueryVO(income, expense, transfer);
-//    }
-
 
     @Override
     public StatisticsQueryVO statisticsQuery(TimeDTO timeDTO) {
@@ -240,15 +216,5 @@ public class BillServiceImpl implements BillService {
         long total = page.getTotal();
         List<UserBill> result = page.getResult();
         return new PageResult<>(total,result);
-    }
-
-    @Override
-    public List<Participant> queryBillParticipant(Long billId) {
-        UserBill bill =  userBillMapper.getBillById(billId);
-        if(bill==null){
-            throw new BillException(MessageConstant.BILL_NOT_EXISTS);
-        }
-        List<Participant> list = participantMapper.queryBillParticipant(billId);
-        return list;
     }
 }

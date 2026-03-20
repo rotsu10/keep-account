@@ -8,4 +8,11 @@
     <select id="queryBillParticipant" resultType="com.example.entity.Participant">
         select * from bill_participant where bill_id = #{billId}
     </select>
+    <select id="countParticipant" resultType="java.lang.Integer">
+        select count(id) from bill_participant where bill_id = #{billId} and participant_id = #{participantId}
+    </select>
+    <insert id="add" parameterType="com.example.entity.Participant" useGeneratedKeys="true" keyProperty="id">
+        insert into bill_participant (bill_id, participant_id, share_amount) values (#{billId}, #{participantId},#{shareAmount})
+    </insert>
+
 </mapper>
