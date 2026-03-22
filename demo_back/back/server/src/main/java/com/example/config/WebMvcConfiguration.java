@@ -46,7 +46,7 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
         log.info("开始注册自定义拦截器...");
         registry.addInterceptor(jwtTokenUserInterceptor)
                 // 1. 先指定要拦截的路径（所有业务接口）
-                .addPathPatterns("/user/**", "/ledger/**", "/bill/**", "/category/**","/invite/**")
+                .addPathPatterns("/user/**", "/ledger/**", "/bill/**", "/category/**","/invite/**","/participant/**")
                 // 2. 排除登录/注册接口（精确匹配，支持通配）
                 .excludePathPatterns(
                         "/user/login",        // 精确排除 POST /user/login

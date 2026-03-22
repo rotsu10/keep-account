@@ -62,7 +62,6 @@ public interface UserBillMapper {
     //查询账本下所有账单 billType账单类型
     Page<UserBill> queryBillByLedger(Integer billType, Long ledgerId);
 
-
     //根据id查询账本
     UserBill getBillById(Long billId);
 }

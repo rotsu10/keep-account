@@ -22,6 +22,7 @@ public class UserBillDTO implements Serializable {
     private Long categoryId; //关联分类
     private BigDecimal amount; //金额
     private int type; //类型 1.收入 2.支出
+    private String billType; //single单人账本 multiple多人账本
     private LocalDateTime createTime; //记账时间
     private String remark; //备注
 }

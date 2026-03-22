@@ -24,6 +24,7 @@ public class GlobalException {
 
     // 2. “账号不存在”
     @ExceptionHandler(AccountNotFoundException.class)
+    @ResponseBody
     public Result<String> handleAccountNotFoundException(AccountNotFoundException ex) {
         log.error("账号不存在异常：{}", ex.getMessage()); // 可选：打印日志
         return Result.error(ex.getMessage());
@@ -36,32 +37,44 @@ public class GlobalException {
     }
 
     @ExceptionHandler(CategoryException.class)
+    @ResponseBody
     public Result<String> handleCategoryErrorException(CategoryException e){
         log.info("分类错误{}", e.getMessage());
         return Result.error(e.getMessage());
     }
 
     @ExceptionHandler(UserNotFoundException.class)
+    @ResponseBody
     public Result<String> handleUserErrorException(UserNotFoundException e){
         log.info("用户查询错误{}", e.getMessage());
         return Result.error(e.getMessage());
     }
 
     @ExceptionHandler(LedgerException.class)
+    @ResponseBody
     public Result<String> handleUserErrorException(LedgerException e){
         log.info("账本错误{}", e.getMessage());
         return Result.error(e.getMessage());
     }
 
     @ExceptionHandler(InviteException.class)
+    @ResponseBody
     public Result<String> handleInviteErrorException(InviteException e){
         log.info("账本邀请错误{}", e.getMessage());
+        return Result.error(e.getMessage());
+    }
+
+    @ExceptionHandler(BillException.class)
+    @ResponseBody
+    public Result<String> handleBillException(BillException e){
+        log.info("账本错误{}", e.getMessage());
         return Result.error(e.getMessage());
     }
 
 
     // 处理所有其他未捕获的异常
     @ExceptionHandler(Exception.class)
+    @ResponseBody
     public Result<String> handleAllException(Exception ex) {
         log.error("系统异常：{}", ex.getMessage(), ex);
         return Result.error("未知错误");

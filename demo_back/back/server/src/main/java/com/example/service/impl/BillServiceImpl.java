@@ -7,10 +7,12 @@ import com.example.dto.*;
 import com.example.entity.*;
 import com.example.exception.BillException;
 import com.example.exception.UserNotFoundException;
+import com.example.mapper.LedgerMapper;
 import com.example.mapper.ParticipantMapper;
 import com.example.mapper.UserBillMapper;
 import com.example.mapper.UserMapper;
 import com.example.result.PageResult;
+import com.example.result.Result;
 import com.example.service.BillService;
 import com.example.vo.*;
 import com.github.pagehelper.Page;
@@ -37,6 +39,8 @@ public class BillServiceImpl implements BillService {
 
     @Autowired
     private ParticipantMapper participantMapper;
+    @Autowired
+    private LedgerMapper ledgerMapper;
 
 
     @Override
@@ -217,4 +221,5 @@ public class BillServiceImpl implements BillService {
         List<UserBill> result = page.getResult();
         return new PageResult<>(total,result);
     }
+
 }

@@ -8,7 +8,7 @@ import java.util.List;
 @Mapper
 public interface ParticipantMapper {
 
-    //查询账本参与者
+    //查询账单参与者
     List<Participant> queryBillParticipant(Long billId);
 
     //查询账单参与者是否存在

@@ -4,14 +4,11 @@ import com.example.annotation.CheckLedgerExist;
 import com.example.constant.MessageConstant;
 import com.example.dto.AddLedgerUserDTO;
 import com.example.dto.LedgerDTO;
-import com.example.entity.User;
-import com.example.exception.LedgerException;
 import com.example.exception.UserNotFoundException;
 import com.example.result.Result;
 import com.example.service.LedgerService;
 import com.example.service.UserService;
 import com.example.vo.LedgerVO;
-import com.example.vo.UserLoginVO;
 import com.example.vo.UserVO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -104,7 +101,7 @@ public class LedgerController {
     //查询所有账本参与者
     @GetMapping("/getAllLedgerUser")
     @Operation(summary = "查询所有账本参与者")
-    public Result getAllLedgerUser(@RequestParam Long ledgerId){
+    public Result<List<UserVO>> getAllLedgerUser(@RequestParam Long ledgerId){
         log.info("getAllLedgerUser:{}", ledgerId);
         List<UserVO> list = ledgerService.getAllLedgerUser(ledgerId);
         return Result.success(list);

@@ -6,6 +6,7 @@ import com.example.entity.DailyCost;
 import com.example.entity.Participant;
 import com.example.entity.UserBill;
 import com.example.result.PageResult;
+import com.example.result.Result;
 import com.example.vo.*;
 
 import java.util.List;
@@ -51,6 +52,5 @@ public interface BillService {
 
     //查询账本下所有账单 billType账单类型
     PageResult<UserBill> queryBillByLedger(QueryBillByLedgerDTO queryBillByLedgerDTO);
-
 
 }

@@ -3,6 +3,7 @@ package com.example.service;
 import com.example.dto.AddLedgerUserDTO;
 import com.example.dto.LedgerDTO;
 import com.example.entity.User;
+import com.example.result.Result;
 import com.example.vo.LedgerVO;
 import com.example.vo.UserVO;
 
@@ -33,5 +34,6 @@ public interface LedgerService {
 
     //查询账本所有参与者
     List<UserVO> getAllLedgerUser(Long ledgerId);
+
 
 }

@@ -8,7 +8,9 @@ import com.example.entity.Ledger;
 import com.example.entity.User;
 import com.example.exception.LedgerException;
 import com.example.mapper.LedgerMapper;
+import com.example.mapper.ParticipantMapper;
 import com.example.mapper.UserMapper;
+import com.example.result.Result;
 import com.example.service.LedgerService;
 import com.example.vo.LedgerVO;
 import com.example.vo.UserLoginVO;
@@ -29,6 +31,8 @@ public class LedgerServiceImpl implements LedgerService {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private ParticipantMapper participantMapper;
     @Override
     public Long add(LedgerDTO ledgerDTO) {
         String ledgerName = ledgerDTO.getLedgerName();
@@ -128,4 +132,5 @@ public class LedgerServiceImpl implements LedgerService {
         List<UserVO> list = ledgerMapper.getAllLedgerUser(ledgerId);
         return list;
     }
+
 }

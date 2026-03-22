@@ -1,4 +1,4 @@
-package com.example.entity;
+package com.example.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,13 +11,11 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class Participant implements Serializable {
-    private Long id;
+public class AddParticipantsDTO implements Serializable {
+    private List<Long> participantIds;
     private Long billId;
-    private Long participantId;
-    private LocalDateTime createTime;
     private BigDecimal shareAmount;
 }

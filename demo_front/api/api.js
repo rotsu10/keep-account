@@ -47,5 +47,10 @@ export const API_PATH = {
 	  ACCEPT:"/invite/accept",			//接受邀请
 	  REJECT:"/invite/reject",			//拒绝邀请
 	  PEDNING:"/invite/pending",	//查询待处理的邀请
+  },
+  PARTICIPANT:{
+	  ADD:'/participant/addParticipant',
+	  QUERY_BILL_PARTICIPANT:'/participant/queryBillParticipant',
+	  REMANENTUSER:'/participant/getRemanentUser',
   }
 };
