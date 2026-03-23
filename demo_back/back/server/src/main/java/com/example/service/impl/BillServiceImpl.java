@@ -14,6 +14,7 @@ import com.example.mapper.UserMapper;
 import com.example.result.PageResult;
 import com.example.result.Result;
 import com.example.service.BillService;
+import com.example.service.ParticipantService;
 import com.example.vo.*;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -24,6 +25,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +43,8 @@ public class BillServiceImpl implements BillService {
     private ParticipantMapper participantMapper;
     @Autowired
     private LedgerMapper ledgerMapper;
+    @Autowired
+    private ParticipantService participantService;
 
 
     @Override
@@ -57,10 +61,34 @@ public class BillServiceImpl implements BillService {
         userBill.setUserId(BaseContext.getCurrentId());
         userBill.setLedgerId(BaseContext.getLedgerId());
         log.info("查询type的条件：userId={}, categoryId={}",
-                userBill.getUserId(),  // 应该是10（从BaseContext获取的）
+                userBill.getUserId(),
                 userBill.getCategoryId());
         log.info("当前用户id: {}", userBill.getUserId());
         userBillMapper.insertBill(userBill);
+        //添加多人账本
+        log.info("billType:{}",userBill.getBillType());
+        if (userBill.getBillType().equals("multiple")){
+            Long id = userBill.getId();
+            List<Long> participantIds = userBillDTO.getParticipantIds();
+            int participantCount = participantIds.size();
+            BigDecimal totalAmount = userBill.getAmount();
+            //计算平均金额
+            BigDecimal shareAmount = totalAmount.divide(
+                    new BigDecimal(participantCount),
+                    2,
+                    RoundingMode.HALF_UP
+            );
+            //插入
+            for(Long participantId : participantIds){
+                Participant participant =Participant.builder()
+                        .billId(id)
+                        .participantId(participantId)
+                        .shareAmount(shareAmount)
+                        .build();
+                participantMapper.add(participant);
+            }
+
+        }
     }
 
     @Override

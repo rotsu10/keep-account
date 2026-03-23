@@ -66,7 +66,7 @@ public class ParticipantServiceImpl implements ParticipantService {
         List<Long> participantIds = participant.getParticipantIds();
         Long billId = participant.getBillId();
 
-        // 先查询一次账单，避免循环内重复查询（性能优化+减少数据库交互）
+        // 先查询一次账单，避免循环内重复查询
         UserBill bill = userBillMapper.getBillById(billId);
         if (bill == null) {
             throw new BillException(MessageConstant.BILL_NOT_EXISTS);

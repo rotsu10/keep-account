@@ -128,7 +128,8 @@ public class LedgerServiceImpl implements LedgerService {
     }
 
     @Override
-    public List<UserVO> getAllLedgerUser(Long ledgerId) {
+    public List<UserVO> getAllLedgerUser() {
+        Long ledgerId = BaseContext.getLedgerId();
         List<UserVO> list = ledgerMapper.getAllLedgerUser(ledgerId);
         return list;
     }

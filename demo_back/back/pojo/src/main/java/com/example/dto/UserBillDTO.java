@@ -1,5 +1,6 @@
 package com.example.dto;
 
+import com.example.entity.Participant;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,6 +10,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -25,4 +27,5 @@ public class UserBillDTO implements Serializable {
     private String billType; //single单人账本 multiple多人账本
     private LocalDateTime createTime; //记账时间
     private String remark; //备注
+    private List<Long> participantIds;
 }

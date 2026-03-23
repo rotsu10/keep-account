@@ -46,6 +46,8 @@ export const useBillStore = defineStore('bill', {
 					remark: billData.remark || '',
 					categoryId: billData.categoryId,
 					type: billData.type,
+					billType:billData.billType,
+					participantIds:billData.participantIds,
 					createTime:billData.createTime
 				}
 				console.log("sendData",sendData)

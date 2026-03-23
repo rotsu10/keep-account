@@ -33,7 +33,5 @@ public interface LedgerService {
     void switchLedger(Long ledgerId);
 
     //查询账本所有参与者
-    List<UserVO> getAllLedgerUser(Long ledgerId);
-
-
+    List<UserVO> getAllLedgerUser();
 }

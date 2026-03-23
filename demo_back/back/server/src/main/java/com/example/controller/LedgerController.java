@@ -101,9 +101,9 @@ public class LedgerController {
     //查询所有账本参与者
     @GetMapping("/getAllLedgerUser")
     @Operation(summary = "查询所有账本参与者")
-    public Result<List<UserVO>> getAllLedgerUser(@RequestParam Long ledgerId){
-        log.info("getAllLedgerUser:{}", ledgerId);
-        List<UserVO> list = ledgerService.getAllLedgerUser(ledgerId);
+    public Result<List<UserVO>> getAllLedgerUser(){
+        List<UserVO> list = ledgerService.getAllLedgerUser();
+        log.info("getAllLedgerUser:{}", list);
         return Result.success(list);
     }
 }
