@@ -187,6 +187,12 @@ public class BillServiceImpl implements BillService {
         Long userId = byUsername.getId();
         userBill.setUserId(userId);
         Long ledgerId = BaseContext.getLedgerId();
+        //如果由多人账本修改为单人账本，则将账本参与者的数据清空
+        String billType = userBill.getBillType();
+        if (billType.equals("single")){
+            participantService.deleteParticipant(userBill.getId());
+        }
+
         int row = userBillMapper.updateBill(userBill,ledgerId);
         if(row>0){
             Long billId = userBill.getId();

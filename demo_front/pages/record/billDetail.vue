@@ -178,7 +178,6 @@
 	const queryParticipant = async (billId) => {
 		if (!billId) return;
 		try {
-			console.log("billId",billId)
 			const participantList = await queryBillParticipant(billId);
 			console.log("participantList", participantList);
 			participants.value = participantList || [];
@@ -287,9 +286,6 @@
 				selectedParticipants.value.push(matchUser);
 			}
 		})
-		console.log("selectedParticipants",selectedParticipants.value)
-		console.log("ledgerUserList",ledgerUserList.value)
-		console.log("participants",participants.value)
 		addParticipantShow.value = true;
 	}
 	
@@ -298,7 +294,6 @@
 		try {
 			const userList = await getAllLedgerUser();
 			ledgerUserList.value = userList || [];
-			console.log("userList", userList);
 		} catch (error) {
 			console.error("获取参与者列表失败", error);
 			uni.showToast({
@@ -429,7 +424,6 @@
 			}
 			const res = await http.get(`/category/queryTypeCategory?type=${formData.type}`)
 			categoryList.value = res || [];
-			console.log("分类数据：", categoryList.value);
 		} catch (error) {
 			console.error('获取分类失败：', error);
 			categoryList.value = [];
