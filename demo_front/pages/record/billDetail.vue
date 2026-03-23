@@ -119,7 +119,7 @@
 	import {http} from '../../utils/request';
 	import {API_PATH} from '../../api/api';
 	import {getAllLedgerUser} from "../../api/ledger.js"
-	import {addParticipant, queryBillParticipant,updateParticipant} from '../../api/participant.js'
+	import {queryBillParticipant,updateParticipant} from '../../api/participant.js'
 	import dayjs from 'dayjs';
 	
 	// 账单id
@@ -164,7 +164,8 @@
 		}
 		
 		console.log("participants",participants.value)
-		const participantCount = selectedParticipants.value.length;
+		// const participantCount = selectedParticipants.value.length;
+		const participantCount = participants.value.length
 		if (participantCount === 0) {
 			return 0; 
 		}
@@ -212,7 +213,7 @@
 		return selectedParticipants.value.some(p => p.id === item.id);
 	};
 	
-	// 点击弹窗“确认”按钮的回调（获取选中列表）
+	// 点击弹窗“确认”按钮的回调
 	const handleParticipantConfirm = async() => {
 		if (selectedParticipants.value.length === 0) {
 			uni.showToast({
@@ -237,9 +238,9 @@
 				icon: 'success'
 			});
 			// 刷新参与者列表
-			await queryParticipant();
+			await queryParticipant(billId.value);
 			// 清空选中的参与者
-			selectedParticipants.value = [];
+			// selectedParticipants.value = [];
 		} catch(error) {
 			console.error("error", error);
 		}
@@ -293,6 +294,7 @@
 	const getUserList = async () => {
 		try {
 			const userList = await getAllLedgerUser();
+			console.log("ledgerUserList",ledgerUserList)
 			ledgerUserList.value = userList || [];
 		} catch (error) {
 			console.error("获取参与者列表失败", error);
@@ -399,11 +401,6 @@
 				title: '修改成功',
 				icon: 'success'
 			});
-			
-			// 延迟返回上一页
-			setTimeout(() => {
-				uni.navigateBack();
-			}, 1500);
 			
 		} catch (err) {
 			console.error('提交失败：', err);
