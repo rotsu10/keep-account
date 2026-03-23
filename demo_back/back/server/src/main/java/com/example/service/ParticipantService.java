@@ -15,6 +15,10 @@ public interface ParticipantService {
     //添加账单参与者
     void addParticipant(AddParticipantsDTO participant);
 
-    //查询剩余的账单参与者
-    Result<List<UserVO>> getRemanentUser(Long billId);
+
+    //更新账单参与者
+    void updateParticipant(AddParticipantsDTO participant);
+
+    //根据账单id删除全部账单参与者
+    void deleteParticipant(Long billId);
 }

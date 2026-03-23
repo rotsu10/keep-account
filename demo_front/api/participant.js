@@ -12,6 +12,7 @@ export const queryBillParticipant = (params = {})=>{
 	return http.get(url);
 }
 
-export const getRemanentUser = (params = {}) =>{
-	const url = `${API_PATH.PARTICIPANT.REMANENTUSER}?billId = ${params}`;
+
+export const updateParticipant = (data = {}) =>{
+	return http.post(API_PATH.PARTICIPANT.UPDATE_PARTICIPANT,data)
 }

@@ -3,8 +3,6 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mapper.ParticipantMapper">
-
-
     <select id="queryBillParticipant" resultType="com.example.entity.Participant">
         select * from bill_participant where bill_id = #{billId}
     </select>
@@ -14,5 +12,8 @@
     <insert id="add" parameterType="com.example.entity.Participant" useGeneratedKeys="true" keyProperty="id">
         insert into bill_participant (bill_id, participant_id, share_amount) values (#{billId}, #{participantId},#{shareAmount})
     </insert>
+    <delete id="deleteParticipant">
+        delete from bill_participant where bill_id = #{billId}
+    </delete>
 
 </mapper>

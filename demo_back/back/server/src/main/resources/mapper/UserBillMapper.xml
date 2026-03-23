@@ -188,6 +188,9 @@
             <if test="userBill.userId != null">
                 user_id = #{userBill.userId},
             </if>
+            <if test="userBill.billType != null and userBill.billType !=''">
+                bill_type = #{userBill.billType}
+            </if>
         </set>
         WHERE id = #{userBill.id}  and user_bill.ledger_id = #{ledgerId}
     </update>

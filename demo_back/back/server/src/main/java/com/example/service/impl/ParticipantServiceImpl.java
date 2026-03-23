@@ -11,6 +11,7 @@ import com.example.mapper.ParticipantMapper;
 import com.example.mapper.UserBillMapper;
 import com.example.mapper.UserMapper;
 import com.example.result.Result;
+import com.example.service.BillService;
 import com.example.service.ParticipantService;
 import com.example.vo.ParticipantVO;
 import com.example.vo.UserVO;
@@ -19,6 +20,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -30,7 +32,6 @@ public class ParticipantServiceImpl implements ParticipantService {
 
     @Autowired
     private ParticipantMapper participantMapper;
-
     @Autowired
     private UserBillMapper userBillMapper;
     @Autowired
@@ -97,36 +98,25 @@ public class ParticipantServiceImpl implements ParticipantService {
     }
 
     @Override
-    public Result<List<UserVO>> getRemanentUser(Long billId) {
+    public void updateParticipant(AddParticipantsDTO participant) {
+        List<Long> participantIds = participant.getParticipantIds();
+        Long billId = participant.getBillId();
+        BigDecimal shareAmount = participant.getShareAmount();
+        //根据账单id删除相关参与者
+        deleteParticipant(billId);
+        //重新插入参与者
+        for (Long participantId : participantIds) {
+            Participant newParticipant = Participant.builder()
+                    .billId(billId)
+                    .participantId(participantId)
+                    .shareAmount(shareAmount)
+                    .build();
+            participantMapper.add(newParticipant);
+        }
+    }
 
-        Long ledgerId = BaseContext.getLedgerId();
-
-        // 所有账本用户
-        List<UserVO> allLedgerUser = ledgerMapper.getAllLedgerUser(ledgerId);
-        allLedgerUser = allLedgerUser == null ? new ArrayList<>() : allLedgerUser;
-        // 该账单已选参与者
-        List<Participant> participants = participantMapper.queryBillParticipant(billId);
-        participants = participants == null ? new ArrayList<>() : participants;
-
-        // 3. 提取已选参与者的ID集合（便于快速判断）
-        List<Long> selectedParticipantIds = participants.stream()
-                .map(Participant::getParticipantId) // 取参与者ID
-                .filter(Objects::nonNull) // 过滤 null ID
-                .collect(Collectors.toList());
-
-        // 4. 筛选：账本用户中不在已选参与者列表中的用户（差集逻辑）
-        List<UserVO> remanentUserList = allLedgerUser.stream()
-                .filter(userVO -> {
-                    // 排除 null 的 UserVO 和 null 的用户ID
-                    if (userVO == null || userVO.getId() == null) {
-                        return false;
-                    }
-                    // 核心：用户ID不在已选参与者ID列表中
-                    return !selectedParticipantIds.contains(userVO.getId());
-                })
-                .collect(Collectors.toList());
-
-        // 5. 返回结果（成功响应）
-        return Result.success(remanentUserList);
+    @Override
+    public void deleteParticipant(Long billId) {
+        participantMapper.deleteParticipant(billId);
     }
 }

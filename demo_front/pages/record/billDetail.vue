@@ -114,34 +114,18 @@
 </template>
 
 <script setup>
-	import {
-		ref,
-		reactive,
-		computed 
-	} from 'vue';
-	import {
-		onLoad
-	} from '@dcloudio/uni-app';
-	import {
-		http
-	} from '../../utils/request';
-	import {
-		API_PATH
-	} from '../../api/api';
-	import {
-		getAllLedgerUser
-	} from "../../api/ledger.js"
-	import {
-		useLedgerStore
-	} from '../../stores/useLedgerStore';
-	import {addParticipant, queryBillParticipant,getRemanentUser} from '../../api/participant.js'
+	import {ref,reactive,computed } from 'vue';
+	import {onLoad} from '@dcloudio/uni-app';
+	import {http} from '../../utils/request';
+	import {API_PATH} from '../../api/api';
+	import {getAllLedgerUser} from "../../api/ledger.js"
+	import {addParticipant, queryBillParticipant,updateParticipant} from '../../api/participant.js'
 	import dayjs from 'dayjs';
 	
 	// 账单id
 	const billId = ref('')
 	// 折叠面板
 	const collapseNames = ref(['payer', 'participant']);
-	const ledgerStore = useLedgerStore();
 	const addParticipantShow = ref(false)
 	const DialogShow = ref(false)
 	//查询到的分类
@@ -169,7 +153,7 @@
 		createTime: '', // 格式化后的日期
 		remark: '', // 备注
 		type: '', // 收支类型
-		billType: 'single' // 账单类型，默认为单人账本
+		billType: '' // 账单类型，默认为单人账本
 	});
 	
 	// 计算每人花费金额
@@ -180,7 +164,7 @@
 		}
 		
 		console.log("participants",participants.value)
-		const participantCount = selectedParticipants.value.length+participants.value.length;
+		const participantCount = selectedParticipants.value.length;
 		if (participantCount === 0) {
 			return 0; 
 		}
@@ -248,7 +232,7 @@
 			shareAmount: eachPersonAmount.value
 		}
 		try {
-			await addParticipant(data);
+			await updateParticipant(data);
 			uni.showToast({
 				title: '添加成功',
 				icon: 'success'
@@ -293,23 +277,26 @@
 	});
 	
 	// 添加账单参与者
-	const plusParticipant = () => {
-		const ledgerId = ledgerStore.ledgerId
-		if (!ledgerId) {
-			uni.showToast({
-				title: '请先选择账本',
-				icon: 'none'
-			});
-			return;
-		}
+	const plusParticipant = async() => {
+		await getUserList();
+		//将已有participants加入selectedParticipants
+		selectedParticipants.value = [];
+		participants.value.forEach(p=>{
+			const matchUser = ledgerUserList.value.find(u => u.id === p.participantId);
+			if (matchUser) {
+				selectedParticipants.value.push(matchUser);
+			}
+		})
+		console.log("selectedParticipants",selectedParticipants.value)
+		console.log("ledgerUserList",ledgerUserList.value)
+		console.log("participants",participants.value)
 		addParticipantShow.value = true;
-		getUserList(ledgerId);
 	}
 	
 	// 查询所有账本参与者
-	const getUserList = async (ledgerId) => {
+	const getUserList = async () => {
 		try {
-			const userList = await getRemanentUser(ledgerId);
+			const userList = await getAllLedgerUser();
 			ledgerUserList.value = userList || [];
 			console.log("userList", userList);
 		} catch (error) {

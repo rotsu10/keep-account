@@ -39,11 +39,11 @@ public class ParticipantController {
         return Result.success();
     }
 
-    //查询剩余账本参与者
-    @GetMapping("/getRemanentUser")
-    @Operation(summary = "查询剩余账单参与者")
-    public Result<List<UserVO>> getRemanentUser(@RequestParam Long billId){
-        log.info("getRemanentUser:{}", billId);
-        return participantService.getRemanentUser(billId);
+    @PostMapping("/updateParticipant")
+    @Operation(summary = "更新账单参与者")
+    public Result<Void> updateParticipant(@RequestBody AddParticipantsDTO participant){
+        log.info("updateParticipant:{}",participant);
+        participantService.updateParticipant(participant);
+        return Result.success();
     }
 }

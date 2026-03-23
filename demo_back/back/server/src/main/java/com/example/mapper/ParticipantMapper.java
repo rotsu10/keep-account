@@ -16,4 +16,7 @@ public interface ParticipantMapper {
 
     //添加账单参与者
     void add(Participant participant);
+
+    //根据账单id删除全部账单参与者
+    void deleteParticipant(Long billId);
 }

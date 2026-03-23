@@ -87,7 +87,6 @@ public class BillServiceImpl implements BillService {
                         .build();
                 participantMapper.add(participant);
             }
-
         }
     }
 

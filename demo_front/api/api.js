@@ -51,6 +51,6 @@ export const API_PATH = {
   PARTICIPANT:{
 	  ADD:'/participant/addParticipant',
 	  QUERY_BILL_PARTICIPANT:'/participant/queryBillParticipant',
-	  REMANENTUSER:'/participant/getRemanentUser',
+	  UPDATE_PARTICIPANT:'/participant/updateParticipant'
   }
 };
