@@ -53,13 +53,13 @@
 
 		<view class="settings">
 			<van-cell-group inset>
-				<!-- <van-cell title="分类" is-link size="large" />
-				<van-cell title="导入" is-link size="large" />
-				<van-cell title="导出" is-link size="large" /> -->
+				<!-- <van-cell title="分类" is-link size="large" /> -->
+				<!-- <van-cell title="导入" is-link size="large" /> -->
 				<van-cell title="分类统计" is-link @click="navigateTo('/pages/mine_list/categoryStatistics')"size="large" />
 				<van-cell title="日趋" is-link size="large" />
 				<van-cell title="月度收支" is-link @click="navigateTo('/pages/mine_list/queryByDate')" size="large" />
 				<van-cell title="邀请通知" is-link @click="navigateTo('/pages/ledger/ledgerInvite')"size="large" />
+				<van-cell title="统计" is-link  @click="navigateTo('/pages/mine_list/allBillStastics')" size="large" />
 			</van-cell-group>
 			<van-cell-group inset>
 				<van-cell title="设置" is-link size="large" />

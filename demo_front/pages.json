@@ -157,6 +157,12 @@
 		"style": {
 			"navigationBarTitleText": "邀请"
 		}
+	},
+	{
+		"path": "pages/mine_list/allBillStastics",
+		"style": {
+			"navigationBarTitleText": ""
+		}
 	}
   ],
   "tabBar": {
