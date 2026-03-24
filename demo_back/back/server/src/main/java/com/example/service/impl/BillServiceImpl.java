@@ -46,7 +46,6 @@ public class BillServiceImpl implements BillService {
     @Autowired
     private ParticipantService participantService;
 
-
     @Override
     @CheckLedgerExist
     @Transactional(rollbackFor = Exception.class)
@@ -161,6 +160,13 @@ public class BillServiceImpl implements BillService {
         Long userId = BaseContext.getCurrentId();
         Long ledgerId = BaseContext.getLedgerId();
         List<Long> billIds = billDeleteDTO.getBillIds();
+        //如果是多人账单，需删除对应账单参与者信息
+        for ( Long billId: billIds){
+            UserBillVO userBillVO = queryBillDetail(billId);
+            if(userBillVO.getBillType().equals("multiple")){
+                participantService.deleteParticipant(billId);
+            }
+        }
         userBillMapper.deleteBill(billIds,userId,ledgerId);
     }
 
