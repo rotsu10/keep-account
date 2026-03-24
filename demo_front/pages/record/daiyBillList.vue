@@ -33,7 +33,7 @@
 
 <script setup>
 	import { useBillStore } from '../../stores/useBillStore';
-	import { onLoad, onShow, onUnload } from '@dcloudio/uni-app';
+	import { onLoad, onShow, onUnload,onHide } from '@dcloudio/uni-app';
 	import { ref } from 'vue';
 	import dayjs from 'dayjs';
 	import PlusBillButton from '../../components/PlusBillButton.vue'
@@ -48,7 +48,7 @@
 	const pageSize = ref(10); // 每页条数
 	const total = ref(0); // 总条数
 	
-	// 存储当前页面的查询参数（统一管理）
+	// 存储当前页面的查询参数
 	const currentQueryParams = ref({});
 	
 	// 删除账单
@@ -64,12 +64,13 @@
 	
 	
 	onShow(() => {
-	  // 页面显示时监听全局事件
 	  console.log("页面显示时监听全局事件")
 	  uni.$on('billAdded', refreshList);
 	});
-	
-	// 3. 页面卸载时移除监听（防止内存泄漏）
+	onHide(() => {
+	  uni.$off('billAdded', refreshList); 
+	});
+	// 3. 页面卸载时移除监听
 	onUnload(() => {
 	  uni.$off('billAdded', refreshList);
 	});
@@ -83,14 +84,14 @@
 		
 		if(currentQueryParams.value.date){
 			currentDate.value = currentQueryParams.value.date;
-			resetPagination();
 		}
+		refreshList();
 	})
 	
 	const loadData = async()=>{
 		try{
+			loading.value = true;
 			const dateParts  = currentDate.value.split('-');
-			console.log("dateParts",dateParts);
 			const dateObject = {
 				year: parseInt(dateParts[0]),
 				month: parseInt(dateParts[1]),
@@ -100,7 +101,6 @@
 			};
 			console.log("dateObject",dateObject);
 			const { records, total: totalCount } = await billStore.queryBillList(dateObject);
-			if(totalCount == 0) finished.value = true;
 			if(currentPage.value === 1){
 				list.value = records;
 			}else{
@@ -121,7 +121,6 @@
 	// van-list 触发的加载事件
 	const handleLoad = () => {
 		if (finished.value) return; 
-		loading.value = true; 
 		loadData(); 
 	};
 	
@@ -153,7 +152,9 @@
 				billIds:[bill.value],
 			};
 			await deleteBill(data);
+			uni.showToast({ title: '删除成功', icon: 'success' });
 			refreshList();
+			DialogShow.value = false;
 		}catch(error){
 			console.error("删除账单失败error",error)
 		}
