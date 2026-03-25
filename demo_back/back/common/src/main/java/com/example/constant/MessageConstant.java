@@ -42,4 +42,5 @@ public class MessageConstant {
     public static final String NOT_PENDING_INVITE ="没有邀请";
     public static final String PARTICIPANT_EXISTS ="已添加该成员，请勿重复添加";
     public static final String AMOUNT_ERROR ="金额不得超过总额";
+    public static final String NOT_PERMIT_DELETE = "非账单创建者，无权限删除";
 }

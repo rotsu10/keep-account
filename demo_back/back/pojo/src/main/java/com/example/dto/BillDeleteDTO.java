@@ -14,5 +14,5 @@ import java.util.List;
 @Builder
 public class BillDeleteDTO implements Serializable {
     //删除账单的id
-    private List<Long> billIds;
+    private Long billId;
 }

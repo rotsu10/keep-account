@@ -35,6 +35,7 @@ public class LedgerCheckAspect {
     // 前置通知：方法执行前执行校验
     @Before("ledgerCheckPointcut()")
     public void beforeMethod(JoinPoint joinPoint) {
+        log.info("ledgerCheckPointcut:{}",joinPoint);
         // 1. 获取注解信息
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();

@@ -34,7 +34,7 @@ public interface UserBillMapper {
     List<CategoryStatisticsVO> categoryStatistics(Long id, Integer type, String timeValue,String timeType,Long ledgerId);
 
     //删除账单
-    void deleteBill( List<Long> billIds,Long userId,Long ledgerId);
+    void deleteBill( Long billId,Long userId,Long ledgerId);
 
     //删除该分类下所有账单
     void deleteBillByCategoryIds(List<Long> categoryIds,Long ledgerId);

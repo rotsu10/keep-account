@@ -149,7 +149,7 @@
 	const confirmDelete = async() =>{
 		try{
 			const data = {
-				billIds:[bill.value],
+				billId:bill.value,
 			};
 			await deleteBill(data);
 			uni.showToast({ title: '删除成功', icon: 'success' });

@@ -122,16 +122,9 @@
 
     <delete id="deleteBill">
         delete from user_bill
-        where 1=1
-        <!-- 1. 批量匹配账单ID，处理空列表 -->
-        <if test="billIds != null and billIds.size() > 0">
-            and id in
-            <foreach collection="billIds" item="id" open="(" separator="," close=")">
-                #{id}
-            </foreach>
-        </if>
-        and user_id = #{userId}
-        and ledger_id = #{ledgerId}
+        where id = #{billId}
+            and user_id = #{userId}
+            and ledger_id = #{ledgerId}
     </delete>
 
     <delete id="deleteBillByCategoryIds">

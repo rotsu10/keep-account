@@ -156,18 +156,22 @@ public class BillServiceImpl implements BillService {
     }
 
     @Override
+    @Transactional
     public void deleteBill(BillDeleteDTO billDeleteDTO) {
         Long userId = BaseContext.getCurrentId();
         Long ledgerId = BaseContext.getLedgerId();
-        List<Long> billIds = billDeleteDTO.getBillIds();
-        //如果是多人账单，需删除对应账单参与者信息
-        for ( Long billId: billIds){
-            UserBillVO userBillVO = queryBillDetail(billId);
-            if(userBillVO.getBillType().equals("multiple")){
-                participantService.deleteParticipant(billId);
-            }
+        Long billId = billDeleteDTO.getBillId();
+        //查询账单详情
+        UserBillVO userBillVO = queryBillDetail(billId);
+        //校验是否为账单创建者，否-->不允许删除
+        if (!userBillVO.getUserId().equals(userId)){
+            throw new BillException(MessageConstant.NOT_PERMIT_DELETE);
         }
-        userBillMapper.deleteBill(billIds,userId,ledgerId);
+        //如果是多人账单，需删除对应账单参与者信息
+        if(userBillVO.getBillType().equals("multiple")){
+            participantService.deleteParticipant(billId);
+        }
+        userBillMapper.deleteBill(billId,userId,ledgerId);
     }
 
     @Override

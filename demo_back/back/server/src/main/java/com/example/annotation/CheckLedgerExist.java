@@ -2,14 +2,14 @@ package com.example.annotation;
 
 import java.lang.annotation.*;
 
-@Target(ElementType.METHOD)
+@Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface CheckLedgerExist {
     //校验失败是否抛出异常
     boolean throwException() default true;
 
-    String message() default "账本不存在或无权限访问";
+    String message() default "无权限访问";
 
     /**
      * 账本ID的参数位置（默认从ThreadLocal取，若方法参数传ledgerId，指定参数索引）
