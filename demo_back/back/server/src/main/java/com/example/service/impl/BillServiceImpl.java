@@ -23,6 +23,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.yaml.snakeyaml.constructor.BaseConstructor;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -263,6 +264,17 @@ public class BillServiceImpl implements BillService {
         long total = page.getTotal();
         List<UserBill> result = page.getResult();
         return new PageResult<>(total,result);
+    }
+
+    @Override
+    public PageResult<UserBillVO> queryBillsByUserAndType(QueryBillByUserAndBillTypeDTO dto) {
+        Long ledgerId = BaseContext.getLedgerId();
+
+        PageHelper.startPage(dto.getPage(),dto.getPageSize());
+        Page<UserBillVO> page = userBillMapper.queryBillsByUserAndType(dto,ledgerId);
+        long total = page.getTotal();
+        List<UserBillVO> records = page.getResult();
+        return new PageResult<>(total,records);
     }
 
 }

@@ -20,7 +20,7 @@ public class QueryBillByLedgerDTO implements Serializable {
     private Integer billType;
     //账本id
     private Long ledgerId;
-
+    
     //页码
     private int page;
 

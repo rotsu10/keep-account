@@ -259,4 +259,20 @@
     <select id="getBillById" resultType="com.example.entity.UserBill">
         select * from user_bill where id = #{billId}
     </select>
+
+    <select id="queryBillsByUserAndType" resultType="com.example.vo.UserBillVO">
+        select ub.*,user.username as belongName ,category.name as categoryName from user_bill ub
+            left join user on ub.user_id = user.id
+            left join category on  ub.category_id = category.id
+        <where>
+            ub.ledger_id = #{ledgerId}
+            <if test="dto.userId != null and dto.userId != 0">
+                and ub.user_id = #{dto.userId}
+            </if>
+
+            <if test="dto.type != null and dto.type != 0">
+                and ub.type = #{dto.type}
+            </if>
+        </where>
+    </select>
 </mapper>

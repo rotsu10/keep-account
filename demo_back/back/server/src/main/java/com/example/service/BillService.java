@@ -52,4 +52,7 @@ public interface BillService {
 
     //查询账本下所有账单 billType账单类型
     PageResult<UserBill> queryBillByLedger(QueryBillByLedgerDTO queryBillByLedgerDTO);
+
+    //根据类型和用户查询账单信息
+    PageResult<UserBillVO> queryBillsByUserAndType(QueryBillByUserAndBillTypeDTO dto);
 }

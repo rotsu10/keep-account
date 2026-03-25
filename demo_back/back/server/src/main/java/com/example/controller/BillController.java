@@ -5,7 +5,6 @@ import com.example.annotation.CheckLedgerExist;
 import com.example.context.BaseContext;
 import com.example.dto.*;
 import com.example.entity.DailyCost;
-import com.example.entity.Participant;
 import com.example.entity.UserBill;
 import com.example.result.PageResult;
 import com.example.result.Result;
@@ -171,5 +170,13 @@ public class BillController {
         return Result.success(userBillList);
     }
 
+    @CheckLedgerExist
+    @PostMapping("/queryBillsByUserAndType")
+    @Operation(summary = "根据类型和用户查询账单信息")
+    public Result<PageResult<UserBillVO>> queryBillsByUserAndType(@RequestBody QueryBillByUserAndBillTypeDTO dto){
+        log.info("queryBillsByUserAndType:{}",dto);
+        PageResult<UserBillVO> userBillPageResult = billService.queryBillsByUserAndType(dto);
+        return Result.success(userBillPageResult);
+    }
 
 }
