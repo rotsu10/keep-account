@@ -71,6 +71,9 @@ public class BillServiceImpl implements BillService {
             Long id = userBill.getId();
             List<Long> participantIds = userBillDTO.getParticipantIds();
             int participantCount = participantIds.size();
+            if (participantCount == 0){
+                throw new BillException(MessageConstant.ADD_BILL_PARTICIPANT);
+            }
             BigDecimal totalAmount = userBill.getAmount();
             //计算平均金额
             BigDecimal shareAmount = totalAmount.divide(

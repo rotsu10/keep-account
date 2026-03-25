@@ -225,6 +225,8 @@
 				participantIds:selectedIds,
 				createTime: dayjs(createTime.value).format('YYYY-MM-DD HH:mm:ss')
 			}
+			
+			console.log("添加账单",data)
 			await billStore.addBill(data)
 			console.log("data",data)
 			const ledgerId = uni.getStorageSync("ledgerId");

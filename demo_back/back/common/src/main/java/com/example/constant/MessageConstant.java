@@ -43,4 +43,5 @@ public class MessageConstant {
     public static final String PARTICIPANT_EXISTS ="已添加该成员，请勿重复添加";
     public static final String AMOUNT_ERROR ="金额不得超过总额";
     public static final String NOT_PERMIT_DELETE = "非账单创建者，无权限删除";
+    public static final String ADD_BILL_PARTICIPANT = "请添加账单参与者";
 }
