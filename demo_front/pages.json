@@ -140,12 +140,6 @@
 		}
 	},
 	{
-		"path": "pages/record/filterBill",
-		"style": {
-			"navigationBarTitleText": ""
-		}
-	},
-	{
 		"path": "pages/ledger/ledgerParticipant",
 		"style": {
 			"navigationStyle": "custom",
@@ -161,7 +155,7 @@
 	{
 		"path": "pages/mine_list/allBillStastics",
 		"style": {
-			"navigationBarTitleText": ""
+			"navigationBarTitleText": "统计账本"
 		}
 	}
   ],
