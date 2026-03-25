@@ -15,7 +15,8 @@
 			:key="item.id"
 			:title="item.categoryName" 
 			:label="item.billType" 
-			:value="item.type === 1 ? '+' +item.amount :'-'+ item.amount"/>
+			:value="item.type === 1 ? '+' +item.amount :'-'+ item.amount"
+			@click = "goBillDetail(item.id)"/>
 		</van-list>
 	</div>
 </template>
@@ -113,6 +114,14 @@
 		pageNum.value = 1;
 		finished.value = false;
 		getbillList();
+	}
+	
+	//查询账单详情
+	const goBillDetail = (billId) => {
+		console.log("查询账单详情",billId);
+		uni.navigateTo({
+			 url: `/pages/record/billDetail?id=${billId}`
+		})
 	}
 	
 	onMounted(() => {
