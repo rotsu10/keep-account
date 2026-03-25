@@ -395,7 +395,8 @@
 			
 			console.log("提交数据", submitData);
 			const result = await http.post(API_PATH.BILL.UPDATE_DETAIL, submitData)
-			
+			// uni.$emit('billUpdated');
+			uni.navigateBack();
 			// 提交成功反馈
 			uni.showToast({
 				title: '修改成功',

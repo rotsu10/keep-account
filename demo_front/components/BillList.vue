@@ -62,7 +62,6 @@
 		};
 	
 		// 调用接口查询账单列表
-		// const { records, total: totalCount } = await http.post("/user/queryRecordByDate", sendDate);
 		const { records, total: totalCount } = await http.post(API_PATH.BILL.QUERY_BY_DATE, sendDate);
 		console.log("账单列表返回数据：", records, totalCount);
 	
@@ -79,7 +78,7 @@
 		console.log("currentPage.value++;",currentPage.value)
 		// 判断是否加载完毕（列表长度 >= 总条数）
 		if (list.value.length >= total.value || totalCount === 0) {
-		finished.value = true;
+			finished.value = true;
 		}
 	} catch (err) {
 		console.error("账单列表查询失败：", err.message);

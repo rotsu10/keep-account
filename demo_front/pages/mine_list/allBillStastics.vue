@@ -22,6 +22,7 @@
 </template>
 <script setup>
 	import {onMounted,ref,watch} from 'vue';
+	import { onShow } from '@dcloudio/uni-app'; 
 	import {getAllLedgerUser} from '../../api/ledger';
 	import { queryBillByUserType } from '../../api/bill';
 	const value1 = ref(0);
@@ -79,7 +80,6 @@
 				page:pageNum.value,
 				pageSize:10
 			}
-			console.log("账单列表",data)
 			const result = await queryBillByUserType(data);
 			
 			if(pageNum.value === 1){
@@ -91,9 +91,7 @@
 			if(result.records.length<pageSize.value){
 				finished.value = true;
 			}
-			
-			console.log("result",result)
-			
+						
 		}catch(error){
 			console.error("error",error)
 		} finally {
@@ -118,11 +116,15 @@
 	
 	//查询账单详情
 	const goBillDetail = (billId) => {
-		console.log("查询账单详情",billId);
 		uni.navigateTo({
 			 url: `/pages/record/billDetail?id=${billId}`
 		})
 	}
+	
+	onShow(() => {
+	  resetAndRefresh();
+	});
+
 	
 	onMounted(() => {
 		getAllUser();

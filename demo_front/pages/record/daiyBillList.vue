@@ -64,28 +64,17 @@
 	
 	
 	onShow(() => {
-	  console.log("页面显示时监听全局事件")
-	  uni.$on('billAdded', refreshList);
+		refreshList();
 	});
-	onHide(() => {
-	  uni.$off('billAdded', refreshList); 
-	});
-	// 3. 页面卸载时移除监听
-	onUnload(() => {
-	  uni.$off('billAdded', refreshList);
-	});
-	
 	
 	onLoad((options)=>{
 		currentQueryParams.value = {
-			date: options.date || '', // 日期（其他页面传）
+			date: options.date || '', // 日期
 		};
 	
-		
 		if(currentQueryParams.value.date){
 			currentDate.value = currentQueryParams.value.date;
 		}
-		refreshList();
 	})
 	
 	const loadData = async()=>{
@@ -146,6 +135,7 @@
 		bill.value = billId;
 		DialogShow.value = true;
 	}
+	
 	const confirmDelete = async() =>{
 		try{
 			const data = {
