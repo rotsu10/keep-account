@@ -176,6 +176,7 @@ public class BillController {
     public Result<PageResult<UserBillVO>> queryBillsByUserAndType(@RequestBody QueryBillByUserAndBillTypeDTO dto){
         log.info("queryBillsByUserAndType:{}",dto);
         PageResult<UserBillVO> userBillPageResult = billService.queryBillsByUserAndType(dto);
+        log.info("userBillPageResult:{}",userBillPageResult);
         return Result.success(userBillPageResult);
     }
 

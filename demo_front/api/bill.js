@@ -87,3 +87,7 @@ export const queryBillListChart = (data = {}) => {
   // data 是请求体：如 { timeType: 'month', timeValue: '2026-02', pageNum: 1, pageSize: 10 }
   return http.post(API_PATH.BILL.LIST_CHART, data);
 };
+
+export const queryBillByUserType = (data = {})=>{
+	return http.post(API_PATH.BILL.QUERY_BILL_BY_USER_TYPE,data)
+}

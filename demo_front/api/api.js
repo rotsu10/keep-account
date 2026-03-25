@@ -32,25 +32,26 @@ export const API_PATH = {
     UPDATE_DETAIL: '/bill/updateDetail',         // 更新账单详情
     GET_SUM_BY_DATE: '/bill/getSumByDate',       // 根据年月日统计所有账单（折线图）
     LIST_CHART: '/bill/ListChart',               // 根据日期类型查询账单分页列表
+	QUERY_BILL_BY_USER_TYPE:'/bill/queryBillsByUserAndType',	//根据userId和type查询账本
   },
   LEDGER: {
-	  ADD:'/ledger/addLedger',						//添加账本
-	  GET_ALL_LEDGER:'/ledger/getAllLedger',		//获取所有账本
-	  DELETE:'ledger/deleteLedger',					//删除账本
-	  ADD_LEDGERUSER:'/ledger/addLedgerUser',		//账本添加参与者 （添加用户-账本表中数据）
-	  LEDGER_DETAIL_BY_ID:'/ledger/LedgerDetailById',	//根据账本id查询账本详情
-	  SWITCH_LEDGER:'/ledger/switchLedger'				,//切换默认账本
-	  GET_ALL_LEDGER_USER:'/ledger/getAllLedgerUser',	//获取所有账本参与者  
+	ADD:'/ledger/addLedger',						//添加账本
+	GET_ALL_LEDGER:'/ledger/getAllLedger',		//获取所有账本
+	DELETE:'ledger/deleteLedger',					//删除账本
+	ADD_LEDGERUSER:'/ledger/addLedgerUser',		//账本添加参与者 （添加用户-账本表中数据）
+	LEDGER_DETAIL_BY_ID:'/ledger/LedgerDetailById',	//根据账本id查询账本详情
+	SWITCH_LEDGER:'/ledger/switchLedger'				,//切换默认账本
+	GET_ALL_LEDGER_USER:'/ledger/getAllLedgerUser',	//获取所有账本参与者 
   },
   INVITE:{
-	  SEND:'/invite/send',		//发送邀请
-	  ACCEPT:"/invite/accept",			//接受邀请
-	  REJECT:"/invite/reject",			//拒绝邀请
-	  PEDNING:"/invite/pending",	//查询待处理的邀请
+	SEND:'/invite/send',		//发送邀请
+	ACCEPT:"/invite/accept",			//接受邀请
+	REJECT:"/invite/reject",			//拒绝邀请
+	PEDNING:"/invite/pending",	//查询待处理的邀请
   },
   PARTICIPANT:{
-	  ADD:'/participant/addParticipant',
-	  QUERY_BILL_PARTICIPANT:'/participant/queryBillParticipant',
-	  UPDATE_PARTICIPANT:'/participant/updateParticipant'
+	ADD:'/participant/addParticipant',
+	QUERY_BILL_PARTICIPANT:'/participant/queryBillParticipant',
+	UPDATE_PARTICIPANT:'/participant/updateParticipant',
   }
 };
