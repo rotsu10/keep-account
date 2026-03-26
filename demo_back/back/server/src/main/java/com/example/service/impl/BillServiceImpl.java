@@ -293,16 +293,16 @@ public class BillServiceImpl implements BillService {
     }
 
     @Override
-    public ComputeAmountVO computeAmount() {
+    public List<ComputeAmountVO> computeAmount() {
         Long ledgerId = BaseContext.getLedgerId();
-        ComputeAmountVO vo = userBillMapper.computeAmount(ledgerId);
+        List<ComputeAmountVO> vo = userBillMapper.computeAmount(ledgerId);
         return vo;
     }
 
     @Override
-    public ComputeAmountVO computeParticipateAmount() {
+    public List<ComputeAmountVO> computeParticipateAmount() {
         Long ledgerId = BaseContext.getLedgerId();
-        ComputeAmountVO vo = userBillMapper.computeParticipateAmount(ledgerId);
+        List<ComputeAmountVO> vo = userBillMapper.computeParticipateAmount(ledgerId);
         return vo;
     }
 
