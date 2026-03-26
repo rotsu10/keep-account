@@ -167,10 +167,14 @@ public class BillServiceImpl implements BillService {
         Long billId = billDeleteDTO.getBillId();
         //查询账单详情
         UserBillVO userBillVO = queryBillDetail(billId);
-        //校验是否为账单创建者，否-->不允许删除
-        if (!userBillVO.getUserId().equals(userId)){
-            throw new BillException(MessageConstant.NOT_PERMIT_DELETE);
+        if (userBillVO == null) {
+            throw new BillException(MessageConstant.BILL_NOT_EXISTS);
         }
+        //校验是否为账单创建者，否-->不允许删除
+//        if (!userBillVO.getUserId().equals(userId)){
+//            throw new BillException(MessageConstant.NOT_PERMIT_DELETE);
+//        }
+        checkCreatorPermission(userBillVO.getUserId());
         //如果是多人账单，需删除对应账单参与者信息
         if(userBillVO.getBillType().equals("multiple")){
             participantService.deleteParticipant(billId);
@@ -189,6 +193,13 @@ public class BillServiceImpl implements BillService {
     @Override
     @Transactional
     public UserBillVO updateBill(UserBillDTO userBillDTO) {
+        //查询账单详情  判断是否为账本创建者
+        UserBillVO vo = queryBillDetail(userBillDTO.getId());
+        if (vo == null) {
+            throw new BillException(MessageConstant.BILL_NOT_EXISTS);
+        }
+        Long userId1 = vo.getUserId();
+        checkCreatorPermission(vo.getUserId());
         //修改账单所属者
         //1.查询此人是否存在
         User byUsername = userMapper.getByUsername(userBillDTO.getUserName());
@@ -280,4 +291,10 @@ public class BillServiceImpl implements BillService {
         return new PageResult<>(total,records);
     }
 
+    private void checkCreatorPermission(Long frontedUserId) {
+        Long userId = BaseContext.getCurrentId();
+        if (!userId.equals(frontedUserId)) {
+            throw new BillException(MessageConstant.NOT_PERMIT_DELETE);
+        }
+    }
 }
