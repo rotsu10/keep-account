@@ -47,6 +47,7 @@ public class BillServiceImpl implements BillService {
     @Autowired
     private ParticipantService participantService;
 
+
     @Override
     @CheckLedgerExist
     @Transactional(rollbackFor = Exception.class)
@@ -289,6 +290,13 @@ public class BillServiceImpl implements BillService {
         long total = page.getTotal();
         List<UserBillVO> records = page.getResult();
         return new PageResult<>(total,records);
+    }
+
+    @Override
+    public ComputeAmountVO computeAmount() {
+        Long ledgerId = BaseContext.getLedgerId();
+        ComputeAmountVO vo = userBillMapper.computeAmount(ledgerId);
+        return vo;
     }
 
     private void checkCreatorPermission(Long frontedUserId) {

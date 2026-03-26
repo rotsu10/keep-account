@@ -5,6 +5,7 @@ import com.example.entity.SumStatistics;
 import com.example.entity.UserBill;
 import com.example.vo.BillStatisticsVO;
 import com.example.vo.CategoryStatisticsVO;
+import com.example.vo.ComputeAmountVO;
 import com.example.vo.UserBillVO;
 import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Mapper;
@@ -68,4 +69,8 @@ public interface UserBillMapper {
 
     //根据userId和type查询账单
     Page<UserBillVO> queryBillsByUserAndType(QueryBillByUserAndBillTypeDTO dto,Long ledgerId);
+
+
+    //统计账本每个人的收入，支出，总金额
+    ComputeAmountVO computeAmount(Long ledgerId);
 }

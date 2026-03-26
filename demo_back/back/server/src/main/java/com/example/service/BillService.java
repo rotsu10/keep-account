@@ -55,4 +55,7 @@ public interface BillService {
 
     //根据类型和用户查询账单信息
     PageResult<UserBillVO> queryBillsByUserAndType(QueryBillByUserAndBillTypeDTO dto);
+
+    //统计每个人的收入和支出
+    ComputeAmountVO computeAmount();
 }

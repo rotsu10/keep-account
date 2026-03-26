@@ -180,4 +180,11 @@ public class BillController {
         return Result.success(userBillPageResult);
     }
 
+    @CheckLedgerExist
+    @PostMapping("/statistics/computeAmount")
+    @Operation(summary = "统计每个人的实际收入支出")
+    public Result<ComputeAmountVO> computeAmount(){
+        ComputeAmountVO computeAmountVO = billService.computeAmount();
+        return Result.success(computeAmountVO);
+    }
 }

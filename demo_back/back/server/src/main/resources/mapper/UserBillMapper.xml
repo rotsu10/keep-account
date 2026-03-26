@@ -32,19 +32,6 @@
             left join user on user_bill.user_id = user.id
         where user_bill.id = #{billId} and user_bill.ledger_id = #{ledgerId}
     </select>
-<!--    <select id="getSumAll" resultType="com.example.entity.SumStatistics">-->
-<!--        select-->
-<!--            sum(case when type = 1 then user_bill.amount else 0 end) as income,-->
-<!--            sum(case when type = 2 then user_bill.amount else 0 end) as expense,-->
-<!--            sum(case when type = 3 then user_bill.amount else 0 end) as transfer-->
-<!--        from user_bill-->
-<!--        where year(create_time) = #{year}-->
-<!--            and month(create_time) = #{month}-->
-<!--            and user_id = #{userId} and ledger_id = #{ledgerId}-->
-<!--            <if test="day != null">-->
-<!--                and day(create_time) = #{day}-->
-<!--            </if>-->
-<!--    </select>-->
 
     <select id="getSumAll" resultType="com.example.entity.SumStatistics">
         select
@@ -275,4 +262,17 @@
             </if>
         </where>
     </select>
+    <select id="computeAmount" resultType="com.example.vo.ComputeAmountVO">
+            select
+                user_id,
+                sum(case when type = 1 then amount else 0 end) as totalIncome,
+                sum(case when type = 2 then amount else 0 end) as totalExpend,
+                sum(case
+                        when type = 1 then amount
+                        when type = 2 then -amount else 0 end
+                    ) as totalBalance
+            from user_bill where ledger_id = #{ledgerId} and bill_type = 'multiple'
+            group by user_id;
+    </select>
+
 </mapper>
