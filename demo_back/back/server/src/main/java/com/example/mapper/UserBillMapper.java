@@ -73,4 +73,7 @@ public interface UserBillMapper {
 
     //统计账本每个人的收入，支出，总金额
     ComputeAmountVO computeAmount(Long ledgerId);
+
+    //统计用户参与账收入和支出
+    ComputeAmountVO computeParticipateAmount(Long ledgerId);
 }

@@ -299,6 +299,13 @@ public class BillServiceImpl implements BillService {
         return vo;
     }
 
+    @Override
+    public ComputeAmountVO computeParticipateAmount() {
+        Long ledgerId = BaseContext.getLedgerId();
+        ComputeAmountVO vo = userBillMapper.computeParticipateAmount(ledgerId);
+        return vo;
+    }
+
     private void checkCreatorPermission(Long frontedUserId) {
         Long userId = BaseContext.getCurrentId();
         if (!userId.equals(frontedUserId)) {

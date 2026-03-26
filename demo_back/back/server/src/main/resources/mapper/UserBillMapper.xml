@@ -274,5 +274,18 @@
             from user_bill where ledger_id = #{ledgerId} and bill_type = 'multiple'
             group by user_id;
     </select>
+    <select id="computeParticipateAmount" resultType="com.example.vo.ComputeAmountVO">
+        select participant_id as userId,
+               sum(case when type = 1 then share_amount else 0 end) as totalIncome,
+               sum(case when type = 2 then share_amount else 0 end) as totalExpend,
+               sum(case
+                       when type = 1 then share_amount
+                       when type = 2 then -share_amount else 0 end
+               ) as totalBalance
+        from bill_participant p
+            left join user_bill ub on ub.id = p.bill_id
+        where ledger_id = #{ledgerId}
+        group by p.participant_id
+    </select>
 
 </mapper>

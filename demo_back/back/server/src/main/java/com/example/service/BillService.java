@@ -58,4 +58,7 @@ public interface BillService {
 
     //统计每个人的收入和支出
     ComputeAmountVO computeAmount();
+
+    //统计用户参与账收入和支出
+    ComputeAmountVO computeParticipateAmount();
 }

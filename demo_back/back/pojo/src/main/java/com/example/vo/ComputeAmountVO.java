@@ -15,7 +15,6 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class ComputeAmountVO implements Serializable {
     private Long userId;
-    private BigDecimal amount;  //总金额
     private BigDecimal totalIncome;  //收入
     private BigDecimal totalExpend; //支出
     private BigDecimal totalBalance; //总结余
