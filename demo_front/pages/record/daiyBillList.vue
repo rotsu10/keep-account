@@ -143,6 +143,7 @@
 			};
 			await deleteBill(data);
 			uni.showToast({ title: '删除成功', icon: 'success' });
+			uni.$emit("deleteBill")
 			refreshList();
 			DialogShow.value = false;
 		}catch(error){

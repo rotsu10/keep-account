@@ -12,7 +12,8 @@
 		ref,
 		defineProps,
 		watch,
-		onMounted
+		onMounted,
+		onUnmounted
 	} from 'vue';
 	import dayjs from 'dayjs';
 	import {
@@ -78,8 +79,25 @@
 			url: `/pages/record/billDetail?id=${billId}`
 		});
 	};
-
-
+	
+	onMounted(()=>{
+		uni.$on("deleteBill",getNewList)
+		uni.$on("addBill",getNewList)
+		uni.$on("updateBill",getNewList)
+	})
+	
+	onUnmounted(() => {
+	  uni.$off('deleteBill', getNewList)
+	  uni.$off('addBill', getNewList)
+	  uni.$off('updateBill', getNewList)
+	})
+	
+	const getNewList = ()=>{
+		console.log("重新刷新数据")
+		resetPagination()
+		loadData()
+	}
+	
 	// 重置分页和数据状态
 	const resetPagination = () => {
 		currentPage.value = 1;

@@ -238,7 +238,7 @@
 				icon: 'success'
 			});
 			// 重新加载账本列表
-			// uni.$emit('billAdded');
+			uni.$emit('addBill');
 
 			productPrice.value = '';
 			message.value = '';

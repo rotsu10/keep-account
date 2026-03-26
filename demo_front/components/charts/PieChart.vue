@@ -162,9 +162,17 @@ watch(
   }
 );
 
+
+const getNewList = () => {
+  getCategorySum();
+};
+
 // 生命周期管理
 onMounted(async () => {
   await initChart();
+  uni.$on("deleteBill",getNewList)
+  uni.$on("addBill",getNewList)
+  uni.$on("updateBill",getNewList)
 });
 
 onUnmounted(() => {
@@ -172,6 +180,9 @@ onUnmounted(() => {
     myChart.dispose();
     myChart = null;
   }
+  uni.$off('deleteBill', getNewList)
+  uni.$off('addBill', getNewList)
+  uni.$off('updateBill', getNewList)
 });
 </script>
 

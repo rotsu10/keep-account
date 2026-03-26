@@ -98,6 +98,10 @@ const setChartOption = () => {
   myChart.setOption(option, true); // 强制更新
 };
 
+const getNewList = () => {
+  getSumByDate();
+};
+
 // 5. 更新图表
 const updateChart = () => {
   if (!myChart) {
@@ -121,6 +125,30 @@ onUnmounted(() => {
     myChart.dispose();
     myChart = null;
   }
+});
+
+
+onMounted(async () => {
+	// 1. 初始化图表
+	await initChart();
+	
+	// 2. 监听全局事件
+	uni.$on("deleteBill", getNewList);
+	uni.$on("addBill", getNewList);
+	uni.$on("updateBill", getNewList);
+});
+
+// 统一销毁
+onUnmounted(() => {
+	// 销毁图表
+	if (myChart) {
+		myChart.dispose();
+		myChart = null;
+	}
+	// 销毁事件监听
+	uni.$off('deleteBill', getNewList);
+	uni.$off('addBill', getNewList);
+	uni.$off('updateBill', getNewList);
 });
 </script>
 

@@ -402,6 +402,7 @@
 				title: '修改成功',
 				icon: 'success'
 			});
+			uni.$emit('updateBill')
 			
 		} catch (err) {
 			console.error('提交失败：', err);

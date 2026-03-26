@@ -2,7 +2,7 @@
 <template>
 	<view class="time">
 		<AllSelectTimeVue @sendDate='handleDateChange'></AllSelectTimeVue>
-		<finance></finance>
+		<!-- <finance></finance> -->
 		<PieChartVue 
 			:type='categoryType'
 			:time-type='timeType' 
@@ -27,7 +27,7 @@
 	import dayjsTool from '../../utils/dayjsTool';
 	import PieChartVue from '../../components/charts/PieChart.vue';
 	import LineChart from '../../components/charts/LineChart.vue';
-	import finance from '../../components/finance.vue'
+	// import finance from '../../components/finance.vue'
 	import dayjs from 'dayjs';
 	import ListChart from'../../components/charts/ListChart.vue'
 	const timeType = ref('');
