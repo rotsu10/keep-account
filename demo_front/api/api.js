@@ -33,6 +33,8 @@ export const API_PATH = {
     GET_SUM_BY_DATE: '/bill/getSumByDate',       // 根据年月日统计所有账单（折线图）
     LIST_CHART: '/bill/ListChart',               // 根据日期类型查询账单分页列表
 	QUERY_BILL_BY_USER_TYPE:'/bill/queryBillsByUserAndType',	//根据userId和type查询账本
+	COMPUTE_AMOUNT:'/bill/statistics/computeAmount'	,//统计用户的实际收入支出
+	COMPUTE_PARTICIPANT_AMOUNT:'/bill/statistics/computeParticipateAmount',	//统计用户参与账收入和支出
   },
   LEDGER: {
 	ADD:'/ledger/addLedger',						//添加账本

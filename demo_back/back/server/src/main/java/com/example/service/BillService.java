@@ -57,8 +57,8 @@ public interface BillService {
     PageResult<UserBillVO> queryBillsByUserAndType(QueryBillByUserAndBillTypeDTO dto);
 
     //统计每个人的收入和支出
-    List<ComputeAmountVO> computeAmount();
+    List<ComputeAmountVO> computeAmount(Long userId);
 
     //统计用户参与账收入和支出
-    List<ComputeAmountVO> computeParticipateAmount();
+    List<ComputeAmountVO> computeParticipateAmount(Long userId);
 }

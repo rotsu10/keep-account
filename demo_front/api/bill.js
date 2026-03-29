@@ -91,3 +91,13 @@ export const queryBillListChart = (data = {}) => {
 export const queryBillByUserType = (data = {})=>{
 	return http.post(API_PATH.BILL.QUERY_BILL_BY_USER_TYPE,data)
 }
+
+export const computeAmount = (params = {})=>{
+	const url = `${API_PATH.BILL.COMPUTE_AMOUNT}?userId=${params}`;
+	return http.get(url);
+}
+
+export const computeParticipateAmount = (params = {})=>{
+	const url = `${API_PATH.BILL.COMPUTE_PARTICIPANT_AMOUNT}?userId=${params}`
+	return http.get(url);
+}

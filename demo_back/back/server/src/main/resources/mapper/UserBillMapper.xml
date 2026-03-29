@@ -251,17 +251,33 @@
         select ub.*,user.username as belongName ,category.name as categoryName from user_bill ub
             left join user on ub.user_id = user.id
             left join category on  ub.category_id = category.id
+
         <where>
             ub.ledger_id = #{ledgerId}
             <if test="dto.userId != null and dto.userId != 0">
                 and ub.user_id = #{dto.userId}
             </if>
-
             <if test="dto.type != null and dto.type != 0">
                 and ub.type = #{dto.type}
             </if>
+            <if test="dto.billType != null and dto.billType != ''">
+                and ub.bill_type = #{dto.billType}
+            </if>
         </where>
     </select>
+
+<!--    <select id="queryBillsByUserAndType" resultType="com.example.vo.UserBillVO">-->
+<!--        <choose>-->
+<!--            <when test="dto.source == 1">-->
+
+<!--            </when>-->
+<!--            <when test="dto.source == 2">-->
+
+<!--            </when>-->
+<!--        </choose>-->
+<!--    </select>-->
+
+
     <select id="computeAmount" resultType="com.example.vo.ComputeAmountVO">
             select
                 user_id,
@@ -271,9 +287,14 @@
                         when type = 1 then amount
                         when type = 2 then -amount else 0 end
                     ) as totalBalance
-            from user_bill where ledger_id = #{ledgerId} and bill_type = 'multiple'
+            from user_bill where ledger_id = #{ledgerId} 
+                             and bill_type = 'multiple'
+                           <if test="userId!=0 and userId!=null">
+                               and user_id = #{userId}
+                           </if>
             group by user_id;
     </select>
+
     <select id="computeParticipateAmount" resultType="com.example.vo.ComputeAmountVO">
         select participant_id as userId,
                sum(case when type = 1 then share_amount else 0 end) as totalIncome,
@@ -285,6 +306,9 @@
         from bill_participant p
             left join user_bill ub on ub.id = p.bill_id
         where ledger_id = #{ledgerId}
+            <if test="userId!=0 and userId!=null">
+                and p.participant_id = #{userId}
+            </if>
         group by p.participant_id
     </select>
 

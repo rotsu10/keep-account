@@ -182,17 +182,21 @@ public class BillController {
 
     @CheckLedgerExist
     @GetMapping("/statistics/computeAmount")
-    @Operation(summary = "统计每个人的实际收入支出")
-    public Result<List<ComputeAmountVO>> computeAmount(){
-        List<ComputeAmountVO> computeAmountVO = billService.computeAmount();
+    @Operation(summary = "统计用户的实际收入支出")
+    public Result<List<ComputeAmountVO>> computeAmount(@RequestParam("userId") Long userId){
+        log.info("computeAmount:{}",userId);
+        List<ComputeAmountVO> computeAmountVO = billService.computeAmount(userId);
+        log.info("computeAmountVO:{}",computeAmountVO);
         return Result.success(computeAmountVO);
     }
 
     @CheckLedgerExist
     @GetMapping("/statistics/computeParticipateAmount")
     @Operation(summary = "统计用户参与账收入和支出")
-    public Result<List<ComputeAmountVO>> computeParticipateAmount(){
-        List<ComputeAmountVO> computeAmountVO = billService.computeParticipateAmount();
+    public Result<List<ComputeAmountVO>> computeParticipateAmount(@RequestParam("userId") Long userId){
+        log.info("computeParticipateAmount:{}",userId);
+        List<ComputeAmountVO> computeAmountVO = billService.computeParticipateAmount(userId);
+        log.info("computeParticipateAmount:{}",computeAmountVO);
         return Result.success(computeAmountVO);
     }
 }

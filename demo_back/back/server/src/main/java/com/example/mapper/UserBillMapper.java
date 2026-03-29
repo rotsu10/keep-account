@@ -70,10 +70,9 @@ public interface UserBillMapper {
     //根据userId和type查询账单
     Page<UserBillVO> queryBillsByUserAndType(QueryBillByUserAndBillTypeDTO dto,Long ledgerId);
 
-
     //统计账本每个人的收入，支出，总金额
-    List<ComputeAmountVO> computeAmount(Long ledgerId);
+    List<ComputeAmountVO> computeAmount(Long ledgerId, Long userId);
 
     //统计用户参与账收入和支出
-    List<ComputeAmountVO> computeParticipateAmount(Long ledgerId);
+    List<ComputeAmountVO> computeParticipateAmount(Long ledgerId,Long userId);
 }
