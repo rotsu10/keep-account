@@ -11,7 +11,8 @@
 		<!-- 所有账本 -->
 		<van-cell-group inset v-if="allLedger.length > 0">
 			<van-cell is-link size="large" icon="location-o" v-for="item in allLedger" :key="item.id"
-				:value="item.ledgerId" @click="selectLedger(item.ledgerId)" >
+				:value="item.ledgerId" @click="selectLedger(item.ledgerId)" 
+				@longpress="deleteByLongPress(item.ledgerId)">
 				<template #title>
 					<span>{{ item.ledgerName || '未命名账本' }}</span>
 					<van-tag type="primary" size="mini" style="margin-left: 8rpx;" v-if="item.default">
@@ -26,6 +27,14 @@
 		<van-dialog v-model:show="show" title="添加账本" show-cancel-button show-confirm-button @confirm="addLedger">
 			<van-field v-model="LedgerName" label="" placeholder="请输入账本名" />
 		</van-dialog>
+		
+		<!-- 删除账本弹窗 -->
+		<van-dialog v-model:show="DialogShow" title="删除账本"  show-cancel-button
+		confirm-button-text="确认删除" cancel-button-text="取消" @confirm="confirmDelete()">
+			<van-row  justify="center">
+				<view class="delete">删除该账本</view>
+			</van-row>
+		</van-dialog>
 	</view>
 </template>
 
@@ -34,15 +43,20 @@
 		onMounted,
 		ref
 	} from 'vue';
+	import { deleteLedger } from '../../api/ledger';
 	import {
 		useLedgerStore
 	} from '../../stores/useLedgerStore';
+import { Dialog } from 'vant';
 
 	const ledgerStore = useLedgerStore();
 	const LedgerName = ref('');
 	const show = ref(false);
 	const allLedger = ref([]);
-
+	
+	//删除账本info
+	const ledgerIdRef = ref('');
+	const DialogShow = ref(false)
 	const onClickLeft = () => {
 		uni.navigateBack({
 			delta: 1 // 返回上一级页面
@@ -55,7 +69,6 @@
 	};
 
 	const addLedger = async () => {
-
 		const ledgerName = LedgerName.value.trim();
 		if (!ledgerName) {
 			uni.showToast({
@@ -72,10 +85,8 @@
 				icon: 'success'
 			});
 			show.value = false; // 关闭弹窗
-
-			// 添加成功后刷新账本列表
-			const result = await ledgerStore.getAllLedger();
-			allLedger.value = result || [];
+			getAllLedger();
+			
 		} catch (error) {
 			console.error("添加账本失败：", error);
 			uni.showToast({
@@ -84,6 +95,33 @@
 			});
 		}
 	};
+	
+	//获取所有账本
+	const getAllLedger =async ()=>{
+		// 添加成功后刷新账本列表
+		const result = await ledgerStore.getAllLedger();
+		allLedger.value = result || [];
+	}
+		
+	//删除账单
+	const deleteByLongPress = (ledgerId) =>{
+		ledgerIdRef.value = ledgerId;
+		DialogShow.value = true;
+	}
+	
+	const confirmDelete = async()=>{
+		try{
+			const ledgerId = ledgerIdRef.value
+			await deleteLedger(ledgerId);
+			uni.showToast({
+				title:"删除账本成功"
+			})
+			await getAllLedger();
+			DialogShow.value = false;
+		}catch(error){
+			console.error("删除账本失败error",error)
+		}
+	}
 
 	onMounted(async () => {
 		try {

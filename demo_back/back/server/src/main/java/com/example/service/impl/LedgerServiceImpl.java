@@ -2,7 +2,6 @@ package com.example.service.impl;
 
 import com.example.constant.MessageConstant;
 import com.example.context.BaseContext;
-import com.example.dto.AddLedgerUserDTO;
 import com.example.dto.LedgerDTO;
 import com.example.entity.Ledger;
 import com.example.entity.User;
@@ -10,13 +9,11 @@ import com.example.exception.LedgerException;
 import com.example.mapper.LedgerMapper;
 import com.example.mapper.ParticipantMapper;
 import com.example.mapper.UserMapper;
-import com.example.result.Result;
+import com.example.service.LedgerInviteService;
 import com.example.service.LedgerService;
 import com.example.vo.LedgerVO;
-import com.example.vo.UserLoginVO;
 import com.example.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,9 +27,11 @@ public class LedgerServiceImpl implements LedgerService {
     private LedgerMapper ledgerMapper;
     @Autowired
     private UserMapper userMapper;
-
     @Autowired
     private ParticipantMapper participantMapper;
+    @Autowired
+    private LedgerInviteService ledgerInviteService;
+
     @Override
     public Long add(LedgerDTO ledgerDTO) {
         String ledgerName = ledgerDTO.getLedgerName();
@@ -84,6 +83,8 @@ public class LedgerServiceImpl implements LedgerService {
             //先删除该账本下账单，分类
             ledgerMapper.deleteBillByLedgerId(ledgerId);
             ledgerMapper.deleteCategoryByLedgerId(ledgerId);
+            //删除关联invite表中邀请记录
+            ledgerInviteService.deleteInviteByLedgerId(ledgerId);
             //删除账本
             ledgerMapper.deleteLedger(ledgerId);
         }

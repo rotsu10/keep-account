@@ -44,7 +44,7 @@
 	const finished = ref(false); // 是否加载完毕
 	const list = ref([]); // 账单列表数据
 	const currentPage = ref(1); // 当前页码
-	const pageSize = ref(2); // 每页条数
+	const pageSize = ref(15); // 每页条数
 	const total = ref(0); // 总条数
 	
 	// 3. 加载账单数据

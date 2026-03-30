@@ -23,7 +23,11 @@ export const getAllLedger = (params = {}) => {
 // 3. 删除账本（DELETE 请求）
 export const deleteLedger = (params = {}) => {
   // params 是查询参数：如 { ledgerId: 1 }
-  return http.delete(`${API_PATH.LEDGER.DELETE}`, params);
+  // return http.delete(API_PATH.LEDGER.DELETE,{
+  //   params: params
+  // });
+  const url = `${API_PATH.LEDGER.DELETE}?ledgerId=${params}`;
+  return http.delete(url);
 };
 
 // 4. 账本添加参与者（POST 请求）

@@ -242,8 +242,8 @@
 
 			productPrice.value = '';
 			message.value = '';
-			categoryId.value = '';
-			payType.value = '2';
+			// categoryId.value = '';
+			// payType.value = '2';
 		} catch (error) {
 			console.error('提交失败:', error);
 			uni.showToast({

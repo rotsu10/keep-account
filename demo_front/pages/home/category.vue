@@ -52,17 +52,12 @@
 			</van-row>
 		</van-dialog>
 		
-		<view>
-			<ButtomBar></ButtomBar>
-		</view>
-		
 	</view>
 
 </template>
 
 <script setup>
 	import {ref ,onMounted,watch} from 'vue';
-	import ButtomBar from '../../components/ButtomBar.vue';
 	import { showConfirmDialog } from 'vant';
 	import {useCategoryStore} from '../../stores/useCategoryStore';
 	import { useBillStore } from '../../stores/useBillStore';

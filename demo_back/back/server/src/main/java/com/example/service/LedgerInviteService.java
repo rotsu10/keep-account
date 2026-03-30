@@ -19,4 +19,7 @@ public interface LedgerInviteService {
 
     //获取待处理的邀请
     List<LedgerInvite> getPendingInvites();
+
+    //删除邀请记录
+    void deleteInviteByLedgerId(Long ledgerId);
 }

@@ -89,7 +89,7 @@ const setChartOption = () => {
     },
     series: [{
       name: '收支总金额', type: 'line', symbol: 'circle', symbolSize: 6,
-      areaStyle: { show: false },
+      // areaStyle: { show: false },
 	  lineStyle: { width: 2, color: '#409eff' },
       emphasis: { symbol: 'circle', symbolSize: 8 },
       data: seriesData

@@ -105,6 +105,9 @@
 		//刷新列表
 		getUserList(ledgerId.value);
 		 // 关闭弹窗 + 清空输入框
+		 uni.showToast({
+		 	title:"发送成功"
+		 })
 		show.value = false;
 		participantValue.value = '';
 	}

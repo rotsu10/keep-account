@@ -93,11 +93,23 @@ export const queryBillByUserType = (data = {})=>{
 }
 
 export const computeAmount = (params = {})=>{
-	const url = `${API_PATH.BILL.COMPUTE_AMOUNT}?userId=${params}`;
-	return http.get(url);
+	// const url = `${API_PATH.BILL.COMPUTE_AMOUNT}?userId=${params}`;
+	// return http.get(url);
+	return http.get(API_PATH.BILL.COMPUTE_AMOUNT,{
+		params:params
+	})
 }
 
 export const computeParticipateAmount = (params = {})=>{
-	const url = `${API_PATH.BILL.COMPUTE_PARTICIPANT_AMOUNT}?userId=${params}`
-	return http.get(url);
+	// const url = `${API_PATH.BILL.COMPUTE_PARTICIPANT_AMOUNT}?userId=${params}`
+	// return http.get(url);
+	return http.get(API_PATH.BILL.COMPUTE_PARTICIPANT_AMOUNT,{
+		params:params
+	})
+}
+
+export const computeBalance = (params = {}) => {
+  return http.get(API_PATH.BILL.COMPUTE_BALANCE, {
+    params: params
+  })
 }

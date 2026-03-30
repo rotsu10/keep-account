@@ -61,4 +61,7 @@ public interface BillService {
 
     //统计用户参与账收入和支出
     List<ComputeAmountVO> computeParticipateAmount(Long userId);
+
+    //统计结余
+    List<BalanceVO> computeBalance(Long userId);
 }

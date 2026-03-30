@@ -6,12 +6,11 @@
 			<van-dropdown-item v-model="value2" :options="option2" />
 			<van-dropdown-item v-model="value3" :options="option3" />
 		</van-dropdown-menu>
-		
 		<van-row v-if="value3 === 'multiple' && value1 != 0">
 			<!-- 实际 -->
 			<van-col span="8" >
 				<van-cell-group>
-					<van-cell title="实际收入" :label="income" />
+					<van-cell title="实际收入" :label="income"/>
 				</van-cell-group>
 			</van-col>
 			<van-col span="8">
@@ -91,7 +90,7 @@
 	const loading = ref(false);
 	const finished = ref(false);
 	const pageNum = ref(1);
-	const pageSize = ref(10);
+	const pageSize = ref(15);
 	//统计用户的实际收入支出
 	const getStasticsAmount = async () => {
 	    const userId = value1.value;

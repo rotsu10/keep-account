@@ -35,11 +35,12 @@ export const API_PATH = {
 	QUERY_BILL_BY_USER_TYPE:'/bill/queryBillsByUserAndType',	//根据userId和type查询账本
 	COMPUTE_AMOUNT:'/bill/statistics/computeAmount'	,//统计用户的实际收入支出
 	COMPUTE_PARTICIPANT_AMOUNT:'/bill/statistics/computeParticipateAmount',	//统计用户参与账收入和支出
+	COMPUTE_BALANCE:'/bill/statistics/computeBalance',			//统计全部结余
   },
   LEDGER: {
 	ADD:'/ledger/addLedger',						//添加账本
 	GET_ALL_LEDGER:'/ledger/getAllLedger',		//获取所有账本
-	DELETE:'ledger/deleteLedger',					//删除账本
+	DELETE:'/ledger/deleteLedger',					//删除账本
 	ADD_LEDGERUSER:'/ledger/addLedgerUser',		//账本添加参与者 （添加用户-账本表中数据）
 	LEDGER_DETAIL_BY_ID:'/ledger/LedgerDetailById',	//根据账本id查询账本详情
 	SWITCH_LEDGER:'/ledger/switchLedger'				,//切换默认账本

@@ -26,4 +26,8 @@
         select * from ledger_invite where invitee_id = #{userId} and status = 0;
     </select>
 
+    <delete id="deleteByLedgerId">
+        delete from ledger_invite where ledger_id = #{ledgerId}
+    </delete>
+
 </mapper>

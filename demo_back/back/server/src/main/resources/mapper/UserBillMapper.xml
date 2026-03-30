@@ -83,7 +83,7 @@
         LEFT JOIN
         category c ON b.category_id = c.id
         <where>
-            b.user_id = #{id} and b.ledger_id = #{ledgerId}
+             b.ledger_id = #{ledgerId}
             <if test="type != null and type != ''">
                 AND b.type = #{type}
             </if>
@@ -188,7 +188,7 @@
         - SUM(CASE WHEN b.type = '2' THEN b.amount ELSE 0 END)  AS total
         FROM user_bill b
         WHERE
-        b.user_id = #{userId} and b.ledger_id = #{ledgerId}
+        b.ledger_id = #{ledgerId}
         <if test="type != null">
             AND b.type = #{type}
         </if>

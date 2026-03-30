@@ -28,8 +28,8 @@ import org.yaml.snakeyaml.constructor.BaseConstructor;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -304,6 +304,58 @@ public class BillServiceImpl implements BillService {
         Long ledgerId = BaseContext.getLedgerId();
         List<ComputeAmountVO> vo = userBillMapper.computeParticipateAmount(ledgerId,userId);
         return vo;
+    }
+
+    @Override
+    public List<BalanceVO> computeBalance(Long userId) {
+        // 1. 获取参与表金额（participants 结余）
+        List<ComputeAmountVO> participateList = computeParticipateAmount(userId);
+        // 2. 获取账单表金额（user_bill 结余）
+        List<ComputeAmountVO> billList = computeAmount(userId);
+
+        // 3. 按 userId 分组，方便快速匹配
+        Map<Long, ComputeAmountVO> participateMap = participateList.stream()
+                .collect(Collectors.toMap(ComputeAmountVO::getUserId, vo -> vo));
+
+        Map<Long, ComputeAmountVO> billMap = billList.stream()
+                .collect(Collectors.toMap(ComputeAmountVO::getUserId, vo -> vo));
+
+        // 4. 收集所有出现过的 userId
+        Set<Long> allUserIds = new HashSet<>();
+        allUserIds.addAll(participateMap.keySet());
+        allUserIds.addAll(billMap.keySet());
+
+        // 5. 组装最终 BalanceVO
+        List<BalanceVO> result = new ArrayList<>();
+        for (Long uid : allUserIds) {
+            BalanceVO vo = new BalanceVO();
+            vo.setUserId(uid);
+            vo.setUserName(userMapper.getUserInfo(uid).getUsername());
+
+            // 参与表结余：participateAmount = 收入 - 支出
+            ComputeAmountVO participate = participateMap.get(uid);
+            BigDecimal participateAmount = BigDecimal.ZERO;
+            if (participate != null) {
+                participateAmount = participate.getTotalIncome().subtract(participate.getTotalExpend());
+            }
+            vo.setParticipateBalance(participateAmount);
+
+            // 账单表结余：balance = 收入 - 支出
+            ComputeAmountVO bill = billMap.get(uid);
+            BigDecimal balance = BigDecimal.ZERO;
+            if (bill != null) {
+                balance = bill.getTotalIncome().subtract(bill.getTotalExpend());
+            }
+            vo.setBillBalance(balance);
+
+            // 统计 total = 参与表结余 - 账单表结余
+            BigDecimal total = participateAmount.subtract(balance);
+            vo.setTotal(total);
+
+            result.add(vo);
+        }
+
+        return result;
     }
 
     private void checkCreatorPermission(Long frontedUserId) {

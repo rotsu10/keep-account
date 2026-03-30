@@ -157,6 +157,12 @@
 		"style": {
 			"navigationBarTitleText": "统计账本"
 		}
+	},
+	{
+		"path": "pages/mine_list/allPerson",
+		"style": {
+			"navigationBarTitleText": "所有人收支"
+		}
 	}
   ],
   "tabBar": {

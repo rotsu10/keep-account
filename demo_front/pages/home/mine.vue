@@ -59,6 +59,7 @@
 				<van-cell title="月度收支" is-link @click="navigateTo('/pages/mine_list/queryByDate')" size="large" />
 				<van-cell title="邀请通知" is-link @click="navigateTo('/pages/ledger/ledgerInvite')"size="large" />
 				<van-cell title="统计" is-link  @click="navigateTo('/pages/mine_list/allBillStastics')" size="large" />
+				<van-cell title="所有人统计收支" is-link  @click="navigateTo('/pages/mine_list/allPerson')" size="large" />
 			</van-cell-group>
 			<van-cell-group inset>
 				<van-cell title="设置" is-link size="large" />

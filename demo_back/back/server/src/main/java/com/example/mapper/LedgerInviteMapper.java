@@ -25,4 +25,8 @@ public interface LedgerInviteMapper {
 
     //获取等待处理的邀请
     List<LedgerInvite> getPendingInvites(Long userId);
+
+    //删除邀请记录
+    void deleteByLedgerId(Long ledgerId);
+
 }

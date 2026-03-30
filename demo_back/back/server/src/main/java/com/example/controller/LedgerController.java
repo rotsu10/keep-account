@@ -56,7 +56,8 @@ public class LedgerController {
     //删除账本
     @DeleteMapping("/deleteLedger")
     @Operation(summary = "删除账本")
-    public Result deleteLedger(@RequestParam Long ledgerId){
+    public Result<Void> deleteLedger(@RequestParam Long ledgerId){
+        log.info("删除账本ledgerId:{}",ledgerId);
         ledgerService.deleteLedger(ledgerId);
         return Result.success();
     }

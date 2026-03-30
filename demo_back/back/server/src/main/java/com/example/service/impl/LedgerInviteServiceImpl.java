@@ -198,4 +198,9 @@ public class LedgerInviteServiceImpl implements LedgerInviteService {
         List<LedgerInvite> list= ledgerInviteMapper.getPendingInvites(userId);
         return list;
     }
+
+    @Override
+    public void deleteInviteByLedgerId(Long ledgerId) {
+        ledgerInviteMapper.deleteByLedgerId(ledgerId);
+    }
 }

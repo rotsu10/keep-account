@@ -63,7 +63,7 @@ const loadStatisticsData = async () => {
 	totalIncome.value = statistics.income;
     totalExpense.value = statistics.expense;
     totalTransfer.value = statistics.transfer;
-	console.log("月度账单：", statistics);
+	console.log("月度账单STATISTICS_QUERY：", statistics);
   } catch (err) {
     console.error("财务统计查询失败：", err.message);
   }
