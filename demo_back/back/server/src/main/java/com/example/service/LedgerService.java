@@ -23,7 +23,7 @@ public interface LedgerService {
     //删除账本
     void deleteLedger(Long ledgerId);
 
-    //账本添加参与者 （添加用户-账本表中数据）
+    //账本添加参与者 (添加用户-账本表中数据)
     void addLedgerUser(UserVO userVO);
 
     //根据账本id查询账本相关信息

@@ -127,5 +127,12 @@
         )
     </insert>
 
+    <select id="isDefaultLedger" resultType="java.lang.Integer">
+        SELECT is_default FROM user_ledger_relation WHERE ledger_id = #{ledgerId} and user_id = #{userId}
+    </select>
+    <select id="countOwner" resultType="java.lang.Integer">
+        select count(id) from user_ledger_relation where user_id =#{userId} and is_owner = 1;
+    </select>
+
 
 </mapper>

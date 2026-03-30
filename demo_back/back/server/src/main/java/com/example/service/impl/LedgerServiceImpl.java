@@ -72,22 +72,35 @@ public class LedgerServiceImpl implements LedgerService {
 
     @Override
     public void deleteLedger(Long ledgerId) {
-        //判断该用户是否有权限删除
+        // 1. 获取当前用户ID
         Long userId = BaseContext.getCurrentId();
+
+        // 2. 判断是否是账本创建者
         Integer isOwner  = ledgerMapper.isLedgerOwner(userId,ledgerId);
         if(isOwner==null){
             throw new LedgerException("不允许访问该账本");
         } else if (isOwner == 0) {
             throw new LedgerException("非账本创建者，不允许删除");
-        }else {
-            //先删除该账本下账单，分类
-            ledgerMapper.deleteBillByLedgerId(ledgerId);
-            ledgerMapper.deleteCategoryByLedgerId(ledgerId);
-            //删除关联invite表中邀请记录
-            ledgerInviteService.deleteInviteByLedgerId(ledgerId);
-            //删除账本
-            ledgerMapper.deleteLedger(ledgerId);
         }
+
+        // 3. 判断是否是【默认账本】，禁止删除默认账本
+        Integer isDefault = ledgerMapper.isDefaultLedger(userId,ledgerId);
+        if (isDefault != null && isDefault == 1) {
+            throw new LedgerException("默认账本不能删除，请先将其他账本设为默认");
+        }
+
+        //判断自己创建账本个数，如果只有一个不允许删除
+        Integer ownCount = ledgerMapper.countOwner(userId);
+        if (ownCount == null || ownCount <= 1) {
+            throw new LedgerException("最后一个你创建的账本不允许删除");
+        }
+        // 4. 先删除关联数据
+        ledgerMapper.deleteBillByLedgerId(ledgerId);        //相关账单
+        ledgerMapper.deleteCategoryByLedgerId(ledgerId);    //分类
+        ledgerInviteService.deleteInviteByLedgerId(ledgerId);//账本邀请记录
+
+        // 5. 最后删除账本
+        ledgerMapper.deleteLedger(ledgerId);
     }
 
     @Override

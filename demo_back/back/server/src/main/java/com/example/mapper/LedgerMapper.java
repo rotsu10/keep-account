@@ -16,8 +16,9 @@ public interface LedgerMapper {
     void addLedger(Ledger ledger);
 
     //添加账本与userId关系
+    //is_default=1
     int addUserLedgerRelation(@Param("userId") Long userId, @Param("ledgerId") Long ledgerId);
-
+    //is_default=0
     int addUserLedgerRelation2(@Param("userId") Long userId, @Param("ledgerId") Long ledgerId);
 
     //获取默认账本id
@@ -61,6 +62,12 @@ public interface LedgerMapper {
 
     //添加成员ulr
     void insert(Member member);
+
+    //判断是否为默认账本
+    Integer isDefaultLedger(Long userId,Long ledgerId);
+
+    //判断
+    Integer countOwner(Long userId);
 
 
     //删除用户-账本表中数据
