@@ -107,4 +107,12 @@ public class LedgerController {
         log.info("getAllLedgerUser:{}", list);
         return Result.success(list);
     }
+
+    @Operation(summary = "删除账本参与者")
+    @DeleteMapping("/deleteParticipantByUserId")
+    public Result<Void> delete(@RequestParam Long userId){
+        log.info("deleteParticipant:{}",userId);
+        ledgerService.deleteParticipantByUserId(userId);
+        return Result.success();
+    }
 }

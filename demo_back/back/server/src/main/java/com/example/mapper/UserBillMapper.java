@@ -75,4 +75,7 @@ public interface UserBillMapper {
 
     //统计用户参与账收入和支出
     List<ComputeAmountVO> computeParticipateAmount(Long ledgerId,Long userId);
+
+    //删除账本参与者信息
+    void deleteUlrInfo(Long ledgerId, Long userId);
 }

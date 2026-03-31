@@ -311,5 +311,9 @@
             </if>
         group by p.participant_id
     </select>
+    <delete id="deleteUlrInfo">
+        delete from user_ledger_relation where user_id =#{userId} and ledger_id = #{ledgerId}
+    </delete>
+
 
 </mapper>

@@ -64,4 +64,7 @@ public interface BillService {
 
     //统计结余
     List<BalanceVO> computeBalance(Long userId);
+
+    //删除账本参与者
+    void deleteUlrInfo(Long ledgerId, Long userId);
 }

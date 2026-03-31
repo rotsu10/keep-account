@@ -3,12 +3,12 @@ package com.example.service.impl;
 import com.example.constant.MessageConstant;
 import com.example.context.BaseContext;
 import com.example.dto.LedgerDTO;
-import com.example.entity.Ledger;
-import com.example.entity.User;
+import com.example.entity.*;
 import com.example.exception.LedgerException;
 import com.example.mapper.LedgerMapper;
 import com.example.mapper.ParticipantMapper;
 import com.example.mapper.UserMapper;
+import com.example.service.BillService;
 import com.example.service.LedgerInviteService;
 import com.example.service.LedgerService;
 import com.example.vo.LedgerVO;
@@ -31,6 +31,8 @@ public class LedgerServiceImpl implements LedgerService {
     private ParticipantMapper participantMapper;
     @Autowired
     private LedgerInviteService ledgerInviteService;
+    @Autowired
+    private BillService billService;
 
     @Override
     public Long add(LedgerDTO ledgerDTO) {
@@ -148,4 +150,23 @@ public class LedgerServiceImpl implements LedgerService {
         return list;
     }
 
+    @Override
+    public void deleteParticipantByUserId(Long userId) {
+        //判断是否是账本创建者
+        Long ledgerId = BaseContext.getLedgerId();
+        Integer ledgerOwner = ledgerMapper.isLedgerOwner(userId, ledgerId);
+        if(ledgerOwner==null){
+            throw new LedgerException(MessageConstant.LEDGER_NOT_EXISTS);
+        }else if (ledgerOwner == 0) {
+            throw new LedgerException(MessageConstant.NOT_PERMISSION);
+        }
+        //判断删除对象是否为账本创建者
+        UserLegerRelation ulrInfo =ledgerMapper.getUlrInfo(ledgerId,userId);
+        int isOwner = ulrInfo.getIsOwner();
+        if(isOwner==1){
+            throw new LedgerException(MessageConstant.NOT_ALLOW_DELETE_CREATOR);
+        }
+        //删除账本参与者 ulr
+        billService.deleteUlrInfo(ledgerId,userId);
+    }
 }

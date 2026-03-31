@@ -50,4 +50,5 @@ public class LedgerInviteController {
         List<LedgerInvite> list = ledgerInviteService.getPendingInvites();
         return Result.success(list);
     }
+
 }

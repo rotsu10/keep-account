@@ -133,6 +133,10 @@
     <select id="countOwner" resultType="java.lang.Integer">
         select count(id) from user_ledger_relation where user_id =#{userId} and is_owner = 1;
     </select>
+    <select id="getUlrInfo" resultType="com.example.entity.UserLegerRelation">
+        select id, user_id, ledger_id, create_time, is_owner, is_default from user_ledger_relation
+        where ledger_id = #{ledgerId} and user_id =#{userId}
+    </select>
 
 
 </mapper>

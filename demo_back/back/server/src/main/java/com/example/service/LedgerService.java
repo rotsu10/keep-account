@@ -34,4 +34,7 @@ public interface LedgerService {
 
     //查询账本所有参与者
     List<UserVO> getAllLedgerUser();
+
+    //删除账本参与者
+    void deleteParticipantByUserId(Long userId);
 }

@@ -15,7 +15,6 @@ public interface ParticipantService {
     //添加账单参与者
     void addParticipant(AddParticipantsDTO participant);
 
-
     //更新账单参与者
     void updateParticipant(AddParticipantsDTO participant);
 

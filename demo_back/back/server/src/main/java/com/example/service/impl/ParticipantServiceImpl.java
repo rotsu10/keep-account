@@ -119,4 +119,6 @@ public class ParticipantServiceImpl implements ParticipantService {
     public void deleteParticipant(Long billId) {
         participantMapper.deleteParticipant(billId);
     }
+
+
 }

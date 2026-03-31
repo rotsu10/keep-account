@@ -22,4 +22,5 @@ public interface LedgerInviteService {
 
     //删除邀请记录
     void deleteInviteByLedgerId(Long ledgerId);
+
 }

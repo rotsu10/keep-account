@@ -3,6 +3,7 @@ package com.example.mapper;
 import com.example.entity.Ledger;
 import com.example.entity.Member;
 import com.example.entity.User;
+import com.example.entity.UserLegerRelation;
 import com.example.vo.LedgerVO;
 import com.example.vo.UserVO;
 import org.apache.ibatis.annotations.Mapper;
@@ -66,8 +67,12 @@ public interface LedgerMapper {
     //判断是否为默认账本
     Integer isDefaultLedger(Long userId,Long ledgerId);
 
-    //判断
+    //判断用户创建的账本个数
     Integer countOwner(Long userId);
+
+
+    //根据userId和legerId查询ulr
+    UserLegerRelation getUlrInfo(Long ledgerId, Long userId);
 
 
     //删除用户-账本表中数据

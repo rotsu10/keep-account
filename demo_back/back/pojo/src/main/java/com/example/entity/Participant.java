@@ -17,6 +17,7 @@ import java.util.List;
 public class Participant implements Serializable {
     private Long id;
     private Long billId;
+    private Long ledgerId;
     private Long participantId;
     private LocalDateTime createTime;
     private BigDecimal shareAmount;

@@ -358,6 +358,12 @@ public class BillServiceImpl implements BillService {
         return result;
     }
 
+    @Override
+    public void deleteUlrInfo(Long ledgerId, Long userId) {
+        userBillMapper.deleteUlrInfo(ledgerId,userId);
+    }
+
+
     private void checkCreatorPermission(Long frontedUserId) {
         Long userId = BaseContext.getCurrentId();
         if (!userId.equals(frontedUserId)) {
