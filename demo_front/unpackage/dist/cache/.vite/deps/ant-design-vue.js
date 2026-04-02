@@ -21887,7 +21887,7 @@ function fromPairs(pairs) {
   var index3 = -1, length2 = pairs == null ? 0 : pairs.length, result2 = {};
   while (++index3 < length2) {
     var pair = pairs[index3];
-    result2[pair[0]] = pair[1];
+    baseAssignValue_default(result2, pair[0], pair[1]);
   }
   return result2;
 }
@@ -22704,19 +22704,12 @@ function baseUnset(object4, path2) {
   if (!length2) {
     return true;
   }
-  var isRootPrimitive = object4 == null || typeof object4 !== "object" && typeof object4 !== "function";
   while (++index3 < length2) {
-    var key2 = path2[index3];
-    if (typeof key2 !== "string") {
-      continue;
-    }
+    var key2 = toKey_default(path2[index3]);
     if (key2 === "__proto__" && !hasOwnProperty24.call(object4, "__proto__")) {
       return false;
     }
-    if (key2 === "constructor" && index3 + 1 < length2 && typeof path2[index3 + 1] === "string" && path2[index3 + 1] === "prototype") {
-      if (isRootPrimitive && index3 === 0) {
-        continue;
-      }
+    if ((key2 === "constructor" || key2 === "prototype") && index3 < length2 - 1) {
       return false;
     }
   }
@@ -23980,6 +23973,7 @@ var templateSettings_default = templateSettings;
 
 // ../../../../../../project/记账/demo_front/node_modules/lodash-es/template.js
 var INVALID_TEMPL_VAR_ERROR_TEXT = "Invalid `variable` option passed into `_.template`";
+var INVALID_TEMPL_IMPORTS_ERROR_TEXT = "Invalid `imports` option passed into `_.template`";
 var reEmptyStringLeading = /\b__p \+= '';/g;
 var reEmptyStringMiddle = /\b(__p \+=) '' \+/g;
 var reEmptyStringTrailing = /(__e\(.*?\)|\b__t\)) \+\n'';/g;
@@ -23995,8 +23989,13 @@ function template(string3, options, guard) {
     options = void 0;
   }
   string3 = toString_default(string3);
-  options = assignInWith_default({}, options, settings, customDefaultsAssignIn_default);
-  var imports = assignInWith_default({}, options.imports, settings.imports, customDefaultsAssignIn_default), importsKeys = keys_default(imports), importsValues = baseValues_default(imports, importsKeys);
+  options = assignWith_default({}, options, settings, customDefaultsAssignIn_default);
+  var imports = assignWith_default({}, options.imports, settings.imports, customDefaultsAssignIn_default), importsKeys = keys_default(imports), importsValues = baseValues_default(imports, importsKeys);
+  arrayEach_default(importsKeys, function(key2) {
+    if (reForbiddenIdentifierChars.test(key2)) {
+      throw new Error(INVALID_TEMPL_IMPORTS_ERROR_TEXT);
+    }
+  });
   var isEscaping, isEvaluating, index3 = 0, interpolate = options.interpolate || reNoMatch, source = "__p += '";
   var reDelimiters = RegExp(
     (options.escape || reNoMatch).source + "|" + interpolate.source + "|" + (interpolate === reInterpolate_default ? reEsTemplate : reNoMatch).source + "|" + (options.evaluate || reNoMatch).source + "|$",
@@ -25055,7 +25054,7 @@ function lazyValue() {
 var lazyValue_default = lazyValue;
 
 // ../../../../../../project/记账/demo_front/node_modules/lodash-es/lodash.default.js
-var VERSION = "4.17.23";
+var VERSION = "4.18.1";
 var WRAP_BIND_KEY_FLAG7 = 2;
 var LAZY_FILTER_FLAG2 = 1;
 var LAZY_WHILE_FLAG = 3;
@@ -134585,7 +134584,7 @@ lodash-es/lodash.default.js:
   (**
    * @license
    * Lodash (Custom Build) <https://lodash.com/>
-   * Build: `lodash modularize exports="es" -o ./`
+   * Build: `lodash modularize exports="es" --repo lodash/lodash#4.18.1 -o ./`
    * Copyright OpenJS Foundation and other contributors <https://openjsf.org/>
    * Released under MIT license <https://lodash.com/license>
    * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
@@ -134596,7 +134595,7 @@ lodash-es/lodash.js:
   (**
    * @license
    * Lodash (Custom Build) <https://lodash.com/>
-   * Build: `lodash modularize exports="es" -o ./`
+   * Build: `lodash modularize exports="es" --repo lodash/lodash#4.18.1 -o ./`
    * Copyright OpenJS Foundation and other contributors <https://openjsf.org/>
    * Released under MIT license <https://lodash.com/license>
    * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>

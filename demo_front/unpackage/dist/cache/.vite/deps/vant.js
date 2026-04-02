@@ -701,6 +701,7 @@ var stdin_default = {
   tel: "电话",
   save: "保存",
   clear: "清空",
+  undo: "撤销",
   cancel: "取消",
   confirm: "确认",
   delete: "删除",
@@ -1581,7 +1582,8 @@ var actionBarIconProps = extend({}, routeProps, {
   badge: numericProp,
   iconClass: unknownProp,
   badgeProps: Object,
-  iconPrefix: String
+  iconPrefix: String,
+  disabled: Boolean
 });
 var stdin_default11 = defineComponent8({
   name: name8,
@@ -1621,11 +1623,18 @@ var stdin_default11 = defineComponent8({
         "classPrefix": iconPrefix
       }, null);
     };
+    const onClick = () => {
+      if (!props2.disabled) {
+        route2();
+      }
+    };
     return () => _createVNode9("div", {
       "role": "button",
-      "class": bem8(),
-      "tabindex": 0,
-      "onClick": route2
+      "class": bem8({
+        disabled: props2.disabled
+      }),
+      "tabindex": props2.disabled ? -1 : 0,
+      "onClick": onClick
     }, [renderIcon(), slots.default ? slots.default() : props2.text]);
   }
 });
@@ -4958,10 +4967,11 @@ var stdin_default28 = defineComponent26({
         if (modelValue && getStringLength(modelValue) === +maxlength) {
           return modelValue;
         }
-        const selectionEnd = (_a = inputRef.value) == null ? void 0 : _a.selectionEnd;
+        let selectionEnd = (_a = inputRef.value) == null ? void 0 : _a.selectionEnd;
         if (state.focused && selectionEnd) {
           const valueArr = [...value];
           const exceededLength = valueArr.length - +maxlength;
+          selectionEnd = getStringLength(value.slice(0, selectionEnd));
           valueArr.splice(selectionEnd - exceededLength, exceededLength);
           return valueArr.join("");
         }
@@ -11273,6 +11283,7 @@ var floatingPanelProps = {
   anchors: makeArrayProp(),
   duration: makeNumericProp(0.3),
   magnetic: truthProp,
+  draggable: truthProp,
   contentDraggable: truthProp,
   lockScroll: Boolean,
   safeAreaInsetBottom: truthProp
@@ -11322,6 +11333,8 @@ var stdin_default70 = defineComponent68({
     let maxScroll = -1;
     const touch = useTouch();
     const onTouchstart = (e) => {
+      if (!props2.draggable)
+        return;
       touch.start(e);
       dragging.value = true;
       startY = -height2.value;
@@ -11329,6 +11342,8 @@ var stdin_default70 = defineComponent68({
     };
     const onTouchmove = (e) => {
       var _a;
+      if (!props2.draggable)
+        return;
       touch.move(e);
       const target = e.target;
       if (contentRef.value === target || ((_a = contentRef.value) == null ? void 0 : _a.contains(target))) {
@@ -11349,7 +11364,13 @@ var stdin_default70 = defineComponent68({
     };
     const onTouchend = () => {
       maxScroll = -1;
+      if (!dragging.value) {
+        return;
+      }
       dragging.value = false;
+      if (!props2.draggable) {
+        return;
+      }
       if (props2.magnetic) {
         height2.value = closest(anchors.value, height2.value);
       } else {
@@ -11377,6 +11398,9 @@ var stdin_default70 = defineComponent68({
     const renderHeader = () => {
       if (slots.header) {
         return slots.header();
+      }
+      if (!props2.draggable) {
+        return null;
       }
       return _createVNode71("div", {
         "class": bem62("header")
@@ -14816,7 +14840,9 @@ var progressProps = {
 var stdin_default87 = defineComponent85({
   name: name83,
   props: progressProps,
-  setup(props2) {
+  setup(props2, {
+    slots
+  }) {
     const background = computed49(() => props2.inactive ? void 0 : props2.color);
     const format3 = (rate) => Math.min(Math.max(+rate, 0), 100);
     const renderPivot = () => {
@@ -14827,8 +14853,8 @@ var stdin_default87 = defineComponent85({
         percentage
       } = props2;
       const safePercentage = format3(percentage);
-      const text = pivotText != null ? pivotText : `${percentage}%`;
-      if (props2.showPivot && text) {
+      const text = pivotText != null ? pivotText : `${safePercentage}%`;
+      if (props2.showPivot && (slots.pivot || text)) {
         const style = {
           color: textColor,
           left: `${safePercentage}%`,
@@ -14840,7 +14866,9 @@ var stdin_default87 = defineComponent85({
           "class": bem79("pivot", {
             inactive: props2.inactive
           })
-        }, [text]);
+        }, [slots.pivot ? slots.pivot({
+          percentage: safePercentage
+        }) : text]);
       }
     };
     return () => {
@@ -15783,6 +15811,8 @@ var signatureProps = {
   type: makeStringProp("png"),
   penColor: makeStringProp("#000"),
   lineWidth: makeNumberProp(3),
+  historySize: makeNumberProp(20),
+  undoButtonText: String,
   clearButtonText: String,
   backgroundColor: makeStringProp(""),
   confirmButtonText: String
@@ -15811,6 +15841,15 @@ var stdin_default96 = defineComponent94({
     let canvasWidth = 0;
     let canvasHeight = 0;
     let canvasRect;
+    const history = ref57([]);
+    const saveState = () => {
+      if (ctx.value && canvasWidth && canvasHeight) {
+        if (history.value.length >= props2.historySize) {
+          history.value.shift();
+        }
+        history.value.push(ctx.value.getImageData(0, 0, canvasWidth, canvasHeight));
+      }
+    };
     const touchStart = () => {
       if (!ctx.value) {
         return false;
@@ -15837,6 +15876,7 @@ var stdin_default96 = defineComponent94({
     };
     const touchEnd = (event) => {
       preventDefault(event);
+      saveState();
       emit("end");
     };
     const isCanvasEmpty = (canvas) => {
@@ -15877,7 +15917,20 @@ var stdin_default96 = defineComponent94({
         ctx.value.closePath();
         setCanvasBgColor(ctx.value);
       }
+      history.value = [];
       emit("clear");
+    };
+    const undo = () => {
+      if (history.value.length) {
+        history.value.pop();
+        if (ctx.value) {
+          ctx.value.clearRect(0, 0, canvasWidth, canvasHeight);
+          setCanvasBgColor(ctx.value);
+          if (history.value.length) {
+            ctx.value.putImageData(history.value[history.value.length - 1], 0, 0);
+          }
+        }
+      }
     };
     const initialize = () => {
       var _a, _b, _c;
@@ -15902,7 +15955,8 @@ var stdin_default96 = defineComponent94({
     useExpose({
       resize,
       clear,
-      submit
+      submit,
+      undo
     });
     return () => _createVNode99("div", {
       "class": bem88()
@@ -15921,6 +15975,11 @@ var stdin_default96 = defineComponent94({
       "onClick": clear
     }, {
       default: () => [props2.clearButtonText || t19("clear")]
+    }), _createVNode99(Button, {
+      "size": "small",
+      "onClick": undo
+    }, {
+      default: () => [props2.undoButtonText || t19("undo")]
     }), _createVNode99(Button, {
       "type": "primary",
       "size": "small",
@@ -17026,6 +17085,11 @@ var swipeCellProps = {
   disabled: Boolean,
   leftWidth: numericProp,
   rightWidth: numericProp,
+  threshold: {
+    type: numericProp,
+    default: 0.15,
+    validator: (value) => +value >= 0 && +value <= 1
+  },
   beforeClose: Function,
   stopPropagation: Boolean
 };
@@ -17074,8 +17138,8 @@ var stdin_default111 = defineComponent106({
     };
     const toggle = (side) => {
       const offset2 = Math.abs(state.offset);
-      const THRESHOLD = 0.15;
-      const threshold = opened ? 1 - THRESHOLD : THRESHOLD;
+      const thresholdValue = +props2.threshold;
+      const threshold = opened ? 1 - thresholdValue : thresholdValue;
       const width2 = side === "left" ? leftWidth.value : rightWidth.value;
       if (width2 && offset2 > width2 * threshold) {
         open(side);
@@ -19266,7 +19330,7 @@ var Lazyload = {
 };
 
 // ../../../../../../project/记账/demo_front/node_modules/vant/es/index.mjs
-var version = "4.9.22";
+var version = "4.9.24";
 function install(app) {
   const components = [
     ActionBar,
@@ -19565,6 +19629,7 @@ export {
   rowProps,
   searchProps,
   setDialogDefaultOptions,
+  setGlobalZIndex,
   setNotifyDefaultOptions,
   setToastDefaultOptions,
   shareSheetProps,
@@ -19604,6 +19669,7 @@ export {
   uploaderProps,
   useAllTabStatus,
   useCurrentLang,
+  useGlobalZIndex,
   useTabStatus,
   version,
   watermarkProps

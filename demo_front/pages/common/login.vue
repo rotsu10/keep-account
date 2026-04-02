@@ -71,7 +71,6 @@ const login = async () => {
 	}
 </script>
 
-
 <style scoped>
 	.content {
 		display: flex;

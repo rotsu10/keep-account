@@ -5,15 +5,8 @@
 </template>
 
 <script setup>
-	import {
-		onLaunch,
-		onShow,
-		onHide
-	} from '@dcloudio/uni-app';
-	import {
-		getStatusBarHeight
-	} from './utils/navBar';
-
+	import {onLaunch,onShow,onHide} from '@dcloudio/uni-app';
+	import {getStatusBarHeight} from './utils/navBar';
 	// 应用启动时执行（全局只触发一次）
 	onLaunch(() => {
 		console.log('App Launch');
@@ -47,7 +40,8 @@
 	});
 </script>
 
-<style>
+<style lang="scss">
+	@import 'uview-plus/theme.scss';
 	/* 全局公共样式 */
 	#app {
 		width: 100%;
