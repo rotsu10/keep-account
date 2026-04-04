@@ -287,7 +287,9 @@
 </script>
 
 <style scoped lang="scss">
-	
+	.placeholder-nav{
+		padding-bottom: 80rpx;
+	}
 	.submit-btn {
 	  margin-top: 50rpx;   
 	}
@@ -355,7 +357,6 @@
 		display: flex;
 		flex-wrap: wrap;
 		gap: 20rpx;
-		padding: 20rpx;
 		justify-content: center;
 	}
 	

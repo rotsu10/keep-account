@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<view>
+		<view class="nav">
 		    <up-navbar title="每日账单" :autoBack="true">
 		        <template #right>
 		            <view class="navbar-right" @click="onClickRight">
@@ -73,7 +73,7 @@
 
 	// 滚动事件监听（用于调试）
 	const onScroll = (e) => {
-		console.log('滚动位置:', e.scrollTop);
+		console.log('滚动位置:',e.scrollTop);
 	};
 
 	// 删除账单
@@ -257,7 +257,7 @@
 
 <style scoped>
 	.page-box {
-		padding-top: 80rpx;
+		padding-top: 90rpx;
 		width: 100%;
 		height: 100vh;
 		background-color: #f5f5f5;

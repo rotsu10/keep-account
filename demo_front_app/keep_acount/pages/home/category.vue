@@ -10,37 +10,39 @@
 			</template>
 		</up-navbar>
 
-		<!-- 切换按钮 -->
-		<view class="button-box">
-			<up-button 
-				shape="circle"
-				type="default" 
-				@click="handleTypeClick(1)" 
-				:custom-style="activeType === 1 ? activeBtnStyle : ''"
-			>
-				收入
-			</up-button>
-			<up-button 
-				shape="circle"
-				type="default" 
-				@click="handleTypeClick(2)" 
-				:custom-style="activeType === 2 ? activeBtnStyle : ''"
-			>
-				支出
-			</up-button>
-		</view>
-
-		<!-- 列表 -->
-		<view class="list-box">
-			<up-list :finished="true">
-				<up-cell 
-					v-for="(item,index) in list" 
-					:key="item.id" 
-					:title="item.name"
-					@longpress="handleLongPress(item)"
-				></up-cell>
-			</up-list>
-			<up-back-top></up-back-top>
+		<view class="page-content">
+			<!-- 切换按钮 -->
+			<view class="button-box">
+				<up-button 
+					shape="circle"
+					type="default" 
+					@click="handleTypeClick(1)" 
+					:custom-style="activeType === 1 ? activeBtnStyle : ''"
+				>
+					收入
+				</up-button>
+				<up-button 
+					shape="circle"
+					type="default" 
+					@click="handleTypeClick(2)" 
+					:custom-style="activeType === 2 ? activeBtnStyle : ''"
+				>
+					支出
+				</up-button>
+			</view>
+			
+			<!-- 列表 -->
+			<view class="list-box">
+				<up-list :finished="true">
+					<up-cell 
+						v-for="(item,index) in list" 
+						:key="item.id" 
+						:title="item.name"
+						@longpress="handleLongPress(item)"
+					></up-cell>
+				</up-list>
+				<up-back-top></up-back-top>
+			</view>
 		</view>
 		
 		<!-- 添加分类弹窗 - 修复后 -->
@@ -95,7 +97,7 @@
 	import { useBillStore } from '../../stores/useBillStore';
 	import { storeToRefs } from 'pinia';
 	import { useLedgerStore } from '../../stores/useLedgerStore';
-	
+
 	const categoryStore = useCategoryStore();
 	const billStore = useBillStore();
 	const ledgerStore = useLedgerStore();
@@ -222,7 +224,7 @@
 	.placeholder-nav {
 		padding-top: 88rpx;
 	}
-
+		
 	.nav-right {
 		display: flex;
 		align-items: center;

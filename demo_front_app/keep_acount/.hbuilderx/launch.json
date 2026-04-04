@@ -2,12 +2,17 @@
     "version" : "1.0",
     "configurations" : [
         {
+            "customPlaygroundType" : "device",
             "playground" : "standard",
             "type" : "uni-app:app-android"
         },
         {
             "openVueDevtools" : false,
             "type" : "uni-app:h5"
+        },
+        {
+            "playground" : "standard",
+            "type" : "uni-app:app-ios"
         }
     ]
 }

@@ -1,15 +1,12 @@
 <script>
-	export default {
-		onLaunch: function() {
-			console.log('App Launch')
-		},
-		onShow: function() {
-			console.log('App Show')
-		},
-		onHide: function() {
-			console.log('App Hide')
-		}
-	}
+	// export default {
+	//   onLaunch() {
+	//     // 每次启动都强制跳登录
+	//     uni.reLaunch({
+	//       url: "/pages/common/login"
+	//     });
+	//   },
+	// };
 </script>
 
 <style lang="scss">

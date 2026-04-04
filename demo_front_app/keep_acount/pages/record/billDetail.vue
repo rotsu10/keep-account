@@ -1,5 +1,5 @@
 <template>
-	<view class="">
+	<view>
 		<view class="nav">
 			<up-navbar :auto-back="true" title="账单详情"></up-navbar>
 		</view>
@@ -516,7 +516,7 @@
 <style scoped>
 	.container {
 		margin: 40rpx;
-		padding-top: 20rpx;
+		padding-top: 88rpx;
 		min-height: 100vh;
 	}
 

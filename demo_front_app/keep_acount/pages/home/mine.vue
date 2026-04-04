@@ -24,19 +24,19 @@
 					<up-col span="6" textAlign="center">账本名称:{{ ledgerStore.ledgerName }}</up-col>
 				</up-row>
 				<up-row justify="space-around" align="left" class="ledger-data-row">
-					<up-col span="6" textAlign="center">创建时间:{{ dayjs(ledgerStore.createTime).format('YYYY/MM/DD') }}</up-col>
+					<up-col span="10" textAlign="center">创建时间:{{ dayjs(ledgerStore.createTime).format('YYYY/MM/DD') }}</up-col>
 				</up-row>
 				<up-divider
 				  :style="{ color: '#1989fa', borderColor: '#1989fa', padding: '0 16px' }"
 				>
 				</up-divider>
 				<up-row justify="space-around" align="center" class="ledger-data-row">
-					<up-col span="6">创建者:{{ ledgerStore.ownerName }}</up-col>
-					<up-col span="6" @click="queryLedgerBill" >账单数量:{{ ledgerStore.billCount }}</up-col>
+					<up-col span="6" textAlign="center">创建者:{{ ledgerStore.ownerName }}</up-col>
+					<up-col span="6" textAlign="center" @click="queryLedgerBill" >账单数量:{{ ledgerStore.billCount }}</up-col>
 				</up-row>
 				<up-row justify="space-around" align="center" class="ledger-data-row">
-					<up-col span="6">总收入:{{ ledgerStore.totalIncomeAmount }}</up-col>
-					<up-col span="6">总支出:{{ ledgerStore.totalOutcomeAmount }}</up-col>
+					<up-col span="6" textAlign="center">总收入:{{ ledgerStore.totalIncomeAmount }}</up-col>
+					<up-col span="6" textAlign="center">总支出:{{ ledgerStore.totalOutcomeAmount }}</up-col>
 				</up-row>
 			</view>
 		</view>
@@ -174,7 +174,7 @@
 	.ledger {
 		display: flex;
 		flex-direction: column;
-		height: 350rpx;
+		min-height: 350rpx;
 		margin: 20rpx 60rpx;
 		border-radius: 8rpx;
 		background-color: #e0e2d9;
