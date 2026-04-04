@@ -65,7 +65,7 @@
 				title="搜索分类"
 				show-cancel-button
 				@confirm="searchCategory"
-				@close="CategoryShow = false"
+				@cancel="CategoryShow = false"
 			>
 				<view class="modal-content">
 					<up-input v-model="searchCategoryName" placeholder="请输入分类名" />
@@ -113,7 +113,7 @@
 	// 数据
 	const searchCategoryName = ref('');
 	const CategoryName = ref('');
-	const currentCategory = ref('');
+	const currentCategory = ref(null);
 	const activeType = ref(1);
 	const currentType = ref(1);
 
@@ -173,12 +173,23 @@
 
 	// 长按删除
 	const handleLongPress = (item) => {
+		console.log("长按触发", item);
+		if (!item || !item.id) {  
+			console.error("无效的分类数据", item);
+			return;
+		}
 		currentCategory.value = item;
 		DialogShow.value = true;
+		console.log("弹窗状态", DialogShow.value); 
 	};
 
 	// 确认删除
 	const confirmDelete = async () => {
+		if (!currentCategory.value) {  
+				console.error("没有选中的分类");
+				DialogShow.value = false;
+				return;
+			}
 		const deleteCategoryData = {
 			id: currentCategory.value.id,
 			type: currentCategory.value.type,
@@ -199,6 +210,11 @@
 
 	// 转移数据
 	const moveCategory = async () => {
+		if (!currentCategory.value) { 
+				console.error("没有选中的分类");
+				DialogShow.value = false;
+				return;
+			}
 		try {
 			const res = await billStore.queryBillByCategoryId(currentCategory.value.id);
 			if (res) {
@@ -206,8 +222,9 @@
 					url: `/pages/record/moveCategory?categoryId=${currentCategory.value.id}`
 				});
 			}
+			DialogShow.value = false;
 		} catch (error) {
-			uni.showToast({ title: error.message, icon: 'error' });
+			uni.showToast({ title: error.message||"shibai" ,icon:'none'});
 		}
 	};
 

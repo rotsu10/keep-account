@@ -90,6 +90,12 @@
 				"navigationStyle": "custom",
 				"navigationBarTitleText": ""
 			}
+		},
+		{
+			"path": "pages/record/moveCategory",
+			"style": {
+				"navigationBarTitleText": "修改分类"
+			}
 		}
 	],
 	"tabBar": {

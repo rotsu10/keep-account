@@ -4590,7 +4590,7 @@ if (uni.restoreGlobal) {
     }
     return target;
   };
-  const _sfc_main$2y = {
+  const _sfc_main$2z = {
     name: "u-icon",
     beforeCreate() {
       if (!fontUtil.params.loaded) {
@@ -4658,7 +4658,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$2x(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2y(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -4701,10 +4701,10 @@ if (uni.restoreGlobal) {
       /* CLASS */
     );
   }
-  const __easycom_0$l = /* @__PURE__ */ _export_sfc(_sfc_main$2y, [["render", _sfc_render$2x], ["__scopeId", "data-v-1c933a9a"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-icon/u-icon.vue"]]);
+  const __easycom_0$m = /* @__PURE__ */ _export_sfc(_sfc_main$2z, [["render", _sfc_render$2y], ["__scopeId", "data-v-1c933a9a"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-icon/u-icon.vue"]]);
   const __vite_glob_0_50 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
-    default: __easycom_0$l
+    default: __easycom_0$m
   }, Symbol.toStringTag, { value: "Module" }));
   const props$1A = defineMixin({
     props: {
@@ -4924,7 +4924,7 @@ if (uni.restoreGlobal) {
       }, wait);
     }
   }
-  const _sfc_main$2x = {
+  const _sfc_main$2y = {
     name: "u-input",
     mixins: [mpMixin$1, mixin$1, props$1A],
     data() {
@@ -5117,8 +5117,8 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$2w(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
+  function _sfc_render$2x(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -5215,10 +5215,10 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     );
   }
-  const __easycom_0$k = /* @__PURE__ */ _export_sfc(_sfc_main$2x, [["render", _sfc_render$2w], ["__scopeId", "data-v-5904192e"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-input/u-input.vue"]]);
+  const __easycom_0$l = /* @__PURE__ */ _export_sfc(_sfc_main$2y, [["render", _sfc_render$2x], ["__scopeId", "data-v-5904192e"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-input/u-input.vue"]]);
   const __vite_glob_0_55 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
-    default: __easycom_0$k
+    default: __easycom_0$l
   }, Symbol.toStringTag, { value: "Module" }));
   const props$1z = defineMixin({
     props: {
@@ -5253,7 +5253,7 @@ if (uni.restoreGlobal) {
       }
     }
   });
-  const _sfc_main$2w = {
+  const _sfc_main$2x = {
     name: "u-line",
     mixins: [mpMixin$1, mixin$1, props$1z],
     computed: {
@@ -5278,7 +5278,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$2v(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2w(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -5290,10 +5290,10 @@ if (uni.restoreGlobal) {
       /* STYLE */
     );
   }
-  const __easycom_1$h = /* @__PURE__ */ _export_sfc(_sfc_main$2w, [["render", _sfc_render$2v], ["__scopeId", "data-v-bbd9963c"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-line/u-line.vue"]]);
+  const __easycom_1$i = /* @__PURE__ */ _export_sfc(_sfc_main$2x, [["render", _sfc_render$2w], ["__scopeId", "data-v-bbd9963c"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-line/u-line.vue"]]);
   const __vite_glob_0_59 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
-    default: __easycom_1$h
+    default: __easycom_1$i
   }, Symbol.toStringTag, { value: "Module" }));
   const props$1y = defineMixin({
     props: {
@@ -5348,7 +5348,7 @@ if (uni.restoreGlobal) {
       }
     }
   });
-  const _sfc_main$2v = {
+  const _sfc_main$2w = {
     name: "up-form-item",
     mixins: [mpMixin$1, mixin$1, props$1y],
     data() {
@@ -5429,9 +5429,9 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$2u(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
-    const _component_u_line = resolveEasycom(vue.resolveDynamicComponent("u-line"), __easycom_1$h);
+  function _sfc_render$2v(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
+    const _component_u_line = resolveEasycom(vue.resolveDynamicComponent("u-line"), __easycom_1$i);
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -5534,10 +5534,10 @@ if (uni.restoreGlobal) {
       /* CLASS */
     );
   }
-  const __easycom_2$8 = /* @__PURE__ */ _export_sfc(_sfc_main$2v, [["render", _sfc_render$2u], ["__scopeId", "data-v-b4fd400b"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-form-item/u-form-item.vue"]]);
+  const __easycom_2$9 = /* @__PURE__ */ _export_sfc(_sfc_main$2w, [["render", _sfc_render$2v], ["__scopeId", "data-v-b4fd400b"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-form-item/u-form-item.vue"]]);
   const __vite_glob_0_44 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
-    default: __easycom_2$8
+    default: __easycom_2$9
   }, Symbol.toStringTag, { value: "Module" }));
   const props$1x = defineMixin({
     props: {
@@ -6478,7 +6478,7 @@ if (uni.restoreGlobal) {
   Schema.messages = messages;
   Schema.warning = function() {
   };
-  const _sfc_main$2u = {
+  const _sfc_main$2v = {
     name: "up-form",
     mixins: [mpMixin$1, mixin$1, props$1x],
     provide() {
@@ -6671,12 +6671,12 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$2t(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2u(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock("view", { class: "u-form" }, [
       vue.renderSlot(_ctx.$slots, "default")
     ]);
   }
-  const __easycom_9 = /* @__PURE__ */ _export_sfc(_sfc_main$2u, [["render", _sfc_render$2t], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-form/u-form.vue"]]);
+  const __easycom_9 = /* @__PURE__ */ _export_sfc(_sfc_main$2v, [["render", _sfc_render$2u], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-form/u-form.vue"]]);
   const __vite_glob_0_45 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_9
@@ -6850,7 +6850,7 @@ if (uni.restoreGlobal) {
     rgbToHex: rgbToHex$1,
     colorToRgba
   };
-  const _sfc_main$2t = {
+  const _sfc_main$2u = {
     name: "u-loading-icon",
     mixins: [mpMixin$1, mixin$1, props$1w],
     data() {
@@ -6912,7 +6912,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$2s(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2t(_ctx, _cache, $props, $setup, $data, $options) {
     return _ctx.show ? (vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -6975,10 +6975,10 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     )) : vue.createCommentVNode("v-if", true);
   }
-  const __easycom_1$g = /* @__PURE__ */ _export_sfc(_sfc_main$2t, [["render", _sfc_render$2s], ["__scopeId", "data-v-00752c6d"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-loading-icon/u-loading-icon.vue"]]);
+  const __easycom_1$h = /* @__PURE__ */ _export_sfc(_sfc_main$2u, [["render", _sfc_render$2t], ["__scopeId", "data-v-00752c6d"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-loading-icon/u-loading-icon.vue"]]);
   const __vite_glob_0_63 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
-    default: __easycom_1$g
+    default: __easycom_1$h
   }, Symbol.toStringTag, { value: "Module" }));
   const props$1v = defineMixin({
     props: {
@@ -7155,7 +7155,7 @@ if (uni.restoreGlobal) {
       }, wait);
     }
   }
-  const _sfc_main$2s = {
+  const _sfc_main$2t = {
     name: "u-button",
     mixins: [mpMixin$1, mixin$1, props$1v],
     data() {
@@ -7285,9 +7285,9 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$2r(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_u_loading_icon = resolveEasycom(vue.resolveDynamicComponent("u-loading-icon"), __easycom_1$g);
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
+  function _sfc_render$2s(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_u_loading_icon = resolveEasycom(vue.resolveDynamicComponent("u-loading-icon"), __easycom_1$h);
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
     return vue.openBlock(), vue.createElementBlock("button", {
       "hover-start-time": Number(_ctx.hoverStartTime),
       "hover-stay-time": Number(_ctx.hoverStayTime),
@@ -7364,10 +7364,10 @@ if (uni.restoreGlobal) {
       ))
     ], 46, ["hover-start-time", "hover-stay-time", "form-type", "open-type", "app-parameter", "hover-stop-propagation", "send-message-title", "send-message-path", "lang", "data-name", "session-from", "send-message-img", "show-message-card", "hover-class"]);
   }
-  const __easycom_3$7 = /* @__PURE__ */ _export_sfc(_sfc_main$2s, [["render", _sfc_render$2r], ["__scopeId", "data-v-461e713c"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-button/u-button.vue"]]);
+  const __easycom_3$5 = /* @__PURE__ */ _export_sfc(_sfc_main$2t, [["render", _sfc_render$2s], ["__scopeId", "data-v-461e713c"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-button/u-button.vue"]]);
   const __vite_glob_0_11 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
-    default: __easycom_3$7
+    default: __easycom_3$5
   }, Symbol.toStringTag, { value: "Module" }));
   const devEnv = {
     // BASE_URL: "http://localhost:8080",
@@ -7634,7 +7634,7 @@ if (uni.restoreGlobal) {
       UPDATE_PARTICIPANT: "/participant/updateParticipant"
     }
   };
-  const _sfc_main$2r = {
+  const _sfc_main$2s = {
     __name: "login",
     setup(__props, { expose: __expose }) {
       __expose();
@@ -7699,11 +7699,11 @@ if (uni.restoreGlobal) {
       return __returned__;
     }
   };
-  function _sfc_render$2q(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_input = resolveEasycom(vue.resolveDynamicComponent("up-input"), __easycom_0$k);
-    const _component_up_form_item = resolveEasycom(vue.resolveDynamicComponent("up-form-item"), __easycom_2$8);
+  function _sfc_render$2r(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_up_input = resolveEasycom(vue.resolveDynamicComponent("up-input"), __easycom_0$l);
+    const _component_up_form_item = resolveEasycom(vue.resolveDynamicComponent("up-form-item"), __easycom_2$9);
     const _component_up_form = resolveEasycom(vue.resolveDynamicComponent("up-form"), __easycom_9);
-    const _component_up_button = resolveEasycom(vue.resolveDynamicComponent("up-button"), __easycom_3$7);
+    const _component_up_button = resolveEasycom(vue.resolveDynamicComponent("up-button"), __easycom_3$5);
     return vue.openBlock(), vue.createElementBlock("view", { class: "content" }, [
       vue.createElementVNode("view", { class: "text-area" }, [
         vue.createElementVNode(
@@ -7775,8 +7775,8 @@ if (uni.restoreGlobal) {
       ])
     ]);
   }
-  const PagesCommonLogin = /* @__PURE__ */ _export_sfc(_sfc_main$2r, [["render", _sfc_render$2q], ["__scopeId", "data-v-d57298a5"], ["__file", "D:/project/记账/demo_front_app/keep_acount/pages/common/login.vue"]]);
-  const _sfc_main$2q = {
+  const PagesCommonLogin = /* @__PURE__ */ _export_sfc(_sfc_main$2s, [["render", _sfc_render$2r], ["__scopeId", "data-v-d57298a5"], ["__file", "D:/project/记账/demo_front_app/keep_acount/pages/common/login.vue"]]);
+  const _sfc_main$2r = {
     __name: "register",
     setup(__props, { expose: __expose }) {
       __expose();
@@ -7827,11 +7827,11 @@ if (uni.restoreGlobal) {
       return __returned__;
     }
   };
-  function _sfc_render$2p(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_input = resolveEasycom(vue.resolveDynamicComponent("up-input"), __easycom_0$k);
-    const _component_up_form_item = resolveEasycom(vue.resolveDynamicComponent("up-form-item"), __easycom_2$8);
+  function _sfc_render$2q(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_up_input = resolveEasycom(vue.resolveDynamicComponent("up-input"), __easycom_0$l);
+    const _component_up_form_item = resolveEasycom(vue.resolveDynamicComponent("up-form-item"), __easycom_2$9);
     const _component_up_form = resolveEasycom(vue.resolveDynamicComponent("up-form"), __easycom_9);
-    const _component_up_button = resolveEasycom(vue.resolveDynamicComponent("up-button"), __easycom_3$7);
+    const _component_up_button = resolveEasycom(vue.resolveDynamicComponent("up-button"), __easycom_3$5);
     return vue.openBlock(), vue.createElementBlock("view", { class: "content" }, [
       vue.createElementVNode("view", { class: "form-box" }, [
         vue.createVNode(_component_up_form, null, {
@@ -7900,7 +7900,7 @@ if (uni.restoreGlobal) {
       ])
     ]);
   }
-  const PagesCommonRegister = /* @__PURE__ */ _export_sfc(_sfc_main$2q, [["render", _sfc_render$2p], ["__scopeId", "data-v-05030230"], ["__file", "D:/project/记账/demo_front_app/keep_acount/pages/common/register.vue"]]);
+  const PagesCommonRegister = /* @__PURE__ */ _export_sfc(_sfc_main$2r, [["render", _sfc_render$2q], ["__scopeId", "data-v-05030230"], ["__file", "D:/project/记账/demo_front_app/keep_acount/pages/common/register.vue"]]);
   const props$1u = defineMixin({
     props: {
       bgColor: {
@@ -7914,7 +7914,7 @@ if (uni.restoreGlobal) {
       }
     }
   });
-  const _sfc_main$2p = {
+  const _sfc_main$2q = {
     name: "u-status-bar",
     mixins: [mpMixin$1, mixin$1, props$1u],
     data() {
@@ -7940,7 +7940,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$2o(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2p(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -7954,10 +7954,10 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     );
   }
-  const __easycom_0$j = /* @__PURE__ */ _export_sfc(_sfc_main$2p, [["render", _sfc_render$2o], ["__scopeId", "data-v-c0b45a48"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-status-bar/u-status-bar.vue"]]);
+  const __easycom_0$k = /* @__PURE__ */ _export_sfc(_sfc_main$2q, [["render", _sfc_render$2p], ["__scopeId", "data-v-c0b45a48"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-status-bar/u-status-bar.vue"]]);
   const __vite_glob_0_103 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
-    default: __easycom_0$j
+    default: __easycom_0$k
   }, Symbol.toStringTag, { value: "Module" }));
   const props$1t = defineMixin({
     props: {
@@ -8053,7 +8053,7 @@ if (uni.restoreGlobal) {
       }
     }
   });
-  const _sfc_main$2o = {
+  const _sfc_main$2p = {
     name: "u-navbar",
     mixins: [mpMixin$1, mixin$1, props$1t],
     data() {
@@ -8082,9 +8082,9 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$2n(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_u_status_bar = resolveEasycom(vue.resolveDynamicComponent("u-status-bar"), __easycom_0$j);
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
+  function _sfc_render$2o(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_u_status_bar = resolveEasycom(vue.resolveDynamicComponent("u-status-bar"), __easycom_0$k);
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -8203,10 +8203,10 @@ if (uni.restoreGlobal) {
       /* CLASS */
     );
   }
-  const __easycom_0$i = /* @__PURE__ */ _export_sfc(_sfc_main$2o, [["render", _sfc_render$2n], ["__scopeId", "data-v-9d9e7ee2"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-navbar/u-navbar.vue"]]);
+  const __easycom_0$j = /* @__PURE__ */ _export_sfc(_sfc_main$2p, [["render", _sfc_render$2o], ["__scopeId", "data-v-9d9e7ee2"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-navbar/u-navbar.vue"]]);
   const __vite_glob_0_70 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
-    default: __easycom_0$i
+    default: __easycom_0$j
   }, Symbol.toStringTag, { value: "Module" }));
   const mpMixin = {};
   function email(value2) {
@@ -9256,7 +9256,7 @@ if (uni.restoreGlobal) {
       ...(_f = (_e = uni.$uv) == null ? void 0 : _e.props) == null ? void 0 : _f.toolbar
     }
   };
-  const _sfc_main$2n = {
+  const _sfc_main$2o = {
     name: "uv-toolbar",
     emits: ["confirm", "cancel"],
     mixins: [mpMixin, mixin, props$1s],
@@ -9271,7 +9271,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$2m(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2n(_ctx, _cache, $props, $setup, $data, $options) {
     return _ctx.show ? (vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -9331,7 +9331,7 @@ if (uni.restoreGlobal) {
       /* CLASS, NEED_HYDRATION */
     )) : vue.createCommentVNode("v-if", true);
   }
-  const __easycom_0$h = /* @__PURE__ */ _export_sfc(_sfc_main$2n, [["render", _sfc_render$2m], ["__scopeId", "data-v-298cf9e4"], ["__file", "D:/project/记账/demo_front_app/keep_acount/uni_modules/uv-toolbar/components/uv-toolbar/uv-toolbar.vue"]]);
+  const __easycom_0$i = /* @__PURE__ */ _export_sfc(_sfc_main$2o, [["render", _sfc_render$2n], ["__scopeId", "data-v-298cf9e4"], ["__file", "D:/project/记账/demo_front_app/keep_acount/uni_modules/uv-toolbar/components/uv-toolbar/uv-toolbar.vue"]]);
   class MPAnimation {
     constructor(options2, _this) {
       this.options = options2;
@@ -9444,7 +9444,7 @@ if (uni.restoreGlobal) {
     clearTimeout(_this.timer);
     return new MPAnimation(option, _this);
   }
-  const _sfc_main$2m = {
+  const _sfc_main$2n = {
     name: "uv-transition",
     mixins: [mpMixin, mixin],
     emits: ["click", "change"],
@@ -9692,7 +9692,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$2l(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2m(_ctx, _cache, $props, $setup, $data, $options) {
     return $data.isShow ? (vue.openBlock(), vue.createElementBlock("view", {
       key: 0,
       ref: "ani",
@@ -9704,7 +9704,7 @@ if (uni.restoreGlobal) {
       vue.renderSlot(_ctx.$slots, "default")
     ], 14, ["animation"])) : vue.createCommentVNode("v-if", true);
   }
-  const __easycom_4$2 = /* @__PURE__ */ _export_sfc(_sfc_main$2m, [["render", _sfc_render$2l], ["__file", "D:/project/记账/demo_front_app/keep_acount/uni_modules/uv-transition/components/uv-transition/uv-transition.vue"]]);
+  const __easycom_4$1 = /* @__PURE__ */ _export_sfc(_sfc_main$2n, [["render", _sfc_render$2m], ["__file", "D:/project/记账/demo_front_app/keep_acount/uni_modules/uv-transition/components/uv-transition/uv-transition.vue"]]);
   const props$1r = {
     props: {
       // 是否显示遮罩
@@ -9730,7 +9730,7 @@ if (uni.restoreGlobal) {
       ...(_h = (_g = uni.$uv) == null ? void 0 : _g.props) == null ? void 0 : _h.overlay
     }
   };
-  const _sfc_main$2l = {
+  const _sfc_main$2m = {
     name: "uv-overlay",
     emits: ["click"],
     mixins: [mpMixin, mixin, props$1r],
@@ -9760,8 +9760,8 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$2k(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_uv_transition = resolveEasycom(vue.resolveDynamicComponent("uv-transition"), __easycom_4$2);
+  function _sfc_render$2l(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_uv_transition = resolveEasycom(vue.resolveDynamicComponent("uv-transition"), __easycom_4$1);
     return vue.openBlock(), vue.createBlock(_component_uv_transition, {
       show: _ctx.show,
       mode: "fade",
@@ -9778,7 +9778,7 @@ if (uni.restoreGlobal) {
       /* FORWARDED */
     }, 8, ["show", "duration", "custom-style", "onClick", "onTouchmove"]);
   }
-  const __easycom_0$g = /* @__PURE__ */ _export_sfc(_sfc_main$2l, [["render", _sfc_render$2k], ["__scopeId", "data-v-7303e1aa"], ["__file", "D:/project/记账/demo_front_app/keep_acount/uni_modules/uv-overlay/components/uv-overlay/uv-overlay.vue"]]);
+  const __easycom_0$h = /* @__PURE__ */ _export_sfc(_sfc_main$2m, [["render", _sfc_render$2l], ["__scopeId", "data-v-7303e1aa"], ["__file", "D:/project/记账/demo_front_app/keep_acount/uni_modules/uv-overlay/components/uv-overlay/uv-overlay.vue"]]);
   const props$1q = {
     props: {
       bgColor: {
@@ -9787,7 +9787,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  const _sfc_main$2k = {
+  const _sfc_main$2l = {
     name: "uv-status-bar",
     mixins: [mpMixin, mixin, props$1q],
     data() {
@@ -9808,7 +9808,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$2j(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2k(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -9822,8 +9822,8 @@ if (uni.restoreGlobal) {
       /* STYLE */
     );
   }
-  const __easycom_1$f = /* @__PURE__ */ _export_sfc(_sfc_main$2k, [["render", _sfc_render$2j], ["__scopeId", "data-v-f5bd6f5a"], ["__file", "D:/project/记账/demo_front_app/keep_acount/uni_modules/uv-status-bar/components/uv-status-bar/uv-status-bar.vue"]]);
-  const _sfc_main$2j = {
+  const __easycom_1$g = /* @__PURE__ */ _export_sfc(_sfc_main$2l, [["render", _sfc_render$2k], ["__scopeId", "data-v-f5bd6f5a"], ["__file", "D:/project/记账/demo_front_app/keep_acount/uni_modules/uv-status-bar/components/uv-status-bar/uv-status-bar.vue"]]);
+  const _sfc_main$2k = {
     name: "uv-safe-bottom",
     mixins: [mpMixin, mixin],
     data() {
@@ -9841,7 +9841,7 @@ if (uni.restoreGlobal) {
     mounted() {
     }
   };
-  function _sfc_render$2i(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2j(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -9853,7 +9853,7 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     );
   }
-  const __easycom_2$7 = /* @__PURE__ */ _export_sfc(_sfc_main$2j, [["render", _sfc_render$2i], ["__scopeId", "data-v-560f16b2"], ["__file", "D:/project/记账/demo_front_app/keep_acount/uni_modules/uv-safe-bottom/components/uv-safe-bottom/uv-safe-bottom.vue"]]);
+  const __easycom_2$8 = /* @__PURE__ */ _export_sfc(_sfc_main$2k, [["render", _sfc_render$2j], ["__scopeId", "data-v-560f16b2"], ["__file", "D:/project/记账/demo_front_app/keep_acount/uni_modules/uv-safe-bottom/components/uv-safe-bottom/uv-safe-bottom.vue"]]);
   const icons = {
     "uvicon-level": "e68f",
     "uvicon-checkbox-mark": "e659",
@@ -10104,7 +10104,7 @@ if (uni.restoreGlobal) {
       ...(_j = (_i = uni.$uv) == null ? void 0 : _i.props) == null ? void 0 : _j.icon
     }
   };
-  const _sfc_main$2i = {
+  const _sfc_main$2j = {
     name: "uv-icon",
     emits: ["click"],
     mixins: [mpMixin, mixin, props$1p],
@@ -10165,7 +10165,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$2h(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2i(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -10208,8 +10208,8 @@ if (uni.restoreGlobal) {
       /* CLASS */
     );
   }
-  const __easycom_3$6 = /* @__PURE__ */ _export_sfc(_sfc_main$2i, [["render", _sfc_render$2h], ["__scopeId", "data-v-b7a6dd5d"], ["__file", "D:/project/记账/demo_front_app/keep_acount/uni_modules/uv-icon/components/uv-icon/uv-icon.vue"]]);
-  const _sfc_main$2h = {
+  const __easycom_3$4 = /* @__PURE__ */ _export_sfc(_sfc_main$2j, [["render", _sfc_render$2i], ["__scopeId", "data-v-b7a6dd5d"], ["__file", "D:/project/记账/demo_front_app/keep_acount/uni_modules/uv-icon/components/uv-icon/uv-icon.vue"]]);
+  const _sfc_main$2i = {
     name: "uv-popup",
     components: {},
     mixins: [mpMixin, mixin],
@@ -10543,12 +10543,12 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$2g(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_uv_overlay = resolveEasycom(vue.resolveDynamicComponent("uv-overlay"), __easycom_0$g);
-    const _component_uv_status_bar = resolveEasycom(vue.resolveDynamicComponent("uv-status-bar"), __easycom_1$f);
-    const _component_uv_safe_bottom = resolveEasycom(vue.resolveDynamicComponent("uv-safe-bottom"), __easycom_2$7);
-    const _component_uv_icon = resolveEasycom(vue.resolveDynamicComponent("uv-icon"), __easycom_3$6);
-    const _component_uv_transition = resolveEasycom(vue.resolveDynamicComponent("uv-transition"), __easycom_4$2);
+  function _sfc_render$2h(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_uv_overlay = resolveEasycom(vue.resolveDynamicComponent("uv-overlay"), __easycom_0$h);
+    const _component_uv_status_bar = resolveEasycom(vue.resolveDynamicComponent("uv-status-bar"), __easycom_1$g);
+    const _component_uv_safe_bottom = resolveEasycom(vue.resolveDynamicComponent("uv-safe-bottom"), __easycom_2$8);
+    const _component_uv_icon = resolveEasycom(vue.resolveDynamicComponent("uv-icon"), __easycom_3$4);
+    const _component_uv_transition = resolveEasycom(vue.resolveDynamicComponent("uv-transition"), __easycom_4$1);
     return $data.showPopup ? (vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -10630,7 +10630,7 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     )) : vue.createCommentVNode("v-if", true);
   }
-  const __easycom_1$e = /* @__PURE__ */ _export_sfc(_sfc_main$2h, [["render", _sfc_render$2g], ["__scopeId", "data-v-01a3ad6e"], ["__file", "D:/project/记账/demo_front_app/keep_acount/uni_modules/uv-popup/components/uv-popup/uv-popup.vue"]]);
+  const __easycom_1$f = /* @__PURE__ */ _export_sfc(_sfc_main$2i, [["render", _sfc_render$2h], ["__scopeId", "data-v-01a3ad6e"], ["__file", "D:/project/记账/demo_front_app/keep_acount/uni_modules/uv-popup/components/uv-popup/uv-popup.vue"]]);
   var calendar = {
     /**
         * 农历1900-2100的润大小信息表
@@ -12294,7 +12294,7 @@ if (uni.restoreGlobal) {
     "zh-Hant": zhHant
   };
   const { t: t$3 } = initVueI18n(i18nMessages);
-  const _sfc_main$2g = {
+  const _sfc_main$2h = {
     emits: ["change"],
     props: {
       weeks: {
@@ -12395,7 +12395,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$2f(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2g(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -12505,9 +12505,9 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     );
   }
-  const CalendarItem = /* @__PURE__ */ _export_sfc(_sfc_main$2g, [["render", _sfc_render$2f], ["__scopeId", "data-v-68116d39"], ["__file", "D:/project/记账/demo_front_app/keep_acount/uni_modules/uv-calendars/components/uv-calendars/calendar-item.vue"]]);
+  const CalendarItem = /* @__PURE__ */ _export_sfc(_sfc_main$2h, [["render", _sfc_render$2g], ["__scopeId", "data-v-68116d39"], ["__file", "D:/project/记账/demo_front_app/keep_acount/uni_modules/uv-calendars/components/uv-calendars/calendar-item.vue"]]);
   const { t: t$2 } = initVueI18n(i18nMessages);
-  const _sfc_main$2f = {
+  const _sfc_main$2g = {
     mixins: [mpMixin, mixin],
     components: {
       CalendarItem
@@ -12657,7 +12657,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$2e(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2f(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_calendar_item = vue.resolveComponent("calendar-item");
     return vue.openBlock(), vue.createElementBlock("view", { class: "uv-calendar-body" }, [
       vue.createElementVNode("view", { class: "uv-calendar__header" }, [
@@ -12817,9 +12817,9 @@ if (uni.restoreGlobal) {
       ])
     ]);
   }
-  const calendarBody = /* @__PURE__ */ _export_sfc(_sfc_main$2f, [["render", _sfc_render$2e], ["__scopeId", "data-v-d658b772"], ["__file", "D:/project/记账/demo_front_app/keep_acount/uni_modules/uv-calendars/components/uv-calendars/calendar-body.vue"]]);
+  const calendarBody = /* @__PURE__ */ _export_sfc(_sfc_main$2g, [["render", _sfc_render$2f], ["__scopeId", "data-v-d658b772"], ["__file", "D:/project/记账/demo_front_app/keep_acount/uni_modules/uv-calendars/components/uv-calendars/calendar-body.vue"]]);
   const { t: t$1 } = initVueI18n(i18nMessages);
-  const _sfc_main$2e = {
+  const _sfc_main$2f = {
     components: {
       calendarBody
     },
@@ -13155,10 +13155,10 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$2d(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2e(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_calendar_body = vue.resolveComponent("calendar-body");
-    const _component_uv_toolbar = resolveEasycom(vue.resolveDynamicComponent("uv-toolbar"), __easycom_0$h);
-    const _component_uv_popup = resolveEasycom(vue.resolveDynamicComponent("uv-popup"), __easycom_1$e);
+    const _component_uv_toolbar = resolveEasycom(vue.resolveDynamicComponent("uv-toolbar"), __easycom_0$i);
+    const _component_uv_popup = resolveEasycom(vue.resolveDynamicComponent("uv-popup"), __easycom_1$f);
     return vue.openBlock(), vue.createElementBlock("view", { class: "uv-calendar" }, [
       $props.insert ? (vue.openBlock(), vue.createElementBlock("view", {
         key: 0,
@@ -13232,7 +13232,7 @@ if (uni.restoreGlobal) {
       }, 8, ["round", "close-on-click-overlay", "onMaskClick"]))
     ]);
   }
-  const __easycom_0$f = /* @__PURE__ */ _export_sfc(_sfc_main$2e, [["render", _sfc_render$2d], ["__scopeId", "data-v-4990eb9c"], ["__file", "D:/project/记账/demo_front_app/keep_acount/uni_modules/uv-calendars/components/uv-calendars/uv-calendars.vue"]]);
+  const __easycom_0$g = /* @__PURE__ */ _export_sfc(_sfc_main$2f, [["render", _sfc_render$2e], ["__scopeId", "data-v-4990eb9c"], ["__file", "D:/project/记账/demo_front_app/keep_acount/uni_modules/uv-calendars/components/uv-calendars/uv-calendars.vue"]]);
   var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
   function getDefaultExportFromCjs(x2) {
     return x2 && x2.__esModule && Object.prototype.hasOwnProperty.call(x2, "default") ? x2["default"] : x2;
@@ -13529,7 +13529,7 @@ if (uni.restoreGlobal) {
   })(dayjs_min);
   var dayjs_minExports = dayjs_min.exports;
   const dayjs = /* @__PURE__ */ getDefaultExportFromCjs(dayjs_minExports);
-  const _sfc_main$2d = {
+  const _sfc_main$2e = {
     __name: "Calendar",
     setup(__props, { expose: __expose }) {
       __expose();
@@ -13582,8 +13582,8 @@ if (uni.restoreGlobal) {
       return __returned__;
     }
   };
-  function _sfc_render$2c(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_uv_calendars = resolveEasycom(vue.resolveDynamicComponent("uv-calendars"), __easycom_0$f);
+  function _sfc_render$2d(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_uv_calendars = resolveEasycom(vue.resolveDynamicComponent("uv-calendars"), __easycom_0$g);
     return vue.openBlock(), vue.createElementBlock("view", { class: "content" }, [
       (vue.openBlock(), vue.createBlock(_component_uv_calendars, {
         key: $setup.calendarKey,
@@ -13596,7 +13596,7 @@ if (uni.restoreGlobal) {
       }, null, 8, ["date", "selected"]))
     ]);
   }
-  const ComponentsCalendar = /* @__PURE__ */ _export_sfc(_sfc_main$2d, [["render", _sfc_render$2c], ["__scopeId", "data-v-449beb93"], ["__file", "D:/project/记账/demo_front_app/keep_acount/components/Calendar.vue"]]);
+  const ComponentsCalendar = /* @__PURE__ */ _export_sfc(_sfc_main$2e, [["render", _sfc_render$2d], ["__scopeId", "data-v-449beb93"], ["__file", "D:/project/记账/demo_front_app/keep_acount/components/Calendar.vue"]]);
   var isVue2 = false;
   function set(target, key, val2) {
     if (Array.isArray(target)) {
@@ -15202,7 +15202,7 @@ This will fail in production.`);
       }
     }
   });
-  const _sfc_main$2c = {
+  const _sfc_main$2d = {
     __name: "LedgerShow",
     emits: ["queryLedgerDetail"],
     setup(__props, { expose: __expose, emit: __emit }) {
@@ -15238,8 +15238,8 @@ This will fail in production.`);
       return __returned__;
     }
   };
-  function _sfc_render$2b(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
+  function _sfc_render$2c(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
     return vue.openBlock(), vue.createElementBlock("view", {
       class: "ledgerShow",
       onClick: $setup.linkToAllLedger
@@ -15255,8 +15255,8 @@ This will fail in production.`);
       })
     ]);
   }
-  const ComponentsLedgerLedgerShow = /* @__PURE__ */ _export_sfc(_sfc_main$2c, [["render", _sfc_render$2b], ["__file", "D:/project/记账/demo_front_app/keep_acount/components/Ledger/LedgerShow.vue"]]);
-  const _sfc_main$2b = {
+  const ComponentsLedgerLedgerShow = /* @__PURE__ */ _export_sfc(_sfc_main$2d, [["render", _sfc_render$2c], ["__file", "D:/project/记账/demo_front_app/keep_acount/components/Ledger/LedgerShow.vue"]]);
+  const _sfc_main$2c = {
     __name: "home",
     setup(__props, { expose: __expose }) {
       __expose();
@@ -15292,9 +15292,9 @@ This will fail in production.`);
       return __returned__;
     }
   };
-  function _sfc_render$2a(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_navbar = resolveEasycom(vue.resolveDynamicComponent("up-navbar"), __easycom_0$i);
-    const _component_up_button = resolveEasycom(vue.resolveDynamicComponent("up-button"), __easycom_3$7);
+  function _sfc_render$2b(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_up_navbar = resolveEasycom(vue.resolveDynamicComponent("up-navbar"), __easycom_0$j);
+    const _component_up_button = resolveEasycom(vue.resolveDynamicComponent("up-button"), __easycom_3$5);
     return vue.openBlock(), vue.createElementBlock("view", null, [
       vue.createVNode(_component_up_navbar, {
         title: "日历",
@@ -15323,7 +15323,7 @@ This will fail in production.`);
       ])
     ]);
   }
-  const PagesHomeHome = /* @__PURE__ */ _export_sfc(_sfc_main$2b, [["render", _sfc_render$2a], ["__scopeId", "data-v-07e72d3c"], ["__file", "D:/project/记账/demo_front_app/keep_acount/pages/home/home.vue"]]);
+  const PagesHomeHome = /* @__PURE__ */ _export_sfc(_sfc_main$2c, [["render", _sfc_render$2b], ["__scopeId", "data-v-07e72d3c"], ["__file", "D:/project/记账/demo_front_app/keep_acount/pages/home/home.vue"]]);
   const props$1o = defineMixin({
     props: {
       // 标题
@@ -15434,7 +15434,7 @@ This will fail in production.`);
       }
     }
   });
-  const _sfc_main$2a = {
+  const _sfc_main$2b = {
     name: "u-cell",
     data() {
       return {};
@@ -15461,9 +15461,9 @@ This will fail in production.`);
       }
     }
   };
-  function _sfc_render$29(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
-    const _component_u_line = resolveEasycom(vue.resolveDynamicComponent("u-line"), __easycom_1$h);
+  function _sfc_render$2a(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
+    const _component_u_line = resolveEasycom(vue.resolveDynamicComponent("u-line"), __easycom_1$i);
     return vue.openBlock(), vue.createElementBlock("view", {
       class: vue.normalizeClass(["u-cell", [_ctx.customClass]]),
       style: vue.normalizeStyle([$options.addStyle(_ctx.customStyle)]),
@@ -15564,10 +15564,10 @@ This will fail in production.`);
       _ctx.border ? (vue.openBlock(), vue.createBlock(_component_u_line, { key: 0 })) : vue.createCommentVNode("v-if", true)
     ], 14, ["hover-class"]);
   }
-  const __easycom_1$d = /* @__PURE__ */ _export_sfc(_sfc_main$2a, [["render", _sfc_render$29], ["__scopeId", "data-v-b4243719"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-cell/u-cell.vue"]]);
+  const __easycom_1$e = /* @__PURE__ */ _export_sfc(_sfc_main$2b, [["render", _sfc_render$2a], ["__scopeId", "data-v-b4243719"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-cell/u-cell.vue"]]);
   const __vite_glob_0_19 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
-    default: __easycom_1$d
+    default: __easycom_1$e
   }, Symbol.toStringTag, { value: "Module" }));
   const props$1n = defineMixin({
     props: {
@@ -15668,7 +15668,7 @@ This will fail in production.`);
       }
     }
   });
-  const _sfc_main$29 = {
+  const _sfc_main$2a = {
     name: "u-list",
     mixins: [mpMixin$1, mixin$1, props$1n],
     watch: {
@@ -15761,7 +15761,7 @@ This will fail in production.`);
       }
     }
   };
-  function _sfc_render$28(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$29(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock("scroll-view", {
       class: "u-list",
       "scroll-into-view": _ctx.scrollIntoView,
@@ -15792,10 +15792,10 @@ This will fail in production.`);
       ])
     ], 44, ["scroll-into-view", "scroll-y", "scroll-top", "lower-threshold", "upper-threshold", "show-scrollbar", "enable-back-to-top", "scroll-with-animation", "refresher-enabled", "refresher-threshold", "refresher-default-style", "refresher-background", "refresher-triggered"]);
   }
-  const __easycom_3$5 = /* @__PURE__ */ _export_sfc(_sfc_main$29, [["render", _sfc_render$28], ["__scopeId", "data-v-9ad03670"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-list/u-list.vue"]]);
+  const __easycom_3$3 = /* @__PURE__ */ _export_sfc(_sfc_main$2a, [["render", _sfc_render$29], ["__scopeId", "data-v-9ad03670"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-list/u-list.vue"]]);
   const __vite_glob_0_62 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
-    default: __easycom_3$5
+    default: __easycom_3$3
   }, Symbol.toStringTag, { value: "Module" }));
   const props$1m = defineMixin({
     props: {
@@ -15879,7 +15879,7 @@ This will fail in production.`);
       }
     }
   };
-  const _sfc_main$28 = {
+  const _sfc_main$29 = {
     name: "u-transition",
     data() {
       return {
@@ -15923,7 +15923,7 @@ This will fail in production.`);
       }
     }
   };
-  function _sfc_render$27(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$28(_ctx, _cache, $props, $setup, $data, $options) {
     return $data.inited ? (vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -15941,10 +15941,10 @@ This will fail in production.`);
       /* CLASS, STYLE, NEED_HYDRATION */
     )) : vue.createCommentVNode("v-if", true);
   }
-  const __easycom_2$6 = /* @__PURE__ */ _export_sfc(_sfc_main$28, [["render", _sfc_render$27], ["__scopeId", "data-v-0573594d"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-transition/u-transition.vue"]]);
+  const __easycom_2$7 = /* @__PURE__ */ _export_sfc(_sfc_main$29, [["render", _sfc_render$28], ["__scopeId", "data-v-0573594d"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-transition/u-transition.vue"]]);
   const __vite_glob_0_129 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
-    default: __easycom_2$6
+    default: __easycom_2$7
   }, Symbol.toStringTag, { value: "Module" }));
   const props$1l = defineMixin({
     props: {
@@ -16000,7 +16000,7 @@ This will fail in production.`);
       }
     }
   });
-  const _sfc_main$27 = {
+  const _sfc_main$28 = {
     name: "u-back-top",
     mixins: [mpMixin$1, mixin$1, props$1l],
     computed: {
@@ -16044,9 +16044,9 @@ This will fail in production.`);
       }
     }
   };
-  function _sfc_render$26(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
-    const _component_u_transition = resolveEasycom(vue.resolveDynamicComponent("u-transition"), __easycom_2$6);
+  function _sfc_render$27(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
+    const _component_u_transition = resolveEasycom(vue.resolveDynamicComponent("u-transition"), __easycom_2$7);
     return vue.openBlock(), vue.createBlock(_component_u_transition, {
       mode: "fade",
       customStyle: $options.backTopStyle,
@@ -16085,7 +16085,7 @@ This will fail in production.`);
       /* FORWARDED */
     }, 8, ["customStyle", "show"]);
   }
-  const __easycom_5$2 = /* @__PURE__ */ _export_sfc(_sfc_main$27, [["render", _sfc_render$26], ["__scopeId", "data-v-bf56b0c2"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-back-top/u-back-top.vue"]]);
+  const __easycom_5$2 = /* @__PURE__ */ _export_sfc(_sfc_main$28, [["render", _sfc_render$27], ["__scopeId", "data-v-bf56b0c2"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-back-top/u-back-top.vue"]]);
   const __vite_glob_0_7 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_5$2
@@ -16114,7 +16114,7 @@ This will fail in production.`);
       }
     }
   });
-  const _sfc_main$26 = {
+  const _sfc_main$27 = {
     name: "u-overlay",
     mixins: [mpMixin$1, mixin$1, props$1k],
     computed: {
@@ -16138,8 +16138,8 @@ This will fail in production.`);
       }
     }
   };
-  function _sfc_render$25(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_u_transition = resolveEasycom(vue.resolveDynamicComponent("u-transition"), __easycom_2$6);
+  function _sfc_render$26(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_u_transition = resolveEasycom(vue.resolveDynamicComponent("u-transition"), __easycom_2$7);
     return vue.openBlock(), vue.createBlock(_component_u_transition, {
       show: _ctx.show,
       "custom-class": "u-overlay",
@@ -16155,15 +16155,15 @@ This will fail in production.`);
       /* FORWARDED */
     }, 8, ["show", "duration", "custom-style", "onClick", "onTouchmove"]);
   }
-  const __easycom_3$4 = /* @__PURE__ */ _export_sfc(_sfc_main$26, [["render", _sfc_render$25], ["__scopeId", "data-v-35f7c3e5"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-overlay/u-overlay.vue"]]);
+  const __easycom_3$2 = /* @__PURE__ */ _export_sfc(_sfc_main$27, [["render", _sfc_render$26], ["__scopeId", "data-v-35f7c3e5"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-overlay/u-overlay.vue"]]);
   const __vite_glob_0_76 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
-    default: __easycom_3$4
+    default: __easycom_3$2
   }, Symbol.toStringTag, { value: "Module" }));
   const props$1j = defineMixin({
     props: {}
   });
-  const _sfc_main$25 = {
+  const _sfc_main$26 = {
     name: "u-safe-bottom",
     mixins: [mpMixin$1, mixin$1, props$1j],
     data() {
@@ -16181,7 +16181,7 @@ This will fail in production.`);
     mounted() {
     }
   };
-  function _sfc_render$24(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$25(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -16193,10 +16193,10 @@ This will fail in production.`);
       /* CLASS, STYLE */
     );
   }
-  const __easycom_0$e = /* @__PURE__ */ _export_sfc(_sfc_main$25, [["render", _sfc_render$24], ["__scopeId", "data-v-3ec581de"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-safe-bottom/u-safe-bottom.vue"]]);
+  const __easycom_0$f = /* @__PURE__ */ _export_sfc(_sfc_main$26, [["render", _sfc_render$25], ["__scopeId", "data-v-3ec581de"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-safe-bottom/u-safe-bottom.vue"]]);
   const __vite_glob_0_95 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
-    default: __easycom_0$e
+    default: __easycom_0$f
   }, Symbol.toStringTag, { value: "Module" }));
   const props$1i = defineMixin({
     props: {
@@ -16297,7 +16297,7 @@ This will fail in production.`);
       }
     }
   });
-  const _sfc_main$24 = {
+  const _sfc_main$25 = {
     name: "u-popup",
     mixins: [mpMixin$1, mixin$1, props$1i],
     data() {
@@ -16473,12 +16473,12 @@ This will fail in production.`);
       }
     }
   };
-  function _sfc_render$23(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_u_overlay = resolveEasycom(vue.resolveDynamicComponent("u-overlay"), __easycom_3$4);
-    const _component_u_status_bar = resolveEasycom(vue.resolveDynamicComponent("u-status-bar"), __easycom_0$j);
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
-    const _component_u_safe_bottom = resolveEasycom(vue.resolveDynamicComponent("u-safe-bottom"), __easycom_0$e);
-    const _component_u_transition = resolveEasycom(vue.resolveDynamicComponent("u-transition"), __easycom_2$6);
+  function _sfc_render$24(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_u_overlay = resolveEasycom(vue.resolveDynamicComponent("u-overlay"), __easycom_3$2);
+    const _component_u_status_bar = resolveEasycom(vue.resolveDynamicComponent("u-status-bar"), __easycom_0$k);
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
+    const _component_u_safe_bottom = resolveEasycom(vue.resolveDynamicComponent("u-safe-bottom"), __easycom_0$f);
+    const _component_u_transition = resolveEasycom(vue.resolveDynamicComponent("u-transition"), __easycom_2$7);
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -16578,10 +16578,10 @@ This will fail in production.`);
       /* CLASS, STYLE */
     );
   }
-  const __easycom_3$3 = /* @__PURE__ */ _export_sfc(_sfc_main$24, [["render", _sfc_render$23], ["__scopeId", "data-v-74921bef"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-popup/u-popup.vue"]]);
+  const __easycom_3$1 = /* @__PURE__ */ _export_sfc(_sfc_main$25, [["render", _sfc_render$24], ["__scopeId", "data-v-74921bef"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-popup/u-popup.vue"]]);
   const __vite_glob_0_84 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
-    default: __easycom_3$3
+    default: __easycom_3$1
   }, Symbol.toStringTag, { value: "Module" }));
   const props$1h = defineMixin({
     props: {
@@ -16692,7 +16692,7 @@ This will fail in production.`);
       }
     }
   });
-  const _sfc_main$23 = {
+  const _sfc_main$24 = {
     name: "u-modal",
     mixins: [mpMixin$1, mixin$1, props$1h],
     data() {
@@ -16755,10 +16755,10 @@ This will fail in production.`);
       }
     }
   };
-  function _sfc_render$22(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_u_line = resolveEasycom(vue.resolveDynamicComponent("u-line"), __easycom_1$h);
-    const _component_u_loading_icon = resolveEasycom(vue.resolveDynamicComponent("u-loading-icon"), __easycom_1$g);
-    const _component_u_popup = resolveEasycom(vue.resolveDynamicComponent("u-popup"), __easycom_3$3);
+  function _sfc_render$23(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_u_line = resolveEasycom(vue.resolveDynamicComponent("u-line"), __easycom_1$i);
+    const _component_u_loading_icon = resolveEasycom(vue.resolveDynamicComponent("u-loading-icon"), __easycom_1$h);
+    const _component_u_popup = resolveEasycom(vue.resolveDynamicComponent("u-popup"), __easycom_3$1);
     return vue.openBlock(), vue.createBlock(_component_u_popup, {
       mode: "center",
       zoom: _ctx.zoom,
@@ -16913,10 +16913,10 @@ This will fail in production.`);
       /* FORWARDED */
     }, 8, ["zoom", "show", "class", "customStyle", "closeOnClickOverlay", "duration", "onClick"]);
   }
-  const __easycom_0$d = /* @__PURE__ */ _export_sfc(_sfc_main$23, [["render", _sfc_render$22], ["__scopeId", "data-v-12b77a26"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-modal/u-modal.vue"]]);
+  const __easycom_0$e = /* @__PURE__ */ _export_sfc(_sfc_main$24, [["render", _sfc_render$23], ["__scopeId", "data-v-12b77a26"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-modal/u-modal.vue"]]);
   const __vite_glob_0_68 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
-    default: __easycom_0$d
+    default: __easycom_0$e
   }, Symbol.toStringTag, { value: "Module" }));
   const useCategoryStore = defineStore("category", {
     state: () => ({
@@ -17110,7 +17110,7 @@ This will fail in production.`);
     }
   });
   const activeBtnStyle = "background-color:#1989fa;color:#fff;border-color:#1989fa;";
-  const _sfc_main$22 = {
+  const _sfc_main$23 = {
     __name: "category",
     setup(__props, { expose: __expose }) {
       __expose();
@@ -17124,7 +17124,7 @@ This will fail in production.`);
       const CategoryShow = vue.ref(false);
       const searchCategoryName = vue.ref("");
       const CategoryName = vue.ref("");
-      const currentCategory = vue.ref("");
+      const currentCategory = vue.ref(null);
       const activeType = vue.ref(1);
       const currentType = vue.ref(1);
       const showAddDialog = () => {
@@ -17170,10 +17170,21 @@ This will fail in production.`);
         activeType.value = type2;
       };
       const handleLongPress = (item) => {
+        formatAppLog("log", "at pages/home/category.vue:176", "长按触发", item);
+        if (!item || !item.id) {
+          formatAppLog("error", "at pages/home/category.vue:178", "无效的分类数据", item);
+          return;
+        }
         currentCategory.value = item;
         DialogShow.value = true;
+        formatAppLog("log", "at pages/home/category.vue:183", "弹窗状态", DialogShow.value);
       };
       const confirmDelete = async () => {
+        if (!currentCategory.value) {
+          formatAppLog("error", "at pages/home/category.vue:189", "没有选中的分类");
+          DialogShow.value = false;
+          return;
+        }
         const deleteCategoryData = {
           id: currentCategory.value.id,
           type: currentCategory.value.type,
@@ -17185,13 +17196,18 @@ This will fail in production.`);
           const lid = uni.getStorageSync("ledgerId");
           await ledgerStore.queryLedgerDetailByID({ ledgerId: lid });
         } catch (err) {
-          formatAppLog("log", "at pages/home/category.vue:193", "删除失败", err);
+          formatAppLog("log", "at pages/home/category.vue:204", "删除失败", err);
         } finally {
           DialogShow.value = false;
           currentCategory.value = null;
         }
       };
       const moveCategory = async () => {
+        if (!currentCategory.value) {
+          formatAppLog("error", "at pages/home/category.vue:214", "没有选中的分类");
+          DialogShow.value = false;
+          return;
+        }
         try {
           const res = await billStore.queryBillByCategoryId(currentCategory.value.id);
           if (res) {
@@ -17199,8 +17215,9 @@ This will fail in production.`);
               url: `/pages/record/moveCategory?categoryId=${currentCategory.value.id}`
             });
           }
+          DialogShow.value = false;
         } catch (error2) {
-          uni.showToast({ title: error2.message, icon: "error" });
+          uni.showToast({ title: error2.message || "shibai", icon: "none" });
         }
       };
       vue.onMounted(() => {
@@ -17223,15 +17240,15 @@ This will fail in production.`);
       return __returned__;
     }
   };
-  function _sfc_render$21(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
-    const _component_up_navbar = resolveEasycom(vue.resolveDynamicComponent("up-navbar"), __easycom_0$i);
-    const _component_up_button = resolveEasycom(vue.resolveDynamicComponent("up-button"), __easycom_3$7);
-    const _component_up_cell = resolveEasycom(vue.resolveDynamicComponent("up-cell"), __easycom_1$d);
-    const _component_up_list = resolveEasycom(vue.resolveDynamicComponent("up-list"), __easycom_3$5);
+  function _sfc_render$22(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
+    const _component_up_navbar = resolveEasycom(vue.resolveDynamicComponent("up-navbar"), __easycom_0$j);
+    const _component_up_button = resolveEasycom(vue.resolveDynamicComponent("up-button"), __easycom_3$5);
+    const _component_up_cell = resolveEasycom(vue.resolveDynamicComponent("up-cell"), __easycom_1$e);
+    const _component_up_list = resolveEasycom(vue.resolveDynamicComponent("up-list"), __easycom_3$3);
     const _component_up_back_top = resolveEasycom(vue.resolveDynamicComponent("up-back-top"), __easycom_5$2);
-    const _component_up_input = resolveEasycom(vue.resolveDynamicComponent("up-input"), __easycom_0$k);
-    const _component_up_modal = resolveEasycom(vue.resolveDynamicComponent("up-modal"), __easycom_0$d);
+    const _component_up_input = resolveEasycom(vue.resolveDynamicComponent("up-input"), __easycom_0$l);
+    const _component_up_modal = resolveEasycom(vue.resolveDynamicComponent("up-modal"), __easycom_0$e);
     return vue.openBlock(), vue.createElementBlock("view", { class: "placeholder-nav" }, [
       vue.createVNode(_component_up_navbar, {
         title: "分类",
@@ -17330,7 +17347,7 @@ This will fail in production.`);
         title: "搜索分类",
         "show-cancel-button": "",
         onConfirm: $setup.searchCategory,
-        onClose: _cache[6] || (_cache[6] = ($event) => $setup.CategoryShow = false)
+        onCancel: _cache[6] || (_cache[6] = ($event) => $setup.CategoryShow = false)
       }, {
         default: vue.withCtx(() => [
           vue.createElementVNode("view", { class: "modal-content" }, [
@@ -17363,7 +17380,7 @@ This will fail in production.`);
       }, 8, ["show"])
     ]);
   }
-  const PagesHomeCategory = /* @__PURE__ */ _export_sfc(_sfc_main$22, [["render", _sfc_render$21], ["__file", "D:/project/记账/demo_front_app/keep_acount/pages/home/category.vue"]]);
+  const PagesHomeCategory = /* @__PURE__ */ _export_sfc(_sfc_main$23, [["render", _sfc_render$22], ["__file", "D:/project/记账/demo_front_app/keep_acount/pages/home/category.vue"]]);
   const props$1g = defineMixin({
     props: {
       // 是否虚线
@@ -17408,7 +17425,7 @@ This will fail in production.`);
       }
     }
   });
-  const _sfc_main$21 = {
+  const _sfc_main$22 = {
     name: "u-divider",
     mixins: [mpMixin$1, mixin$1, props$1g],
     computed: {
@@ -17448,8 +17465,8 @@ This will fail in production.`);
       }
     }
   };
-  function _sfc_render$20(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_u_line = resolveEasycom(vue.resolveDynamicComponent("u-line"), __easycom_1$h);
+  function _sfc_render$21(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_u_line = resolveEasycom(vue.resolveDynamicComponent("u-line"), __easycom_1$i);
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -17492,10 +17509,10 @@ This will fail in production.`);
       /* STYLE */
     );
   }
-  const __easycom_3$2 = /* @__PURE__ */ _export_sfc(_sfc_main$21, [["render", _sfc_render$20], ["__scopeId", "data-v-363a2c1a"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-divider/u-divider.vue"]]);
+  const __easycom_0$d = /* @__PURE__ */ _export_sfc(_sfc_main$22, [["render", _sfc_render$21], ["__scopeId", "data-v-363a2c1a"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-divider/u-divider.vue"]]);
   const __vite_glob_0_38 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
-    default: __easycom_3$2
+    default: __easycom_0$d
   }, Symbol.toStringTag, { value: "Module" }));
   const props$1f = defineMixin({
     props: {
@@ -17566,7 +17583,7 @@ This will fail in production.`);
       }
     }
   });
-  const _sfc_main$20 = {
+  const _sfc_main$21 = {
     name: "u-radio",
     mixins: [mpMixin$1, mixin$1, props$1f],
     data() {
@@ -17721,8 +17738,8 @@ This will fail in production.`);
       }
     }
   };
-  function _sfc_render$1$(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
+  function _sfc_render$20(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -17783,10 +17800,10 @@ This will fail in production.`);
       /* CLASS, STYLE */
     );
   }
-  const __easycom_3$1 = /* @__PURE__ */ _export_sfc(_sfc_main$20, [["render", _sfc_render$1$], ["__scopeId", "data-v-edf95844"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-radio/u-radio.vue"]]);
+  const __easycom_1$d = /* @__PURE__ */ _export_sfc(_sfc_main$21, [["render", _sfc_render$20], ["__scopeId", "data-v-edf95844"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-radio/u-radio.vue"]]);
   const __vite_glob_0_89 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
-    default: __easycom_3$1
+    default: __easycom_1$d
   }, Symbol.toStringTag, { value: "Module" }));
   const props$1e = defineMixin({
     props: {
@@ -17877,7 +17894,7 @@ This will fail in production.`);
       }
     }
   });
-  const _sfc_main$1$ = {
+  const _sfc_main$20 = {
     name: "u-radio-group",
     mixins: [mpMixin$1, mixin$1, props$1e],
     computed: {
@@ -17941,7 +17958,7 @@ This will fail in production.`);
       }
     }
   };
-  function _sfc_render$1_(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$1$(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -17955,10 +17972,10 @@ This will fail in production.`);
       /* CLASS, STYLE */
     );
   }
-  const __easycom_4$1 = /* @__PURE__ */ _export_sfc(_sfc_main$1$, [["render", _sfc_render$1_], ["__scopeId", "data-v-272bb654"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-radio-group/u-radio-group.vue"]]);
+  const __easycom_2$6 = /* @__PURE__ */ _export_sfc(_sfc_main$20, [["render", _sfc_render$1$], ["__scopeId", "data-v-272bb654"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-radio-group/u-radio-group.vue"]]);
   const __vite_glob_0_88 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
-    default: __easycom_4$1
+    default: __easycom_2$6
   }, Symbol.toStringTag, { value: "Module" }));
   const props$1d = defineMixin({
     props: {
@@ -18074,7 +18091,7 @@ This will fail in production.`);
       }
     }
   });
-  const _sfc_main$1_ = {
+  const _sfc_main$1$ = {
     name: "u-tag",
     mixins: [mpMixin$1, mixin$1, props$1d],
     data() {
@@ -18157,9 +18174,9 @@ This will fail in production.`);
       }
     }
   };
-  function _sfc_render$1Z(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
-    const _component_u_transition = resolveEasycom(vue.resolveDynamicComponent("u-transition"), __easycom_2$6);
+  function _sfc_render$1_(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
+    const _component_u_transition = resolveEasycom(vue.resolveDynamicComponent("u-transition"), __easycom_2$7);
     return vue.openBlock(), vue.createBlock(_component_u_transition, {
       mode: "fade",
       show: _ctx.show,
@@ -18257,7 +18274,7 @@ This will fail in production.`);
       /* FORWARDED */
     }, 8, ["show"]);
   }
-  const __easycom_0$c = /* @__PURE__ */ _export_sfc(_sfc_main$1_, [["render", _sfc_render$1Z], ["__scopeId", "data-v-23de980f"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-tag/u-tag.vue"]]);
+  const __easycom_0$c = /* @__PURE__ */ _export_sfc(_sfc_main$1$, [["render", _sfc_render$1_], ["__scopeId", "data-v-23de980f"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-tag/u-tag.vue"]]);
   const __vite_glob_0_119 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_0$c
@@ -18357,7 +18374,7 @@ This will fail in production.`);
       }
     }
   });
-  const _sfc_main$1Z = {
+  const _sfc_main$1_ = {
     name: "u-collapse-item",
     mixins: [mpMixin$1, mixin$1, props$1c],
     data() {
@@ -18450,10 +18467,10 @@ This will fail in production.`);
       }
     }
   };
-  function _sfc_render$1Y(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
-    const _component_u_cell = resolveEasycom(vue.resolveDynamicComponent("u-cell"), __easycom_1$d);
-    const _component_u_line = resolveEasycom(vue.resolveDynamicComponent("u-line"), __easycom_1$h);
+  function _sfc_render$1Z(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
+    const _component_u_cell = resolveEasycom(vue.resolveDynamicComponent("u-cell"), __easycom_1$e);
+    const _component_u_line = resolveEasycom(vue.resolveDynamicComponent("u-line"), __easycom_1$i);
     return vue.openBlock(), vue.createElementBlock("view", { class: "u-collapse-item" }, [
       vue.createVNode(_component_u_cell, {
         title: _ctx.$slots.title ? "" : _ctx.title,
@@ -18535,7 +18552,7 @@ This will fail in production.`);
       $data.parentData.border ? (vue.openBlock(), vue.createBlock(_component_u_line, { key: 0 })) : vue.createCommentVNode("v-if", true)
     ]);
   }
-  const __easycom_5$1 = /* @__PURE__ */ _export_sfc(_sfc_main$1Z, [["render", _sfc_render$1Y], ["__scopeId", "data-v-1eebec58"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-collapse-item/u-collapse-item.vue"]]);
+  const __easycom_5$1 = /* @__PURE__ */ _export_sfc(_sfc_main$1_, [["render", _sfc_render$1Z], ["__scopeId", "data-v-1eebec58"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-collapse-item/u-collapse-item.vue"]]);
   const __vite_glob_0_28 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_5$1
@@ -18559,7 +18576,7 @@ This will fail in production.`);
       }
     }
   });
-  const _sfc_main$1Y = {
+  const _sfc_main$1Z = {
     name: "u-collapse",
     mixins: [mpMixin$1, mixin$1, props$1b],
     watch: {
@@ -18618,14 +18635,14 @@ This will fail in production.`);
       }
     }
   };
-  function _sfc_render$1X(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_u_line = resolveEasycom(vue.resolveDynamicComponent("u-line"), __easycom_1$h);
+  function _sfc_render$1Y(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_u_line = resolveEasycom(vue.resolveDynamicComponent("u-line"), __easycom_1$i);
     return vue.openBlock(), vue.createElementBlock("view", { class: "u-collapse" }, [
       _ctx.border ? (vue.openBlock(), vue.createBlock(_component_u_line, { key: 0 })) : vue.createCommentVNode("v-if", true),
       vue.renderSlot(_ctx.$slots, "default")
     ]);
   }
-  const __easycom_8 = /* @__PURE__ */ _export_sfc(_sfc_main$1Y, [["render", _sfc_render$1X], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-collapse/u-collapse.vue"]]);
+  const __easycom_8 = /* @__PURE__ */ _export_sfc(_sfc_main$1Z, [["render", _sfc_render$1Y], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-collapse/u-collapse.vue"]]);
   const __vite_glob_0_29 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_8
@@ -18640,7 +18657,7 @@ This will fail in production.`);
     formatAppLog("log", "at api/bill.js:51", "删除账本data", data);
     return http.delete(API_PATH.BILL.DELETE, data);
   };
-  const _sfc_main$1X = {
+  const _sfc_main$1Y = {
     __name: "bill",
     setup(__props, { expose: __expose }) {
       __expose();
@@ -18813,18 +18830,18 @@ This will fail in production.`);
       return __returned__;
     }
   };
-  function _sfc_render$1W(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
-    const _component_up_navbar = resolveEasycom(vue.resolveDynamicComponent("up-navbar"), __easycom_0$i);
-    const _component_up_input = resolveEasycom(vue.resolveDynamicComponent("up-input"), __easycom_0$k);
-    const _component_up_divider = resolveEasycom(vue.resolveDynamicComponent("up-divider"), __easycom_3$2);
-    const _component_up_radio = resolveEasycom(vue.resolveDynamicComponent("up-radio"), __easycom_3$1);
-    const _component_up_radio_group = resolveEasycom(vue.resolveDynamicComponent("up-radio-group"), __easycom_4$1);
-    const _component_up_button = resolveEasycom(vue.resolveDynamicComponent("up-button"), __easycom_3$7);
+  function _sfc_render$1X(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
+    const _component_up_navbar = resolveEasycom(vue.resolveDynamicComponent("up-navbar"), __easycom_0$j);
+    const _component_up_input = resolveEasycom(vue.resolveDynamicComponent("up-input"), __easycom_0$l);
+    const _component_up_divider = resolveEasycom(vue.resolveDynamicComponent("up-divider"), __easycom_0$d);
+    const _component_up_radio = resolveEasycom(vue.resolveDynamicComponent("up-radio"), __easycom_1$d);
+    const _component_up_radio_group = resolveEasycom(vue.resolveDynamicComponent("up-radio-group"), __easycom_2$6);
+    const _component_up_button = resolveEasycom(vue.resolveDynamicComponent("up-button"), __easycom_3$5);
     const _component_up_tag = resolveEasycom(vue.resolveDynamicComponent("up-tag"), __easycom_0$c);
     const _component_up_collapse_item = resolveEasycom(vue.resolveDynamicComponent("up-collapse-item"), __easycom_5$1);
     const _component_up_collapse = resolveEasycom(vue.resolveDynamicComponent("up-collapse"), __easycom_8);
-    const _component_up_modal = resolveEasycom(vue.resolveDynamicComponent("up-modal"), __easycom_0$d);
+    const _component_up_modal = resolveEasycom(vue.resolveDynamicComponent("up-modal"), __easycom_0$e);
     return vue.openBlock(), vue.createElementBlock("view", { class: "page-content" }, [
       vue.createElementVNode("view", { class: "placeholder-nav" }, [
         vue.createVNode(_component_up_navbar, {
@@ -19086,7 +19103,7 @@ This will fail in production.`);
       }, 8, ["show"])
     ]);
   }
-  const PagesRecordBill = /* @__PURE__ */ _export_sfc(_sfc_main$1X, [["render", _sfc_render$1W], ["__scopeId", "data-v-b3748317"], ["__file", "D:/project/记账/demo_front_app/keep_acount/pages/record/bill.vue"]]);
+  const PagesRecordBill = /* @__PURE__ */ _export_sfc(_sfc_main$1Y, [["render", _sfc_render$1X], ["__scopeId", "data-v-b3748317"], ["__file", "D:/project/记账/demo_front_app/keep_acount/pages/record/bill.vue"]]);
   const props$1a = defineMixin({
     props: {
       // 分组标题
@@ -19101,15 +19118,15 @@ This will fail in production.`);
       }
     }
   });
-  const _sfc_main$1W = {
+  const _sfc_main$1X = {
     name: "u-cell-group",
     mixins: [mpMixin$1, mixin$1, props$1a],
     methods: {
       addStyle: addStyle$1
     }
   };
-  function _sfc_render$1V(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_u_line = resolveEasycom(vue.resolveDynamicComponent("u-line"), __easycom_1$h);
+  function _sfc_render$1W(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_u_line = resolveEasycom(vue.resolveDynamicComponent("u-line"), __easycom_1$i);
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -19140,7 +19157,7 @@ This will fail in production.`);
       /* CLASS, STYLE */
     );
   }
-  const __easycom_2$5 = /* @__PURE__ */ _export_sfc(_sfc_main$1W, [["render", _sfc_render$1V], ["__scopeId", "data-v-30c8e4c7"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-cell-group/u-cell-group.vue"]]);
+  const __easycom_2$5 = /* @__PURE__ */ _export_sfc(_sfc_main$1X, [["render", _sfc_render$1W], ["__scopeId", "data-v-30c8e4c7"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-cell-group/u-cell-group.vue"]]);
   const __vite_glob_0_18 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_2$5
@@ -19204,7 +19221,7 @@ This will fail in production.`);
       }
     }
   });
-  const _sfc_main$1V = {
+  const _sfc_main$1W = {
     name: "u-empty",
     mixins: [mpMixin$1, mixin$1, props$19],
     data() {
@@ -19251,8 +19268,8 @@ This will fail in production.`);
       addUnit: addUnit$1
     }
   };
-  function _sfc_render$1U(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
+  function _sfc_render$1V(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
     return _ctx.show ? (vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -19297,12 +19314,12 @@ This will fail in production.`);
       /* STYLE */
     )) : vue.createCommentVNode("v-if", true);
   }
-  const __easycom_5 = /* @__PURE__ */ _export_sfc(_sfc_main$1V, [["render", _sfc_render$1U], ["__scopeId", "data-v-bd84101d"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-empty/u-empty.vue"]]);
+  const __easycom_5 = /* @__PURE__ */ _export_sfc(_sfc_main$1W, [["render", _sfc_render$1V], ["__scopeId", "data-v-bd84101d"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-empty/u-empty.vue"]]);
   const __vite_glob_0_42 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_5
   }, Symbol.toStringTag, { value: "Module" }));
-  const _sfc_main$1U = {
+  const _sfc_main$1V = {
     __name: "allLedger",
     setup(__props, { expose: __expose }) {
       __expose();
@@ -19410,15 +19427,15 @@ This will fail in production.`);
       return __returned__;
     }
   };
-  function _sfc_render$1T(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
-    const _component_up_navbar = resolveEasycom(vue.resolveDynamicComponent("up-navbar"), __easycom_0$i);
+  function _sfc_render$1U(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
+    const _component_up_navbar = resolveEasycom(vue.resolveDynamicComponent("up-navbar"), __easycom_0$j);
     const _component_up_tag = resolveEasycom(vue.resolveDynamicComponent("up-tag"), __easycom_0$c);
-    const _component_up_cell = resolveEasycom(vue.resolveDynamicComponent("up-cell"), __easycom_1$d);
+    const _component_up_cell = resolveEasycom(vue.resolveDynamicComponent("up-cell"), __easycom_1$e);
     const _component_up_cell_group = resolveEasycom(vue.resolveDynamicComponent("up-cell-group"), __easycom_2$5);
     const _component_up_empty = resolveEasycom(vue.resolveDynamicComponent("up-empty"), __easycom_5);
-    const _component_up_input = resolveEasycom(vue.resolveDynamicComponent("up-input"), __easycom_0$k);
-    const _component_up_modal = resolveEasycom(vue.resolveDynamicComponent("up-modal"), __easycom_0$d);
+    const _component_up_input = resolveEasycom(vue.resolveDynamicComponent("up-input"), __easycom_0$l);
+    const _component_up_modal = resolveEasycom(vue.resolveDynamicComponent("up-modal"), __easycom_0$e);
     return vue.openBlock(), vue.createElementBlock("view", { class: "content" }, [
       vue.createVNode(_component_up_navbar, {
         title: "切换账本",
@@ -19526,8 +19543,8 @@ This will fail in production.`);
       }, 8, ["show"])
     ]);
   }
-  const PagesLedgerAllLedger = /* @__PURE__ */ _export_sfc(_sfc_main$1U, [["render", _sfc_render$1T], ["__scopeId", "data-v-8352fd9f"], ["__file", "D:/project/记账/demo_front_app/keep_acount/pages/ledger/allLedger.vue"]]);
-  const _sfc_main$1T = {
+  const PagesLedgerAllLedger = /* @__PURE__ */ _export_sfc(_sfc_main$1V, [["render", _sfc_render$1U], ["__scopeId", "data-v-8352fd9f"], ["__file", "D:/project/记账/demo_front_app/keep_acount/pages/ledger/allLedger.vue"]]);
+  const _sfc_main$1U = {
     __name: "dailyBillList",
     setup(__props, { expose: __expose }) {
       __expose();
@@ -19706,12 +19723,12 @@ This will fail in production.`);
       return __returned__;
     }
   };
-  function _sfc_render$1S(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
-    const _component_up_navbar = resolveEasycom(vue.resolveDynamicComponent("up-navbar"), __easycom_0$i);
-    const _component_up_cell = resolveEasycom(vue.resolveDynamicComponent("up-cell"), __easycom_1$d);
-    const _component_up_list = resolveEasycom(vue.resolveDynamicComponent("up-list"), __easycom_3$5);
-    const _component_up_modal = resolveEasycom(vue.resolveDynamicComponent("up-modal"), __easycom_0$d);
+  function _sfc_render$1T(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
+    const _component_up_navbar = resolveEasycom(vue.resolveDynamicComponent("up-navbar"), __easycom_0$j);
+    const _component_up_cell = resolveEasycom(vue.resolveDynamicComponent("up-cell"), __easycom_1$e);
+    const _component_up_list = resolveEasycom(vue.resolveDynamicComponent("up-list"), __easycom_3$3);
+    const _component_up_modal = resolveEasycom(vue.resolveDynamicComponent("up-modal"), __easycom_0$e);
     return vue.openBlock(), vue.createElementBlock("view", null, [
       vue.createElementVNode("view", { class: "nav" }, [
         vue.createVNode(_component_up_navbar, {
@@ -19794,8 +19811,8 @@ This will fail in production.`);
       ])
     ]);
   }
-  const PagesRecordDailyBillList = /* @__PURE__ */ _export_sfc(_sfc_main$1T, [["render", _sfc_render$1S], ["__scopeId", "data-v-6e31bef7"], ["__file", "D:/project/记账/demo_front_app/keep_acount/pages/record/dailyBillList.vue"]]);
-  const _sfc_main$1S = {
+  const PagesRecordDailyBillList = /* @__PURE__ */ _export_sfc(_sfc_main$1U, [["render", _sfc_render$1T], ["__scopeId", "data-v-6e31bef7"], ["__file", "D:/project/记账/demo_front_app/keep_acount/pages/record/dailyBillList.vue"]]);
+  const _sfc_main$1T = {
     __name: "PlusBillButton",
     props: {
       time: {
@@ -19827,8 +19844,8 @@ This will fail in production.`);
       return __returned__;
     }
   };
-  function _sfc_render$1R(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_button = resolveEasycom(vue.resolveDynamicComponent("up-button"), __easycom_3$7);
+  function _sfc_render$1S(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_up_button = resolveEasycom(vue.resolveDynamicComponent("up-button"), __easycom_3$5);
     return vue.openBlock(), vue.createElementBlock("view", { class: "content" }, [
       vue.createVNode(_component_up_button, {
         icon: "plus",
@@ -19839,7 +19856,7 @@ This will fail in production.`);
       })
     ]);
   }
-  const ComponentsPlusBillButton = /* @__PURE__ */ _export_sfc(_sfc_main$1S, [["render", _sfc_render$1R], ["__file", "D:/project/记账/demo_front_app/keep_acount/components/PlusBillButton.vue"]]);
+  const ComponentsPlusBillButton = /* @__PURE__ */ _export_sfc(_sfc_main$1T, [["render", _sfc_render$1S], ["__file", "D:/project/记账/demo_front_app/keep_acount/components/PlusBillButton.vue"]]);
   const props$18 = defineMixin({
     props: {
       // 文字颜色
@@ -19879,7 +19896,7 @@ This will fail in production.`);
       }
     }
   });
-  const _sfc_main$1R = {
+  const _sfc_main$1S = {
     name: "u-link",
     mixins: [mpMixin$1, mixin$1, props$18],
     computed: {
@@ -19903,7 +19920,7 @@ This will fail in production.`);
       }
     }
   };
-  function _sfc_render$1Q(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$1R(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "text",
       {
@@ -19916,7 +19933,7 @@ This will fail in production.`);
       /* TEXT, STYLE */
     );
   }
-  const __easycom_1$c = /* @__PURE__ */ _export_sfc(_sfc_main$1R, [["render", _sfc_render$1Q], ["__scopeId", "data-v-dedad317"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-link/u-link.vue"]]);
+  const __easycom_1$c = /* @__PURE__ */ _export_sfc(_sfc_main$1S, [["render", _sfc_render$1R], ["__scopeId", "data-v-dedad317"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-link/u-link.vue"]]);
   const __vite_glob_0_60 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_1$c
@@ -20148,7 +20165,7 @@ This will fail in production.`);
       }
     }
   });
-  const _sfc_main$1Q = {
+  const _sfc_main$1R = {
     name: "up-text",
     mixins: [mpMixin$1, mixin$1, value, props$17],
     emits: ["click"],
@@ -20201,8 +20218,8 @@ This will fail in production.`);
       }
     }
   };
-  function _sfc_render$1P(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
+  function _sfc_render$1Q(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
     const _component_u_link = resolveEasycom(vue.resolveDynamicComponent("u-link"), __easycom_1$c);
     return _ctx.show ? (vue.openBlock(), vue.createElementBlock(
       "view",
@@ -20287,7 +20304,7 @@ This will fail in production.`);
       /* CLASS, STYLE */
     )) : vue.createCommentVNode("v-if", true);
   }
-  const __easycom_0$b = /* @__PURE__ */ _export_sfc(_sfc_main$1Q, [["render", _sfc_render$1P], ["__scopeId", "data-v-5fec1d8b"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-text/u-text.vue"]]);
+  const __easycom_0$b = /* @__PURE__ */ _export_sfc(_sfc_main$1R, [["render", _sfc_render$1Q], ["__scopeId", "data-v-5fec1d8b"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-text/u-text.vue"]]);
   const __vite_glob_0_121 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_0$b
@@ -20371,7 +20388,7 @@ This will fail in production.`);
     }
   });
   const base64Avatar = "data:image/jpg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/4QMraHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjMtYzAxMSA2Ni4xNDU2NjEsIDIwMTIvMDIvMDYtMTQ6NTY6MjcgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDUzYgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjREMEQwRkY0RjgwNDExRUE5OTY2RDgxODY3NkJFODMxIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjREMEQwRkY1RjgwNDExRUE5OTY2RDgxODY3NkJFODMxIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NEQwRDBGRjJGODA0MTFFQTk5NjZEODE4Njc2QkU4MzEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NEQwRDBGRjNGODA0MTFFQTk5NjZEODE4Njc2QkU4MzEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7/7gAOQWRvYmUAZMAAAAAB/9sAhAAGBAQEBQQGBQUGCQYFBgkLCAYGCAsMCgoLCgoMEAwMDAwMDBAMDg8QDw4MExMUFBMTHBsbGxwfHx8fHx8fHx8fAQcHBw0MDRgQEBgaFREVGh8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx//wAARCADIAMgDAREAAhEBAxEB/8QAcQABAQEAAwEBAAAAAAAAAAAAAAUEAQMGAgcBAQAAAAAAAAAAAAAAAAAAAAAQAAIBAwICBgkDBQAAAAAAAAABAhEDBCEFMVFBYXGREiKBscHRMkJSEyOh4XLxYjNDFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A/fAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHbHFyZ/Dam+yLA+Z2L0Pjtyj2poD4AAAAAAAAAAAAAAAAAAAAAAAAKWFs9y6lcvvwQeqj8z9wFaziY1n/HbUX9XF97A7QAGXI23EvJ1goyfzR0YEfN269jeZ+a03pNe0DIAAAAAAAAAAAAAAAAAAAACvtO3RcVkXlWutuL9YFYAAAAAOJRjKLjJVi9GmB5/csH/mu1h/in8PU+QGMAAAAAAAAAAAAAAAAAAaMDG/6MmMH8C80+xAelSSVFolwQAAAAAAAHVlWI37ErUulaPk+hgeYnCUJuElSUXRrrQHAAAAAAAAAAAAAAAAABa2Oz4bM7r4zdF2ICmAAAAAAAAAg7zZ8GX41wuJP0rRgYAAAAAAAAAAAAAAAAAD0m2R8ODaXU33tsDSAAAAAAAAAlb9HyWZcnJd9PcBHAAAAAAAAAAAAAAAAAPS7e64Vn+KA0AAAAAAAAAJm+v8Ftf3ewCKAAAAAAAAAAAAAAAAAX9muqeGo9NttP06+0DcAAAAAAAAAjb7dTu2ra+VOT9P8AQCWAAAAAAAAAAAAAAAAAUNmyPt5Ltv4bui/kuAF0AAAAAAADiUlGLlJ0SVW+oDzOXfd/Ind6JPRdS0QHSAAAAAAAAAAAAAAAAAE2nVaNcGB6Lbs6OTao9LsF51z60BrAAAAAABJ3jOVHjW3r/sa9QEgAAAAAAAAAAAAAAAAAAAPu1duWriuW34ZR4MC9hbnZyEoy8l36XwfYBsAAADaSq9EuLAlZ+7xSdrGdW9Hc5dgEdtt1erfFgAAAAAAAAAAAAAAAAADVjbblX6NR8MH80tEBRs7HYivyzlN8lovaBPzduvY0m6eK10TXtAyAarO55lpJK54orolr+4GqO/Xaea1FvqbXvA+Z77kNeW3GPbV+4DJfzcm/pcm3H6Vou5AdAFLC2ed2Pjv1txa8sV8T6wOL+yZEKu1JXFy4MDBOE4ScZxcZLinoB8gAAAAAAAAAAAB242LeyJ+C3GvN9C7QLmJtePYpKS+5c+p8F2IDYAANJqj1T4oCfk7Nj3G5Wn9qXJax7gJ93Z82D8sVNc4v30A6Xg5i42Z+iLfqARwcyT0sz9MWvWBps7LlTf5Grce9/oBTxdtxseklHxT+uWr9AGoAB138ezfj4bsFJdD6V2MCPm7RdtJzs1uW1xXzL3gTgAAAAAAAAADRhYc8q74I6RWs5ckB6GxYtWLat21SK731sDsAAAAAAAAAAAAAAAASt021NO/YjrxuQXT1oCOAAAAAAABzGLlJRSq26JAelwsWONYjbXxcZvmwO8AAAAAAAAAAAAAAAAAAef3TEWPkVivx3NY9T6UBiAAAAAABo2+VmGXblddIJ8eivRUD0oAAAAAAAAAAAAAAAAAAAYt4tKeFKVNYNSXfRgefAAAAAAAAr7VuSSWPedKaW5v1MCsAAAAAAAAAAAAAAAAAAIe6bj96Ts2n+JPzSXzP3ATgAAAAAAAAFbbt1UUrOQ9FpC4/UwK6aaqtU+DAAAAAAAAAAAAAAA4lKMIuUmoxWrb4ARNx3R3q2rLpa4Sl0y/YCcAAAAAAAAAAANmFud7G8r89r6X0dgFvGzLGRGtuWvTF6NAdwAAAAAAAAAAAy5W442PVN+K59EePp5ARMvOv5MvO6QXCC4AZwAAAAAAAAAAAAAcxlKLUotprg1owN+PvORborq+7Hnwl3gUbO74VzRydt8pKn68ANcJwmqwkpLmnUDkAAAAfNy9atqtyagut0AxXt5xIV8Fbj6lRd7Am5G65V6qUvtwfyx94GMAAAAAAAAAAAAAAAAAAAOU2nVOj5gdsc3LiqRvTpyqwOxbnnrhdfpSfrQB7pnv/AGvuS9gHXPMy5/Fem1yq0v0A6W29XqwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf//Z";
-  const _sfc_main$1P = {
+  const _sfc_main$1Q = {
     name: "u-avatar",
     mixins: [mpMixin$1, mixin$1, props$16],
     data() {
@@ -20445,8 +20462,8 @@ This will fail in production.`);
       }
     }
   };
-  function _sfc_render$1O(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
+  function _sfc_render$1P(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
     const _component_up_text = resolveEasycom(vue.resolveDynamicComponent("up-text"), __easycom_0$b);
     return vue.openBlock(), vue.createElementBlock(
       "view",
@@ -20496,7 +20513,7 @@ This will fail in production.`);
       /* CLASS, STYLE */
     );
   }
-  const __easycom_2$4 = /* @__PURE__ */ _export_sfc(_sfc_main$1P, [["render", _sfc_render$1O], ["__scopeId", "data-v-14a988f2"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-avatar/u-avatar.vue"]]);
+  const __easycom_2$4 = /* @__PURE__ */ _export_sfc(_sfc_main$1Q, [["render", _sfc_render$1P], ["__scopeId", "data-v-14a988f2"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-avatar/u-avatar.vue"]]);
   const __vite_glob_0_6 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_2$4
@@ -20530,7 +20547,7 @@ This will fail in production.`);
       }
     }
   });
-  const _sfc_main$1O = {
+  const _sfc_main$1P = {
     name: "u-col",
     mixins: [mpMixin$1, mixin$1, props$15],
     data() {
@@ -20596,7 +20613,7 @@ This will fail in production.`);
       }
     }
   };
-  function _sfc_render$1N(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$1O(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -20614,7 +20631,7 @@ This will fail in production.`);
       /* CLASS, STYLE */
     );
   }
-  const __easycom_1$b = /* @__PURE__ */ _export_sfc(_sfc_main$1O, [["render", _sfc_render$1N], ["__scopeId", "data-v-3677f292"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-col/u-col.vue"]]);
+  const __easycom_1$b = /* @__PURE__ */ _export_sfc(_sfc_main$1P, [["render", _sfc_render$1O], ["__scopeId", "data-v-3677f292"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-col/u-col.vue"]]);
   const __vite_glob_0_27 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_1$b
@@ -20638,7 +20655,7 @@ This will fail in production.`);
       }
     }
   });
-  const _sfc_main$1N = {
+  const _sfc_main$1O = {
     name: "u-row",
     mixins: [mpMixin$1, mixin$1, props$14],
     data() {
@@ -20688,7 +20705,7 @@ This will fail in production.`);
       }
     }
   };
-  function _sfc_render$1M(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$1N(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -20704,12 +20721,12 @@ This will fail in production.`);
       /* STYLE */
     );
   }
-  const __easycom_2$3 = /* @__PURE__ */ _export_sfc(_sfc_main$1N, [["render", _sfc_render$1M], ["__scopeId", "data-v-f8e42af4"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-row/u-row.vue"]]);
+  const __easycom_2$3 = /* @__PURE__ */ _export_sfc(_sfc_main$1O, [["render", _sfc_render$1N], ["__scopeId", "data-v-f8e42af4"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-row/u-row.vue"]]);
   const __vite_glob_0_94 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_2$3
   }, Symbol.toStringTag, { value: "Module" }));
-  const _sfc_main$1M = {
+  const _sfc_main$1N = {
     __name: "mine",
     setup(__props, { expose: __expose }) {
       __expose();
@@ -20761,12 +20778,12 @@ This will fail in production.`);
       return __returned__;
     }
   };
-  function _sfc_render$1L(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$1M(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_up_avatar = resolveEasycom(vue.resolveDynamicComponent("up-avatar"), __easycom_2$4);
     const _component_up_col = resolveEasycom(vue.resolveDynamicComponent("up-col"), __easycom_1$b);
     const _component_up_row = resolveEasycom(vue.resolveDynamicComponent("up-row"), __easycom_2$3);
-    const _component_up_divider = resolveEasycom(vue.resolveDynamicComponent("up-divider"), __easycom_3$2);
-    const _component_up_cell = resolveEasycom(vue.resolveDynamicComponent("up-cell"), __easycom_1$d);
+    const _component_up_divider = resolveEasycom(vue.resolveDynamicComponent("up-divider"), __easycom_0$d);
+    const _component_up_cell = resolveEasycom(vue.resolveDynamicComponent("up-cell"), __easycom_1$e);
     const _component_up_cell_group = resolveEasycom(vue.resolveDynamicComponent("up-cell-group"), __easycom_2$5);
     return vue.openBlock(), vue.createElementBlock("view", null, [
       vue.createElementVNode("view", { class: "user" }, [
@@ -21003,7 +21020,7 @@ This will fail in production.`);
       ])
     ]);
   }
-  const PagesHomeMine = /* @__PURE__ */ _export_sfc(_sfc_main$1M, [["render", _sfc_render$1L], ["__scopeId", "data-v-dbf53c66"], ["__file", "D:/project/记账/demo_front_app/keep_acount/pages/home/mine.vue"]]);
+  const PagesHomeMine = /* @__PURE__ */ _export_sfc(_sfc_main$1N, [["render", _sfc_render$1M], ["__scopeId", "data-v-dbf53c66"], ["__file", "D:/project/记账/demo_front_app/keep_acount/pages/home/mine.vue"]]);
   const props$13 = defineMixin({
     props: {
       // 是否展示工具条
@@ -21043,7 +21060,7 @@ This will fail in production.`);
       }
     }
   });
-  const _sfc_main$1L = {
+  const _sfc_main$1M = {
     name: "u-toolbar",
     mixins: [mpMixin$1, mixin$1, props$13],
     emits: ["confirm", "cancel"],
@@ -21060,7 +21077,7 @@ This will fail in production.`);
       }
     }
   };
-  function _sfc_render$1K(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$1L(_ctx, _cache, $props, $setup, $data, $options) {
     return _ctx.show ? (vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -21125,7 +21142,7 @@ This will fail in production.`);
       /* NEED_HYDRATION */
     )) : vue.createCommentVNode("v-if", true);
   }
-  const __easycom_1$a = /* @__PURE__ */ _export_sfc(_sfc_main$1L, [["render", _sfc_render$1K], ["__scopeId", "data-v-3fd495d6"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-toolbar/u-toolbar.vue"]]);
+  const __easycom_1$a = /* @__PURE__ */ _export_sfc(_sfc_main$1M, [["render", _sfc_render$1L], ["__scopeId", "data-v-3fd495d6"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-toolbar/u-toolbar.vue"]]);
   const __vite_glob_0_126 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_1$a
@@ -21294,7 +21311,7 @@ This will fail in production.`);
       }
     }
   });
-  const _sfc_main$1K = {
+  const _sfc_main$1L = {
     name: "u-picker",
     mixins: [mpMixin$1, mixin$1, props$12],
     data() {
@@ -21552,11 +21569,11 @@ This will fail in production.`);
       }
     }
   };
-  function _sfc_render$1J(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_input = resolveEasycom(vue.resolveDynamicComponent("up-input"), __easycom_0$k);
+  function _sfc_render$1K(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_up_input = resolveEasycom(vue.resolveDynamicComponent("up-input"), __easycom_0$l);
     const _component_u_toolbar = resolveEasycom(vue.resolveDynamicComponent("u-toolbar"), __easycom_1$a);
-    const _component_u_loading_icon = resolveEasycom(vue.resolveDynamicComponent("u-loading-icon"), __easycom_1$g);
-    const _component_u_popup = resolveEasycom(vue.resolveDynamicComponent("u-popup"), __easycom_3$3);
+    const _component_u_loading_icon = resolveEasycom(vue.resolveDynamicComponent("u-loading-icon"), __easycom_1$h);
+    const _component_u_popup = resolveEasycom(vue.resolveDynamicComponent("u-popup"), __easycom_3$1);
     return vue.openBlock(), vue.createElementBlock("view", { class: "u-picker-wraper" }, [
       _ctx.hasInput ? (vue.openBlock(), vue.createElementBlock("view", {
         key: 0,
@@ -21667,7 +21684,7 @@ This will fail in production.`);
       }, 8, ["show", "mode", "zIndex", "bgColor", "round", "duration", "pageInline", "overlayOpacity", "onClose"])
     ]);
   }
-  const __easycom_1$9 = /* @__PURE__ */ _export_sfc(_sfc_main$1K, [["render", _sfc_render$1J], ["__scopeId", "data-v-1500ce68"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-picker/u-picker.vue"]]);
+  const __easycom_1$9 = /* @__PURE__ */ _export_sfc(_sfc_main$1L, [["render", _sfc_render$1K], ["__scopeId", "data-v-1500ce68"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-picker/u-picker.vue"]]);
   const __vite_glob_0_82 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_1$9
@@ -22137,7 +22154,7 @@ This will fail in production.`);
     }
     return result;
   }
-  const _sfc_main$1J = {
+  const _sfc_main$1K = {
     name: "up-datetime-picker",
     mixins: [mpMixin$1, mixin$1, props$11],
     data() {
@@ -22471,8 +22488,8 @@ This will fail in production.`);
       }
     }
   };
-  function _sfc_render$1I(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_input = resolveEasycom(vue.resolveDynamicComponent("up-input"), __easycom_0$k);
+  function _sfc_render$1J(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_up_input = resolveEasycom(vue.resolveDynamicComponent("up-input"), __easycom_0$l);
     const _component_u_picker = resolveEasycom(vue.resolveDynamicComponent("u-picker"), __easycom_1$9);
     return vue.openBlock(), vue.createElementBlock("view", { class: "u-datetime-picker" }, [
       _ctx.hasInput ? (vue.openBlock(), vue.createElementBlock("view", {
@@ -22524,7 +22541,7 @@ This will fail in production.`);
       }, 8, ["show", "popupMode", "closeOnClickOverlay", "columns", "title", "itemHeight", "showToolbar", "visibleItemCount", "defaultIndex", "cancelText", "confirmText", "cancelColor", "confirmColor", "toolbarRightSlot", "pageInline", "maskClass", "maskStyle", "onClose", "onCancel", "onConfirm", "onChange"])
     ]);
   }
-  const __easycom_11 = /* @__PURE__ */ _export_sfc(_sfc_main$1J, [["render", _sfc_render$1I], ["__scopeId", "data-v-e39cc2d0"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-datetime-picker/u-datetime-picker.vue"]]);
+  const __easycom_11 = /* @__PURE__ */ _export_sfc(_sfc_main$1K, [["render", _sfc_render$1J], ["__scopeId", "data-v-e39cc2d0"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-datetime-picker/u-datetime-picker.vue"]]);
   const __vite_glob_0_37 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_11
@@ -22536,7 +22553,7 @@ This will fail in production.`);
   const updateParticipant = (data = {}) => {
     return http.post(API_PATH.PARTICIPANT.UPDATE_PARTICIPANT, data);
   };
-  const _sfc_main$1I = {
+  const _sfc_main$1J = {
     __name: "billDetail",
     setup(__props, { expose: __expose }) {
       __expose();
@@ -22808,18 +22825,18 @@ This will fail in production.`);
       return __returned__;
     }
   };
-  function _sfc_render$1H(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_navbar = resolveEasycom(vue.resolveDynamicComponent("up-navbar"), __easycom_0$i);
-    const _component_up_input = resolveEasycom(vue.resolveDynamicComponent("up-input"), __easycom_0$k);
-    const _component_up_form_item = resolveEasycom(vue.resolveDynamicComponent("up-form-item"), __easycom_2$8);
-    const _component_up_radio = resolveEasycom(vue.resolveDynamicComponent("up-radio"), __easycom_3$1);
-    const _component_up_radio_group = resolveEasycom(vue.resolveDynamicComponent("up-radio-group"), __easycom_4$1);
+  function _sfc_render$1I(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_up_navbar = resolveEasycom(vue.resolveDynamicComponent("up-navbar"), __easycom_0$j);
+    const _component_up_input = resolveEasycom(vue.resolveDynamicComponent("up-input"), __easycom_0$l);
+    const _component_up_form_item = resolveEasycom(vue.resolveDynamicComponent("up-form-item"), __easycom_2$9);
+    const _component_up_radio = resolveEasycom(vue.resolveDynamicComponent("up-radio"), __easycom_1$d);
+    const _component_up_radio_group = resolveEasycom(vue.resolveDynamicComponent("up-radio-group"), __easycom_2$6);
     const _component_up_collapse_item = resolveEasycom(vue.resolveDynamicComponent("up-collapse-item"), __easycom_5$1);
-    const _component_up_button = resolveEasycom(vue.resolveDynamicComponent("up-button"), __easycom_3$7);
+    const _component_up_button = resolveEasycom(vue.resolveDynamicComponent("up-button"), __easycom_3$5);
     const _component_up_tag = resolveEasycom(vue.resolveDynamicComponent("up-tag"), __easycom_0$c);
     const _component_up_collapse = resolveEasycom(vue.resolveDynamicComponent("up-collapse"), __easycom_8);
     const _component_up_form = resolveEasycom(vue.resolveDynamicComponent("up-form"), __easycom_9);
-    const _component_up_modal = resolveEasycom(vue.resolveDynamicComponent("up-modal"), __easycom_0$d);
+    const _component_up_modal = resolveEasycom(vue.resolveDynamicComponent("up-modal"), __easycom_0$e);
     const _component_up_datetime_picker = resolveEasycom(vue.resolveDynamicComponent("up-datetime-picker"), __easycom_11);
     return vue.openBlock(), vue.createElementBlock("view", null, [
       vue.createElementVNode("view", { class: "nav" }, [
@@ -23187,7 +23204,166 @@ This will fail in production.`);
       ])
     ]);
   }
-  const PagesRecordBillDetail = /* @__PURE__ */ _export_sfc(_sfc_main$1I, [["render", _sfc_render$1H], ["__scopeId", "data-v-f6747624"], ["__file", "D:/project/记账/demo_front_app/keep_acount/pages/record/billDetail.vue"]]);
+  const PagesRecordBillDetail = /* @__PURE__ */ _export_sfc(_sfc_main$1J, [["render", _sfc_render$1I], ["__scopeId", "data-v-f6747624"], ["__file", "D:/project/记账/demo_front_app/keep_acount/pages/record/billDetail.vue"]]);
+  const queryCategoryByTypeBasic = (params2 = {}) => {
+    return http.get(API_PATH.CATEGORY.QUERY_BY_TYPE_BASIC, params2);
+  };
+  const _sfc_main$1I = {
+    __name: "moveCategory",
+    setup(__props, { expose: __expose }) {
+      __expose();
+      const categoryStore = useCategoryStore();
+      const payType = vue.ref("2");
+      const targetCategoryId = vue.ref("");
+      const sourceCategoryId = vue.ref("");
+      const categoryList = vue.ref([]);
+      onLoad((option) => {
+        const categoryId = option.categoryId;
+        sourceCategoryId.value = categoryId;
+      });
+      vue.watch(payType, async (newVal) => {
+        if (newVal) {
+          await getCategoryList(newVal);
+          targetCategoryId.value = "";
+        }
+      });
+      vue.onMounted(async () => {
+        await getCategoryList(payType.value);
+      });
+      const getCategoryList = async (type2) => {
+        try {
+          const res = await queryCategoryByTypeBasic({ type: type2 });
+          formatAppLog("log", "at pages/record/moveCategory.vue:89", "获取分类成功:", res);
+          categoryList.value = res;
+        } catch (err) {
+          formatAppLog("error", "at pages/record/moveCategory.vue:92", "获取分类失败:", err);
+          categoryList.value = [];
+        }
+      };
+      const handleSubmit = async () => {
+        if (!targetCategoryId.value) {
+          uni.showToast({ title: "请选择分类", icon: "none" });
+          return;
+        }
+        if (!payType.value) {
+          uni.showToast({ title: "请选择类型", icon: "none" });
+          return;
+        }
+        const deleteCategoryData = {
+          id: sourceCategoryId.value,
+          strategy: "move",
+          targetCategoryId: targetCategoryId.value
+        };
+        try {
+          await categoryStore.deleteCategory(deleteCategoryData);
+          uni.showToast({ title: "操作成功" });
+          uni.navigateBack();
+        } catch (err) {
+          formatAppLog("error", "at pages/record/moveCategory.vue:117", "转移数据错误:", err);
+          uni.showToast({ title: err.message || "操作失败，请重试", icon: "none" });
+        }
+      };
+      const __returned__ = { categoryStore, payType, targetCategoryId, sourceCategoryId, categoryList, getCategoryList, handleSubmit, ref: vue.ref, watch: vue.watch, onMounted: vue.onMounted, get useCategoryStore() {
+        return useCategoryStore;
+      }, get storeToRefs() {
+        return storeToRefs;
+      }, get onLoad() {
+        return onLoad;
+      }, get queryCategoryByTypeBasic() {
+        return queryCategoryByTypeBasic;
+      } };
+      Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });
+      return __returned__;
+    }
+  };
+  function _sfc_render$1H(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_u_divider = resolveEasycom(vue.resolveDynamicComponent("u-divider"), __easycom_0$d);
+    const _component_u_radio = resolveEasycom(vue.resolveDynamicComponent("u-radio"), __easycom_1$d);
+    const _component_u_radio_group = resolveEasycom(vue.resolveDynamicComponent("u-radio-group"), __easycom_2$6);
+    const _component_u_button = resolveEasycom(vue.resolveDynamicComponent("u-button"), __easycom_3$5);
+    return vue.openBlock(), vue.createElementBlock("view", null, [
+      vue.createVNode(_component_u_divider, {
+        color: "#1989fa",
+        "border-color": "#1989fa",
+        padding: "16px"
+      }, {
+        default: vue.withCtx(() => [
+          vue.createTextVNode(" 选择分类 ")
+        ]),
+        _: 1
+        /* STABLE */
+      }),
+      vue.createVNode(_component_u_radio_group, {
+        modelValue: $setup.targetCategoryId,
+        "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => $setup.targetCategoryId = $event),
+        class: "radio-group"
+      }, {
+        default: vue.withCtx(() => [
+          (vue.openBlock(true), vue.createElementBlock(
+            vue.Fragment,
+            null,
+            vue.renderList($setup.categoryList, (category) => {
+              return vue.openBlock(), vue.createBlock(_component_u_radio, {
+                key: category.id,
+                name: category.id,
+                shape: "circle",
+                label: category.name
+              }, null, 8, ["name", "label"]);
+            }),
+            128
+            /* KEYED_FRAGMENT */
+          ))
+        ]),
+        _: 1
+        /* STABLE */
+      }, 8, ["modelValue"]),
+      vue.createVNode(_component_u_divider, {
+        color: "#1989fa",
+        "border-color": "#1989fa",
+        padding: "16px"
+      }, {
+        default: vue.withCtx(() => [
+          vue.createTextVNode(" 支付类型 ")
+        ]),
+        _: 1
+        /* STABLE */
+      }),
+      vue.createVNode(_component_u_radio_group, {
+        modelValue: $setup.payType,
+        "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => $setup.payType = $event),
+        class: "radio-group"
+      }, {
+        default: vue.withCtx(() => [
+          vue.createVNode(_component_u_radio, {
+            name: "1",
+            shape: "circle",
+            label: "收入"
+          }),
+          vue.createVNode(_component_u_radio, {
+            name: "2",
+            shape: "circle",
+            label: "支出"
+          })
+        ]),
+        _: 1
+        /* STABLE */
+      }, 8, ["modelValue"]),
+      vue.createVNode(_component_u_button, {
+        type: "primary",
+        round: "",
+        size: "large",
+        onClick: $setup.handleSubmit,
+        "custom-style": "margin: 30rpx 16rpx"
+      }, {
+        default: vue.withCtx(() => [
+          vue.createTextVNode(" 添加 ")
+        ]),
+        _: 1
+        /* STABLE */
+      })
+    ]);
+  }
+  const PagesRecordMoveCategory = /* @__PURE__ */ _export_sfc(_sfc_main$1I, [["render", _sfc_render$1H], ["__scopeId", "data-v-9c6a8a45"], ["__file", "D:/project/记账/demo_front_app/keep_acount/pages/record/moveCategory.vue"]]);
   __definePage("pages/common/login", PagesCommonLogin);
   __definePage("pages/common/register", PagesCommonRegister);
   __definePage("pages/home/home", PagesHomeHome);
@@ -23200,6 +23376,7 @@ This will fail in production.`);
   __definePage("components/PlusBillButton", ComponentsPlusBillButton);
   __definePage("pages/home/mine", PagesHomeMine);
   __definePage("pages/record/billDetail", PagesRecordBillDetail);
+  __definePage("pages/record/moveCategory", PagesRecordMoveCategory);
   const _sfc_main$1H = {};
   const App = /* @__PURE__ */ _export_sfc(_sfc_main$1H, [["__file", "D:/project/记账/demo_front_app/keep_acount/App.vue"]]);
   const props$10 = defineMixin({
@@ -23387,11 +23564,11 @@ This will fail in production.`);
     }
   };
   function _sfc_render$1F(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
-    const _component_u_line = resolveEasycom(vue.resolveDynamicComponent("u-line"), __easycom_1$h);
-    const _component_u_loading_icon = resolveEasycom(vue.resolveDynamicComponent("u-loading-icon"), __easycom_1$g);
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
+    const _component_u_line = resolveEasycom(vue.resolveDynamicComponent("u-line"), __easycom_1$i);
+    const _component_u_loading_icon = resolveEasycom(vue.resolveDynamicComponent("u-loading-icon"), __easycom_1$h);
     const _component_u_gap = resolveEasycom(vue.resolveDynamicComponent("u-gap"), __easycom_2$2);
-    const _component_u_popup = resolveEasycom(vue.resolveDynamicComponent("u-popup"), __easycom_3$3);
+    const _component_u_popup = resolveEasycom(vue.resolveDynamicComponent("u-popup"), __easycom_3$1);
     return vue.openBlock(), vue.createBlock(_component_u_popup, {
       show: _ctx.show,
       mode: "bottom",
@@ -23604,7 +23781,7 @@ This will fail in production.`);
     }
   };
   function _sfc_render$1E(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_input = resolveEasycom(vue.resolveDynamicComponent("up-input"), __easycom_0$k);
+    const _component_up_input = resolveEasycom(vue.resolveDynamicComponent("up-input"), __easycom_0$l);
     const _component_up_action_sheet = resolveEasycom(vue.resolveDynamicComponent("up-action-sheet"), __easycom_4);
     return vue.openBlock(), vue.createElementBlock("view", { class: "u-action-sheet-data" }, [
       vue.createElementVNode("view", { class: "u-action-sheet-data__trigger" }, [
@@ -23675,7 +23852,7 @@ This will fail in production.`);
     }
   };
   function _sfc_render$1D(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_modal = resolveEasycom(vue.resolveDynamicComponent("up-modal"), __easycom_0$d);
+    const _component_up_modal = resolveEasycom(vue.resolveDynamicComponent("up-modal"), __easycom_0$e);
     return vue.openBlock(), vue.createElementBlock("view", { class: "up-agreement" }, [
       vue.createVNode(_component_up_modal, {
         show: $data.show,
@@ -24184,8 +24361,8 @@ This will fail in production.`);
     }
   };
   function _sfc_render$1B(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
-    const _component_up_transition = resolveEasycom(vue.resolveDynamicComponent("up-transition"), __easycom_2$6);
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
+    const _component_up_transition = resolveEasycom(vue.resolveDynamicComponent("up-transition"), __easycom_2$7);
     return vue.openBlock(), vue.createBlock(_component_up_transition, {
       mode: _ctx.transitionMode,
       show: $data.show
@@ -25577,7 +25754,7 @@ This will fail in production.`);
     }
   };
   function _sfc_render$1x(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_u_icon = resolveEasycom(vue.resolveDynamicComponent("u-icon"), __easycom_0$l);
+    const _component_u_icon = resolveEasycom(vue.resolveDynamicComponent("u-icon"), __easycom_0$m);
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -27544,8 +27721,8 @@ This will fail in production.`);
   function _sfc_render$1u(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_uHeader = vue.resolveComponent("uHeader");
     const _component_uMonth = vue.resolveComponent("uMonth");
-    const _component_u_button = resolveEasycom(vue.resolveDynamicComponent("u-button"), __easycom_3$7);
-    const _component_u_popup = resolveEasycom(vue.resolveDynamicComponent("u-popup"), __easycom_3$3);
+    const _component_u_button = resolveEasycom(vue.resolveDynamicComponent("u-button"), __easycom_3$5);
+    const _component_u_popup = resolveEasycom(vue.resolveDynamicComponent("u-popup"), __easycom_3$1);
     return vue.openBlock(), vue.createBlock(_component_u_popup, {
       show: _ctx.show,
       mode: "bottom",
@@ -28083,7 +28260,7 @@ This will fail in production.`);
     }
   };
   function _sfc_render$1s(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -28628,7 +28805,7 @@ This will fail in production.`);
     }
   };
   function _sfc_render$1q(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
     const _component_up_text = resolveEasycom(vue.resolveDynamicComponent("up-text"), __easycom_0$b);
     return vue.openBlock(), vue.createElementBlock(
       "view",
@@ -29112,7 +29289,7 @@ This will fail in production.`);
     }
   };
   function _sfc_render$1o(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
     const _component_u_badge = resolveEasycom(vue.resolveDynamicComponent("u-badge"), __easycom_1$8);
     return vue.openBlock(), vue.createElementBlock(
       "view",
@@ -29471,11 +29648,11 @@ This will fail in production.`);
     const _component_up_steps_item = resolveEasycom(vue.resolveDynamicComponent("up-steps-item"), __easycom_0$9);
     const _component_up_steps = resolveEasycom(vue.resolveDynamicComponent("up-steps"), __easycom_1$6);
     const _component_up_tabs = resolveEasycom(vue.resolveDynamicComponent("up-tabs"), __easycom_1$5);
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
-    const _component_up_cell = resolveEasycom(vue.resolveDynamicComponent("up-cell"), __easycom_1$d);
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
+    const _component_up_cell = resolveEasycom(vue.resolveDynamicComponent("up-cell"), __easycom_1$e);
     const _component_up_cell_group = resolveEasycom(vue.resolveDynamicComponent("up-cell-group"), __easycom_2$5);
-    const _component_up_button = resolveEasycom(vue.resolveDynamicComponent("up-button"), __easycom_3$7);
-    const _component_up_popup = resolveEasycom(vue.resolveDynamicComponent("up-popup"), __easycom_3$3);
+    const _component_up_button = resolveEasycom(vue.resolveDynamicComponent("up-button"), __easycom_3$5);
+    const _component_up_popup = resolveEasycom(vue.resolveDynamicComponent("up-popup"), __easycom_3$1);
     return vue.openBlock(), vue.createBlock(_component_up_popup, {
       show: $data.popupShow,
       mode: "bottom",
@@ -30425,7 +30602,7 @@ This will fail in production.`);
     }
   };
   function _sfc_render$1k(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -31146,7 +31323,7 @@ This will fail in production.`);
     }
   };
   function _sfc_render$1f(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_u_transition = resolveEasycom(vue.resolveDynamicComponent("u-transition"), __easycom_2$6);
+    const _component_u_transition = resolveEasycom(vue.resolveDynamicComponent("u-transition"), __easycom_2$7);
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -31376,7 +31553,7 @@ This will fail in production.`);
   };
   function _sfc_render$1e(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_up_index_anchor = resolveEasycom(vue.resolveDynamicComponent("up-index-anchor"), __easycom_0$8);
-    const _component_up_line = resolveEasycom(vue.resolveDynamicComponent("up-line"), __easycom_1$h);
+    const _component_up_line = resolveEasycom(vue.resolveDynamicComponent("up-line"), __easycom_1$i);
     const _component_up_index_item = resolveEasycom(vue.resolveDynamicComponent("up-index-item"), __easycom_2$1);
     const _component_up_index_list = resolveEasycom(vue.resolveDynamicComponent("up-index-list"), __easycom_3);
     return vue.openBlock(), vue.createElementBlock("view", { class: "u-city-locate" }, [
@@ -32695,8 +32872,8 @@ This will fail in production.`);
   };
   function _sfc_render$1a(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_up_subsection = resolveEasycom(vue.resolveDynamicComponent("up-subsection"), __easycom_0$7);
-    const _component_up_button = resolveEasycom(vue.resolveDynamicComponent("up-button"), __easycom_3$7);
-    const _component_up_popup = resolveEasycom(vue.resolveDynamicComponent("up-popup"), __easycom_3$3);
+    const _component_up_button = resolveEasycom(vue.resolveDynamicComponent("up-button"), __easycom_3$5);
+    const _component_up_popup = resolveEasycom(vue.resolveDynamicComponent("up-popup"), __easycom_3$1);
     return vue.openBlock(), vue.createElementBlock("view", { class: "up-color-picker" }, [
       vue.createElementVNode(
         "view",
@@ -33085,7 +33262,7 @@ This will fail in production.`);
     }
   };
   function _sfc_render$19(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
     return vue.openBlock(), vue.createElementBlock("view", {
       class: "u-notice",
       onClick: _cache[1] || (_cache[1] = (...args) => $options.clickHandler && $options.clickHandler(...args))
@@ -35439,8 +35616,8 @@ This will fail in production.`);
     }
   };
   function _sfc_render$12(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
-    const _component_up_cell = resolveEasycom(vue.resolveDynamicComponent("up-cell"), __easycom_1$d);
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
+    const _component_up_cell = resolveEasycom(vue.resolveDynamicComponent("up-cell"), __easycom_1$e);
     const _component_up_cell_group = resolveEasycom(vue.resolveDynamicComponent("up-cell-group"), __easycom_2$5);
     return $data.active ? (vue.openBlock(), vue.createElementBlock(
       "view",
@@ -35685,7 +35862,7 @@ This will fail in production.`);
     }
   };
   function _sfc_render$11(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
     return vue.openBlock(), vue.createElementBlock("view", { class: "u-dropdown" }, [
       vue.createElementVNode(
         "view",
@@ -35870,7 +36047,7 @@ This will fail in production.`);
     }
   };
   function _sfc_render$10(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -36331,7 +36508,7 @@ This will fail in production.`);
     }
   };
   function _sfc_render$$(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
     return vue.openBlock(), vue.createElementBlock("view", { class: "u-number-box" }, [
       _ctx.showMinus && !$options.hideMinus && _ctx.$slots.minus ? (vue.openBlock(), vue.createElementBlock(
         "view",
@@ -36639,8 +36816,8 @@ This will fail in production.`);
   };
   function _sfc_render$_(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_up_number_box = resolveEasycom(vue.resolveDynamicComponent("up-number-box"), __easycom_0$5);
-    const _component_up_button = resolveEasycom(vue.resolveDynamicComponent("up-button"), __easycom_3$7);
-    const _component_up_popup = resolveEasycom(vue.resolveDynamicComponent("up-popup"), __easycom_3$3);
+    const _component_up_button = resolveEasycom(vue.resolveDynamicComponent("up-button"), __easycom_3$5);
+    const _component_up_popup = resolveEasycom(vue.resolveDynamicComponent("up-popup"), __easycom_3$1);
     return vue.openBlock(), vue.createElementBlock("view", { class: "up-goods-sku" }, [
       vue.createElementVNode("view", {
         onClick: _cache[0] || (_cache[0] = (...args) => $options.open && $options.open(...args))
@@ -37213,8 +37390,8 @@ This will fail in production.`);
     }
   };
   function _sfc_render$X(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
-    const _component_u_transition = resolveEasycom(vue.resolveDynamicComponent("u-transition"), __easycom_2$6);
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
+    const _component_u_transition = resolveEasycom(vue.resolveDynamicComponent("u-transition"), __easycom_2$7);
     return vue.openBlock(), vue.createBlock(_component_u_transition, {
       mode: "fade",
       show: $data.show,
@@ -37401,7 +37578,7 @@ This will fail in production.`);
     }
   };
   function _sfc_render$W(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -37584,7 +37761,7 @@ This will fail in production.`);
   function _sfc_render$V(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_u_number_keyboard = resolveEasycom(vue.resolveDynamicComponent("u-number-keyboard"), __easycom_0$4);
     const _component_u_car_keyboard = resolveEasycom(vue.resolveDynamicComponent("u-car-keyboard"), __easycom_1$7);
-    const _component_u_popup = resolveEasycom(vue.resolveDynamicComponent("u-popup"), __easycom_3$3);
+    const _component_u_popup = resolveEasycom(vue.resolveDynamicComponent("u-popup"), __easycom_3$1);
     return vue.openBlock(), vue.createBlock(_component_u_popup, {
       overlay: _ctx.overlay,
       closeOnClickOverlay: _ctx.closeOnClickOverlay,
@@ -38191,8 +38368,8 @@ This will fail in production.`);
     }
   };
   function _sfc_render$R(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_u_loading_icon = resolveEasycom(vue.resolveDynamicComponent("u-loading-icon"), __easycom_1$g);
-    const _component_u_transition = resolveEasycom(vue.resolveDynamicComponent("u-transition"), __easycom_2$6);
+    const _component_u_loading_icon = resolveEasycom(vue.resolveDynamicComponent("u-loading-icon"), __easycom_1$h);
+    const _component_u_transition = resolveEasycom(vue.resolveDynamicComponent("u-transition"), __easycom_2$7);
     return vue.openBlock(), vue.createBlock(_component_u_transition, {
       show: _ctx.loading,
       "custom-style": {
@@ -38392,8 +38569,8 @@ This will fail in production.`);
     }
   };
   function _sfc_render$Q(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_u_line = resolveEasycom(vue.resolveDynamicComponent("u-line"), __easycom_1$h);
-    const _component_u_loading_icon = resolveEasycom(vue.resolveDynamicComponent("u-loading-icon"), __easycom_1$g);
+    const _component_u_line = resolveEasycom(vue.resolveDynamicComponent("u-line"), __easycom_1$i);
+    const _component_u_loading_icon = resolveEasycom(vue.resolveDynamicComponent("u-loading-icon"), __easycom_1$h);
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -41676,9 +41853,9 @@ ${e2}</tr>
     }
   };
   function _sfc_render$L(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_u_status_bar = resolveEasycom(vue.resolveDynamicComponent("u-status-bar"), __easycom_0$j);
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
-    const _component_up_line = resolveEasycom(vue.resolveDynamicComponent("up-line"), __easycom_1$h);
+    const _component_u_status_bar = resolveEasycom(vue.resolveDynamicComponent("u-status-bar"), __easycom_0$k);
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
+    const _component_up_line = resolveEasycom(vue.resolveDynamicComponent("up-line"), __easycom_1$i);
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -41900,9 +42077,9 @@ ${e2}</tr>
     }
   };
   function _sfc_render$K(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
-    const _component_up_button = resolveEasycom(vue.resolveDynamicComponent("up-button"), __easycom_3$7);
-    const _component_u_overlay = resolveEasycom(vue.resolveDynamicComponent("u-overlay"), __easycom_3$4);
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
+    const _component_up_button = resolveEasycom(vue.resolveDynamicComponent("up-button"), __easycom_3$5);
+    const _component_u_overlay = resolveEasycom(vue.resolveDynamicComponent("u-overlay"), __easycom_3$2);
     return vue.openBlock(), vue.createBlock(_component_u_overlay, {
       show: !$data.isConnected,
       zIndex: _ctx.zIndex,
@@ -42117,7 +42294,7 @@ ${e2}</tr>
     }
   };
   function _sfc_render$J(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
     return vue.openBlock(), vue.createElementBlock("view", {
       class: "u-notice",
       onClick: _cache[0] || (_cache[0] = (...args) => $options.clickHandler && $options.clickHandler(...args))
@@ -42504,9 +42681,9 @@ ${e2}</tr>
     }
   };
   function _sfc_render$H(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_u_status_bar = resolveEasycom(vue.resolveDynamicComponent("u-status-bar"), __easycom_0$j);
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
-    const _component_u_transition = resolveEasycom(vue.resolveDynamicComponent("u-transition"), __easycom_2$6);
+    const _component_u_status_bar = resolveEasycom(vue.resolveDynamicComponent("u-status-bar"), __easycom_0$k);
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
+    const _component_u_transition = resolveEasycom(vue.resolveDynamicComponent("u-transition"), __easycom_2$7);
     return vue.openBlock(), vue.createBlock(_component_u_transition, {
       mode: "slide-down",
       customStyle: $options.containerStyle,
@@ -42703,7 +42880,7 @@ ${e2}</tr>
     }
   };
   function _sfc_render$G(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
     return vue.openBlock(), vue.createElementBlock("view", { class: "u-pagination" }, [
       vue.createElementVNode(
         "view",
@@ -42992,7 +43169,7 @@ ${e2}</tr>
     }
   };
   function _sfc_render$D(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_input = resolveEasycom(vue.resolveDynamicComponent("up-input"), __easycom_0$k);
+    const _component_up_input = resolveEasycom(vue.resolveDynamicComponent("up-input"), __easycom_0$l);
     const _component_up_picker = resolveEasycom(vue.resolveDynamicComponent("up-picker"), __easycom_1$9);
     return vue.openBlock(), vue.createElementBlock("view", { class: "u-picker-data" }, [
       vue.createElementVNode("view", { class: "u-picker-data__trigger" }, [
@@ -43269,9 +43446,9 @@ ${e2}</tr>
     }
   };
   function _sfc_render$C(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_u_overlay = resolveEasycom(vue.resolveDynamicComponent("u-overlay"), __easycom_3$4);
-    const _component_u_line = resolveEasycom(vue.resolveDynamicComponent("u-line"), __easycom_1$h);
-    const _component_u_transition = resolveEasycom(vue.resolveDynamicComponent("u-transition"), __easycom_2$6);
+    const _component_u_overlay = resolveEasycom(vue.resolveDynamicComponent("u-overlay"), __easycom_3$2);
+    const _component_u_line = resolveEasycom(vue.resolveDynamicComponent("u-line"), __easycom_1$i);
+    const _component_u_transition = resolveEasycom(vue.resolveDynamicComponent("u-transition"), __easycom_2$7);
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -45063,7 +45240,7 @@ ${e2}</tr>
     computed: {}
   };
   function _sfc_render$A(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_loading_icon = resolveEasycom(vue.resolveDynamicComponent("up-loading-icon"), __easycom_1$g);
+    const _component_up_loading_icon = resolveEasycom(vue.resolveDynamicComponent("up-loading-icon"), __easycom_1$h);
     return vue.openBlock(), vue.createElementBlock("view", {
       class: "u-qrcode",
       id: $data.rootId,
@@ -45742,7 +45919,7 @@ ${e2}</tr>
     }
   };
   function _sfc_render$y(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
     const _component_u_loadmore = resolveEasycom(vue.resolveDynamicComponent("u-loadmore"), __easycom_1$3);
     return vue.openBlock(), vue.createElementBlock(
       "view",
@@ -46061,7 +46238,7 @@ ${e2}</tr>
     }
   };
   function _sfc_render$x(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
     return vue.openBlock(), vue.createElementBlock("view", {
       class: "u-rate",
       id: $data.elId,
@@ -46257,7 +46434,7 @@ ${e2}</tr>
   };
   function _sfc_render$w(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_up_text = resolveEasycom(vue.resolveDynamicComponent("up-text"), __easycom_0$b);
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
     return vue.openBlock(), vue.createElementBlock("view", { class: "u-read-more" }, [
       vue.createElementVNode(
         "view",
@@ -47064,7 +47241,7 @@ ${e2}</tr>
     }
   };
   function _sfc_render$s(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -47294,8 +47471,8 @@ ${e2}</tr>
     }
   };
   function _sfc_render$r(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
-    const _component_u_overlay = resolveEasycom(vue.resolveDynamicComponent("u-overlay"), __easycom_3$4);
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
+    const _component_u_overlay = resolveEasycom(vue.resolveDynamicComponent("u-overlay"), __easycom_3$2);
     return vue.openBlock(), vue.createElementBlock("view", { class: "u-select" }, [
       vue.createElementVNode(
         "view",
@@ -48064,7 +48241,7 @@ ${e2}</tr>
     }
   };
   function _sfc_render$p(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
     const _component_u_badge = resolveEasycom(vue.resolveDynamicComponent("u-badge"), __easycom_1$8);
     return vue.openBlock(), vue.createElementBlock(
       "view",
@@ -48247,7 +48424,7 @@ ${e2}</tr>
     }
   };
   function _sfc_render$o(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_u_safe_bottom = resolveEasycom(vue.resolveDynamicComponent("u-safe-bottom"), __easycom_0$e);
+    const _component_u_safe_bottom = resolveEasycom(vue.resolveDynamicComponent("u-safe-bottom"), __easycom_0$f);
     return vue.openBlock(), vue.createElementBlock("view", { class: "u-tabbar" }, [
       vue.createElementVNode(
         "view",
@@ -48430,10 +48607,10 @@ ${e2}</tr>
   };
   function _sfc_render$n(_ctx, _cache, $props, $setup, $data, $options) {
     var _a;
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
     const _component_up_tabs = resolveEasycom(vue.resolveDynamicComponent("up-tabs"), __easycom_1$5);
     const _component_u_avatar = resolveEasycom(vue.resolveDynamicComponent("u-avatar"), __easycom_2$4);
-    const _component_up_button = resolveEasycom(vue.resolveDynamicComponent("up-button"), __easycom_3$7);
+    const _component_up_button = resolveEasycom(vue.resolveDynamicComponent("up-button"), __easycom_3$5);
     const _component_up_action_sheet = resolveEasycom(vue.resolveDynamicComponent("up-action-sheet"), __easycom_4);
     const _component_up_slider = resolveEasycom(vue.resolveDynamicComponent("up-slider"), __easycom_2);
     const _component_up_tabbar_item = resolveEasycom(vue.resolveDynamicComponent("up-tabbar-item"), __easycom_6);
@@ -48958,7 +49135,7 @@ ${e2}</tr>
   };
   function _sfc_render$m(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_up_canvas = resolveEasycom(vue.resolveDynamicComponent("up-canvas"), __easycom_0$a);
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
     const _component_up_slider = resolveEasycom(vue.resolveDynamicComponent("up-slider"), __easycom_2);
     return vue.openBlock(), vue.createElementBlock("view", { class: "u-signature" }, [
       vue.createElementVNode(
@@ -49714,7 +49891,7 @@ ${e2}</tr>
     }
   };
   function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -50218,7 +50395,7 @@ ${e2}</tr>
     }
   };
   function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_loading_icon = resolveEasycom(vue.resolveDynamicComponent("up-loading-icon"), __easycom_1$g);
+    const _component_up_loading_icon = resolveEasycom(vue.resolveDynamicComponent("up-loading-icon"), __easycom_1$h);
     const _component_up_swiper_indicator = resolveEasycom(vue.resolveDynamicComponent("up-swiper-indicator"), __easycom_1);
     return vue.openBlock(), vue.createElementBlock(
       "view",
@@ -50488,7 +50665,7 @@ ${e2}</tr>
     }
   };
   function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_u_loading_icon = resolveEasycom(vue.resolveDynamicComponent("u-loading-icon"), __easycom_1$g);
+    const _component_u_loading_icon = resolveEasycom(vue.resolveDynamicComponent("u-loading-icon"), __easycom_1$h);
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -52381,10 +52558,10 @@ ${e2}</tr>
     }
   };
   function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_u_loading_icon = resolveEasycom(vue.resolveDynamicComponent("u-loading-icon"), __easycom_1$g);
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
+    const _component_u_loading_icon = resolveEasycom(vue.resolveDynamicComponent("u-loading-icon"), __easycom_1$h);
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
     const _component_u_gap = resolveEasycom(vue.resolveDynamicComponent("u-gap"), __easycom_2$2);
-    const _component_u_overlay = resolveEasycom(vue.resolveDynamicComponent("u-overlay"), __easycom_3$4);
+    const _component_u_overlay = resolveEasycom(vue.resolveDynamicComponent("u-overlay"), __easycom_3$2);
     return vue.openBlock(), vue.createElementBlock("view", { class: "u-toast" }, [
       vue.createVNode(_component_u_overlay, {
         show: $data.isShow,
@@ -52535,7 +52712,7 @@ ${e2}</tr>
     }
   };
   function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
     const _component_up_checkbox = resolveEasycom(vue.resolveDynamicComponent("up-checkbox"), __easycom_1$4);
     const _component_tree_node = vue.resolveComponent("tree-node", true);
     return vue.openBlock(), vue.createElementBlock(
@@ -53435,10 +53612,10 @@ ${e2}</tr>
     }
   };
   function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$l);
-    const _component_u_loading_icon = resolveEasycom(vue.resolveDynamicComponent("u-loading-icon"), __easycom_1$g);
+    const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$m);
+    const _component_u_loading_icon = resolveEasycom(vue.resolveDynamicComponent("u-loading-icon"), __easycom_1$h);
     const _component_up_gap = resolveEasycom(vue.resolveDynamicComponent("up-gap"), __easycom_2$2);
-    const _component_up_popup = resolveEasycom(vue.resolveDynamicComponent("up-popup"), __easycom_3$3);
+    const _component_up_popup = resolveEasycom(vue.resolveDynamicComponent("up-popup"), __easycom_3$1);
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {

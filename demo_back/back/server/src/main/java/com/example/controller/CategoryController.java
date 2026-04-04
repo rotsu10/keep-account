@@ -46,7 +46,7 @@ public class CategoryController {
 
     @Operation(summary = "根据类型查询分类")
     @GetMapping("/queryTypeCategory")
-    public Result<List<Category>> queryTypeCategory(Integer type){
+    public Result<List<Category>> queryTypeCategory(@RequestParam Integer type){
         log.info("根据类型查询分类：{}", type);
         List<Category> categoryList = categoryService.queryTypeCategory(type);
         log.info("categoryList:{}",categoryList);
