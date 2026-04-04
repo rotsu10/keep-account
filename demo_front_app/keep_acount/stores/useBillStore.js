@@ -95,8 +95,8 @@ export const useBillStore = defineStore('bill', {
 				year:dateParams.year,
 				month:dateParams.month,
 				day:dateParams.day,
-				page:1,
-				pageSize:30
+				page:dateParams.page,
+				pageSize:dateParams.pageSize
 			};
 			
 			try{

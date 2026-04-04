@@ -1,47 +1,46 @@
 <template>
-	<!-- 这里加了 placeholder-nav -->
 	<view class="placeholder-nav">
 		<!-- 导航栏 -->
-		<u-navbar title="分类" :is-back="false">
+		<up-navbar title="分类" :is-back="false">
 			<template #right>
 				<view class="nav-right">
-					<u-icon name="search" size="18" @click="showSearchDialog" style="margin-right: 20rpx;"></u-icon>
-					<u-icon name="plus" size="18" @click="showAddDialog"></u-icon>
+					<up-icon name="search" size="18" @click="showSearchDialog" style="margin-right: 20rpx;"></up-icon>
+					<up-icon name="plus" size="18" @click="showAddDialog"></up-icon>
 				</view>
 			</template>
-		</u-navbar>
+		</up-navbar>
 
 		<!-- 切换按钮 -->
 		<view class="button-box">
-			<u-button 
+			<up-button 
+				shape="circle"
 				type="default" 
-				round 
 				@click="handleTypeClick(1)" 
 				:custom-style="activeType === 1 ? activeBtnStyle : ''"
 			>
 				收入
-			</u-button>
-			<u-button 
+			</up-button>
+			<up-button 
+				shape="circle"
 				type="default" 
-				round 
 				@click="handleTypeClick(2)" 
 				:custom-style="activeType === 2 ? activeBtnStyle : ''"
 			>
 				支出
-			</u-button>
+			</up-button>
 		</view>
 
 		<!-- 列表 -->
 		<view class="list-box">
-			<u-list :finished="true">
-				<u-cell 
+			<up-list :finished="true">
+				<up-cell 
 					v-for="(item,index) in list" 
 					:key="item.id" 
 					:title="item.name"
 					@longpress="handleLongPress(item)"
-				></u-cell>
-			</u-list>
-			<u-back-top></u-back-top>
+				></up-cell>
+			</up-list>
+			<up-back-top></up-back-top>
 		</view>
 		
 		<!-- 添加分类弹窗 - 修复后 -->
@@ -51,6 +50,7 @@
 				show-cancel-button
 				@confirm="addCategory"
 				@close="show = false"
+				@cancel="show = false"
 			>
 				<view class="modal-content">
 					<up-input v-model="CategoryName" placeholder="请输入分类名" />
@@ -235,7 +235,7 @@
 		box-sizing: border-box;
 	}
 
-	.button-box .u-button {
+	.button-box .up-button {
 		flex: 1;
 		margin: 0 10rpx;
 	}

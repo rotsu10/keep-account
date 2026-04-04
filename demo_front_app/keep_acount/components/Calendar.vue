@@ -1,121 +1,75 @@
 <template>
-	<view>
-		<!-- uni-calendar 替换 vant 日历，保持所有功能一致 -->
-		<uni-calendar
-			:insert="true"
-			:lunar="false"
-			:show-month="true"
-			:calendar="calendarData"
-			@change="onDateSelect"
-		></uni-calendar>
+	<view class="content">
+		<!-- uv-calendars 正确写法 -->
+		<uv-calendars
+			:key="calendarKey"
+			insert    
+			:date="defaultDate"   
+			:show-title="false"   
+			:show-confirm="false" 
+			:selected="selectedList" 
+			@change="onDateSelect"    
+		></uv-calendars>
 	</view>
 </template>
 
 <script setup>
-	import { ref, onMounted, watch, computed } from 'vue';
+	import { ref, onMounted, watch } from 'vue';
 	import { onShow } from '@dcloudio/uni-app';
 	import { http } from '../utils/request';
 	import dayjs from 'dayjs';
 	import { API_PATH } from '../api/api.js';
 
-	// 每日收支数据
 	const dailyCosts = ref({});
-	// 日历组件需要的数据源
-	const calendarData = ref([]);
+	const calendarKey = ref(0);
+	const defaultDate = ref(dayjs().format('YYYY-MM-DD'));
+	
+	// 日历标记数据（topinfo + info 分别显示 支出 / 收入）
+	const selectedList = ref([]);
 
-	// 格式化日期 YYYY-MM-DD
-	const formatDateKey = (date) => {
-		return dayjs(date).format('YYYY-MM-DD');
-	};
+	// 格式化日期
+	const formatDateKey = (date) => dayjs(date).format('YYYY-MM-DD');
 
-	// 【核心】把收支数据转成 uni-calendar 需要的 extra 格式
-	const renderCalendarWithMoney = () => {
-		const costMap = dailyCosts.value;
-		const result = [];
-
-		// 遍历所有有数据的日期，给日历添加金额标记
-		Object.keys(costMap).forEach(date => {
-			const item = costMap[date];
-			const income = item.income || 0;
-			const cost = item.cost || 0;
-
-			let extraInfo = '';
-			// 收入显示 +，支出显示 -
-			if (income > 0) {
-				extraInfo = `+${income.toFixed(2)}`;
-			}
-			if (cost > 0) {
-				extraInfo = `-${cost.toFixed(2)}`;
-			}
-
-			result.push({
-				date: date,
-				extra: extraInfo // uni-calendar 日期下方显示的文字
-			});
-		});
-
-		calendarData.value = result;
-	};
-
-	// 获取每日收支数据
+	// 获取数据后组装成 selectedList 格式
 	async function fetchDailyCosts() {
 		try {
-			const result = await http.get(API_PATH.BILL.QUERY_DAILY_COSTS);
-			const dataList = Array.isArray(result) ? result : (result?.data || []);
+			const res = await http.get(API_PATH.BILL.QUERY_DAILY_COSTS);
+			const list = Array.isArray(res) ? res : (res?.data || []);
 			
-			const costMap = {};
-			dataList.forEach(item => {
-				const dateKey = formatDateKey(item.date);
-				costMap[dateKey] = item;
-			});
+			const data = list.map(item => ({
+				date: formatDateKey(item.date),
+				topinfo: item.cost > 0 ? `-${item.cost.toFixed(2)}` : '',
+				topinfoColor: '#ff296b', // 支出红色
+				info: item.income > 0 ? `+${item.income.toFixed(2)}` : '',
+				infoColor: '#00c48c'     // 收入绿色
+			}));
 			
-			dailyCosts.value = costMap;
-			renderCalendarWithMoney(); // 刷新日历显示
-			return costMap;
-		} catch (err) {
-			console.error("获取数据失败：", err);
-			dailyCosts.value = {};
-			renderCalendarWithMoney();
-			return null;
+			selectedList.value = data;
+		} catch (e) {
+			console.error('获取失败', e);
 		}
 	}
 
-	// 点击日期跳转
+	// 点击日期
 	const onDateSelect = (e) => {
-		const selectDay = e.fulldate; // uni-calendar 返回格式：2026-04-01
+		console.log('选中:', e.fulldate);
 		uni.navigateTo({
-			url: `/pages/record/daiyBillList?date=${selectDay}`
+			url: `/pages/record/dailyBillList?date=${e.fulldate}`
 		});
 	};
 
-	// 刷新日历数据
-	async function refreshCalendarData() {
+	// 刷新
+	async function refresh() {
 		await fetchDailyCosts();
+		calendarKey.value++;
 	}
 
-	// 生命周期
-	onMounted(async () => {
-		await fetchDailyCosts();
-	});
-
-	onShow(async () => {
-		await refreshCalendarData();
-	});
-
-	// 监听数据变化，自动刷新日历展示
-	watch(
-		dailyCosts,
-		() => {
-			renderCalendarWithMoney();
-		},
-		{ deep: true }
-	);
+	onMounted(() => fetchDailyCosts());
+	onShow(() => refresh());
+	watch(dailyCosts, () => calendarKey.value++, { deep: true });
 </script>
-
-<style>
-/* 可选：美化金额文字样式 */
-.uni-calendar-item-extra {
-	font-size: 12px !important;
-	color: #ff4d4f !important; /* 支出红色 */
-}
+<style scoped>
+	.content{
+		padding-top: 80rpx;
+	}
 </style>

@@ -18,8 +18,8 @@
 
 		<!-- 按钮区域 -->
 		<view class="button_login">
-			<up-button round type="primary" size="normal" @click="login">登录</up-button>
-			<up-button round type="primary" size="normal" @click="register">注册</up-button>
+			<up-button type="primary" size="normal" @click="login">登录</up-button>
+			<up-button type="primary" size="normal" @click="register">注册</up-button>
 		</view>
 	</view>
 </template>

@@ -2,24 +2,24 @@
 <template>
 	<view>
 		<!-- uview-plus 导航栏 -->
-		<u-navbar title="日历" :is-back="false">
-			<view class="navbar-right" slot="right" >
+		<up-navbar title="日历" :is-back="false">
+			<template #right>
 				<LedgerShow 
 					@queryLedgerDetail="handleQueryLedgerDetail"
 					style="width: 100%;"
 				></LedgerShow>
-			</view>
-		</u-navbar>
+			</template>
+		</up-navbar>
 		
 		<view class="content">
 			<!-- uview-plus 按钮 -->
-			<u-button 
+			<up-button 
 				icon="plus" 
 				type="primary" 
 				shape="circle" 
 				class="plus"
 				@click="plusAccountPage"
-			></u-button>
+			></up-button>
 		</view>
 		
 		<view class="calendar">

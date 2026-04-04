@@ -3,7 +3,7 @@
 	<view class="page-content">
 		<!-- 导航栏 -->
 		<view class="placeholder-nav">
-			<up-navbar title="添加账本" leftText="返回" @leftClick="onClickLeft">
+			<up-navbar title="添加账本" leftText="返回" :autoBack="true">
 				<template #right>
 					<view @click="showAddDialog" class="add-category-btn">
 						<up-icon name="plus" size="18" color="#1989fa" />
@@ -25,7 +25,7 @@
 
 		<!-- 分类 -->
 		<up-divider text="分类" :color="'#1989fa'" :borderColor="'#1989fa'" :fontSize="16" />
-		<up-radio-group v-model="categoryId" placement="column">
+		<up-radio-group v-model="categoryId" placement="row">
 			<up-radio v-for="category in categoryList" :key="category.id" :name="category.id" shape="circle" :label="category.name">
 			</up-radio>
 		</up-radio-group>
@@ -51,11 +51,11 @@
 				<view class="participant-container">
 					<view class="participant-title">
 						<text class="title-text">账单参与人</text>
-						<up-button size="small" type="primary" @click="plusParticipant">添加参与者</up-button>
+						<up-button size="small" type="primary" plain  :custom-style="{ width: 'auto', height: '60rpx', lineHeight: '60rpx' }"  @click="plusParticipant">添加参与者</up-button>
 					</view>
 					<view class="selected-participant-list">
 						<up-tag v-for="(item, index) in selectedParticipants" :key="index" :text="item.username" 
-							shape="round" size="large" plain />
+							size="normal" plain />
 					</view>
 				</view>
 			</up-collapse-item>
@@ -72,10 +72,16 @@
 		<!-- 添加账单参与者弹窗 -->
 		<up-modal v-model:show="addParticipantShow" title="选择账单参与者" showConfirmButton showCancelButton @confirm="handleParticipantConfirm">
 			<view class="participant-list">
-				<up-tag v-for="(item, index) in ledgerUserList" :key="index"
-					:class="['participant-tag', isSelected(item) ? 'selected-tag' : '']" 
-					shape="round" size="large" :text="item.username"
-					@click="toggleSelect(item)" />
+				<up-tag v-for="(item, index) in ledgerUserList" :key="index" 
+					:plain="!isSelected(item)" 
+					type="primary"             
+					size="large" :text="item.username"
+					@click="toggleSelect(item)"
+					>
+					<template #icon v-if="isSelected(item)">
+						<up-icon name="checkmark" size="18" color="#fff"/>
+					</template>
+				</up-tag>
 			</view>
 		</up-modal>
 	</view>
@@ -120,9 +126,6 @@
 		createTime.value = options.time;
 	});
 
-	// 返回
-	const onClickLeft = () => uni.navigateBack();
-	
 	// 添加分类
 	const showAddDialog = () => {
 		show.value = true;
@@ -204,10 +207,6 @@
 			productPrice.value = '';
 			message.value = '';
 			
-			// 延迟返回上一页
-			setTimeout(() => {
-				uni.navigateBack();
-			}, 1500);
 		} catch (error) {
 			console.error('提交失败:', error);
 			uni.showToast({
@@ -337,11 +336,11 @@
 		transition: all 0.2s;
 	}
 	
-	.selected-tag {
-		background-color: #1989fa !important;
-		color: #fff !important;
-		border-color: #1989fa !important;
-	}
+	// .selected-tag {
+	// 	background-color: #1989fa !important;
+	// 	color: #fff !important;
+	// 	// border-color: #1989fa !important;
+	// }
 	
 	.selected-participant-list {
 		display: flex;

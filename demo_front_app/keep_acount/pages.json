@@ -57,6 +57,32 @@
 				"navigationStyle": "custom",
 				"navigationBarTitleText": ""
 			}
+		},
+		{
+			"path": "pages/ledger/allLedger",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/record/dailyBillList",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "每日账单"
+			}
+		},
+		{
+			"path": "components/PlusBillButton",
+			"style": {
+				"navigationBarTitleText": "添加账单"
+			}
+		},
+		{
+			"path": "pages/home/mine",
+			"style": {
+				"navigationBarTitleText": "我的"
+			}
 		}
 	],
 	"tabBar": {

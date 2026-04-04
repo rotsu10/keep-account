@@ -1,7 +1,7 @@
 <template>
-	<view class="ledgerShow">
+	<view class="ledgerShow" @click="linkToAllLedger" >
 		 {{ledgerStore.ledgerId}}{{ledgerStore.ledgerName}}
-		  <van-icon name="arrow-down" @click="linkToAllLedger" size="14" />
+		  <up-icon name="arrow-down" size="14" />
 	</view>
 </template>
 
@@ -45,8 +45,10 @@
 
 <style>
 	.ledgerShow{
+		line-height: 40rpx;
+	    display: flex;
+	    align-items: center;
    		font-weight: 500;
-		/* width: 200rpx; */
 		height: 40rpx;
 		line-height: 40rpx;
 	}
