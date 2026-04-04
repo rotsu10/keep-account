@@ -77,6 +77,7 @@
 				show-cancel-button
 				confirm-text="确认删除"
 				cancel-text="转移数据"
+				:closeOnClickOverlay="true"
 				@confirm="confirmDelete"
 				@cancel="moveCategory"
 				@close="DialogShow = false"

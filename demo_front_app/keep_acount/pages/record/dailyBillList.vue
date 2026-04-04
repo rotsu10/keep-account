@@ -239,7 +239,6 @@
 
 	const onClickRight = () => {
 	    console.log('点击了右侧图标',currentDate.value);
-	    // 执行你需要的操作，比如跳转到添加账单页面
 		const targetUrl = `/pages/record/bill?time=${currentDate.value}`;
 	    uni.navigateTo({
 	        url: targetUrl

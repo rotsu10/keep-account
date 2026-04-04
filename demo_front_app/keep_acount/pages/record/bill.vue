@@ -49,13 +49,13 @@
 			<!-- 账本参与人 -->
 			<up-collapse-item title="账本参与人" name="participant">
 				<view class="participant-container">
-					<view class="participant-title">
+					<view class="participant-header">
 						<text class="title-text">账单参与人</text>
-						<up-button size="small" type="primary" plain  :custom-style="{ width: 'auto', height: '60rpx', lineHeight: '60rpx' }"  @click="plusParticipant">添加参与者</up-button>
+						<up-button type="primary"  shape="circle" plain class="add-button" @click="plusParticipant">添加参与者</up-button>
 					</view>
 					<view class="selected-participant-list">
 						<up-tag v-for="(item, index) in selectedParticipants" :key="index" :text="item.username" 
-							size="normal" plain />
+							size="large" shape="circle" plain />
 					</view>
 				</view>
 			</up-collapse-item>
@@ -74,7 +74,8 @@
 			<view class="participant-list">
 				<up-tag v-for="(item, index) in ledgerUserList" :key="index" 
 					:plain="!isSelected(item)" 
-					type="primary"             
+					type="primary"
+					shape="circle"
 					size="large" :text="item.username"
 					@click="toggleSelect(item)"
 					>
@@ -310,12 +311,20 @@
 		padding: 20rpx;
 	}
 	
-	.participant-title {
+	.participant-header {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		margin-bottom: 20rpx;
 		position: relative;
+	}
+	.title-text{
+		flex: 1;
+	}
+	.add-button{
+		width: 20%;
+		font-size: 20rpx;
+		flex-shrink: 0;
 	}
 	
 	.title-text {
