@@ -51,12 +51,13 @@
 		margin: 40rpx;
 	}
 	
-	.charts-wrapper {
-		pointer-events: none; /* 让图表区域不拦截点击事件 */
-	}
+	/* 让图表区域不拦截点击事件 */
+	/* .charts-wrapper {
+		pointer-events: none; 
+	} */
 	
 	/* 但图表内部如果需要交互，需要重新启用 */
-	.charts-wrapper >>> canvas {
+	/* .charts-wrapper >>> canvas {
 		pointer-events: auto;
-	}
+	} */
 </style>
