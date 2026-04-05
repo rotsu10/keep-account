@@ -118,7 +118,7 @@
 		{
 			"path": "pages/home/stastics",
 			"style": {
-				"navigationBarTitleText": ""
+				"navigationBarTitleText": "图表统计"
 			}
 		},
 		{

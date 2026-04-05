@@ -16,12 +16,13 @@ import { createSSRApp } from 'vue'
 import { createPinia } from 'pinia'
 import uviewPlus from 'uview-plus'
 import 'uview-plus/index.scss'
-
+import lyCharts from '@/uni_modules/ly-charts'
 export function createApp() {
   const app = createSSRApp(App)
   const pinia = createPinia()
   app.use(pinia)
   app.use(uviewPlus)
+  app.use(lyCharts, () => {return {}})
   return {
     app
   }

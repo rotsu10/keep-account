@@ -3,21 +3,24 @@
 	<view class="time">
 		<AllSelectTimeVue @sendDate='handleDateChange'></AllSelectTimeVue>
 		<!-- <finance></finance> -->
-		<!-- <PieChartVue 
-			:type='categoryType'
-			:time-type='timeType' 
-			:time-value='timeValue'
-		></PieChartVue>
-		<LineChart
-			:type='categoryType'
-			:time-type='timeType' 
-			:time-value='timeValue'
-		></LineChart>
-		<ListChart 
-			:type='categoryType'
-			:time-type='timeType' 
-			:time-value='timeValue'
-		></ListChart> -->
+		<view class="charts-wrapper" style="pointer-events: none;">
+			<PieChartVue
+				:type='categoryType'
+				:time-type='timeType' 
+				:time-value='timeValue'
+			></PieChartVue>
+			<LineChart
+				:type='categoryType'
+				:time-type='timeType' 
+				:time-value='timeValue'
+			></LineChart>
+			<ListChart 
+				:type='categoryType'
+				:time-type='timeType' 
+				:time-value='timeValue'
+			></ListChart>
+		</view>
+		
 	</view>
 </template>
 
@@ -46,5 +49,14 @@
 <style scoped>
 	.time{
 		margin: 40rpx;
+	}
+	
+	.charts-wrapper {
+		pointer-events: none; /* 让图表区域不拦截点击事件 */
+	}
+	
+	/* 但图表内部如果需要交互，需要重新启用 */
+	.charts-wrapper >>> canvas {
+		pointer-events: auto;
 	}
 </style>
