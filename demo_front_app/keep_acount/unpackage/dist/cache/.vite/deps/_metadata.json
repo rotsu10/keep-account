@@ -1,25 +1,43 @@
 {
-  "hash": "42cebfd0",
+  "hash": "0ce47249",
   "configHash": "5862c20d",
-  "lockfileHash": "5d8d5f2c",
-  "browserHash": "4b9be71d",
+  "lockfileHash": "21d4ae52",
+  "browserHash": "704ec602",
   "optimized": {
     "uview-plus": {
       "src": "../../../../../node_modules/uview-plus/index.js",
       "file": "uview-plus.js",
-      "fileHash": "3d6162bf",
+      "fileHash": "1ea20586",
       "needsInterop": false
     },
     "dayjs": {
       "src": "../../../../../node_modules/dayjs/dayjs.min.js",
       "file": "dayjs.js",
-      "fileHash": "f30c1da5",
+      "fileHash": "b9fa8740",
       "needsInterop": true
+    },
+    "dayjs/plugin/toArray": {
+      "src": "../../../../../node_modules/dayjs/plugin/toArray.js",
+      "file": "dayjs_plugin_toArray.js",
+      "fileHash": "06f376dd",
+      "needsInterop": true
+    },
+    "dayjs/plugin/toObject": {
+      "src": "../../../../../node_modules/dayjs/plugin/toObject.js",
+      "file": "dayjs_plugin_toObject.js",
+      "fileHash": "62decc21",
+      "needsInterop": true
+    },
+    "echarts": {
+      "src": "../../../../../node_modules/echarts/index.js",
+      "file": "echarts.js",
+      "fileHash": "08bfbb0e",
+      "needsInterop": false
     }
   },
   "chunks": {
-    "chunk-Y2F7D3TJ": {
-      "file": "chunk-Y2F7D3TJ.js"
+    "chunk-P2LSHJDD": {
+      "file": "chunk-P2LSHJDD.js"
     }
   }
 }

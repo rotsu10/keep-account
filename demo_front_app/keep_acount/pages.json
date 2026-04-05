@@ -96,6 +96,36 @@
 			"style": {
 				"navigationBarTitleText": "修改分类"
 			}
+		},
+		{
+			"path": "components/charts/ListChart",
+			"style": {
+				"navigationBarTitleText": "列表"
+			}
+		},
+		{
+			"path": "components/charts/PieChart",
+			"style": {
+				"navigationBarTitleText": "饼状图"
+			}
+		},
+		{
+			"path": "components/charts/LineChart",
+			"style": {
+				"navigationBarTitleText": "折线图"
+			}
+		},
+		{
+			"path": "pages/home/stastics",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "components/AllSelectTime",
+			"style": {
+				"navigationBarTitleText": ""
+			}
 		}
 	],
 	"tabBar": {

@@ -239,7 +239,7 @@
 
 <style>
 	.placeholder-nav {
-		padding-top: 88rpx;
+		padding-top: 100rpx;
 	}
 		
 	.nav-right {
