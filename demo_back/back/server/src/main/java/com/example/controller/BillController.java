@@ -40,7 +40,7 @@ public class BillController {
     @CheckLedgerExist
     @PostMapping("/queryRecordByDate")
     public Result<PageResult<UserBill>> queryPageDate(@RequestBody RecordQueryDTO recordQueryDTO){
-        log.info("查询{}账单", recordQueryDTO);
+        log.info("查询账单:{}", recordQueryDTO);
         recordQueryDTO.userId = BaseContext.getCurrentId();
         PageResult<UserBill> pageResult = billService.queryPageDate(recordQueryDTO);
         log.info("pageResult:{}", pageResult);
@@ -123,7 +123,7 @@ public class BillController {
     public Result<List<CategoryStatisticsVO>> getCategorySum(@RequestBody TimeDTO timeDTO){
         log.info("根据年月日查询统计查询每个分类账单和:{}", timeDTO);
         List<CategoryStatisticsVO> list= billService.getCategorySum(timeDTO);
-        log.info("list:{}", list);
+        log.info("根据年月日查询统计查询每个分类账单和list:{}", list);
         return Result.success(list);
     }
 

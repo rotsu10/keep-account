@@ -49,7 +49,7 @@
                 <when test="timeType == 'year' ">
                     AND DATE_FORMAT(b.create_time, '%Y') = #{timeValue}
                 </when>
-                <when test="timeType == 'month' ">
+                <when test="timeType == 'month' or timeType == 'year-month' ">
                     AND DATE_FORMAT(b.create_time, '%Y-%m') = #{timeValue}
                 </when>
                 <when test="timeType == 'day' or timeType == 'date' ">
@@ -92,7 +92,7 @@
                     <when test="timeType == 'year'">
                         AND DATE_FORMAT(b.create_time, '%Y') = #{timeValue}
                     </when>
-                    <when test="timeType == 'month'">
+                    <when test="timeType == 'month'||timeType == 'year-month' ">
                         AND DATE_FORMAT(b.create_time, '%Y-%m') = #{timeValue}
                     </when>
                     <when test="timeType == 'day'  or timeType == 'date' ">
@@ -179,7 +179,7 @@
         SELECT
         <choose>
             <when test="timeType == 'year'">DATE_FORMAT(b.create_time, '%Y-%m')</when>
-            <when test="timeType == 'month'">DATE_FORMAT(b.create_time, '%Y-%m-%d')</when>
+            <when test="timeType == 'month' or timeType == 'year-month'">DATE_FORMAT(b.create_time, '%Y-%m-%d')</when>
             <when test="timeType == 'date'">DATE_FORMAT(b.create_time, '%Y-%m-%d')</when>
             <otherwise>DATE_FORMAT(b.create_time, '%Y-%m')</otherwise>
         </choose>
@@ -189,7 +189,7 @@
         FROM user_bill b
         WHERE
         b.ledger_id = #{ledgerId}
-        <if test="type != null">
+        <if test="type != null and type != 0">
             AND b.type = #{type}
         </if>
         <if test="timeType != null and timeValue != null and timeValue != ''">
@@ -197,7 +197,7 @@
                 <when test="timeType == 'year'">
                     AND DATE_FORMAT(b.create_time, '%Y') = #{timeValue}
                 </when>
-                <when test="timeType == 'month'">
+                <when test="timeType == 'month' or timeType == 'year-month'">
                     AND DATE_FORMAT(b.create_time, '%Y-%m') = #{timeValue}
                 </when>
                 <when test="timeType == 'date'">
@@ -223,7 +223,7 @@
                 <when test="dto.timeType == 'year'">
                     AND DATE_FORMAT(b.create_time, '%Y') = #{dto.timeValue}
                 </when>
-                <when test="dto.timeType == 'month'">
+                <when test="dto.timeType == 'month' or dto.timeType == 'year-month'">
                     AND DATE_FORMAT(b.create_time, '%Y-%m') = #{dto.timeValue}
                 </when>
                 <when test="dto.timeType == 'date'">
