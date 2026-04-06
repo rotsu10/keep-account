@@ -83,7 +83,7 @@ public class BillController {
     public Result<List<CategoryStatisticsVO>> categoryStatistics(@RequestBody TimeDTO timeDTO){
         log.info("根据日期和类型统计账单：{}", timeDTO);
         List<CategoryStatisticsVO> list = billService.categoryStatistics(timeDTO.getType(), timeDTO.getTimeValue(), timeDTO.getTimeType());
-        log.info("list:{}", list);
+        log.info("根据日期和类型统计账单:{}", list);
         return Result.success(list);
     }
 

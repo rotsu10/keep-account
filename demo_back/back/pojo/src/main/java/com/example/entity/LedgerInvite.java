@@ -17,10 +17,16 @@ public class LedgerInvite {
     private Long id;
     /** 账本ID */
     private Long ledgerId;
+    /** 账本Name */
+    private String ledgerName;
     /** 邀请人ID */
     private Long inviterId;
+    /** 邀请人Name */
+    private String inviterName;
     /** 被邀请人ID */
     private Long inviteeId;
+    /** 被邀请人Name */
+    private String inviteeName;
     /** 邀请状态：0-待接受 1-已接受 2-已拒绝 */
     private Integer status;
     /** 邀请时间 */

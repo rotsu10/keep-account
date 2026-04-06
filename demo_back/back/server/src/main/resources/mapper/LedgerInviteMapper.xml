@@ -23,7 +23,19 @@
     </update>
 
     <select id="getPendingInvites" resultType="com.example.entity.LedgerInvite">
-        select * from ledger_invite where invitee_id = #{userId} and status = 0;
+        select
+        li.*,
+        l.ledger_name,
+        -- 邀请人姓名（inviter_id → user）
+        u1.username as inviterName,
+        -- 被邀请人姓名（invitee_id → user）
+        u2.username as inviteeName
+        from ledger_invite li
+        left join ledger l on li.ledger_id = l.id
+        left join user u1 on li.inviter_id = u1.id   <!-- 邀请人 -->
+        left join user u2 on li.invitee_id = u2.id   <!-- 被邀请人 -->
+        where li.invitee_id = #{userId}
+        and li.status = 0;
     </select>
 
     <delete id="deleteByLedgerId">

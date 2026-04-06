@@ -39,9 +39,8 @@
         sum(case when type = 2 then amount else 0 end) as expense,
         sum(case when type = 3 then amount else 0 end) as transfer
         from user_bill b
-        where user_id = #{userId}
-        and ledger_id = #{ledgerId}
-        <if test="type != null and type != '' ">
+        where ledger_id = #{ledgerId}
+        <if test="type != null and type != '' and type!=0 ">
             AND type = #{type}
         </if>
         <if test="timeType != null and timeType != '' and timeValue != null and timeValue != '' ">
@@ -215,7 +214,7 @@
         from user_bill b
         left join keep_account.category c on b.category_id = c.id
         where b.user_id = #{userId} and b.ledger_id = #{ledgerId}
-        <if test="dto.type != null">
+        <if test="dto.type != null and dto.type != 0">
             AND b.type = #{dto.type}
         </if>
         <if test="dto.timeType != null and dto.timeValue != null and dto.timeValue != ''">
