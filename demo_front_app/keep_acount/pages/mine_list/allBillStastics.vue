@@ -47,11 +47,10 @@
 			</up-col>
 		</up-row>
 		
-		<up-empty
-			v-if="!loading && list.length === 0" 
-			text="暂无账单" 
-			mode="list" 
-		/>
+		<view class="empty-center" v-if="!loading && list.length === 0">
+			<up-empty text="暂无账单" mode="list" />
+		</view>
+
 		
 		<!-- 列表 -->
 		<up-list
@@ -228,5 +227,12 @@
 		display: flex;
 		justify-content: center;
 	}
+	.empty-center {
+		display: flex;
+		justify-content: center; 
+		align-items: center;
+		margin-top: 300rpx; 
+	}
+	
 	
 </style>
