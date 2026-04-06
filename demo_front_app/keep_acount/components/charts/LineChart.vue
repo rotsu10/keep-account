@@ -22,7 +22,7 @@
 	} from '../../api/api.js'
 
 	const props = defineProps(['type', 'timeType', 'timeValue'])
-
+	
 	// 图表数据
 	const chartData = ref({
 		categories: [],
@@ -35,10 +35,11 @@
 			show: true
 		},
 		xAxis: {
-			rotateLabel: true
+			rotateLabel: true,
+			marginTop:10,
+			fontSize:11
 		},
 		yAxis: {
-			
 		},
 		extra: {
 			line: {
@@ -56,11 +57,8 @@
 				timeType: props.timeType,
 				timeValue: props.timeValue
 			}
-			console.log("折线图params",params)
 			const res = await http.post(API_PATH.BILL.GET_SUM_BY_DATE, params)
-			console.log("折线图result",res)
 			const list = Array.isArray(res) ? res : []
-			console.log("折线图list",list)
 			chartData.value = {
 				categories: list.map(i => i.timeValue),
 				series: [{
@@ -68,7 +66,7 @@
 					data: list.map(i => i.total)
 				}]
 			}
-
+			
 		} catch (e) {
 			console.error('获取数据失败', e)
 			chartData.value = {

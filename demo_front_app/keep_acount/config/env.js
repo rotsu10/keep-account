@@ -2,7 +2,7 @@
 // 开发环境（本地调试）
 const devEnv = {
   // BASE_URL: "http://localhost:8080",
-  BASE_URL: "http://192.168.190.159:8080", 
+  BASE_URL: "http://192.168.19.1:8080", 
 };
 
 // 生产环境（云服务器）

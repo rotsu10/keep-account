@@ -126,6 +126,38 @@
 			"style": {
 				"navigationBarTitleText": ""
 			}
+		},
+		{
+			"path": "components/Finance",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/ledger/ledgerDetail",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/ledger/ledgerParticipant",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/ledger/ledgerInvite",
+			"style": {
+				"navigationBarTitleText": "账本邀请"
+			}
+		},
+		{
+			"path": "pages/mine_list/allBillStastics",
+			"style": {
+				"navigationBarTitleText": ""
+			}
 		}
 	],
 	"tabBar": {

@@ -1,0 +1,128 @@
+<template>
+	<view>
+		<!-- 添加参与者 -->
+		<view class="clascustom-nav">
+			<!-- 导航栏 -->
+			<u-navbar title="参与者" :autoBack="true">
+				<template #right>
+					<u-icon name="plus" size="18" @click="showAddDialog" />
+				</template>
+			</u-navbar>
+		</view>
+
+		<!-- 参与者列表 -->
+		<view class="u-m-t-15">
+			<u-list>
+				<u-cell 
+					v-for="item in userList" 
+					:key="item.id" 
+					:title="`${item.username}`"
+					:value="`id:${item.id}`" 
+				/>
+			</u-list>
+		</view>
+
+		<!-- 添加参与者弹窗 -->
+		<u-modal
+			:show="show"
+			title="添加参与者"
+			show-cancel-button
+			confirm-text="发送要求"
+			@confirm="addParticipant"
+			@cancel="show=false"
+		>
+			<view style="padding: 10px 0;">
+				<u-input 
+					v-model="participantValue" 
+					label="参与者信息" 
+					placeholder="请输入参与者名称或者id"
+					clearable
+				/>
+			</view>
+		</u-modal>
+	</view>
+</template>
+
+<script setup>
+	import { onLoad } from '@dcloudio/uni-app';
+	import { ref } from 'vue';
+	import { getAllLedgerUser } from '../../api/ledger';
+	import { sendInvite } from '../../api/invite';
+	
+	const userList = ref([]);
+	const show = ref(false);
+	const participantValue = ref('');
+	const ledgerId = ref('')
+		
+	onLoad((options) => {
+		console.log("页面入参：", options);
+		ledgerId.value = options.ledgerId;
+		if (options.ledgerId) {
+			getUserList(options.ledgerId);
+		}
+	});
+
+	// 查询所有账本参与者
+	const getUserList = async (ledgerId) => {
+		console.log("查询所有账本参与者", ledgerId)
+		const result = await getAllLedgerUser(ledgerId);
+		console.log("查询所有账本参与者", result)
+		userList.value = result;
+	}
+
+	// 展示弹窗
+	const showAddDialog = () => {
+		console.log("dianji")
+		show.value = true;
+	}
+
+	// 判断是使用的哪种数据查询
+	const judgeInputType = (value) => {
+		const trimValue = value.trim();
+		// 1. 判断是否为数字ID（纯数字）
+		if (/^\d+$/.test(trimValue)) {
+			return { type: 'inviteeId', value: Number(trimValue) };
+		}
+		// 2. 判断是否为手机号（11位数字，以1开头）
+		if (/^1[3-9]\d{9}$/.test(trimValue)) {
+			return { type: 'phone', value: trimValue };
+		}
+		// 3. 其余情况判定为用户名
+		return { type: 'inviteeName', value: trimValue };
+	}
+	
+	// 添加参与者
+	const addParticipant = async() => {
+		const trimValue = participantValue.value.trim();
+		if (!trimValue) {
+			uni.showToast({
+				title: '请输入参与者信息',
+				icon: 'none'
+			});
+			return;
+		}
+			
+		console.log('要添加的参与者：', participantValue.value);
+		const { type, value } = judgeInputType(trimValue)
+		console.log('输入类型：', type, '值：', value);
+		const data = {
+			[type]: value,
+			ledgerId: ledgerId.value
+		};
+		
+		await sendInvite(data);
+		// 刷新列表
+		getUserList(ledgerId.value);
+		uni.showToast({
+		 	title:"发送成功"
+		})
+		show.value = false;
+		participantValue.value = '';
+	}
+</script>
+
+<style scoped>
+	.clascustom-nav{
+		padding-bottom: 88rpx;
+	}
+</style>

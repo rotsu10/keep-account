@@ -1,10 +1,34 @@
 <template>
-	<up-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" :immediate-check="false"
-		@load="loadData">
-		<up-cell v-for="item in list" :key="item.id" :label="`${item.categoryName}`"
-			:title="`${item.type === 1 ? '+' : '-'}${item.amount}`" :value="dayjs(item.createTime).format('YYYY/MM/DD')"
-			@click="goToBillDetail(item.id)" />
-	</up-list>
+	<view>
+		<!-- 关闭自动加载，仅做展示 -->
+		<up-list
+			v-model:loading="loading"
+			:finished="true"  
+			:immediate-check="false"
+		>
+			<up-cell
+				v-for="item in list"
+				:key="item.id"
+				:label="`${item.categoryName}`"
+				:title="`${item.type === 1 ? '+' : '-'}${item.amount}`"
+				:value="dayjs(item.createTime).format('YYYY/MM/DD')"
+				@click="goToBillDetail(item.id)"
+			/>
+		</up-list>
+
+		<!-- 分页器 -->
+		<view class="pagination-box">
+			<up-pagination
+				prevText="上一页"
+				nextText="下一页"
+				:current-page="currentPage"
+				:page-size="pageSize"
+				:total="total"
+				layout="prev, total, next"
+				@current-change="handleCurrentChange"
+			/>
+		</view>
+	</view>
 </template>
 
 <script setup>
@@ -16,27 +40,29 @@
 		onUnmounted
 	} from 'vue';
 	import dayjs from 'dayjs';
-	import {
-		http
-	} from '../../utils/request.js'
-	import {
-		API_PATH
-	} from '../../api/api.js';
+	import { http } from '../../utils/request.js'
+	import { API_PATH } from '../../api/api.js';
 
 	const props = defineProps(['type', 'timeType', 'timeValue']);
-	const loading = ref(false); // 加载中状态
-	const finished = ref(false); // 是否加载完毕
-	const list = ref([]); // 账单列表数据
-	const currentPage = ref(1); // 当前页码
-	const pageSize = ref(10); // 每页条数
-	const total = ref(0); // 总条数
 
-	// 3. 加载账单数据
+	const loading = ref(false);
+	const list = ref([]);
+	const currentPage = ref(1);
+	const pageSize = ref(10);
+	const total = ref(0);
+
+	const handleCurrentChange = (page) => {
+		console.log('切换页码:', page);
+		currentPage.value = page;
+		loadData(); // 切换后重新加载
+	};
+
 	const loadData = async () => {
-		if (finished.value) return;
+		if (loading.value) return;
+
 		try {
-			// 查询条件 + 分页参数
-			const sendDate = {
+			loading.value = true;
+			const params = {
 				type: props.type,
 				timeType: props.timeType,
 				timeValue: props.timeValue,
@@ -44,86 +70,69 @@
 				pageSize: pageSize.value
 			};
 
-			// 根据日期类型查询账单分页列表
-			const {
-				records,
-				total: totalCount
-			} = await http.post(API_PATH.BILL.LIST_CHART, sendDate);
-
-			// 处理分页数据
-			if (currentPage.value === 1) {
-				list.value = records;
-			} else {
-				list.value = list.value.concat(records);
-			}
-
-			// 更新总条数和分页状态
-			total.value = totalCount;
-			currentPage.value++; // 页码自增
-
-			// 判断是否加载完毕（列表长度 >= 总条数）
-			if (list.value.length >= total.value || totalCount === 0) {
-				finished.value = true;
-			}
+			const { records, total: totalCount } = await http.post(API_PATH.BILL.LIST_CHART, params);
+			
+			list.value = records || [];
+			total.value = totalCount || 0;
+			console.log("查询的结果",list.value)
+			console.log("查询的结果",total.value)
 		} catch (err) {
-			console.error("账单列表查询失败：", err.message);
+			console.error("加载失败", err);
 		} finally {
 			loading.value = false;
 		}
 	};
 
-	// 4. 跳转账单详情
+	// 跳转账单详情
 	const goToBillDetail = (billId) => {
-		console.log("账单id:", billId);
 		uni.navigateTo({
 			url: `/pages/record/billDetail?id=${billId}`
 		});
 	};
-	
-	onMounted(()=>{
-		uni.$on("deleteBill",getNewList)
-		uni.$on("addBill",getNewList)
-		uni.$on("updateBill",getNewList)
-	})
-	
-	onUnmounted(() => {
-	  uni.$off('deleteBill', getNewList)
-	  uni.$off('addBill', getNewList)
-	  uni.$off('updateBill', getNewList)
-	})
-	
-	const getNewList = ()=>{
-		console.log("重新刷新数据")
-		resetPagination()
-		loadData()
-	}
-	
-	// 重置分页和数据状态
+
+	// 重置
 	const resetPagination = () => {
 		currentPage.value = 1;
 		total.value = 0;
 		list.value = [];
-		finished.value = false;
-		loading.value = true;
+		loading.value = false;
 	};
-	
-	// 监听 props 中的年月变化
+
+	// 刷新
+	const getNewList = () => {
+		resetPagination();
+		loadData();
+	};
+
+	// 监听筛选条件变化
 	watch(
 		() => [props.type, props.timeType, props.timeValue],
 		() => {
-			// 重置所有分页和数据状态
 			resetPagination();
-			// 重新加载第一页数据
 			loadData();
 		},
-
-		{
-			deep: true,
-			immediate: true
-		}
+		{ deep: true, immediate: true }
 	);
 
-	defineExpose({
-		resetPagination
+	onMounted(() => {
+		uni.$on("deleteBill", getNewList);
+		uni.$on("addBill", getNewList);
+		uni.$on("updateBill", getNewList);
 	});
+
+	onUnmounted(() => {
+		uni.$off('deleteBill', getNewList);
+		uni.$off('addBill', getNewList);
+		uni.$off('updateBill', getNewList);
+	});
+
+	defineExpose({ resetPagination });
 </script>
+
+<style scoped>
+.pagination-box {
+	padding: 20rpx;
+	display: flex;
+	justify-content: center;
+}
+</style>

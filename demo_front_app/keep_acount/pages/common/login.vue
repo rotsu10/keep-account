@@ -4,26 +4,37 @@
 			<text class="title">{{ title }}</text>
 		</view>
 
-		<!-- uView Plus 表单区域 -->
-		<view class="login">
-			<up-form>
-				<up-form-item>
-					<up-input v-model="username" placeholder="请输入用户名" border="surround" label="用户名"></up-input>
-				</up-form-item>
-				<up-form-item>
-					<up-input v-model="password" placeholder="请输入密码" border="surround" label="密码" password></up-input>
-				</up-form-item>
-			</up-form>
-		</view>
+		<form class="login-form">
+			<view class="login">
+				<up-form>
+					<up-form-item>
+						<up-input 
+							v-model="username" 
+							placeholder="请输入用户名" 
+							border="surround" 
+							label="用户名"
+						/>
+					</up-form-item>
+					<up-form-item>
+						<up-input 
+							v-model="password" 
+							placeholder="请输入密码" 
+							border="surround" 
+							label="密码" 
+							password
+						/>
+					</up-form-item>
+				</up-form>
+			</view>
 
-		<!-- 按钮区域 -->
-		<view class="button_login">
-			<up-button type="primary" size="normal" @click="login">登录</up-button>
-			<up-button type="primary" size="normal" @click="register">注册</up-button>
-		</view>
+			<!-- 按钮也放在 form 里 -->
+			<view class="button_login">
+				<up-button type="primary" size="normal" @click="login">登录</up-button>
+				<up-button type="primary" size="normal" @click="register">注册</up-button>
+			</view>
+		</form>
 	</view>
 </template>
-
 
 <script setup>
 	import {

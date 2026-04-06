@@ -1179,14 +1179,14 @@ to {
   padding: 0 10px;
 }
 
-.selcet-time[data-v-ec57f4f7]{
-		padding-bottom:6.25rem;
-}
+/* 	.selcet-time{
+		padding-bottom:200rpx;
+	} */
 .time-box[data-v-ec57f4f7]{
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		gap: 20px;
+		gap: 0.3125rem;
 }
 [data-v-ec57f4f7] .u-dropdown__content__mask {
 		display: none !important;

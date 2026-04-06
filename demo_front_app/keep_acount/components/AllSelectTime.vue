@@ -141,14 +141,14 @@ watch([type, value2, selectedDate], triggerEmit);
 </script>
 
 <style scoped>
-	.selcet-time{
+/* 	.selcet-time{
 		padding-bottom:200rpx;
-	}
+	} */
 	.time-box{
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		gap: 20px;
+		gap: 10rpx;
 	}
 	
 	:deep(.u-dropdown__content__mask) {

@@ -64,9 +64,6 @@
 			}
 			const res = await http.post(API_PATH.BILL.GET_CATEGORY_SUM, params)
 			const list = Array.isArray(res) ? res : [];
-			console.log("饼状图result",res)
-			console.log("饼状图list",list)
-			// ✅ 关键修复：空数组时手动清空，强制结束加载
 			if (list.length === 0) {
 				chartData.value = { series: [] };
 				return;
@@ -80,7 +77,7 @@
 			}
 		} catch (e) {
 			console.error('获取饼图数据失败', e)
-			chartData.value = { series: [] }; // ✅ 失败也清空
+			chartData.value = { series: [] };
 		}
 	}
 
