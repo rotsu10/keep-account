@@ -197,6 +197,12 @@
 				"navigationStyle": "custom",
 				"navigationBarTitleText": ""
 			}
+		},
+		{
+			"path": "components/Button/LogoutButton",
+			"style": {
+				"navigationBarTitleText": ""
+			}
 		}
 	],
 	"tabBar": {

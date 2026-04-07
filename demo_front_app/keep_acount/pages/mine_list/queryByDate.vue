@@ -82,7 +82,7 @@ onMounted(() => {
 
 <style scoped>
 .bill-container {
-  margin: 0 30rpx;
+  margin: 10rpx 30rpx;
   box-sizing: border-box;
 }
 </style>

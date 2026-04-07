@@ -88,7 +88,7 @@
 
 <style scoped>
 	.time{
-		margin: 40rpx;
+		margin: 0 30rpx;
 	}
 	
 	/* 让图表区域不拦截点击事件 */

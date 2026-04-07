@@ -111,4 +111,11 @@ public class UserController {
         UserLoginVO userLoginVO = userService.getUserInfo();
         return Result.success(userLoginVO);
     }
+
+    @PostMapping("/logout")
+    @Operation(summary = "退出登录")
+    public Result<String> logout() {
+        log.info("用户退出登录，用户ID：{}", BaseContext.getCurrentId());
+        return Result.success("退出成功");
+    }
 }

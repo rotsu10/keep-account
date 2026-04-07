@@ -25,7 +25,7 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-/*每个页面公共css */
+/* 样式区：只写样式和导入样式，不要写任何 JS！ */
 .u-line-1,
 .up-line-1 {
 
@@ -4282,6 +4282,10 @@
   height: 0 !important;
   -webkit-appearance: none;
   background: transparent;
+}
+/* 全局公共样式 */
+body {
+  background-color: #f5f5f5;
 }
 /**
  * 这里是uni-app内置的常用样式变量

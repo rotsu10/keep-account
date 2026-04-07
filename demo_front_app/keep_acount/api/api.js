@@ -4,6 +4,7 @@ export const API_PATH = {
   // 用户模块
   USER: {
     LOGIN: '/user/login',        // 登录
+    LOGOUT: '/user/logout',        // 退出登录
     REGISTER:'/user/register',   // 注册
     QUERY_CREATETIME:'/user/queryCreateTime',  // 查询用户注册信息
     INFO: '/user/getUserInfo',   // 获取用户信息

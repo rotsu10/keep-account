@@ -9,9 +9,14 @@ import { API_PATH } from './api';
  */
 
 // 1. 用户登录（POST 请求）
-export const userLogin = (data = {}) => {
+export const userLogin = () => {
   // data 是请求体：如 { username: 'zhangsan', password: '123456' }
-  return http.post(API_PATH.USER.LOGIN, data);
+  return http.post(API_PATH.USER.LOGIN);
+};
+
+export const logout = (data = {}) => {
+  // data 是请求体：如 { username: 'zhangsan', password: '123456' }
+  return http.post(API_PATH.USER.LOGOUT, data);
 };
 
 // 2. 用户注册（POST 请求）

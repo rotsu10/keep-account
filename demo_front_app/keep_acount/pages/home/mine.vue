@@ -5,6 +5,9 @@
 		class="nav"
 		:placeholder="true"
 	>
+		<template #right>
+			<LogoutButton></LogoutButton>
+		</template>
 	</up-navbar>
 	<view>
 		<view class="user">
@@ -53,7 +56,7 @@
 			<up-cell-group inset>
 				<!-- <up-cell title="分类" is-link size="large" /> -->
 				<!-- <up-cell title="导入" is-link size="large" /> -->
-				<up-cell title="分类统计" is-link @click="navigateTo('/pages/mine_list/categoryStatistics')"size="large" />
+				<up-cell title="分类统计" is-link @click="showAwait()" size="large" />
 				<up-cell title="月度收支" is-link @click="navigateTo('/pages/mine_list/queryByDate')" size="large" />
 				<up-cell title="邀请通知" is-link @click="navigateTo('/pages/ledger/ledgerInvite')"size="large" />
 				<up-cell title="统计" is-link  @click="navigateTo('/pages/mine_list/allBillStastics')" size="large" />
@@ -70,23 +73,23 @@
 
 <script setup>
 	import dayjs from 'dayjs';
-	import {
-		onMounted,
-		ref
-	} from 'vue';
-	import {
-		http
-	} from '../../utils/request';
-	import {
-		API_PATH
-	} from '../../api/api';
-	import {
-		useLedgerStore
-	} from '../../stores/useLedgerStore';
+	import {onMounted,ref} from 'vue';
+	import {http} from '../../utils/request';
+	import {API_PATH} from '../../api/api';
+	import {useLedgerStore} from '../../stores/useLedgerStore';
+	import LogoutButton from '../../components/Button/LogoutButton.vue'
 	const ledgerStore = useLedgerStore();
 	const userName = ref('');
 	const id = ref('');
-
+	
+	
+	const showAwait = () =>{
+		uni.showToast({
+			title:"待开发，请期待",
+			icon:"none"
+		})
+	}
+	
 	const navigateTo = (url) => {
 		if (url) {
 			uni.navigateTo({

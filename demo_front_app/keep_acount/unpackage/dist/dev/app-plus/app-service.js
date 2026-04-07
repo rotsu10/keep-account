@@ -39,6 +39,7 @@ if (uni.restoreGlobal) {
   "use strict";
   var _e2, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o;
   const ON_SHOW = "onShow";
+  const ON_LAUNCH = "onLaunch";
   const ON_LOAD = "onLoad";
   function formatAppLog(type2, filename, ...args) {
     if (uni.__log__) {
@@ -57,6 +58,11 @@ if (uni.restoreGlobal) {
     ON_SHOW,
     1 | 2
     /* HookFlags.PAGE */
+  );
+  const onLaunch = /* @__PURE__ */ createLifeCycleHook(
+    ON_LAUNCH,
+    1
+    /* HookFlags.APP */
   );
   const onLoad = /* @__PURE__ */ createLifeCycleHook(
     ON_LOAD,
@@ -4590,7 +4596,7 @@ if (uni.restoreGlobal) {
     }
     return target;
   };
-  const _sfc_main$2V = {
+  const _sfc_main$2W = {
     name: "u-icon",
     beforeCreate() {
       if (!fontUtil.params.loaded) {
@@ -4658,7 +4664,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$2U(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2V(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -4701,7 +4707,7 @@ if (uni.restoreGlobal) {
       /* CLASS */
     );
   }
-  const __easycom_0$n = /* @__PURE__ */ _export_sfc(_sfc_main$2V, [["render", _sfc_render$2U], ["__scopeId", "data-v-1c933a9a"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-icon/u-icon.vue"]]);
+  const __easycom_0$n = /* @__PURE__ */ _export_sfc(_sfc_main$2W, [["render", _sfc_render$2V], ["__scopeId", "data-v-1c933a9a"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-icon/u-icon.vue"]]);
   const __vite_glob_0_50 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_0$n
@@ -4924,7 +4930,7 @@ if (uni.restoreGlobal) {
       }, wait);
     }
   }
-  const _sfc_main$2U = {
+  const _sfc_main$2V = {
     name: "u-input",
     mixins: [mpMixin$1, mixin$1, props$1A],
     data() {
@@ -5117,7 +5123,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$2T(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2U(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$n);
     return vue.openBlock(), vue.createElementBlock(
       "view",
@@ -5215,7 +5221,7 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     );
   }
-  const __easycom_0$m = /* @__PURE__ */ _export_sfc(_sfc_main$2U, [["render", _sfc_render$2T], ["__scopeId", "data-v-5904192e"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-input/u-input.vue"]]);
+  const __easycom_0$m = /* @__PURE__ */ _export_sfc(_sfc_main$2V, [["render", _sfc_render$2U], ["__scopeId", "data-v-5904192e"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-input/u-input.vue"]]);
   const __vite_glob_0_55 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_0$m
@@ -5253,7 +5259,7 @@ if (uni.restoreGlobal) {
       }
     }
   });
-  const _sfc_main$2T = {
+  const _sfc_main$2U = {
     name: "u-line",
     mixins: [mpMixin$1, mixin$1, props$1z],
     computed: {
@@ -5278,7 +5284,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$2S(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2T(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -5290,7 +5296,7 @@ if (uni.restoreGlobal) {
       /* STYLE */
     );
   }
-  const __easycom_1$l = /* @__PURE__ */ _export_sfc(_sfc_main$2T, [["render", _sfc_render$2S], ["__scopeId", "data-v-bbd9963c"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-line/u-line.vue"]]);
+  const __easycom_1$l = /* @__PURE__ */ _export_sfc(_sfc_main$2U, [["render", _sfc_render$2T], ["__scopeId", "data-v-bbd9963c"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-line/u-line.vue"]]);
   const __vite_glob_0_59 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_1$l
@@ -5348,7 +5354,7 @@ if (uni.restoreGlobal) {
       }
     }
   });
-  const _sfc_main$2S = {
+  const _sfc_main$2T = {
     name: "up-form-item",
     mixins: [mpMixin$1, mixin$1, props$1y],
     data() {
@@ -5429,7 +5435,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$2R(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2S(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$n);
     const _component_u_line = resolveEasycom(vue.resolveDynamicComponent("u-line"), __easycom_1$l);
     return vue.openBlock(), vue.createElementBlock(
@@ -5534,7 +5540,7 @@ if (uni.restoreGlobal) {
       /* CLASS */
     );
   }
-  const __easycom_2$a = /* @__PURE__ */ _export_sfc(_sfc_main$2S, [["render", _sfc_render$2R], ["__scopeId", "data-v-b4fd400b"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-form-item/u-form-item.vue"]]);
+  const __easycom_2$a = /* @__PURE__ */ _export_sfc(_sfc_main$2T, [["render", _sfc_render$2S], ["__scopeId", "data-v-b4fd400b"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-form-item/u-form-item.vue"]]);
   const __vite_glob_0_44 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_2$a
@@ -6478,7 +6484,7 @@ if (uni.restoreGlobal) {
   Schema.messages = messages;
   Schema.warning = function() {
   };
-  const _sfc_main$2R = {
+  const _sfc_main$2S = {
     name: "up-form",
     mixins: [mpMixin$1, mixin$1, props$1x],
     provide() {
@@ -6671,12 +6677,12 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$2Q(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2R(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock("view", { class: "u-form" }, [
       vue.renderSlot(_ctx.$slots, "default")
     ]);
   }
-  const __easycom_9 = /* @__PURE__ */ _export_sfc(_sfc_main$2R, [["render", _sfc_render$2Q], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-form/u-form.vue"]]);
+  const __easycom_9 = /* @__PURE__ */ _export_sfc(_sfc_main$2S, [["render", _sfc_render$2R], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-form/u-form.vue"]]);
   const __vite_glob_0_45 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_9
@@ -6850,7 +6856,7 @@ if (uni.restoreGlobal) {
     rgbToHex: rgbToHex$1,
     colorToRgba
   };
-  const _sfc_main$2Q = {
+  const _sfc_main$2R = {
     name: "u-loading-icon",
     mixins: [mpMixin$1, mixin$1, props$1w],
     data() {
@@ -6912,7 +6918,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$2P(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2Q(_ctx, _cache, $props, $setup, $data, $options) {
     return _ctx.show ? (vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -6975,7 +6981,7 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     )) : vue.createCommentVNode("v-if", true);
   }
-  const __easycom_1$k = /* @__PURE__ */ _export_sfc(_sfc_main$2Q, [["render", _sfc_render$2P], ["__scopeId", "data-v-00752c6d"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-loading-icon/u-loading-icon.vue"]]);
+  const __easycom_1$k = /* @__PURE__ */ _export_sfc(_sfc_main$2R, [["render", _sfc_render$2Q], ["__scopeId", "data-v-00752c6d"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-loading-icon/u-loading-icon.vue"]]);
   const __vite_glob_0_63 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_1$k
@@ -7155,7 +7161,7 @@ if (uni.restoreGlobal) {
       }, wait);
     }
   }
-  const _sfc_main$2P = {
+  const _sfc_main$2Q = {
     name: "u-button",
     mixins: [mpMixin$1, mixin$1, props$1v],
     data() {
@@ -7285,7 +7291,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$2O(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2P(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_u_loading_icon = resolveEasycom(vue.resolveDynamicComponent("u-loading-icon"), __easycom_1$k);
     const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$n);
     return vue.openBlock(), vue.createElementBlock("button", {
@@ -7364,7 +7370,7 @@ if (uni.restoreGlobal) {
       ))
     ], 46, ["hover-start-time", "hover-stay-time", "form-type", "open-type", "app-parameter", "hover-stop-propagation", "send-message-title", "send-message-path", "lang", "data-name", "session-from", "send-message-img", "show-message-card", "hover-class"]);
   }
-  const __easycom_3$6 = /* @__PURE__ */ _export_sfc(_sfc_main$2P, [["render", _sfc_render$2O], ["__scopeId", "data-v-461e713c"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-button/u-button.vue"]]);
+  const __easycom_3$6 = /* @__PURE__ */ _export_sfc(_sfc_main$2Q, [["render", _sfc_render$2P], ["__scopeId", "data-v-461e713c"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-button/u-button.vue"]]);
   const __vite_glob_0_11 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_3$6
@@ -7543,6 +7549,8 @@ if (uni.restoreGlobal) {
     USER: {
       LOGIN: "/user/login",
       // 登录
+      LOGOUT: "/user/logout",
+      // 退出登录
       REGISTER: "/user/register",
       // 注册
       QUERY_CREATETIME: "/user/queryCreateTime",
@@ -7634,7 +7642,7 @@ if (uni.restoreGlobal) {
       UPDATE_PARTICIPANT: "/participant/updateParticipant"
     }
   };
-  const _sfc_main$2O = {
+  const _sfc_main$2P = {
     __name: "login",
     setup(__props, { expose: __expose }) {
       __expose();
@@ -7699,7 +7707,7 @@ if (uni.restoreGlobal) {
       return __returned__;
     }
   };
-  function _sfc_render$2N(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2O(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_up_input = resolveEasycom(vue.resolveDynamicComponent("up-input"), __easycom_0$m);
     const _component_up_form_item = resolveEasycom(vue.resolveDynamicComponent("up-form-item"), __easycom_2$a);
     const _component_up_form = resolveEasycom(vue.resolveDynamicComponent("up-form"), __easycom_9);
@@ -7777,8 +7785,8 @@ if (uni.restoreGlobal) {
       ])
     ]);
   }
-  const PagesCommonLogin = /* @__PURE__ */ _export_sfc(_sfc_main$2O, [["render", _sfc_render$2N], ["__scopeId", "data-v-d57298a5"], ["__file", "D:/project/记账/demo_front_app/keep_acount/pages/common/login.vue"]]);
-  const _sfc_main$2N = {
+  const PagesCommonLogin = /* @__PURE__ */ _export_sfc(_sfc_main$2P, [["render", _sfc_render$2O], ["__scopeId", "data-v-d57298a5"], ["__file", "D:/project/记账/demo_front_app/keep_acount/pages/common/login.vue"]]);
+  const _sfc_main$2O = {
     __name: "register",
     setup(__props, { expose: __expose }) {
       __expose();
@@ -7829,7 +7837,7 @@ if (uni.restoreGlobal) {
       return __returned__;
     }
   };
-  function _sfc_render$2M(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2N(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_up_input = resolveEasycom(vue.resolveDynamicComponent("up-input"), __easycom_0$m);
     const _component_up_form_item = resolveEasycom(vue.resolveDynamicComponent("up-form-item"), __easycom_2$a);
     const _component_up_form = resolveEasycom(vue.resolveDynamicComponent("up-form"), __easycom_9);
@@ -7902,7 +7910,7 @@ if (uni.restoreGlobal) {
       ])
     ]);
   }
-  const PagesCommonRegister = /* @__PURE__ */ _export_sfc(_sfc_main$2N, [["render", _sfc_render$2M], ["__scopeId", "data-v-05030230"], ["__file", "D:/project/记账/demo_front_app/keep_acount/pages/common/register.vue"]]);
+  const PagesCommonRegister = /* @__PURE__ */ _export_sfc(_sfc_main$2O, [["render", _sfc_render$2N], ["__scopeId", "data-v-05030230"], ["__file", "D:/project/记账/demo_front_app/keep_acount/pages/common/register.vue"]]);
   const props$1u = defineMixin({
     props: {
       bgColor: {
@@ -7916,7 +7924,7 @@ if (uni.restoreGlobal) {
       }
     }
   });
-  const _sfc_main$2M = {
+  const _sfc_main$2N = {
     name: "u-status-bar",
     mixins: [mpMixin$1, mixin$1, props$1u],
     data() {
@@ -7942,7 +7950,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$2L(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2M(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -7956,7 +7964,7 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     );
   }
-  const __easycom_0$l = /* @__PURE__ */ _export_sfc(_sfc_main$2M, [["render", _sfc_render$2L], ["__scopeId", "data-v-c0b45a48"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-status-bar/u-status-bar.vue"]]);
+  const __easycom_0$l = /* @__PURE__ */ _export_sfc(_sfc_main$2N, [["render", _sfc_render$2M], ["__scopeId", "data-v-c0b45a48"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-status-bar/u-status-bar.vue"]]);
   const __vite_glob_0_103 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_0$l
@@ -8055,7 +8063,7 @@ if (uni.restoreGlobal) {
       }
     }
   });
-  const _sfc_main$2L = {
+  const _sfc_main$2M = {
     name: "u-navbar",
     mixins: [mpMixin$1, mixin$1, props$1t],
     data() {
@@ -8084,7 +8092,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$2K(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2L(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_u_status_bar = resolveEasycom(vue.resolveDynamicComponent("u-status-bar"), __easycom_0$l);
     const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$n);
     return vue.openBlock(), vue.createElementBlock(
@@ -8205,7 +8213,7 @@ if (uni.restoreGlobal) {
       /* CLASS */
     );
   }
-  const __easycom_0$k = /* @__PURE__ */ _export_sfc(_sfc_main$2L, [["render", _sfc_render$2K], ["__scopeId", "data-v-9d9e7ee2"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-navbar/u-navbar.vue"]]);
+  const __easycom_0$k = /* @__PURE__ */ _export_sfc(_sfc_main$2M, [["render", _sfc_render$2L], ["__scopeId", "data-v-9d9e7ee2"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-navbar/u-navbar.vue"]]);
   const __vite_glob_0_70 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_0$k
@@ -9258,7 +9266,7 @@ if (uni.restoreGlobal) {
       ...(_f = (_e2 = uni.$uv) == null ? void 0 : _e2.props) == null ? void 0 : _f.toolbar
     }
   };
-  const _sfc_main$2K = {
+  const _sfc_main$2L = {
     name: "uv-toolbar",
     emits: ["confirm", "cancel"],
     mixins: [mpMixin, mixin, props$1s],
@@ -9273,7 +9281,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$2J(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2K(_ctx, _cache, $props, $setup, $data, $options) {
     return _ctx.show ? (vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -9333,7 +9341,7 @@ if (uni.restoreGlobal) {
       /* CLASS, NEED_HYDRATION */
     )) : vue.createCommentVNode("v-if", true);
   }
-  const __easycom_0$j = /* @__PURE__ */ _export_sfc(_sfc_main$2K, [["render", _sfc_render$2J], ["__scopeId", "data-v-298cf9e4"], ["__file", "D:/project/记账/demo_front_app/keep_acount/uni_modules/uv-toolbar/components/uv-toolbar/uv-toolbar.vue"]]);
+  const __easycom_0$j = /* @__PURE__ */ _export_sfc(_sfc_main$2L, [["render", _sfc_render$2K], ["__scopeId", "data-v-298cf9e4"], ["__file", "D:/project/记账/demo_front_app/keep_acount/uni_modules/uv-toolbar/components/uv-toolbar/uv-toolbar.vue"]]);
   class MPAnimation {
     constructor(options2, _this) {
       this.options = options2;
@@ -9446,7 +9454,7 @@ if (uni.restoreGlobal) {
     clearTimeout(_this.timer);
     return new MPAnimation(option, _this);
   }
-  const _sfc_main$2J = {
+  const _sfc_main$2K = {
     name: "uv-transition",
     mixins: [mpMixin, mixin],
     emits: ["click", "change"],
@@ -9694,7 +9702,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$2I(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2J(_ctx, _cache, $props, $setup, $data, $options) {
     return $data.isShow ? (vue.openBlock(), vue.createElementBlock("view", {
       key: 0,
       ref: "ani",
@@ -9706,7 +9714,7 @@ if (uni.restoreGlobal) {
       vue.renderSlot(_ctx.$slots, "default")
     ], 14, ["animation"])) : vue.createCommentVNode("v-if", true);
   }
-  const __easycom_4$3 = /* @__PURE__ */ _export_sfc(_sfc_main$2J, [["render", _sfc_render$2I], ["__file", "D:/project/记账/demo_front_app/keep_acount/uni_modules/uv-transition/components/uv-transition/uv-transition.vue"]]);
+  const __easycom_4$3 = /* @__PURE__ */ _export_sfc(_sfc_main$2K, [["render", _sfc_render$2J], ["__file", "D:/project/记账/demo_front_app/keep_acount/uni_modules/uv-transition/components/uv-transition/uv-transition.vue"]]);
   const props$1r = {
     props: {
       // 是否显示遮罩
@@ -9732,7 +9740,7 @@ if (uni.restoreGlobal) {
       ...(_h = (_g = uni.$uv) == null ? void 0 : _g.props) == null ? void 0 : _h.overlay
     }
   };
-  const _sfc_main$2I = {
+  const _sfc_main$2J = {
     name: "uv-overlay",
     emits: ["click"],
     mixins: [mpMixin, mixin, props$1r],
@@ -9762,7 +9770,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$2H(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2I(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_uv_transition = resolveEasycom(vue.resolveDynamicComponent("uv-transition"), __easycom_4$3);
     return vue.openBlock(), vue.createBlock(_component_uv_transition, {
       show: _ctx.show,
@@ -9780,7 +9788,7 @@ if (uni.restoreGlobal) {
       /* FORWARDED */
     }, 8, ["show", "duration", "custom-style", "onClick", "onTouchmove"]);
   }
-  const __easycom_0$i = /* @__PURE__ */ _export_sfc(_sfc_main$2I, [["render", _sfc_render$2H], ["__scopeId", "data-v-7303e1aa"], ["__file", "D:/project/记账/demo_front_app/keep_acount/uni_modules/uv-overlay/components/uv-overlay/uv-overlay.vue"]]);
+  const __easycom_0$i = /* @__PURE__ */ _export_sfc(_sfc_main$2J, [["render", _sfc_render$2I], ["__scopeId", "data-v-7303e1aa"], ["__file", "D:/project/记账/demo_front_app/keep_acount/uni_modules/uv-overlay/components/uv-overlay/uv-overlay.vue"]]);
   const props$1q = {
     props: {
       bgColor: {
@@ -9789,7 +9797,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  const _sfc_main$2H = {
+  const _sfc_main$2I = {
     name: "uv-status-bar",
     mixins: [mpMixin, mixin, props$1q],
     data() {
@@ -9810,7 +9818,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$2G(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2H(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -9824,8 +9832,8 @@ if (uni.restoreGlobal) {
       /* STYLE */
     );
   }
-  const __easycom_1$j = /* @__PURE__ */ _export_sfc(_sfc_main$2H, [["render", _sfc_render$2G], ["__scopeId", "data-v-f5bd6f5a"], ["__file", "D:/project/记账/demo_front_app/keep_acount/uni_modules/uv-status-bar/components/uv-status-bar/uv-status-bar.vue"]]);
-  const _sfc_main$2G = {
+  const __easycom_1$j = /* @__PURE__ */ _export_sfc(_sfc_main$2I, [["render", _sfc_render$2H], ["__scopeId", "data-v-f5bd6f5a"], ["__file", "D:/project/记账/demo_front_app/keep_acount/uni_modules/uv-status-bar/components/uv-status-bar/uv-status-bar.vue"]]);
+  const _sfc_main$2H = {
     name: "uv-safe-bottom",
     mixins: [mpMixin, mixin],
     data() {
@@ -9843,7 +9851,7 @@ if (uni.restoreGlobal) {
     mounted() {
     }
   };
-  function _sfc_render$2F(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2G(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -9855,7 +9863,7 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     );
   }
-  const __easycom_2$9 = /* @__PURE__ */ _export_sfc(_sfc_main$2G, [["render", _sfc_render$2F], ["__scopeId", "data-v-560f16b2"], ["__file", "D:/project/记账/demo_front_app/keep_acount/uni_modules/uv-safe-bottom/components/uv-safe-bottom/uv-safe-bottom.vue"]]);
+  const __easycom_2$9 = /* @__PURE__ */ _export_sfc(_sfc_main$2H, [["render", _sfc_render$2G], ["__scopeId", "data-v-560f16b2"], ["__file", "D:/project/记账/demo_front_app/keep_acount/uni_modules/uv-safe-bottom/components/uv-safe-bottom/uv-safe-bottom.vue"]]);
   const icons = {
     "uvicon-level": "e68f",
     "uvicon-checkbox-mark": "e659",
@@ -10106,7 +10114,7 @@ if (uni.restoreGlobal) {
       ...(_j = (_i = uni.$uv) == null ? void 0 : _i.props) == null ? void 0 : _j.icon
     }
   };
-  const _sfc_main$2F = {
+  const _sfc_main$2G = {
     name: "uv-icon",
     emits: ["click"],
     mixins: [mpMixin, mixin, props$1p],
@@ -10167,7 +10175,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$2E(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2F(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -10210,8 +10218,8 @@ if (uni.restoreGlobal) {
       /* CLASS */
     );
   }
-  const __easycom_3$5 = /* @__PURE__ */ _export_sfc(_sfc_main$2F, [["render", _sfc_render$2E], ["__scopeId", "data-v-b7a6dd5d"], ["__file", "D:/project/记账/demo_front_app/keep_acount/uni_modules/uv-icon/components/uv-icon/uv-icon.vue"]]);
-  const _sfc_main$2E = {
+  const __easycom_3$5 = /* @__PURE__ */ _export_sfc(_sfc_main$2G, [["render", _sfc_render$2F], ["__scopeId", "data-v-b7a6dd5d"], ["__file", "D:/project/记账/demo_front_app/keep_acount/uni_modules/uv-icon/components/uv-icon/uv-icon.vue"]]);
+  const _sfc_main$2F = {
     name: "uv-popup",
     components: {},
     mixins: [mpMixin, mixin],
@@ -10545,7 +10553,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$2D(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2E(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_uv_overlay = resolveEasycom(vue.resolveDynamicComponent("uv-overlay"), __easycom_0$i);
     const _component_uv_status_bar = resolveEasycom(vue.resolveDynamicComponent("uv-status-bar"), __easycom_1$j);
     const _component_uv_safe_bottom = resolveEasycom(vue.resolveDynamicComponent("uv-safe-bottom"), __easycom_2$9);
@@ -10632,7 +10640,7 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     )) : vue.createCommentVNode("v-if", true);
   }
-  const __easycom_1$i = /* @__PURE__ */ _export_sfc(_sfc_main$2E, [["render", _sfc_render$2D], ["__scopeId", "data-v-01a3ad6e"], ["__file", "D:/project/记账/demo_front_app/keep_acount/uni_modules/uv-popup/components/uv-popup/uv-popup.vue"]]);
+  const __easycom_1$i = /* @__PURE__ */ _export_sfc(_sfc_main$2F, [["render", _sfc_render$2E], ["__scopeId", "data-v-01a3ad6e"], ["__file", "D:/project/记账/demo_front_app/keep_acount/uni_modules/uv-popup/components/uv-popup/uv-popup.vue"]]);
   var calendar = {
     /**
         * 农历1900-2100的润大小信息表
@@ -12296,7 +12304,7 @@ if (uni.restoreGlobal) {
     "zh-Hant": zhHant
   };
   const { t: t$4 } = initVueI18n(i18nMessages);
-  const _sfc_main$2D = {
+  const _sfc_main$2E = {
     emits: ["change"],
     props: {
       weeks: {
@@ -12397,7 +12405,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$2C(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2D(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -12507,9 +12515,9 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     );
   }
-  const CalendarItem = /* @__PURE__ */ _export_sfc(_sfc_main$2D, [["render", _sfc_render$2C], ["__scopeId", "data-v-68116d39"], ["__file", "D:/project/记账/demo_front_app/keep_acount/uni_modules/uv-calendars/components/uv-calendars/calendar-item.vue"]]);
+  const CalendarItem = /* @__PURE__ */ _export_sfc(_sfc_main$2E, [["render", _sfc_render$2D], ["__scopeId", "data-v-68116d39"], ["__file", "D:/project/记账/demo_front_app/keep_acount/uni_modules/uv-calendars/components/uv-calendars/calendar-item.vue"]]);
   const { t: t$3 } = initVueI18n(i18nMessages);
-  const _sfc_main$2C = {
+  const _sfc_main$2D = {
     mixins: [mpMixin, mixin],
     components: {
       CalendarItem
@@ -12659,7 +12667,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$2B(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2C(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_calendar_item = vue.resolveComponent("calendar-item");
     return vue.openBlock(), vue.createElementBlock("view", { class: "uv-calendar-body" }, [
       vue.createElementVNode("view", { class: "uv-calendar__header" }, [
@@ -12819,9 +12827,9 @@ if (uni.restoreGlobal) {
       ])
     ]);
   }
-  const calendarBody = /* @__PURE__ */ _export_sfc(_sfc_main$2C, [["render", _sfc_render$2B], ["__scopeId", "data-v-d658b772"], ["__file", "D:/project/记账/demo_front_app/keep_acount/uni_modules/uv-calendars/components/uv-calendars/calendar-body.vue"]]);
+  const calendarBody = /* @__PURE__ */ _export_sfc(_sfc_main$2D, [["render", _sfc_render$2C], ["__scopeId", "data-v-d658b772"], ["__file", "D:/project/记账/demo_front_app/keep_acount/uni_modules/uv-calendars/components/uv-calendars/calendar-body.vue"]]);
   const { t: t$2 } = initVueI18n(i18nMessages);
-  const _sfc_main$2B = {
+  const _sfc_main$2C = {
     components: {
       calendarBody
     },
@@ -13157,7 +13165,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$2A(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2B(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_calendar_body = vue.resolveComponent("calendar-body");
     const _component_uv_toolbar = resolveEasycom(vue.resolveDynamicComponent("uv-toolbar"), __easycom_0$j);
     const _component_uv_popup = resolveEasycom(vue.resolveDynamicComponent("uv-popup"), __easycom_1$i);
@@ -13234,7 +13242,7 @@ if (uni.restoreGlobal) {
       }, 8, ["round", "close-on-click-overlay", "onMaskClick"]))
     ]);
   }
-  const __easycom_0$h = /* @__PURE__ */ _export_sfc(_sfc_main$2B, [["render", _sfc_render$2A], ["__scopeId", "data-v-4990eb9c"], ["__file", "D:/project/记账/demo_front_app/keep_acount/uni_modules/uv-calendars/components/uv-calendars/uv-calendars.vue"]]);
+  const __easycom_0$h = /* @__PURE__ */ _export_sfc(_sfc_main$2C, [["render", _sfc_render$2B], ["__scopeId", "data-v-4990eb9c"], ["__file", "D:/project/记账/demo_front_app/keep_acount/uni_modules/uv-calendars/components/uv-calendars/uv-calendars.vue"]]);
   var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
   function getDefaultExportFromCjs(x2) {
     return x2 && x2.__esModule && Object.prototype.hasOwnProperty.call(x2, "default") ? x2["default"] : x2;
@@ -13531,7 +13539,7 @@ if (uni.restoreGlobal) {
   })(dayjs_min);
   var dayjs_minExports = dayjs_min.exports;
   const dayjs = /* @__PURE__ */ getDefaultExportFromCjs(dayjs_minExports);
-  const _sfc_main$2A = {
+  const _sfc_main$2B = {
     __name: "Calendar",
     setup(__props, { expose: __expose }) {
       __expose();
@@ -13584,7 +13592,7 @@ if (uni.restoreGlobal) {
       return __returned__;
     }
   };
-  function _sfc_render$2z(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2A(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_uv_calendars = resolveEasycom(vue.resolveDynamicComponent("uv-calendars"), __easycom_0$h);
     return vue.openBlock(), vue.createElementBlock("view", { class: "content" }, [
       (vue.openBlock(), vue.createBlock(_component_uv_calendars, {
@@ -13598,7 +13606,7 @@ if (uni.restoreGlobal) {
       }, null, 8, ["date", "selected"]))
     ]);
   }
-  const ComponentsCalendar = /* @__PURE__ */ _export_sfc(_sfc_main$2A, [["render", _sfc_render$2z], ["__file", "D:/project/记账/demo_front_app/keep_acount/components/Calendar.vue"]]);
+  const ComponentsCalendar = /* @__PURE__ */ _export_sfc(_sfc_main$2B, [["render", _sfc_render$2A], ["__file", "D:/project/记账/demo_front_app/keep_acount/components/Calendar.vue"]]);
   var isVue2 = false;
   function set(target, key, val2) {
     if (Array.isArray(target)) {
@@ -15204,7 +15212,7 @@ This will fail in production.`);
       }
     }
   });
-  const _sfc_main$2z = {
+  const _sfc_main$2A = {
     __name: "LedgerShow",
     emits: ["queryLedgerDetail"],
     setup(__props, { expose: __expose, emit: __emit }) {
@@ -15240,7 +15248,7 @@ This will fail in production.`);
       return __returned__;
     }
   };
-  function _sfc_render$2y(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2z(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$n);
     return vue.openBlock(), vue.createElementBlock("view", {
       class: "ledgerShow",
@@ -15257,8 +15265,8 @@ This will fail in production.`);
       })
     ]);
   }
-  const ComponentsLedgerLedgerShow = /* @__PURE__ */ _export_sfc(_sfc_main$2z, [["render", _sfc_render$2y], ["__file", "D:/project/记账/demo_front_app/keep_acount/components/Ledger/LedgerShow.vue"]]);
-  const _sfc_main$2y = {
+  const ComponentsLedgerLedgerShow = /* @__PURE__ */ _export_sfc(_sfc_main$2A, [["render", _sfc_render$2z], ["__file", "D:/project/记账/demo_front_app/keep_acount/components/Ledger/LedgerShow.vue"]]);
+  const _sfc_main$2z = {
     __name: "home",
     setup(__props, { expose: __expose }) {
       __expose();
@@ -15294,7 +15302,7 @@ This will fail in production.`);
       return __returned__;
     }
   };
-  function _sfc_render$2x(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2y(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_up_navbar = resolveEasycom(vue.resolveDynamicComponent("up-navbar"), __easycom_0$k);
     const _component_up_button = resolveEasycom(vue.resolveDynamicComponent("up-button"), __easycom_3$6);
     return vue.openBlock(), vue.createElementBlock("view", null, [
@@ -15327,7 +15335,7 @@ This will fail in production.`);
       ])
     ]);
   }
-  const PagesHomeHome = /* @__PURE__ */ _export_sfc(_sfc_main$2y, [["render", _sfc_render$2x], ["__scopeId", "data-v-07e72d3c"], ["__file", "D:/project/记账/demo_front_app/keep_acount/pages/home/home.vue"]]);
+  const PagesHomeHome = /* @__PURE__ */ _export_sfc(_sfc_main$2z, [["render", _sfc_render$2y], ["__scopeId", "data-v-07e72d3c"], ["__file", "D:/project/记账/demo_front_app/keep_acount/pages/home/home.vue"]]);
   const props$1o = defineMixin({
     props: {
       // 标题
@@ -15438,7 +15446,7 @@ This will fail in production.`);
       }
     }
   });
-  const _sfc_main$2x = {
+  const _sfc_main$2y = {
     name: "u-cell",
     data() {
       return {};
@@ -15465,7 +15473,7 @@ This will fail in production.`);
       }
     }
   };
-  function _sfc_render$2w(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2x(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$n);
     const _component_u_line = resolveEasycom(vue.resolveDynamicComponent("u-line"), __easycom_1$l);
     return vue.openBlock(), vue.createElementBlock("view", {
@@ -15568,7 +15576,7 @@ This will fail in production.`);
       _ctx.border ? (vue.openBlock(), vue.createBlock(_component_u_line, { key: 0 })) : vue.createCommentVNode("v-if", true)
     ], 14, ["hover-class"]);
   }
-  const __easycom_4$2 = /* @__PURE__ */ _export_sfc(_sfc_main$2x, [["render", _sfc_render$2w], ["__scopeId", "data-v-b4243719"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-cell/u-cell.vue"]]);
+  const __easycom_4$2 = /* @__PURE__ */ _export_sfc(_sfc_main$2y, [["render", _sfc_render$2x], ["__scopeId", "data-v-b4243719"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-cell/u-cell.vue"]]);
   const __vite_glob_0_19 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_4$2
@@ -15672,7 +15680,7 @@ This will fail in production.`);
       }
     }
   });
-  const _sfc_main$2w = {
+  const _sfc_main$2x = {
     name: "u-list",
     mixins: [mpMixin$1, mixin$1, props$1n],
     watch: {
@@ -15765,7 +15773,7 @@ This will fail in production.`);
       }
     }
   };
-  function _sfc_render$2v(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2w(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock("scroll-view", {
       class: "u-list",
       "scroll-into-view": _ctx.scrollIntoView,
@@ -15796,7 +15804,7 @@ This will fail in production.`);
       ])
     ], 44, ["scroll-into-view", "scroll-y", "scroll-top", "lower-threshold", "upper-threshold", "show-scrollbar", "enable-back-to-top", "scroll-with-animation", "refresher-enabled", "refresher-threshold", "refresher-default-style", "refresher-background", "refresher-triggered"]);
   }
-  const __easycom_3$4 = /* @__PURE__ */ _export_sfc(_sfc_main$2w, [["render", _sfc_render$2v], ["__scopeId", "data-v-9ad03670"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-list/u-list.vue"]]);
+  const __easycom_3$4 = /* @__PURE__ */ _export_sfc(_sfc_main$2x, [["render", _sfc_render$2w], ["__scopeId", "data-v-9ad03670"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-list/u-list.vue"]]);
   const __vite_glob_0_62 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_3$4
@@ -15883,7 +15891,7 @@ This will fail in production.`);
       }
     }
   };
-  const _sfc_main$2v = {
+  const _sfc_main$2w = {
     name: "u-transition",
     data() {
       return {
@@ -15927,7 +15935,7 @@ This will fail in production.`);
       }
     }
   };
-  function _sfc_render$2u(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2v(_ctx, _cache, $props, $setup, $data, $options) {
     return $data.inited ? (vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -15945,7 +15953,7 @@ This will fail in production.`);
       /* CLASS, STYLE, NEED_HYDRATION */
     )) : vue.createCommentVNode("v-if", true);
   }
-  const __easycom_2$8 = /* @__PURE__ */ _export_sfc(_sfc_main$2v, [["render", _sfc_render$2u], ["__scopeId", "data-v-0573594d"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-transition/u-transition.vue"]]);
+  const __easycom_2$8 = /* @__PURE__ */ _export_sfc(_sfc_main$2w, [["render", _sfc_render$2v], ["__scopeId", "data-v-0573594d"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-transition/u-transition.vue"]]);
   const __vite_glob_0_129 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_2$8
@@ -16004,7 +16012,7 @@ This will fail in production.`);
       }
     }
   });
-  const _sfc_main$2u = {
+  const _sfc_main$2v = {
     name: "u-back-top",
     mixins: [mpMixin$1, mixin$1, props$1l],
     computed: {
@@ -16048,7 +16056,7 @@ This will fail in production.`);
       }
     }
   };
-  function _sfc_render$2t(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2u(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$n);
     const _component_u_transition = resolveEasycom(vue.resolveDynamicComponent("u-transition"), __easycom_2$8);
     return vue.openBlock(), vue.createBlock(_component_u_transition, {
@@ -16089,7 +16097,7 @@ This will fail in production.`);
       /* FORWARDED */
     }, 8, ["customStyle", "show"]);
   }
-  const __easycom_5$3 = /* @__PURE__ */ _export_sfc(_sfc_main$2u, [["render", _sfc_render$2t], ["__scopeId", "data-v-bf56b0c2"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-back-top/u-back-top.vue"]]);
+  const __easycom_5$3 = /* @__PURE__ */ _export_sfc(_sfc_main$2v, [["render", _sfc_render$2u], ["__scopeId", "data-v-bf56b0c2"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-back-top/u-back-top.vue"]]);
   const __vite_glob_0_7 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_5$3
@@ -16118,7 +16126,7 @@ This will fail in production.`);
       }
     }
   });
-  const _sfc_main$2t = {
+  const _sfc_main$2u = {
     name: "u-overlay",
     mixins: [mpMixin$1, mixin$1, props$1k],
     computed: {
@@ -16142,7 +16150,7 @@ This will fail in production.`);
       }
     }
   };
-  function _sfc_render$2s(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2t(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_u_transition = resolveEasycom(vue.resolveDynamicComponent("u-transition"), __easycom_2$8);
     return vue.openBlock(), vue.createBlock(_component_u_transition, {
       show: _ctx.show,
@@ -16159,7 +16167,7 @@ This will fail in production.`);
       /* FORWARDED */
     }, 8, ["show", "duration", "custom-style", "onClick", "onTouchmove"]);
   }
-  const __easycom_3$3 = /* @__PURE__ */ _export_sfc(_sfc_main$2t, [["render", _sfc_render$2s], ["__scopeId", "data-v-35f7c3e5"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-overlay/u-overlay.vue"]]);
+  const __easycom_3$3 = /* @__PURE__ */ _export_sfc(_sfc_main$2u, [["render", _sfc_render$2t], ["__scopeId", "data-v-35f7c3e5"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-overlay/u-overlay.vue"]]);
   const __vite_glob_0_76 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_3$3
@@ -16167,7 +16175,7 @@ This will fail in production.`);
   const props$1j = defineMixin({
     props: {}
   });
-  const _sfc_main$2s = {
+  const _sfc_main$2t = {
     name: "u-safe-bottom",
     mixins: [mpMixin$1, mixin$1, props$1j],
     data() {
@@ -16185,7 +16193,7 @@ This will fail in production.`);
     mounted() {
     }
   };
-  function _sfc_render$2r(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2s(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -16197,7 +16205,7 @@ This will fail in production.`);
       /* CLASS, STYLE */
     );
   }
-  const __easycom_0$g = /* @__PURE__ */ _export_sfc(_sfc_main$2s, [["render", _sfc_render$2r], ["__scopeId", "data-v-3ec581de"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-safe-bottom/u-safe-bottom.vue"]]);
+  const __easycom_0$g = /* @__PURE__ */ _export_sfc(_sfc_main$2t, [["render", _sfc_render$2s], ["__scopeId", "data-v-3ec581de"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-safe-bottom/u-safe-bottom.vue"]]);
   const __vite_glob_0_95 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_0$g
@@ -16301,7 +16309,7 @@ This will fail in production.`);
       }
     }
   });
-  const _sfc_main$2r = {
+  const _sfc_main$2s = {
     name: "u-popup",
     mixins: [mpMixin$1, mixin$1, props$1i],
     data() {
@@ -16477,7 +16485,7 @@ This will fail in production.`);
       }
     }
   };
-  function _sfc_render$2q(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2r(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_u_overlay = resolveEasycom(vue.resolveDynamicComponent("u-overlay"), __easycom_3$3);
     const _component_u_status_bar = resolveEasycom(vue.resolveDynamicComponent("u-status-bar"), __easycom_0$l);
     const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$n);
@@ -16582,7 +16590,7 @@ This will fail in production.`);
       /* CLASS, STYLE */
     );
   }
-  const __easycom_3$2 = /* @__PURE__ */ _export_sfc(_sfc_main$2r, [["render", _sfc_render$2q], ["__scopeId", "data-v-74921bef"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-popup/u-popup.vue"]]);
+  const __easycom_3$2 = /* @__PURE__ */ _export_sfc(_sfc_main$2s, [["render", _sfc_render$2r], ["__scopeId", "data-v-74921bef"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-popup/u-popup.vue"]]);
   const __vite_glob_0_84 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_3$2
@@ -16696,7 +16704,7 @@ This will fail in production.`);
       }
     }
   });
-  const _sfc_main$2q = {
+  const _sfc_main$2r = {
     name: "u-modal",
     mixins: [mpMixin$1, mixin$1, props$1h],
     data() {
@@ -16759,7 +16767,7 @@ This will fail in production.`);
       }
     }
   };
-  function _sfc_render$2p(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2q(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_u_line = resolveEasycom(vue.resolveDynamicComponent("u-line"), __easycom_1$l);
     const _component_u_loading_icon = resolveEasycom(vue.resolveDynamicComponent("u-loading-icon"), __easycom_1$k);
     const _component_u_popup = resolveEasycom(vue.resolveDynamicComponent("u-popup"), __easycom_3$2);
@@ -16917,7 +16925,7 @@ This will fail in production.`);
       /* FORWARDED */
     }, 8, ["zoom", "show", "class", "customStyle", "closeOnClickOverlay", "duration", "onClick"]);
   }
-  const __easycom_0$f = /* @__PURE__ */ _export_sfc(_sfc_main$2q, [["render", _sfc_render$2p], ["__scopeId", "data-v-12b77a26"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-modal/u-modal.vue"]]);
+  const __easycom_0$f = /* @__PURE__ */ _export_sfc(_sfc_main$2r, [["render", _sfc_render$2q], ["__scopeId", "data-v-12b77a26"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-modal/u-modal.vue"]]);
   const __vite_glob_0_68 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_0$f
@@ -17114,7 +17122,7 @@ This will fail in production.`);
     }
   });
   const activeBtnStyle = "background-color:#1989fa;color:#fff;border-color:#1989fa;";
-  const _sfc_main$2p = {
+  const _sfc_main$2q = {
     __name: "category",
     setup(__props, { expose: __expose }) {
       __expose();
@@ -17244,7 +17252,7 @@ This will fail in production.`);
       return __returned__;
     }
   };
-  function _sfc_render$2o(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2p(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$n);
     const _component_up_navbar = resolveEasycom(vue.resolveDynamicComponent("up-navbar"), __easycom_0$k);
     const _component_up_button = resolveEasycom(vue.resolveDynamicComponent("up-button"), __easycom_3$6);
@@ -17386,7 +17394,7 @@ This will fail in production.`);
       }, 8, ["show"])
     ]);
   }
-  const PagesHomeCategory = /* @__PURE__ */ _export_sfc(_sfc_main$2p, [["render", _sfc_render$2o], ["__scopeId", "data-v-b620a9f2"], ["__file", "D:/project/记账/demo_front_app/keep_acount/pages/home/category.vue"]]);
+  const PagesHomeCategory = /* @__PURE__ */ _export_sfc(_sfc_main$2q, [["render", _sfc_render$2p], ["__scopeId", "data-v-b620a9f2"], ["__file", "D:/project/记账/demo_front_app/keep_acount/pages/home/category.vue"]]);
   const props$1g = defineMixin({
     props: {
       // 是否虚线
@@ -17431,7 +17439,7 @@ This will fail in production.`);
       }
     }
   });
-  const _sfc_main$2o = {
+  const _sfc_main$2p = {
     name: "u-divider",
     mixins: [mpMixin$1, mixin$1, props$1g],
     computed: {
@@ -17471,7 +17479,7 @@ This will fail in production.`);
       }
     }
   };
-  function _sfc_render$2n(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2o(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_u_line = resolveEasycom(vue.resolveDynamicComponent("u-line"), __easycom_1$l);
     return vue.openBlock(), vue.createElementBlock(
       "view",
@@ -17515,7 +17523,7 @@ This will fail in production.`);
       /* STYLE */
     );
   }
-  const __easycom_1$h = /* @__PURE__ */ _export_sfc(_sfc_main$2o, [["render", _sfc_render$2n], ["__scopeId", "data-v-363a2c1a"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-divider/u-divider.vue"]]);
+  const __easycom_1$h = /* @__PURE__ */ _export_sfc(_sfc_main$2p, [["render", _sfc_render$2o], ["__scopeId", "data-v-363a2c1a"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-divider/u-divider.vue"]]);
   const __vite_glob_0_38 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_1$h
@@ -17589,7 +17597,7 @@ This will fail in production.`);
       }
     }
   });
-  const _sfc_main$2n = {
+  const _sfc_main$2o = {
     name: "u-radio",
     mixins: [mpMixin$1, mixin$1, props$1f],
     data() {
@@ -17744,7 +17752,7 @@ This will fail in production.`);
       }
     }
   };
-  function _sfc_render$2m(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2n(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$n);
     return vue.openBlock(), vue.createElementBlock(
       "view",
@@ -17806,7 +17814,7 @@ This will fail in production.`);
       /* CLASS, STYLE */
     );
   }
-  const __easycom_2$7 = /* @__PURE__ */ _export_sfc(_sfc_main$2n, [["render", _sfc_render$2m], ["__scopeId", "data-v-edf95844"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-radio/u-radio.vue"]]);
+  const __easycom_2$7 = /* @__PURE__ */ _export_sfc(_sfc_main$2o, [["render", _sfc_render$2n], ["__scopeId", "data-v-edf95844"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-radio/u-radio.vue"]]);
   const __vite_glob_0_89 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_2$7
@@ -17900,7 +17908,7 @@ This will fail in production.`);
       }
     }
   });
-  const _sfc_main$2m = {
+  const _sfc_main$2n = {
     name: "u-radio-group",
     mixins: [mpMixin$1, mixin$1, props$1e],
     computed: {
@@ -17964,7 +17972,7 @@ This will fail in production.`);
       }
     }
   };
-  function _sfc_render$2l(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2m(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -17978,7 +17986,7 @@ This will fail in production.`);
       /* CLASS, STYLE */
     );
   }
-  const __easycom_3$1 = /* @__PURE__ */ _export_sfc(_sfc_main$2m, [["render", _sfc_render$2l], ["__scopeId", "data-v-272bb654"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-radio-group/u-radio-group.vue"]]);
+  const __easycom_3$1 = /* @__PURE__ */ _export_sfc(_sfc_main$2n, [["render", _sfc_render$2m], ["__scopeId", "data-v-272bb654"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-radio-group/u-radio-group.vue"]]);
   const __vite_glob_0_88 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_3$1
@@ -18097,7 +18105,7 @@ This will fail in production.`);
       }
     }
   });
-  const _sfc_main$2l = {
+  const _sfc_main$2m = {
     name: "u-tag",
     mixins: [mpMixin$1, mixin$1, props$1d],
     data() {
@@ -18180,7 +18188,7 @@ This will fail in production.`);
       }
     }
   };
-  function _sfc_render$2k(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2l(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$n);
     const _component_u_transition = resolveEasycom(vue.resolveDynamicComponent("u-transition"), __easycom_2$8);
     return vue.openBlock(), vue.createBlock(_component_u_transition, {
@@ -18280,7 +18288,7 @@ This will fail in production.`);
       /* FORWARDED */
     }, 8, ["show"]);
   }
-  const __easycom_0$e = /* @__PURE__ */ _export_sfc(_sfc_main$2l, [["render", _sfc_render$2k], ["__scopeId", "data-v-23de980f"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-tag/u-tag.vue"]]);
+  const __easycom_0$e = /* @__PURE__ */ _export_sfc(_sfc_main$2m, [["render", _sfc_render$2l], ["__scopeId", "data-v-23de980f"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-tag/u-tag.vue"]]);
   const __vite_glob_0_119 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_0$e
@@ -18380,7 +18388,7 @@ This will fail in production.`);
       }
     }
   });
-  const _sfc_main$2k = {
+  const _sfc_main$2l = {
     name: "u-collapse-item",
     mixins: [mpMixin$1, mixin$1, props$1c],
     data() {
@@ -18473,7 +18481,7 @@ This will fail in production.`);
       }
     }
   };
-  function _sfc_render$2j(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2k(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$n);
     const _component_u_cell = resolveEasycom(vue.resolveDynamicComponent("u-cell"), __easycom_4$2);
     const _component_u_line = resolveEasycom(vue.resolveDynamicComponent("u-line"), __easycom_1$l);
@@ -18558,7 +18566,7 @@ This will fail in production.`);
       $data.parentData.border ? (vue.openBlock(), vue.createBlock(_component_u_line, { key: 0 })) : vue.createCommentVNode("v-if", true)
     ]);
   }
-  const __easycom_5$2 = /* @__PURE__ */ _export_sfc(_sfc_main$2k, [["render", _sfc_render$2j], ["__scopeId", "data-v-1eebec58"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-collapse-item/u-collapse-item.vue"]]);
+  const __easycom_5$2 = /* @__PURE__ */ _export_sfc(_sfc_main$2l, [["render", _sfc_render$2k], ["__scopeId", "data-v-1eebec58"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-collapse-item/u-collapse-item.vue"]]);
   const __vite_glob_0_28 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_5$2
@@ -18582,7 +18590,7 @@ This will fail in production.`);
       }
     }
   });
-  const _sfc_main$2j = {
+  const _sfc_main$2k = {
     name: "u-collapse",
     mixins: [mpMixin$1, mixin$1, props$1b],
     watch: {
@@ -18641,14 +18649,14 @@ This will fail in production.`);
       }
     }
   };
-  function _sfc_render$2i(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2j(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_u_line = resolveEasycom(vue.resolveDynamicComponent("u-line"), __easycom_1$l);
     return vue.openBlock(), vue.createElementBlock("view", { class: "u-collapse" }, [
       _ctx.border ? (vue.openBlock(), vue.createBlock(_component_u_line, { key: 0 })) : vue.createCommentVNode("v-if", true),
       vue.renderSlot(_ctx.$slots, "default")
     ]);
   }
-  const __easycom_8 = /* @__PURE__ */ _export_sfc(_sfc_main$2j, [["render", _sfc_render$2i], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-collapse/u-collapse.vue"]]);
+  const __easycom_8 = /* @__PURE__ */ _export_sfc(_sfc_main$2k, [["render", _sfc_render$2j], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-collapse/u-collapse.vue"]]);
   const __vite_glob_0_29 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_8
@@ -18684,7 +18692,7 @@ This will fail in production.`);
       params: params2
     });
   };
-  const _sfc_main$2i = {
+  const _sfc_main$2j = {
     __name: "bill",
     setup(__props, { expose: __expose }) {
       __expose();
@@ -18865,7 +18873,7 @@ This will fail in production.`);
       return __returned__;
     }
   };
-  function _sfc_render$2h(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2i(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$n);
     const _component_up_navbar = resolveEasycom(vue.resolveDynamicComponent("up-navbar"), __easycom_0$k);
     const _component_up_input = resolveEasycom(vue.resolveDynamicComponent("up-input"), __easycom_0$m);
@@ -19140,7 +19148,7 @@ This will fail in production.`);
       }, 8, ["show"])
     ]);
   }
-  const PagesRecordBill = /* @__PURE__ */ _export_sfc(_sfc_main$2i, [["render", _sfc_render$2h], ["__scopeId", "data-v-b3748317"], ["__file", "D:/project/记账/demo_front_app/keep_acount/pages/record/bill.vue"]]);
+  const PagesRecordBill = /* @__PURE__ */ _export_sfc(_sfc_main$2j, [["render", _sfc_render$2i], ["__scopeId", "data-v-b3748317"], ["__file", "D:/project/记账/demo_front_app/keep_acount/pages/record/bill.vue"]]);
   const props$1a = defineMixin({
     props: {
       // 分组标题
@@ -19155,14 +19163,14 @@ This will fail in production.`);
       }
     }
   });
-  const _sfc_main$2h = {
+  const _sfc_main$2i = {
     name: "u-cell-group",
     mixins: [mpMixin$1, mixin$1, props$1a],
     methods: {
       addStyle: addStyle$1
     }
   };
-  function _sfc_render$2g(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2h(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_u_line = resolveEasycom(vue.resolveDynamicComponent("u-line"), __easycom_1$l);
     return vue.openBlock(), vue.createElementBlock(
       "view",
@@ -19194,7 +19202,7 @@ This will fail in production.`);
       /* CLASS, STYLE */
     );
   }
-  const __easycom_5$1 = /* @__PURE__ */ _export_sfc(_sfc_main$2h, [["render", _sfc_render$2g], ["__scopeId", "data-v-30c8e4c7"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-cell-group/u-cell-group.vue"]]);
+  const __easycom_5$1 = /* @__PURE__ */ _export_sfc(_sfc_main$2i, [["render", _sfc_render$2h], ["__scopeId", "data-v-30c8e4c7"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-cell-group/u-cell-group.vue"]]);
   const __vite_glob_0_18 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_5$1
@@ -19258,7 +19266,7 @@ This will fail in production.`);
       }
     }
   });
-  const _sfc_main$2g = {
+  const _sfc_main$2h = {
     name: "u-empty",
     mixins: [mpMixin$1, mixin$1, props$19],
     data() {
@@ -19305,7 +19313,7 @@ This will fail in production.`);
       addUnit: addUnit$1
     }
   };
-  function _sfc_render$2f(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2g(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$n);
     return _ctx.show ? (vue.openBlock(), vue.createElementBlock(
       "view",
@@ -19351,12 +19359,12 @@ This will fail in production.`);
       /* STYLE */
     )) : vue.createCommentVNode("v-if", true);
   }
-  const __easycom_7$1 = /* @__PURE__ */ _export_sfc(_sfc_main$2g, [["render", _sfc_render$2f], ["__scopeId", "data-v-bd84101d"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-empty/u-empty.vue"]]);
+  const __easycom_7$1 = /* @__PURE__ */ _export_sfc(_sfc_main$2h, [["render", _sfc_render$2g], ["__scopeId", "data-v-bd84101d"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-empty/u-empty.vue"]]);
   const __vite_glob_0_42 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_7$1
   }, Symbol.toStringTag, { value: "Module" }));
-  const _sfc_main$2f = {
+  const _sfc_main$2g = {
     __name: "allLedger",
     setup(__props, { expose: __expose }) {
       __expose();
@@ -19464,7 +19472,7 @@ This will fail in production.`);
       return __returned__;
     }
   };
-  function _sfc_render$2e(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2f(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$n);
     const _component_up_navbar = resolveEasycom(vue.resolveDynamicComponent("up-navbar"), __easycom_0$k);
     const _component_up_tag = resolveEasycom(vue.resolveDynamicComponent("up-tag"), __easycom_0$e);
@@ -19582,8 +19590,8 @@ This will fail in production.`);
       }, 8, ["show"])
     ]);
   }
-  const PagesLedgerAllLedger = /* @__PURE__ */ _export_sfc(_sfc_main$2f, [["render", _sfc_render$2e], ["__scopeId", "data-v-8352fd9f"], ["__file", "D:/project/记账/demo_front_app/keep_acount/pages/ledger/allLedger.vue"]]);
-  const _sfc_main$2e = {
+  const PagesLedgerAllLedger = /* @__PURE__ */ _export_sfc(_sfc_main$2g, [["render", _sfc_render$2f], ["__scopeId", "data-v-8352fd9f"], ["__file", "D:/project/记账/demo_front_app/keep_acount/pages/ledger/allLedger.vue"]]);
+  const _sfc_main$2f = {
     __name: "dailyBillList",
     setup(__props, { expose: __expose }) {
       __expose();
@@ -19762,7 +19770,7 @@ This will fail in production.`);
       return __returned__;
     }
   };
-  function _sfc_render$2d(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2e(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$n);
     const _component_up_navbar = resolveEasycom(vue.resolveDynamicComponent("up-navbar"), __easycom_0$k);
     const _component_up_cell = resolveEasycom(vue.resolveDynamicComponent("up-cell"), __easycom_4$2);
@@ -19851,8 +19859,8 @@ This will fail in production.`);
       ])
     ]);
   }
-  const PagesRecordDailyBillList = /* @__PURE__ */ _export_sfc(_sfc_main$2e, [["render", _sfc_render$2d], ["__scopeId", "data-v-6e31bef7"], ["__file", "D:/project/记账/demo_front_app/keep_acount/pages/record/dailyBillList.vue"]]);
-  const _sfc_main$2d = {
+  const PagesRecordDailyBillList = /* @__PURE__ */ _export_sfc(_sfc_main$2f, [["render", _sfc_render$2e], ["__scopeId", "data-v-6e31bef7"], ["__file", "D:/project/记账/demo_front_app/keep_acount/pages/record/dailyBillList.vue"]]);
+  const _sfc_main$2e = {
     __name: "PlusBillButton",
     props: {
       time: {
@@ -19884,7 +19892,7 @@ This will fail in production.`);
       return __returned__;
     }
   };
-  function _sfc_render$2c(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2d(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_up_button = resolveEasycom(vue.resolveDynamicComponent("up-button"), __easycom_3$6);
     return vue.openBlock(), vue.createElementBlock("view", { class: "content" }, [
       vue.createVNode(_component_up_button, {
@@ -19896,7 +19904,7 @@ This will fail in production.`);
       })
     ]);
   }
-  const ComponentsPlusBillButton = /* @__PURE__ */ _export_sfc(_sfc_main$2d, [["render", _sfc_render$2c], ["__file", "D:/project/记账/demo_front_app/keep_acount/components/PlusBillButton.vue"]]);
+  const ComponentsPlusBillButton = /* @__PURE__ */ _export_sfc(_sfc_main$2e, [["render", _sfc_render$2d], ["__file", "D:/project/记账/demo_front_app/keep_acount/components/PlusBillButton.vue"]]);
   const props$18 = defineMixin({
     props: {
       // 文字颜色
@@ -19936,7 +19944,7 @@ This will fail in production.`);
       }
     }
   });
-  const _sfc_main$2c = {
+  const _sfc_main$2d = {
     name: "u-link",
     mixins: [mpMixin$1, mixin$1, props$18],
     computed: {
@@ -19960,7 +19968,7 @@ This will fail in production.`);
       }
     }
   };
-  function _sfc_render$2b(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2c(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "text",
       {
@@ -19973,7 +19981,7 @@ This will fail in production.`);
       /* TEXT, STYLE */
     );
   }
-  const __easycom_1$g = /* @__PURE__ */ _export_sfc(_sfc_main$2c, [["render", _sfc_render$2b], ["__scopeId", "data-v-dedad317"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-link/u-link.vue"]]);
+  const __easycom_1$g = /* @__PURE__ */ _export_sfc(_sfc_main$2d, [["render", _sfc_render$2c], ["__scopeId", "data-v-dedad317"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-link/u-link.vue"]]);
   const __vite_glob_0_60 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_1$g
@@ -20205,7 +20213,7 @@ This will fail in production.`);
       }
     }
   });
-  const _sfc_main$2b = {
+  const _sfc_main$2c = {
     name: "up-text",
     mixins: [mpMixin$1, mixin$1, value, props$17],
     emits: ["click"],
@@ -20258,7 +20266,7 @@ This will fail in production.`);
       }
     }
   };
-  function _sfc_render$2a(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2b(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$n);
     const _component_u_link = resolveEasycom(vue.resolveDynamicComponent("u-link"), __easycom_1$g);
     return _ctx.show ? (vue.openBlock(), vue.createElementBlock(
@@ -20344,7 +20352,7 @@ This will fail in production.`);
       /* CLASS, STYLE */
     )) : vue.createCommentVNode("v-if", true);
   }
-  const __easycom_0$d = /* @__PURE__ */ _export_sfc(_sfc_main$2b, [["render", _sfc_render$2a], ["__scopeId", "data-v-5fec1d8b"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-text/u-text.vue"]]);
+  const __easycom_0$d = /* @__PURE__ */ _export_sfc(_sfc_main$2c, [["render", _sfc_render$2b], ["__scopeId", "data-v-5fec1d8b"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-text/u-text.vue"]]);
   const __vite_glob_0_121 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_0$d
@@ -20428,7 +20436,7 @@ This will fail in production.`);
     }
   });
   const base64Avatar = "data:image/jpg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/4QMraHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjMtYzAxMSA2Ni4xNDU2NjEsIDIwMTIvMDIvMDYtMTQ6NTY6MjcgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDUzYgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjREMEQwRkY0RjgwNDExRUE5OTY2RDgxODY3NkJFODMxIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjREMEQwRkY1RjgwNDExRUE5OTY2RDgxODY3NkJFODMxIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NEQwRDBGRjJGODA0MTFFQTk5NjZEODE4Njc2QkU4MzEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NEQwRDBGRjNGODA0MTFFQTk5NjZEODE4Njc2QkU4MzEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7/7gAOQWRvYmUAZMAAAAAB/9sAhAAGBAQEBQQGBQUGCQYFBgkLCAYGCAsMCgoLCgoMEAwMDAwMDBAMDg8QDw4MExMUFBMTHBsbGxwfHx8fHx8fHx8fAQcHBw0MDRgQEBgaFREVGh8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx//wAARCADIAMgDAREAAhEBAxEB/8QAcQABAQEAAwEBAAAAAAAAAAAAAAUEAQMGAgcBAQAAAAAAAAAAAAAAAAAAAAAQAAIBAwICBgkDBQAAAAAAAAABAhEDBCEFMVFBYXGREiKBscHRMkJSEyOh4XLxYjNDFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A/fAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHbHFyZ/Dam+yLA+Z2L0Pjtyj2poD4AAAAAAAAAAAAAAAAAAAAAAAAKWFs9y6lcvvwQeqj8z9wFaziY1n/HbUX9XF97A7QAGXI23EvJ1goyfzR0YEfN269jeZ+a03pNe0DIAAAAAAAAAAAAAAAAAAAACvtO3RcVkXlWutuL9YFYAAAAAOJRjKLjJVi9GmB5/csH/mu1h/in8PU+QGMAAAAAAAAAAAAAAAAAAaMDG/6MmMH8C80+xAelSSVFolwQAAAAAAAHVlWI37ErUulaPk+hgeYnCUJuElSUXRrrQHAAAAAAAAAAAAAAAAABa2Oz4bM7r4zdF2ICmAAAAAAAAAg7zZ8GX41wuJP0rRgYAAAAAAAAAAAAAAAAAD0m2R8ODaXU33tsDSAAAAAAAAAlb9HyWZcnJd9PcBHAAAAAAAAAAAAAAAAAPS7e64Vn+KA0AAAAAAAAAJm+v8Ftf3ewCKAAAAAAAAAAAAAAAAAX9muqeGo9NttP06+0DcAAAAAAAAAjb7dTu2ra+VOT9P8AQCWAAAAAAAAAAAAAAAAAUNmyPt5Ltv4bui/kuAF0AAAAAAADiUlGLlJ0SVW+oDzOXfd/Ind6JPRdS0QHSAAAAAAAAAAAAAAAAAE2nVaNcGB6Lbs6OTao9LsF51z60BrAAAAAABJ3jOVHjW3r/sa9QEgAAAAAAAAAAAAAAAAAAAPu1duWriuW34ZR4MC9hbnZyEoy8l36XwfYBsAAADaSq9EuLAlZ+7xSdrGdW9Hc5dgEdtt1erfFgAAAAAAAAAAAAAAAAADVjbblX6NR8MH80tEBRs7HYivyzlN8lovaBPzduvY0m6eK10TXtAyAarO55lpJK54orolr+4GqO/Xaea1FvqbXvA+Z77kNeW3GPbV+4DJfzcm/pcm3H6Vou5AdAFLC2ed2Pjv1txa8sV8T6wOL+yZEKu1JXFy4MDBOE4ScZxcZLinoB8gAAAAAAAAAAAB242LeyJ+C3GvN9C7QLmJtePYpKS+5c+p8F2IDYAANJqj1T4oCfk7Nj3G5Wn9qXJax7gJ93Z82D8sVNc4v30A6Xg5i42Z+iLfqARwcyT0sz9MWvWBps7LlTf5Grce9/oBTxdtxseklHxT+uWr9AGoAB138ezfj4bsFJdD6V2MCPm7RdtJzs1uW1xXzL3gTgAAAAAAAAADRhYc8q74I6RWs5ckB6GxYtWLat21SK731sDsAAAAAAAAAAAAAAAASt021NO/YjrxuQXT1oCOAAAAAAABzGLlJRSq26JAelwsWONYjbXxcZvmwO8AAAAAAAAAAAAAAAAAAef3TEWPkVivx3NY9T6UBiAAAAAABo2+VmGXblddIJ8eivRUD0oAAAAAAAAAAAAAAAAAAAYt4tKeFKVNYNSXfRgefAAAAAAAAr7VuSSWPedKaW5v1MCsAAAAAAAAAAAAAAAAAAIe6bj96Ts2n+JPzSXzP3ATgAAAAAAAAFbbt1UUrOQ9FpC4/UwK6aaqtU+DAAAAAAAAAAAAAAA4lKMIuUmoxWrb4ARNx3R3q2rLpa4Sl0y/YCcAAAAAAAAAAANmFud7G8r89r6X0dgFvGzLGRGtuWvTF6NAdwAAAAAAAAAAAy5W442PVN+K59EePp5ARMvOv5MvO6QXCC4AZwAAAAAAAAAAAAAcxlKLUotprg1owN+PvORborq+7Hnwl3gUbO74VzRydt8pKn68ANcJwmqwkpLmnUDkAAAAfNy9atqtyagut0AxXt5xIV8Fbj6lRd7Am5G65V6qUvtwfyx94GMAAAAAAAAAAAAAAAAAAAOU2nVOj5gdsc3LiqRvTpyqwOxbnnrhdfpSfrQB7pnv/AGvuS9gHXPMy5/Fem1yq0v0A6W29XqwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf//Z";
-  const _sfc_main$2a = {
+  const _sfc_main$2b = {
     name: "u-avatar",
     mixins: [mpMixin$1, mixin$1, props$16],
     data() {
@@ -20502,7 +20510,7 @@ This will fail in production.`);
       }
     }
   };
-  function _sfc_render$29(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$2a(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_up_icon = resolveEasycom(vue.resolveDynamicComponent("up-icon"), __easycom_0$n);
     const _component_up_text = resolveEasycom(vue.resolveDynamicComponent("up-text"), __easycom_0$d);
     return vue.openBlock(), vue.createElementBlock(
@@ -20553,7 +20561,7 @@ This will fail in production.`);
       /* CLASS, STYLE */
     );
   }
-  const __easycom_2$6 = /* @__PURE__ */ _export_sfc(_sfc_main$2a, [["render", _sfc_render$29], ["__scopeId", "data-v-14a988f2"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-avatar/u-avatar.vue"]]);
+  const __easycom_2$6 = /* @__PURE__ */ _export_sfc(_sfc_main$2b, [["render", _sfc_render$2a], ["__scopeId", "data-v-14a988f2"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-avatar/u-avatar.vue"]]);
   const __vite_glob_0_6 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_2$6
@@ -20587,7 +20595,7 @@ This will fail in production.`);
       }
     }
   });
-  const _sfc_main$29 = {
+  const _sfc_main$2a = {
     name: "u-col",
     mixins: [mpMixin$1, mixin$1, props$15],
     data() {
@@ -20653,7 +20661,7 @@ This will fail in production.`);
       }
     }
   };
-  function _sfc_render$28(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$29(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -20671,7 +20679,7 @@ This will fail in production.`);
       /* CLASS, STYLE */
     );
   }
-  const __easycom_5 = /* @__PURE__ */ _export_sfc(_sfc_main$29, [["render", _sfc_render$28], ["__scopeId", "data-v-3677f292"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-col/u-col.vue"]]);
+  const __easycom_5 = /* @__PURE__ */ _export_sfc(_sfc_main$2a, [["render", _sfc_render$29], ["__scopeId", "data-v-3677f292"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-col/u-col.vue"]]);
   const __vite_glob_0_27 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_5
@@ -20695,7 +20703,7 @@ This will fail in production.`);
       }
     }
   });
-  const _sfc_main$28 = {
+  const _sfc_main$29 = {
     name: "u-row",
     mixins: [mpMixin$1, mixin$1, props$14],
     data() {
@@ -20745,7 +20753,7 @@ This will fail in production.`);
       }
     }
   };
-  function _sfc_render$27(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$28(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -20761,11 +20769,64 @@ This will fail in production.`);
       /* STYLE */
     );
   }
-  const __easycom_6$1 = /* @__PURE__ */ _export_sfc(_sfc_main$28, [["render", _sfc_render$27], ["__scopeId", "data-v-f8e42af4"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-row/u-row.vue"]]);
+  const __easycom_6$1 = /* @__PURE__ */ _export_sfc(_sfc_main$29, [["render", _sfc_render$28], ["__scopeId", "data-v-f8e42af4"], ["__file", "D:/project/记账/demo_front_app/keep_acount/node_modules/uview-plus/components/u-row/u-row.vue"]]);
   const __vite_glob_0_94 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     default: __easycom_6$1
   }, Symbol.toStringTag, { value: "Module" }));
+  const logout = (data = {}) => {
+    return http.post(API_PATH.USER.LOGOUT, data);
+  };
+  const _sfc_main$28 = {
+    __name: "LogoutButton",
+    setup(__props, { expose: __expose }) {
+      __expose();
+      const show = vue.ref(false);
+      const handleClick = () => {
+        show.value = true;
+      };
+      const userLogout = async () => {
+        try {
+          await logout();
+          uni.removeStorageSync("token");
+          uni.removeStorageSync("ledgerId");
+          uni.reLaunch({
+            url: "/pages/common/login"
+          });
+        } catch (error2) {
+          formatAppLog("error", "at components/Button/LogoutButton.vue:32", "退出登录失败", error2);
+        }
+      };
+      const __returned__ = { show, handleClick, userLogout, ref: vue.ref, get logout() {
+        return logout;
+      } };
+      Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });
+      return __returned__;
+    }
+  };
+  function _sfc_render$27(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_up_button = resolveEasycom(vue.resolveDynamicComponent("up-button"), __easycom_3$6);
+    const _component_up_modal = resolveEasycom(vue.resolveDynamicComponent("up-modal"), __easycom_0$f);
+    return vue.openBlock(), vue.createElementBlock("view", null, [
+      vue.createVNode(_component_up_button, {
+        onClick: _cache[0] || (_cache[0] = ($event) => $setup.handleClick())
+      }, {
+        default: vue.withCtx(() => [
+          vue.createTextVNode("退出登录")
+        ]),
+        _: 1
+        /* STABLE */
+      }),
+      vue.createVNode(_component_up_modal, {
+        show: $setup.show,
+        title: "确定退出",
+        showCancelButton: "",
+        onCancel: _cache[1] || (_cache[1] = ($event) => $setup.show = false),
+        onConfirm: _cache[2] || (_cache[2] = ($event) => $setup.userLogout())
+      }, null, 8, ["show"])
+    ]);
+  }
+  const ComponentsButtonLogoutButton = /* @__PURE__ */ _export_sfc(_sfc_main$28, [["render", _sfc_render$27], ["__file", "D:/project/记账/demo_front_app/keep_acount/components/Button/LogoutButton.vue"]]);
   const _sfc_main$27 = {
     __name: "mine",
     setup(__props, { expose: __expose }) {
@@ -20773,6 +20834,12 @@ This will fail in production.`);
       const ledgerStore = useLedgerStore();
       const userName = vue.ref("");
       const id = vue.ref("");
+      const showAwait = () => {
+        uni.showToast({
+          title: "待开发，请期待",
+          icon: "none"
+        });
+      };
       const navigateTo = (url2) => {
         if (url2) {
           uni.navigateTo({
@@ -20783,11 +20850,11 @@ This will fail in production.`);
       const getUserInfo = async () => {
         try {
           const res = await http.get(API_PATH.USER.INFO);
-          formatAppLog("log", "at pages/home/mine.vue:102", "用户详细信息res:", res);
+          formatAppLog("log", "at pages/home/mine.vue:105", "用户详细信息res:", res);
           userName.value = res.username;
           id.value = res.id;
         } catch (err) {
-          formatAppLog("log", "at pages/home/mine.vue:106", "获取用户信息失败");
+          formatAppLog("log", "at pages/home/mine.vue:109", "获取用户信息失败");
           showToast({
             message: "网络异常，请稍后重试",
             type: "error"
@@ -20805,7 +20872,7 @@ This will fail in production.`);
       vue.onMounted(() => {
         getUserInfo();
       });
-      const __returned__ = { ledgerStore, userName, id, navigateTo, getUserInfo, goToLedgerDetail, queryLedgerBill, get dayjs() {
+      const __returned__ = { ledgerStore, userName, id, showAwait, navigateTo, getUserInfo, goToLedgerDetail, queryLedgerBill, get dayjs() {
         return dayjs;
       }, onMounted: vue.onMounted, ref: vue.ref, get http() {
         return http;
@@ -20813,7 +20880,7 @@ This will fail in production.`);
         return API_PATH;
       }, get useLedgerStore() {
         return useLedgerStore;
-      } };
+      }, LogoutButton: ComponentsButtonLogoutButton };
       Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });
       return __returned__;
     }
@@ -20834,6 +20901,12 @@ This will fail in production.`);
           title: "我的",
           class: "nav",
           placeholder: true
+        }, {
+          right: vue.withCtx(() => [
+            vue.createVNode($setup["LogoutButton"])
+          ]),
+          _: 1
+          /* STABLE */
         }),
         vue.createElementVNode("view", null, [
           vue.createElementVNode("view", { class: "user" }, [
@@ -21020,7 +21093,7 @@ This will fail in production.`);
                 vue.createVNode(_component_up_cell, {
                   title: "分类统计",
                   "is-link": "",
-                  onClick: _cache[0] || (_cache[0] = ($event) => $setup.navigateTo("/pages/mine_list/categoryStatistics")),
+                  onClick: _cache[0] || (_cache[0] = ($event) => $setup.showAwait()),
                   size: "large"
                 }),
                 vue.createVNode(_component_up_cell, {
@@ -23996,6 +24069,12 @@ This will fail in production.`);
       path: "pages/mine_list/allPerson",
       style: {
         navigationStyle: "custom",
+        navigationBarTitleText: ""
+      }
+    },
+    {
+      path: "components/Button/LogoutButton",
+      style: {
         navigationBarTitleText: ""
       }
     }
@@ -31584,7 +31663,30 @@ ${o3}
   __definePage("components/SelectTime", ComponentsSelectTime);
   __definePage("components/BillList", ComponentsBillList);
   __definePage("pages/mine_list/allPerson", PagesMineListAllPerson);
-  const _sfc_main$1A = {};
+  __definePage("components/Button/LogoutButton", ComponentsButtonLogoutButton);
+  const _sfc_main$1A = {
+    __name: "App",
+    setup(__props, { expose: __expose }) {
+      __expose();
+      onLaunch(() => {
+        const token = uni.getStorageSync("token");
+        if (token) {
+          uni.switchTab({
+            url: "/pages/home/home"
+          });
+        } else {
+          uni.reLaunch({
+            url: "/pages/login/login"
+          });
+        }
+      });
+      const __returned__ = { get onLaunch() {
+        return onLaunch;
+      } };
+      Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });
+      return __returned__;
+    }
+  };
   const App = /* @__PURE__ */ _export_sfc(_sfc_main$1A, [["__file", "D:/project/记账/demo_front_app/keep_acount/App.vue"]]);
   const props$X = defineMixin({
     props: {
