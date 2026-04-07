@@ -1,7 +1,7 @@
 <template>
-	<view class="placeholder-nav">
+	<view class="nav">
 		<!-- 导航栏 -->
-		<up-navbar title="分类" :is-back="false">
+		<up-navbar class="nav" title="分类" :is-back="false" :placeholder="true">
 			<template #right>
 				<view class="nav-right">
 					<up-icon name="search" size="18" @click="showSearchDialog" style="margin-right: 20rpx;"></up-icon>
@@ -237,11 +237,7 @@
 	}, { immediate: true });
 </script>
 
-<style>
-	.placeholder-nav {
-		padding-top: 100rpx;
-	}
-		
+<style scoped>
 	.nav-right {
 		display: flex;
 		align-items: center;

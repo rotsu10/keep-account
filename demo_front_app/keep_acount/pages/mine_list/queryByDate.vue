@@ -1,5 +1,12 @@
 <!-- 月度收支 -->
 <template>
+	<up-navbar
+	    title="月度收支"
+	    :autoBack="true"
+		class="nav"
+		:placeholder="true"
+	>
+	</up-navbar>
   <view class="bill-container">
     <!-- 日期选择器 -->
     <SelectTimeVue @select-date="handleDateChange"></SelectTimeVue>

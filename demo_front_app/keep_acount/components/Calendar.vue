@@ -69,7 +69,5 @@
 	watch(dailyCosts, () => calendarKey.value++, { deep: true });
 </script>
 <style scoped>
-	.content{
-		padding-top: 80rpx;
-	}
+
 </style>

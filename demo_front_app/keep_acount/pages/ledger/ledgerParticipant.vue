@@ -1,9 +1,9 @@
 <template>
 	<view>
 		<!-- 添加参与者 -->
-		<view class="clascustom-nav">
+		<view>
 			<!-- 导航栏 -->
-			<u-navbar title="参与者" :autoBack="true">
+			<u-navbar class="nav" title="参与者" :autoBack="true" :placeholder="true">
 				<template #right>
 					<u-icon name="plus" size="18" @click="showAddDialog" />
 				</template>
@@ -122,7 +122,5 @@
 </script>
 
 <style scoped>
-	.clascustom-nav{
-		padding-bottom: 88rpx;
-	}
+
 </style>

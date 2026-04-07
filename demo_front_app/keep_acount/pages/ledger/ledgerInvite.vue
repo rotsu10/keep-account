@@ -1,5 +1,9 @@
 <template>
-	<view style="padding:5rpx 25rpx;">
+	<view class="nav">
+		<u-navbar title="账本邀请" :autoBack="true" :placeholder="true"/>
+	</view>
+	
+	<view style="padding:5rpx 25rpx;" >
 		<!-- uview-plus 列表 -->
 		<up-list
 			v-model:loading="loading"

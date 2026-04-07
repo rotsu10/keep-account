@@ -1,5 +1,12 @@
 <template>
 	<view>
+		<up-navbar
+		    title="统计"
+		    :autoBack="true"
+			class="nav"
+			:placeholder="true"
+		>
+		</up-navbar>
 		<!-- 筛选下拉菜单 -->
 		<up-dropdown>
 			<up-dropdown-item v-model="value1" title="付款人" :options="option1" />

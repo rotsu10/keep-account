@@ -1,5 +1,12 @@
 <template>
   <view>
+	  <up-navbar
+	      title="转移分类"
+	      :autoBack="true"
+	  	class="nav"
+	  	:placeholder="true"
+	  >
+	  </up-navbar>
     <!-- 分割线 -->
     <u-divider
       :color="'#1989fa'"
@@ -18,7 +25,6 @@
         shape="circle"
 		:label="category.name"
       >
-      <!--  {{ category.name }} -->
       </u-radio>
     </u-radio-group>
 

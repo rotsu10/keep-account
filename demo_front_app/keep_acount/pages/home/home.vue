@@ -1,8 +1,7 @@
 <!-- 首页 -->
 <template>
 	<view>
-		<!-- uview-plus 导航栏 -->
-		<up-navbar title="日历" :is-back="false">
+		<up-navbar class="nav" title="日历" :is-back="false" :placeholder="true">
 			<template #right>
 				<LedgerShow 
 					@queryLedgerDetail="handleQueryLedgerDetail"

@@ -1,5 +1,11 @@
 <!-- 我的 -->
 <template>
+	<up-navbar
+	    title="我的"
+		class="nav"
+		:placeholder="true"
+	>
+	</up-navbar>
 	<view>
 		<view class="user">
 			<up-avatar class="photo" :size="80" src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg" alt="头像" />

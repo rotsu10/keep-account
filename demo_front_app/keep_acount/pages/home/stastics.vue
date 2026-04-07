@@ -1,5 +1,11 @@
 <!-- 图表 -->
 <template>
+	<up-navbar
+	    title="图表"
+		class="nav"
+		:placeholder="true"
+	>
+	</up-navbar>
 	<view class="time">
 		<AllSelectTimeVue @sendDate='handleDateChange'></AllSelectTimeVue>
 		<Finance :income="totalIncome" :expense="totalExpense" :total="total"></Finance>

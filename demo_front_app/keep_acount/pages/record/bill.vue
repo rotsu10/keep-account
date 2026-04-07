@@ -2,8 +2,8 @@
 <template>
 	<view class="page-content">
 		<!-- 导航栏 -->
-		<view class="placeholder-nav">
-			<up-navbar title="添加账本" leftText="返回" :autoBack="true">
+		<view class="nav">
+			<up-navbar title="添加账本" leftText="返回" :autoBack="true" :placeholder="true">
 				<template #right>
 					<view @click="showAddDialog" class="add-category-btn">
 						<up-icon name="plus" size="18" color="#1989fa" />
@@ -78,6 +78,7 @@
 					shape="circle"
 					size="large" :text="item.username"
 					@click="toggleSelect(item)"
+					class="participant-list-item"
 					>
 					<template #icon v-if="isSelected(item)">
 						<up-icon name="checkmark" size="18" color="#fff"/>
@@ -165,6 +166,16 @@
 			});
 			return;
 		}
+		
+		const priceReg = /^\d{1,9}(\.\d{1,2})?$/;
+		if (!priceReg.test(productPrice.value)) {
+		  uni.showToast({
+		    title: '价格最多9位整数，最多2位小数',
+		    icon: 'none'
+		  });
+		  return;
+		}
+		
 		if (!categoryId.value) {
 			uni.showToast({
 				title: '请选择分类',
@@ -287,9 +298,73 @@
 </script>
 
 <style scoped lang="scss">
-	.placeholder-nav{
-		padding-bottom: 80rpx;
-	}
+	// .submit-btn {
+	//   margin-top: 50rpx;   
+	// }
+	
+	// .form-item {
+	//   margin-bottom: 20rpx;
+	// }
+	
+	// .add-category-btn {
+	// 	display: flex;
+	// 	align-items: center;
+	// 	gap: 8rpx;
+	// }
+	
+	// .add-category-text {
+	// 	color: #1989fa;
+	// 	font-size: 28rpx;
+	// }
+	
+	// .participant-container {
+	// 	padding: 20rpx;
+	// }
+	
+	// .participant-header {
+	// 	display: flex;
+	// 	justify-content: space-between;
+	// 	align-items: center;
+	// 	margin-bottom: 20rpx;
+	// 	position: relative;
+	// }
+	
+	// .add-button{
+	// 	width: 20%;
+	// 	font-size: 20rpx;
+	// 	flex-shrink: 0;
+	// }
+	
+	// .title-text {
+	// 	font-size: 28rpx;
+	// 	color: #333;
+	// }
+	
+	// .participant-list-item{
+	// 	margin: 15rpx;
+	// }
+	
+	// // .participant-list {
+	// // 	display: flex;
+	// // 	flex-wrap: wrap;
+	// // 	gap: 20rpx;
+	// // 	padding: 30rpx 20rpx;
+	// // 	justify-content: center;
+	// // }
+	
+	// .selected-participant-list {
+	// 	display: flex;
+	// 	flex-wrap: wrap;
+	// 	gap: 20rpx;
+	// 	justify-content: center;
+	// }
+	
+	// .page-content {
+	//   padding: 0 30rpx;
+	// }
+</style>
+
+<style scoped lang="scss">
 	.submit-btn {
 	  margin-top: 50rpx;   
 	}
@@ -310,48 +385,12 @@
 	}
 	
 	.participant-container {
-		padding: 20rpx;
+		padding: 20rpx 0rpx 0rpx;
 	}
 	
-	.participant-header {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		margin-bottom: 20rpx;
-		position: relative;
+	.participant-list-item{
+		margin: 8rpx;
 	}
-	.title-text{
-		flex: 1;
-	}
-	.add-button{
-		width: 20%;
-		font-size: 20rpx;
-		flex-shrink: 0;
-	}
-	
-	.title-text {
-		font-size: 28rpx;
-		color: #333;
-	}
-	
-	.participant-list {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 20rpx;
-		padding: 30rpx 20rpx;
-		justify-content: center;
-	}
-	
-	.participant-tag {
-		cursor: pointer;
-		transition: all 0.2s;
-	}
-	
-	// .selected-tag {
-	// 	background-color: #1989fa !important;
-	// 	color: #fff !important;
-	// 	// border-color: #1989fa !important;
-	// }
 	
 	.selected-participant-list {
 		display: flex;
@@ -360,17 +399,27 @@
 		justify-content: center;
 	}
 	
-	.selected-participant--tag {
-		margin: 10rpx;
+	.participant-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 2rpx;
+		position: relative;
 	}
 	
-	.placeholder-nav {
-	  padding-top: var(--status-bar-height);
-	  padding-top: 88rpx; /* 核心：这一行就能解决遮挡 */
+	.title-text{
+		flex: 1;
+		font-size: 28rpx;
+		color: #333;
+	}
+	
+	.add-button{
+		width: 20%;
+		font-size: 20rpx;
+		flex-shrink: 0;
 	}
 	
 	.page-content {
 	  padding: 0 30rpx;
-	  box-sizing: border-box;
 	}
 </style>

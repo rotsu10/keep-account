@@ -1174,31 +1174,28 @@ to {
   text-align: center;
 }
 
-.placeholder-nav {
-		padding-top: 3.125rem;
-}
-.nav-right {
+.nav-right[data-v-b620a9f2] {
 		display: flex;
 		align-items: center;
 		padding-right: 0.3125rem;
 }
-.button-box {
+.button-box[data-v-b620a9f2] {
 		display: flex;
 		justify-content: space-between;
 		padding: 0.625rem;
 		box-sizing: border-box;
 }
-.button-box .up-button {
+.button-box .up-button[data-v-b620a9f2] {
 		flex: 1;
 		margin: 0 0.3125rem;
 }
-.list-box {
+.list-box[data-v-b620a9f2] {
 		padding: 0 0.625rem;
 }
-.modal-content {
+.modal-content[data-v-b620a9f2] {
 		padding: 0.625rem;
 }
-.delete-tip {
+.delete-tip[data-v-b620a9f2] {
 		padding: 0.625rem;
 		font-size: 0.8125rem;
 		color: #999;

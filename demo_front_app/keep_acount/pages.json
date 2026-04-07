@@ -75,12 +75,14 @@
 		{
 			"path": "components/PlusBillButton",
 			"style": {
+				"navigationStyle": "custom",
 				"navigationBarTitleText": "添加账单"
 			}
 		},
 		{
 			"path": "pages/home/mine",
 			"style": {
+				"navigationStyle": "custom",
 				"navigationBarTitleText": "我的"
 			}
 		},
@@ -94,42 +96,49 @@
 		{
 			"path": "pages/record/moveCategory",
 			"style": {
+				"navigationStyle": "custom",
 				"navigationBarTitleText": "修改分类"
 			}
 		},
 		{
 			"path": "components/charts/ListChart",
 			"style": {
+				"navigationStyle": "custom",
 				"navigationBarTitleText": "列表"
 			}
 		},
 		{
 			"path": "components/charts/PieChart",
 			"style": {
+				"navigationStyle": "custom",
 				"navigationBarTitleText": "饼状图"
 			}
 		},
 		{
 			"path": "components/charts/LineChart",
 			"style": {
+				"navigationStyle": "custom",
 				"navigationBarTitleText": "折线图"
 			}
 		},
 		{
 			"path": "pages/home/stastics",
 			"style": {
+				"navigationStyle": "custom",
 				"navigationBarTitleText": "图表统计"
 			}
 		},
 		{
 			"path": "components/AllSelectTime",
 			"style": {
+				"navigationStyle": "custom",
 				"navigationBarTitleText": ""
 			}
 		},
 		{
 			"path": "components/Finance",
 			"style": {
+				"navigationStyle": "custom",
 				"navigationBarTitleText": ""
 			}
 		},
@@ -150,30 +159,42 @@
 		{
 			"path": "pages/ledger/ledgerInvite",
 			"style": {
+				"navigationStyle": "custom",
 				"navigationBarTitleText": "账本邀请"
 			}
 		},
 		{
 			"path": "pages/mine_list/allBillStastics",
 			"style": {
+				"navigationStyle": "custom",
 				"navigationBarTitleText": ""
 			}
 		},
 		{
 			"path": "pages/mine_list/queryByDate",
 			"style": {
+				"navigationStyle": "custom",
 				"navigationBarTitleText": ""
 			}
 		},
 		{
 			"path": "components/SelectTime",
 			"style": {
+				"navigationStyle": "custom",
 				"navigationBarTitleText": ""
 			}
 		},
 		{
 			"path": "components/BillList",
 			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/mine_list/allPerson",
+			"style": {
+				"navigationStyle": "custom",
 				"navigationBarTitleText": ""
 			}
 		}

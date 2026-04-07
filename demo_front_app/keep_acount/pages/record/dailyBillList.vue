@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view class="nav">
-		    <up-navbar title="每日账单" :autoBack="true">
+		    <up-navbar title="每日账单" :autoBack="true" :placeholder="true">
 		        <template #right>
 		            <view class="navbar-right" @click="onClickRight">
 		                <up-icon name="plus" size="20" color="#333"></up-icon>
@@ -17,7 +17,7 @@
 				@scroll="onScroll">
 				<up-cell v-for="item in list" :key="item.id" :title="`${item.type === 1 ? '+' : '-'}${item.amount}`"
 					:label="item.categoryName" :value="dayjs(item.createTime).format('YYYY/MM/DD')"
-					@click="goToBillDetail(item.id)" @long-press="deleteByLongPress(item.id)" />
+					@click="goToBillDetail(item.id)" @longpress="deleteByLongPress(item.id)" />
 		
 				<!-- 加载状态提示 -->
 				<view v-if="loading" class="loading-tip">加载中...</view>
@@ -257,7 +257,6 @@
 
 <style scoped>
 	.page-box {
-		padding-top: 90rpx;
 		width: 100%;
 		height: 100vh;
 		background-color: #f5f5f5;

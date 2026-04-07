@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view class="nav">
-			<up-navbar :auto-back="true" title="账单详情"></up-navbar>
+			<up-navbar :auto-back="true" title="账单详情" :placeholder="true"></up-navbar>
 		</view>
 		<view class="container">
 			<up-form :model="formData" ref="formRef">
@@ -515,8 +515,7 @@
 
 <style scoped>
 	.container {
-		margin: 40rpx;
-		padding-top: 88rpx;
+		margin:0 40rpx;
 		min-height: 100vh;
 	}
 

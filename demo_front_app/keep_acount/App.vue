@@ -12,4 +12,7 @@
 <style lang="scss">
 	/*每个页面公共css */
 	@import "uview-plus/index.scss";
+	// .nav{
+	// 	padding-bottom:88rpx;
+	// }
 </style>

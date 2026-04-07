@@ -1,7 +1,7 @@
 <template>
 	<view class="content">
 		<!-- 导航栏 -->
-		<up-navbar title="切换账本" left-text="返回" :autoBack="true" left-icon="arrow-left">
+		<up-navbar class="nav" title="切换账本" left-text="返回" :autoBack="true" left-icon="arrow-left" :placeholder="true">
 			<template #right>
 				<up-icon name="plus" size="18" @click="showAddLedger" />
 			</template>
@@ -193,9 +193,5 @@
 	.empty-tip {
 		padding: 50rpx;
 		text-align: center;
-	}
-
-	.content{
-		padding-top:80rpx ;
 	}
 </style>

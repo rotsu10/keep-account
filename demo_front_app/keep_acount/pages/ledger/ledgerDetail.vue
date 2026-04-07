@@ -1,8 +1,8 @@
 <template>
 	<view>
 		<!-- uview-plus 导航栏 -->
-		<view class="clascustom-nav">
-			<u-navbar title="账本详情" :autoBack="true" />
+		<view class="nav">
+			<u-navbar title="账本详情" :autoBack="true" :placeholder="true"/>
 		</view>
 
 		<view class="u-p-x-15 u-m-t-15">
