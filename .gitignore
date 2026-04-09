@@ -32,3 +32,13 @@ demo_front/.env.development.local
 demo_front/.env.production.local
 demo_front/unpackage/cache/wgt/
 demo_front/unpackage/
+
+# 忽略前端app依赖和构建产物
+demo_front_app/node_modules/
+demo_front_app/dist/
+demo_front_app/.env
+demo_front_app/.env.local
+demo_front_app/.env.development.local
+demo_front_app/.env.production.local
+demo_front_app/unpackage/cache/wgt/
+demo_front_app/unpackage/
