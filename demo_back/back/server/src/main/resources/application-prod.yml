@@ -5,21 +5,29 @@ spring:
     url: jdbc:mysql://localhost:3306/keep_account?useSSL=false&serverTimezone=UTC
     username: xn
     password: FfHRARdRP7SwRx5B
-  rabbitmq:
-    host: 172.30.128.171  # 生产服务器内网IP
-    port: 5672
-    username: account_user  # 自定义账号（替代guest）
-    password: 12345678      # 自定义密码（替代guest）
-    virtual-host: /account  # 专属虚拟主机（替代/）
-    # 新增连接池配置（提升性能）
-    cache:
-      channel:
-        size: 50
-      connection:
-        size: 10
-    # 新增消息确认（保证消息不丢）
-    publisher-confirm-type: correlated
-    publisher-returns: true
+# application.yml 完整示例
+logging:
+  # 日志级别（root=全局，可单独配置包级别，比如com.example=debug）
+  level:
+    root: INFO
+    # 你的项目包名，比如com.yourcompany.yourapp，可单独设级别
+    com.example: DEBUG
+  file:
+    # 日志文件存放路径，宝塔会自动识别这个路径
+    path: /www/wwwroot/java/server.log
+    # 日志文件名
+    name: server.log
+  # 日志滚动策略（可选，防止日志文件过大）
+  logback:
+    rolling policy:
+      # 单个日志文件最大大小
+      max-file-size: 100MB
+      # 保留的历史日志文件天数
+      max-history: 30
+      # 总日志文件大小上限
+      total-size-cap: 1GB
+      # 是否删除旧日志
+      clean-history-on-start: true
 
 
 

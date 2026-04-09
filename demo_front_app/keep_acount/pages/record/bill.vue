@@ -125,7 +125,7 @@
 	const selectedParticipants = ref([]); // 选中的账单参与者
 	
 	onLoad((options) => {
-		createTime.value = options.time;
+		 createTime.value = options.time || new Date();
 	});
 
 	// 添加分类
@@ -200,9 +200,9 @@
 				type: payType.value,
 				billType: billType.value,
 				participantIds: selectedIds,
-				createTime: dayjs(createTime.value).format('YYYY-MM-DD HH:mm:ss')
+				createTime: dayjs(createTime.value || new Date()).format('YYYY-MM-DD HH:mm:ss')
 			};
-			
+			console.log("添加账单data",data)
 			await billStore.addBill(data);
 			const ledgerId = uni.getStorageSync("ledgerId");
 			await ledgerStore.queryLedgerDetailByID({ ledgerId });
@@ -296,73 +296,6 @@
 		getCategoryList();
 	});
 </script>
-
-<style scoped lang="scss">
-	// .submit-btn {
-	//   margin-top: 50rpx;   
-	// }
-	
-	// .form-item {
-	//   margin-bottom: 20rpx;
-	// }
-	
-	// .add-category-btn {
-	// 	display: flex;
-	// 	align-items: center;
-	// 	gap: 8rpx;
-	// }
-	
-	// .add-category-text {
-	// 	color: #1989fa;
-	// 	font-size: 28rpx;
-	// }
-	
-	// .participant-container {
-	// 	padding: 20rpx;
-	// }
-	
-	// .participant-header {
-	// 	display: flex;
-	// 	justify-content: space-between;
-	// 	align-items: center;
-	// 	margin-bottom: 20rpx;
-	// 	position: relative;
-	// }
-	
-	// .add-button{
-	// 	width: 20%;
-	// 	font-size: 20rpx;
-	// 	flex-shrink: 0;
-	// }
-	
-	// .title-text {
-	// 	font-size: 28rpx;
-	// 	color: #333;
-	// }
-	
-	// .participant-list-item{
-	// 	margin: 15rpx;
-	// }
-	
-	// // .participant-list {
-	// // 	display: flex;
-	// // 	flex-wrap: wrap;
-	// // 	gap: 20rpx;
-	// // 	padding: 30rpx 20rpx;
-	// // 	justify-content: center;
-	// // }
-	
-	// .selected-participant-list {
-	// 	display: flex;
-	// 	flex-wrap: wrap;
-	// 	gap: 20rpx;
-	// 	justify-content: center;
-	// }
-	
-	// .page-content {
-	//   padding: 0 30rpx;
-	// }
-</style>
 
 <style scoped lang="scss">
 	.submit-btn {

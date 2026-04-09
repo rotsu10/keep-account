@@ -63,8 +63,8 @@
 				<up-cell title="所有人统计收支" is-link  @click="navigateTo('/pages/mine_list/allPerson')" size="large" />
 			</up-cell-group>
 			<up-cell-group inset>
-				<up-cell title="设置" is-link size="large" />
-				<up-cell title="意见" is-link size="large" />
+				<up-cell title="设置" is-link size="large" @click="showAwait()"/>
+				<up-cell title="意见" is-link size="large" @click="showAwait()"/>
 			</up-cell-group>
 		</view>
 	</view>

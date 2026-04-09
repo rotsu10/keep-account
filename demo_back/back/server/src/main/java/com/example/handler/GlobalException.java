@@ -76,6 +76,7 @@ public class GlobalException {
     @ExceptionHandler(Exception.class)
     @ResponseBody
     public Result<String> handleAllException(Exception ex) {
+        ex.printStackTrace();
         log.error("系统异常：{}", ex.getMessage(), ex);
         return Result.error("未知错误");
     }

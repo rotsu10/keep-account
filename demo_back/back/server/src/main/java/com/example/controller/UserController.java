@@ -67,7 +67,6 @@ public class UserController {
                 .token(token)
                 .ledgerId(ledgerId)
                 .build();
-
         return Result.success(userLoginVO);
     }
 

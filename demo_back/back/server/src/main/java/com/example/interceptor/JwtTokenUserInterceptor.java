@@ -45,10 +45,13 @@ public class JwtTokenUserInterceptor implements HandlerInterceptor {
         try {
             log.info("JWT校验，token：{}", token);
             Claims claims = JwtUtil.parseJWT(jwtProperties.getUserSecretKey(), token);
+            log.info("Claims内容：{}", claims);
+            log.info("Claims中所有key：{}", claims.keySet());
             Long userId = Long.valueOf(claims.get(JwtClaimsConstant.ID).toString());
             log.info("当前登录用户ID：{}", userId);
             BaseContext.setCurrentId(userId);
         } catch (Exception ex) {
+            log.error("JWT校验失败，详细错误：", ex);
             // JWT校验失败，返回401未授权
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             response.setContentType("application/json;charset=UTF-8");

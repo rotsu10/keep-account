@@ -141,6 +141,7 @@
 		try {
 			await categoryStore.addCategory(categoryData);
 			categoryStore.queryCategoryType(currentType.value);
+			show.value = false;
 		} catch (err) {
 			console.error('添加失败：', err.message);
 			uni.showToast({ title: err.message, icon: 'error' });

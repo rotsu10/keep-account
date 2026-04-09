@@ -42,3 +42,4 @@ demo_front_app/.env.development.local
 demo_front_app/.env.production.local
 demo_front_app/unpackage/cache/wgt/
 demo_front_app/unpackage/
+demo_front_app/keep_acount/unpackage/

@@ -25,11 +25,12 @@
 			await logout()
 			uni.removeStorageSync("token");
 			uni.removeStorageSync("ledgerId");
+		}catch(error){
+			console.error("退出登录失败", error)
+		}finally{
 			uni.reLaunch({
 				url: "/pages/common/login"
 			})
-		}catch(error){
-			console.error("退出登录失败",error)
 		}
 	}
 </script>

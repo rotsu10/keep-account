@@ -18,6 +18,10 @@ const requestInterceptor = (config) => {
 			...config.header,
 			'authentication': token
 		}
+		if (uni.getSystemInfoSync().platform === "h5") {
+		  config.header["authentication"] = token;
+		}
+		
 		console.log('✅ 已添加 Authorization 头')
 	} else {
 		console.log('❌ 未找到 token，请求将无认证信息')
@@ -195,7 +199,7 @@ export const http = {
 				name: 'file',
 				formData,
 				header: {
-					'Authorization': `Bearer ${uni.getStorageSync('token')}`
+					'authentication': `${uni.getStorageSync('token')}`
 				},
 				success: (response) => {
 					try {

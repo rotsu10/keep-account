@@ -1,9 +1,9 @@
 server:
   port: 8080
-
+  address: 0.0.0.0
 spring:
   profiles:
-    active: dev
+    active: prod
 #  web:
 #    resources:
 #      static-locations: classpath:/static/
@@ -12,12 +12,11 @@ mybatis:
   type-aliases-package: com.example.entity
   configuration:
     map-underscore-to-camel-case: true
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 example:
   jwt:
     #用户端jwt
-    user-secret-key: a-string-secret-at-least-256-bits-long
-    user-ttl: 604800000
+    user-secret-key: 3sB8fQ2zXc7vK9pR5tA1wS7dF4gH6jL2nZ8xC5vB7nM9kP1oU0yT
+    user-ttl: 259200000
     user-token-name: authentication
 

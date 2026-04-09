@@ -7375,11 +7375,11 @@ if (uni.restoreGlobal) {
     __proto__: null,
     default: __easycom_3$6
   }, Symbol.toStringTag, { value: "Module" }));
-  const devEnv = {
-    // BASE_URL: "http://localhost:8080",
-    BASE_URL: "http://192.168.19.1:8080"
+  const prodEnv = {
+    BASE_URL: "http://121.197.3.19:8080"
+    // 服务器公网IP+后端端口
   };
-  const env = devEnv;
+  const env = prodEnv;
   formatAppLog("log", "at config/env.js:19", "当前运行环境：", "development");
   formatAppLog("log", "at config/env.js:20", "当前接口地址：", env.BASE_URL);
   const BASE_URL = env.BASE_URL;
@@ -7393,25 +7393,28 @@ if (uni.restoreGlobal) {
         ...config2.header,
         "authentication": token
       };
-      formatAppLog("log", "at utils/request.js:21", "✅ 已添加 Authorization 头");
+      if (uni.getSystemInfoSync().platform === "h5") {
+        config2.header["authentication"] = token;
+      }
+      formatAppLog("log", "at utils/request.js:25", "✅ 已添加 Authorization 头");
     } else {
-      formatAppLog("log", "at utils/request.js:23", "❌ 未找到 token，请求将无认证信息");
+      formatAppLog("log", "at utils/request.js:27", "❌ 未找到 token，请求将无认证信息");
     }
     if (ledgerId) {
       config2.header = {
         ...config2.header,
         "X-LEDGER-ID": ledgerId
       };
-      formatAppLog("log", "at utils/request.js:31", "✅ 已添加 X-LEDGER-ID 头");
+      formatAppLog("log", "at utils/request.js:35", "✅ 已添加 X-LEDGER-ID 头");
     } else {
-      formatAppLog("log", "at utils/request.js:33", "❌ 未找到 ledgerId，请求将无认证信息");
+      formatAppLog("log", "at utils/request.js:37", "❌ 未找到 ledgerId，请求将无认证信息");
     }
-    formatAppLog("log", "at utils/request.js:35", "最终请求头:", config2.header);
+    formatAppLog("log", "at utils/request.js:39", "最终请求头:", config2.header);
     return config2;
   };
   const responseInterceptor = (response, config2) => {
-    formatAppLog("log", "at utils/request.js:51", "响应状态码:", response.statusCode);
-    formatAppLog("log", "at utils/request.js:52", "响应数据:", response.data);
+    formatAppLog("log", "at utils/request.js:55", "响应状态码:", response.statusCode);
+    formatAppLog("log", "at utils/request.js:56", "响应数据:", response.data);
     const {
       statusCode,
       data
@@ -7451,12 +7454,12 @@ if (uni.restoreGlobal) {
     return Promise.reject(error2);
   };
   const request = (config2) => {
-    formatAppLog("log", "at utils/request.js:112", "原始 config 对象：", config2);
+    formatAppLog("log", "at utils/request.js:116", "原始 config 对象：", config2);
     const mergedConfig = {
       // url: config.url.startsWith('http') ? config.url : `${BASE_URL}${config.url}`,
       url: (() => {
         const finalUrl = config2.url.startsWith("http") ? config2.url : `${BASE_URL}${config2.url}`;
-        formatAppLog("log", "at utils/request.js:117", "最终请求 url：", finalUrl);
+        formatAppLog("log", "at utils/request.js:121", "最终请求 url：", finalUrl);
         return finalUrl;
       })(),
       method: config2.method || "GET",
@@ -7474,7 +7477,7 @@ if (uni.restoreGlobal) {
         success: (response) => {
           try {
             const result = responseInterceptor(response, finalConfig);
-            formatAppLog("log", "at utils/request.js:137", "拦截器返回数据：", result);
+            formatAppLog("log", "at utils/request.js:141", "拦截器返回数据：", result);
             resolve(result);
           } catch (error2) {
             reject(error2);
@@ -7483,7 +7486,7 @@ if (uni.restoreGlobal) {
         fail: (error2) => {
           const handledError = errorHandler(error2, finalConfig);
           reject(handledError);
-          formatAppLog("log", "at utils/request.js:146", "失败原因：", error2);
+          formatAppLog("log", "at utils/request.js:150", "失败原因：", error2);
         }
       });
     });
@@ -7529,7 +7532,7 @@ if (uni.restoreGlobal) {
           name: "file",
           formData,
           header: {
-            "Authorization": `Bearer ${uni.getStorageSync("token")}`
+            "authentication": `${uni.getStorageSync("token")}`
           },
           success: (response) => {
             try {
@@ -7675,13 +7678,13 @@ if (uni.restoreGlobal) {
           });
           uni.setStorageSync("token", result.token);
           uni.setStorageSync("ledgerId", result.ledgerId);
-          formatAppLog("log", "at pages/common/login.vue:87", "token是：", result.token);
-          formatAppLog("log", "at pages/common/login.vue:88", "ledgerId是：", result.ledgerId);
+          formatAppLog("log", "at pages/common/login.vue:85", "token是：", result.token);
+          formatAppLog("log", "at pages/common/login.vue:86", "ledgerId是：", result.ledgerId);
           uni.reLaunch({
             url: "/pages/home/home"
           });
         } catch (error2) {
-          formatAppLog("error", "at pages/common/login.vue:94", "登录异常：", error2);
+          formatAppLog("error", "at pages/common/login.vue:92", "登录异常：", error2);
         }
       };
       const register = () => {
@@ -7694,7 +7697,7 @@ if (uni.restoreGlobal) {
             });
           },
           fail: (err) => {
-            formatAppLog("log", "at pages/common/login.vue:108", "跳转失败", err);
+            formatAppLog("log", "at pages/common/login.vue:106", "跳转失败", err);
           }
         });
       };
@@ -20790,11 +20793,12 @@ This will fail in production.`);
           await logout();
           uni.removeStorageSync("token");
           uni.removeStorageSync("ledgerId");
+        } catch (error2) {
+          formatAppLog("error", "at components/Button/LogoutButton.vue:29", "退出登录失败", error2);
+        } finally {
           uni.reLaunch({
             url: "/pages/common/login"
           });
-        } catch (error2) {
-          formatAppLog("error", "at components/Button/LogoutButton.vue:32", "退出登录失败", error2);
         }
       };
       const __returned__ = { show, handleClick, userLogout, ref: vue.ref, get logout() {
@@ -21129,12 +21133,14 @@ This will fail in production.`);
                 vue.createVNode(_component_up_cell, {
                   title: "设置",
                   "is-link": "",
-                  size: "large"
+                  size: "large",
+                  onClick: _cache[5] || (_cache[5] = ($event) => $setup.showAwait())
                 }),
                 vue.createVNode(_component_up_cell, {
                   title: "意见",
                   "is-link": "",
-                  size: "large"
+                  size: "large",
+                  onClick: _cache[6] || (_cache[6] = ($event) => $setup.showAwait())
                 })
               ]),
               _: 1
@@ -31676,7 +31682,7 @@ ${o3}
           });
         } else {
           uni.reLaunch({
-            url: "/pages/login/login"
+            url: "/pages/common/login"
           });
         }
       });

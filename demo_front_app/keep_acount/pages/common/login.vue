@@ -75,8 +75,6 @@
 
 		try {
 			const result = await http.post(API_PATH.USER.LOGIN, data);
-
-
 			uni.showToast({
 				title: "登录成功"
 			});

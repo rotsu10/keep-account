@@ -11,7 +11,7 @@ onLaunch(() => {
   } else {
     // 未登录 → 跳登录页
     uni.reLaunch({
-      url: '/pages/login/login'
+      url: '/pages/common/login'
     })
   }
 })
